@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Game.h"
+#include "IApp.h"
+
 #include <LaggyDx/IInputDevice.h>
 #include <LaggyDx/IRenderDevice.h>
 #include <LaggyDx/IRenderer2d.h>
@@ -8,13 +11,17 @@
 #include <LaggySdk/Window.h>
 
 
-class App
+class App : public IApp
 {
 public:
   App();
   void run();
 
+  void stop() override;
+
 private:
+  std::unique_ptr<Game> d_game;
+
   Sdk::Timer d_timer;
   std::unique_ptr<Sdk::Window> d_window;
   std::unique_ptr<Dx::IInputDevice> d_inputDevice;

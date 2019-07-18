@@ -25,7 +25,6 @@ App::App()
 
   d_window = std::make_unique<Sdk::Window>(
     SettingsProvider::getClientWidth(), SettingsProvider::getClientHeight(), "Space Explorers");
-  CONTRACT_EXPECT(d_window);
 
   d_renderDevice = Dx::IRenderDevice::create(
     d_window->getHWnd(), SettingsProvider::getClientWidth(), SettingsProvider::getClientHeight());
@@ -33,15 +32,15 @@ App::App()
 
   d_resourceController = Dx::IResourceController::create(SettingsProvider::getResourcesFolder());
   CONTRACT_EXPECT(d_resourceController);
-
   d_resourceController->loadResources(*d_renderDevice);
-  CONTRACT_EXPECT(d_resourceController);
 
   d_renderer2d = Dx::IRenderer2d::create(*d_renderDevice, *d_resourceController);
   CONTRACT_EXPECT(d_renderer2d);
 
   d_inputDevice = Dx::IInputDevice::create(d_window->getHWnd());
   CONTRACT_EXPECT(d_inputDevice);
+
+  d_game = std::make_unique<Game>(*this, *d_resourceController);
 
   setCursorToCenter();
   d_window->show();
@@ -55,6 +54,11 @@ bool App::getContinueLoop()
     return false;
 
   return d_continueLoop;
+}
+
+void App::stop()
+{
+  d_continueLoop = false;
 }
 
 void App::run()
@@ -71,17 +75,15 @@ void App::mainloop()
 {
   double dt = d_timer.restart();
 
-  const auto& keyboardState = d_inputDevice->checkKeyboard();
-  //handleKeyboard(keyboardState);
-  const auto& mouseState = d_inputDevice->checkMouse();
-  //handleMouse(mouseState);
+  d_game->handleKeyboard(d_inputDevice->checkKeyboard());
+  d_game->handleMouse(d_inputDevice->checkMouse());
 
-  //checkLogic(dt);
+  d_game->update(dt);
 
   d_renderDevice->beginScene();
   d_renderer2d->beginScene();
 
-  //d_viewModel->render(*d_renderer2d, mouseState.getMousePosition());
+  d_game->render(*d_renderer2d);
   std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
   d_renderer2d->endScene();

@@ -10,6 +10,24 @@
     <Filter Include="src\App">
       <UniqueIdentifier>{e9b45ef6-8b71-4c8d-a70d-35f1b8052891}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\World">
+      <UniqueIdentifier>{f7240feb-166d-48d4-a40a-53c5f865e5d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game">
+      <UniqueIdentifier>{68fe41fb-9a3d-4f05-8f34-83a76b35f8f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\World\Objects">
+      <UniqueIdentifier>{4b805a66-8695-4d34-aa62-da6c5d8ba1a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Gui">
+      <UniqueIdentifier>{ef52b4c2-6658-40d7-862b-41b13c3389a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Gui\GuiControls">
+      <UniqueIdentifier>{ba07a084-04a5-47c0-973a-9981834bcd07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Gui\Cursor">
+      <UniqueIdentifier>{f1708bd0-daa3-40e8-a726-ecad6aff4efe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -24,6 +42,27 @@
     <ClCompile Include="SettingsProvider.cpp">
       <Filter>src\SettingsProvider</Filter>
     </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>src\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Structure.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui.cpp">
+      <Filter>src\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Game_input.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>src\Gui\Cursor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -34,6 +73,30 @@
     </ClInclude>
     <ClInclude Include="SettingsProvider.h">
       <Filter>src\SettingsProvider</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>src\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Structure.h">
+      <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui.h">
+      <Filter>src\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="IGuiControl.h">
+      <Filter>src\Gui\GuiControls</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>src\Gui\Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="IApp.h">
+      <Filter>src\App</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
