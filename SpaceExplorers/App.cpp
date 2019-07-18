@@ -52,7 +52,7 @@ bool App::getContinueLoop()
 {
   CONTRACT_EXPECT(d_inputDevice);
   if (!Sdk::handleMessages(std::bind(&Dx::IInputDevice::processMessage, std::ref(*d_inputDevice), std::placeholders::_1)))
-    return true;
+    return false;
 
   return d_continueLoop;
 }
