@@ -4,7 +4,10 @@
     <Filter Include="src">
       <UniqueIdentifier>{7a7d8cac-6b3c-436f-94f6-6f85200b44f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\app">
+    <Filter Include="src\SettingsProvider">
+      <UniqueIdentifier>{d0f687b7-45d6-49d1-a5ad-bc95219963af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\App">
       <UniqueIdentifier>{e9b45ef6-8b71-4c8d-a70d-35f1b8052891}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -16,7 +19,10 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="App.cpp">
-      <Filter>src\app</Filter>
+      <Filter>src\App</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsProvider.cpp">
+      <Filter>src\SettingsProvider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -24,7 +30,10 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="App.h">
-      <Filter>src\app</Filter>
+      <Filter>src\App</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsProvider.h">
+      <Filter>src\SettingsProvider</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
