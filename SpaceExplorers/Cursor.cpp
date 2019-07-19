@@ -28,6 +28,11 @@ void Cursor::setPosition(Sdk::Vector2 i_position)
   d_position = std::move(i_position);
 }
 
+void Cursor::movePosition(const Sdk::Vector2& i_offset)
+{
+  d_position += i_offset * 2;
+}
+
 
 void Cursor::show()
 {

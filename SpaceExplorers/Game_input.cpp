@@ -13,5 +13,8 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
 
 void Game::handleMouse(const Dx::MouseState& i_mouseState)
 {
-  d_gui.getCursor().setPosition(i_mouseState.getPosition());
+  if (i_mouseState.getMode() == Dx::MouseMode::Absolute)
+    d_gui.getCursor().setPosition(i_mouseState.getPosition());
+  else
+    d_gui.getCursor().movePosition(i_mouseState.getPosition());
 }
