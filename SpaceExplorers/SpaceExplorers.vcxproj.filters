@@ -69,6 +69,9 @@
     <ClCompile Include="Cursor.cpp">
       <Filter>src\Gui\Cursor</Filter>
     </ClCompile>
+    <ClCompile Include="World_create.cpp">
+      <Filter>src\World</Filter>
+    </ClCompile>
     <ClCompile Include="Prototypes.cpp">
       <Filter>src\World\Prototypes</Filter>
     </ClCompile>

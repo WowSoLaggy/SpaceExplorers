@@ -152,6 +152,7 @@
     </ClCompile>
     <ClCompile Include="Structure.cpp" />
     <ClCompile Include="World.cpp" />
+    <ClCompile Include="World_create.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
