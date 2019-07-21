@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Camera.h"
 #include "Gui.h"
 #include "IApp.h"
 #include "World.h"
@@ -23,6 +24,7 @@ public:
 private:
   IApp& d_app;
 
+  Camera d_camera;
   Gui d_gui;
   std::unique_ptr<World> d_world;
 };

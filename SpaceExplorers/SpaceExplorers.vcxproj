@@ -135,6 +135,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_input.cpp" />
@@ -153,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IApp.h" />

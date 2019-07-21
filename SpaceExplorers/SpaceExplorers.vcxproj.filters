@@ -28,6 +28,9 @@
     <Filter Include="src\Gui\Cursor">
       <UniqueIdentifier>{f1708bd0-daa3-40e8-a726-ecad6aff4efe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Camera">
+      <UniqueIdentifier>{9ca1cb00-08d7-487e-8b87-e2eec2f8af86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -63,6 +66,9 @@
     <ClCompile Include="Cursor.cpp">
       <Filter>src\Gui\Cursor</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>src\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -97,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="IApp.h">
       <Filter>src\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>src\Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
