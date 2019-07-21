@@ -142,6 +142,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Gui.cpp" />
+    <ClCompile Include="Prototypes.cpp" />
     <ClCompile Include="SettingsProvider.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -161,9 +162,11 @@
     <ClInclude Include="IGuiControl.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Gui.h" />
+    <ClInclude Include="Prototypes.h" />
     <ClInclude Include="SettingsProvider.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Structure.h" />
+    <ClInclude Include="StructurePrototype.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
