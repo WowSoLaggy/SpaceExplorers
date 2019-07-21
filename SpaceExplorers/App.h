@@ -15,8 +15,9 @@ class App : public IApp
 {
 public:
   App();
-  void run();
+  ~App();
 
+  void run();
   void stop() override;
 
 private:

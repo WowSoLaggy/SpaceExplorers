@@ -21,6 +21,8 @@ namespace
 
 App::App()
 {
+  CoInitialize(nullptr);
+
   Sdk::randomize();
 
   d_window = std::make_unique<Sdk::Window>(
@@ -44,6 +46,11 @@ App::App()
 
   setCursorToCenter();
   d_window->show();
+}
+
+App::~App()
+{
+  CoUninitialize();
 }
 
 
