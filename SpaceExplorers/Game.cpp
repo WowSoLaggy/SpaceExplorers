@@ -3,13 +3,13 @@
 
 #include <LaggyDx/IRenderer2d.h>
 
+
 Game::Game(IApp& i_app, const Dx::IResourceController& i_resourceController)
   : d_app(i_app)
   , d_camera(i_app.getClientWidth(), i_app.getClientHeight())
   , d_gui(i_resourceController)
 {
-  // TODO: ae Remove it from here
-  d_gui.getCursor().setTexture("Cursor.dds");
+  d_gui.getCursor().setTexture("Cursor.png");
 }
 
 
