@@ -34,7 +34,7 @@ App::App()
   CONTRACT_EXPECT(d_resourceController);
   d_resourceController->loadResources(*d_renderDevice);
 
-  d_renderer2d = Dx::IRenderer2d::create(*d_renderDevice, *d_resourceController);
+  d_renderer2d = Dx::IRenderer2d::create(*d_renderDevice);
   CONTRACT_EXPECT(d_renderer2d);
 
   d_inputDevice = Dx::IInputDevice::create(d_window->getHWnd());

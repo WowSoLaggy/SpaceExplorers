@@ -1,6 +1,7 @@
 #pragma once
 
 #include <LaggyDx/LaggyDxFwd.h>
+#include <LaggyDx/Sprite.h>
 #include <LaggySdk/Vector.h>
 
 
@@ -21,8 +22,6 @@ public:
 
 private:
   const Dx::IResourceController& d_resourceController;
-  bool d_visible;
-  Sdk::Vector2 d_position;
-  Sdk::Vector2 d_textureSize;
-  Dx::ResourceId d_textureId;
+  bool d_visible = false;
+  Dx::Sprite d_sprite{};
 };

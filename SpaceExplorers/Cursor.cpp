@@ -3,34 +3,29 @@
 
 #include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>
+#include <LaggyDx/ITextureResource.h>
 
 
 Cursor::Cursor(const Dx::IResourceController& i_resourceController)
   : d_resourceController(i_resourceController)
-  , d_visible(false)
-  , d_textureId(Dx::ResourceIdEmpty)
 {
 }
 
 
 void Cursor::setTexture(const std::string& i_textureName)
 {
-  d_textureId = d_resourceController.getResourceId(i_textureName);
-
-  // TODO: ae Either provide me a reliable method to get the texture size,
-  // or don't ask me to provide you its size in the 'render' method!
-  //d_textureSize = d_resourceController.getSize(d_textureId);
-  d_textureSize = { 25, 25 };
+  d_sprite.texture = &d_resourceController.getTextureResource(i_textureName);
+  d_sprite.size = d_sprite.texture->getSize();
 }
 
 void Cursor::setPosition(Sdk::Vector2 i_position)
 {
-  d_position = std::move(i_position);
+  d_sprite.position = std::move(i_position);
 }
 
 void Cursor::movePosition(const Sdk::Vector2& i_offset)
 {
-  d_position += i_offset * 2;
+  d_sprite.position += i_offset * 2;
 }
 
 
@@ -51,5 +46,5 @@ void Cursor::update(double i_dt)
 
 void Cursor::render(Dx::IRenderer2d& i_renderer) const
 {
-  i_renderer.renderTexture(d_textureId, d_position, d_textureSize);
+  i_renderer.renderSprite(d_sprite);
 }
