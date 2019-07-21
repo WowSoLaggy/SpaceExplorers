@@ -9,10 +9,16 @@ Camera::Camera(int i_clientWidth, int i_clientHeight)
 }
 
 
-void Camera::lookAt(Sdk::Vector2 i_lookAt)
+void Camera::setLookAt(Sdk::Vector2 i_lookAt)
 {
   d_lookAt = std::move(i_lookAt);
 }
+
+const Sdk::Vector2& Camera::getLookAt() const
+{
+  return d_lookAt;
+}
+
 
 Sdk::Vector2 Camera::getTopLeftTranslation() const
 {

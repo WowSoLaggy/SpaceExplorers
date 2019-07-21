@@ -8,7 +8,9 @@ class Camera
 public:
   Camera(int i_clientWidth, int i_clientHeight);
 
-  void lookAt(Sdk::Vector2 i_lookAt);
+  void setLookAt(Sdk::Vector2 i_lookAt);
+  const Sdk::Vector2& getLookAt() const;
+
   Sdk::Vector2 getTopLeftTranslation() const;
 
 private:
