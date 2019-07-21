@@ -78,6 +78,17 @@ void App::run()
 }
 
 
+int App::getClientWidth()
+{
+  return SettingsProvider::getClientWidth();
+}
+
+int App::getClientHeight()
+{
+  return SettingsProvider::getClientHeight();
+}
+
+
 void App::mainloop()
 {
   double dt = d_timer.restart();
