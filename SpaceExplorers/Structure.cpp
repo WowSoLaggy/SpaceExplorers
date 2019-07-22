@@ -11,11 +11,10 @@ Structure::Structure(
   const StructurePrototype& i_prototype,
   Sdk::Vector2I i_coordsTile)
   : d_prototype(i_prototype)
-  , d_coordsTile(std::move(i_coordsTile))
 {
   d_sprite.texture = &i_resourceController.getTextureResource(d_prototype.textureFileName);
   d_sprite.size = d_sprite.texture->getSize();
-  d_sprite.position = d_coordsTile * 64;
+  d_sprite.position = i_coordsTile * 64;
 }
 
 

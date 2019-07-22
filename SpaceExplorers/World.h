@@ -2,9 +2,12 @@
 
 #include "Object.h"
 #include "Structure.h"
+#include "Tile.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
+#include <LaggySdk/Vector.h>
 
+#include <unordered_map>
 #include <vector>
 
 
@@ -18,6 +21,7 @@ public:
   void render(Dx::IRenderer2d& i_renderer) const;
 
 private:
-  std::vector<StructurePtr> d_structures;
+  std::unordered_map<Sdk::Vector2I, Tile, Sdk::Vector2_hash> d_tilesMap;
+
   std::vector<ObjectPtr> d_objects;
 };

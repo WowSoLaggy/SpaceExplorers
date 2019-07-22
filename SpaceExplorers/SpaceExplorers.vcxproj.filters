@@ -122,5 +122,8 @@
     <ClInclude Include="Camera.h">
       <Filter>src\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>src\World</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

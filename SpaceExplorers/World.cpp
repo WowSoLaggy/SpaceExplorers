@@ -4,24 +4,24 @@
 
 void World::update(double i_dt)
 {
-  auto process = [&](auto& i_input)
+  for (auto&[_, tile] : d_tilesMap)
   {
-    for (auto& item : i_input)
-      item->update(i_dt);
-  };
+    if (tile.panelling)
+      tile.panelling->update(i_dt);
+  }
 
-  process(d_structures);
-  process(d_objects);
+  for (auto& item : d_objects)
+    item->update(i_dt);
 }
 
 void World::render(Dx::IRenderer2d& i_renderer) const
 {
-  auto process = [&](const auto& i_input)
+  for (auto&[_, tile] : d_tilesMap)
   {
-    for (const auto& item : i_input)
-      item->render(i_renderer);
-  };
+    if (tile.panelling)
+      tile.panelling->render(i_renderer);
+  }
 
-  process(d_structures);
-  process(d_objects);
+  for (const auto& item : d_objects)
+    item->render(i_renderer);
 }

@@ -188,6 +188,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Structure.h" />
     <ClInclude Include="StructurePrototype.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>

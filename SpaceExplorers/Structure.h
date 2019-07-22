@@ -22,7 +22,6 @@ public:
 
 private:
   const StructurePrototype& d_prototype;
-  Sdk::Vector2I d_coordsTile{};
   Dx::Sprite d_sprite{};
 };
 
