@@ -13,6 +13,9 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
   if (pressedKeys.Escape)
     d_app.stop();
 
+  if (pressedKeys.F12)
+    d_debugOutput = !d_debugOutput;
+
   if (currentKeys.A)
     d_camera.moveLeft();
   if (currentKeys.D)

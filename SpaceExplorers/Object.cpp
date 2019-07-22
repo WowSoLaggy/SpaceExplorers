@@ -6,6 +6,7 @@ void Object::update(double i_dt)
 {
 }
 
-void Object::render(Dx::IRenderer2d& i_renderer) const
+int Object::render(Dx::IRenderer2d& i_renderer) const
 {
+  return 1;
 }

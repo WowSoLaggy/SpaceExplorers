@@ -27,4 +27,6 @@ private:
   Camera d_camera;
   Gui d_gui;
   std::unique_ptr<World> d_world;
+
+  bool d_debugOutput = true;
 };

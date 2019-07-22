@@ -18,7 +18,7 @@ public:
 
 public:
   void update(double i_dt);
-  void render(Dx::IRenderer2d& i_renderer) const;
+  int render(Dx::IRenderer2d& i_renderer) const;
 
 private:
   std::unordered_map<Sdk::Vector2I, Tile, Sdk::Vector2_hash> d_tilesMap;

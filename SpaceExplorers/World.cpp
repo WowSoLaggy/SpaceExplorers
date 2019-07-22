@@ -10,11 +10,15 @@ void World::update(double i_dt)
     item->update(i_dt);
 }
 
-void World::render(Dx::IRenderer2d& i_renderer) const
+int World::render(Dx::IRenderer2d& i_renderer) const
 {
+  int renderedThings = 0;
+
   for (auto&[_, tile] : d_tilesMap)
-    tile.render(i_renderer);
+    renderedThings += tile.render(i_renderer);
 
   for (const auto& item : d_objects)
-    item->render(i_renderer);
+    renderedThings += item->render(i_renderer);
+
+  return renderedThings;
 }
