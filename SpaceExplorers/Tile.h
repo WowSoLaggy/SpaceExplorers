@@ -6,6 +6,6 @@
 struct Tile
 {
   StructurePtr panelling;
-  /*StructurePtr floor;
-  StructurePtr wall;*/
+  StructurePtr floor;
+  StructurePtr wall;
 };
