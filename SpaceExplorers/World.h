@@ -18,6 +18,6 @@ public:
   void render(Dx::IRenderer2d& i_renderer) const;
 
 private:
-  std::vector<Structure> d_structures;
-  std::vector<Object> d_objects;
+  std::vector<StructurePtr> d_structures;
+  std::vector<ObjectPtr> d_objects;
 };

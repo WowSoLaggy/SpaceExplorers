@@ -6,6 +6,8 @@
 #include <LaggyDx/Sprite.h>
 #include <LaggySdk/Vector.h>
 
+#include <memory>
+
 
 class Structure
 {
@@ -23,3 +25,5 @@ private:
   Sdk::Vector2 d_coordsTile{};
   Dx::Sprite d_sprite{};
 };
+
+using StructurePtr = std::shared_ptr<Structure>;
