@@ -29,14 +29,14 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
   for (int y = -Lattices; y < Lattices; ++y)
   {
     for (int x = -Lattices; x < Lattices; ++x)
-      tile(x, y).panelling = create(Prototypes::Lattice(), { x, y });
+      tile(x, y).setPanelling(create(Prototypes::Lattice(), { x, y }));
   }
 
   const int Floors = 2;
   for (int y = -Floors; y < Floors; ++y)
   {
     for (int x = -Floors; x < Floors; ++x)
-      tile(x, y).floor = create(Prototypes::Floor(), { x, y });
+      tile(x, y).setFloor(create(Prototypes::Floor(), { x, y }));
   }
 
   const int Walls = 2;
@@ -45,7 +45,7 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
     for (int x = -Floors; x < Floors; ++x)
     {
       if (x == -Floors || x == Floors - 1 || y == -Floors || y == Floors - 1)
-        tile(x, y).wall = create(Prototypes::Wall(), { x, y });
+        tile(x, y).setWall(create(Prototypes::Wall(), { x, y }));
     }
   }
 
