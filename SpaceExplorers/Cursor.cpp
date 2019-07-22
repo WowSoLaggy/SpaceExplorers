@@ -18,12 +18,12 @@ void Cursor::setTexture(const std::string& i_textureName)
   d_sprite.size = d_sprite.texture->getSize();
 }
 
-void Cursor::setPosition(Sdk::Vector2 i_position)
+void Cursor::setPosition(Sdk::Vector2I i_position)
 {
   d_sprite.position = std::move(i_position);
 }
 
-void Cursor::movePosition(const Sdk::Vector2& i_offset)
+void Cursor::movePosition(const Sdk::Vector2I& i_offset)
 {
   d_sprite.position += i_offset * 2;
 }

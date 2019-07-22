@@ -12,7 +12,7 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
   auto world = std::make_unique<World>();
 
   StructurePtr lattice = std::make_shared<Structure>(
-    i_resourceController, Prototypes::getLattice(), Sdk::Vector2{ 0, 0 });
+    i_resourceController, Prototypes::getLattice(), Sdk::Vector2I{ 0, 0 });
   world->d_structures.push_back(std::move(lattice));
 
   return world;

@@ -9,7 +9,7 @@
 Structure::Structure(
   const Dx::IResourceController& i_resourceController,
   const StructurePrototype& i_prototype,
-  Sdk::Vector2 i_coordsTile)
+  Sdk::Vector2I i_coordsTile)
   : d_prototype(i_prototype)
   , d_coordsTile(std::move(i_coordsTile))
 {

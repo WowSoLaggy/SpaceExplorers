@@ -8,10 +8,10 @@ class Camera
 public:
   Camera(int i_clientWidth, int i_clientHeight);
 
-  void setLookAt(Sdk::Vector2 i_lookAt);
-  const Sdk::Vector2& getLookAt() const;
+  void setLookAt(Sdk::Vector2I i_lookAt);
+  const Sdk::Vector2I& getLookAt() const;
 
-  Sdk::Vector2 getTopLeftTranslation() const;
+  Sdk::Vector2I getTopLeftTranslation() const;
 
   void moveLeft();
   void moveRight();
@@ -26,7 +26,7 @@ private:
   const int d_clientWidth;
   const int d_clientHeight;
 
-  Sdk::Vector2 d_lookAt{};
+  Sdk::Vector2I d_lookAt{};
 
   int d_moveXSign = 0;
   int d_moveYSign = 0;

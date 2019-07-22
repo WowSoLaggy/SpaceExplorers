@@ -11,8 +11,8 @@ public:
   Cursor(const Dx::IResourceController& i_resourceController);
 
   void setTexture(const std::string& i_textureName);
-  void setPosition(Sdk::Vector2 i_position);
-  void movePosition(const Sdk::Vector2& i_offset);
+  void setPosition(Sdk::Vector2I i_position);
+  void movePosition(const Sdk::Vector2I& i_offset);
 
   void show();
   void hide();
