@@ -5,5 +5,5 @@
 
 namespace Prototypes
 {
-  const StructurePrototype& getLattice();
+  const StructurePrototype& Lattice();
 } // ns Prototypes

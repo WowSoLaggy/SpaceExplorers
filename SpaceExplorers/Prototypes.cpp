@@ -4,7 +4,7 @@
 
 namespace Prototypes
 {
-  const StructurePrototype& getLattice()
+  const StructurePrototype& Lattice()
   {
     static StructurePrototype prototype;
     prototype.textureFileName = "Lattice_64_64_1_a.png";

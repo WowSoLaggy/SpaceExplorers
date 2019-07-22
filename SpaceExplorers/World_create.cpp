@@ -28,7 +28,7 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
   for (int y = -5; y < 5; ++y)
   {
     for (int x = -5; x < 5; ++x)
-      tile(x, y).panelling = create(Prototypes::getLattice(), { x, y });
+      tile(x, y).panelling = create(Prototypes::Lattice(), { x, y });
   }
 
   ///
