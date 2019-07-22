@@ -13,9 +13,21 @@ public:
 
   Sdk::Vector2 getTopLeftTranslation() const;
 
+  void moveLeft();
+  void moveRight();
+  void moveUp();
+  void moveDown();
+
+  void update(double i_dt);
+
 private:
+  const int MoveSpeed = 1000;
+
   const int d_clientWidth;
   const int d_clientHeight;
 
   Sdk::Vector2 d_lookAt{};
+
+  int d_moveXSign = 0;
+  int d_moveYSign = 0;
 };

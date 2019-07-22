@@ -7,8 +7,20 @@
 
 void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
 {
-  if (i_keyboardState.getPressedKeys().Escape)
+  const auto& pressedKeys = i_keyboardState.getPressedKeys();
+  const auto& currentKeys = i_keyboardState.getCurrentKeys();
+
+  if (pressedKeys.Escape)
     d_app.stop();
+
+  if (currentKeys.A)
+    d_camera.moveLeft();
+  if (currentKeys.D)
+    d_camera.moveRight();
+  if (currentKeys.W)
+    d_camera.moveUp();
+  if (currentKeys.S)
+    d_camera.moveDown();
 }
 
 void Game::handleMouse(const Dx::MouseState& i_mouseState)

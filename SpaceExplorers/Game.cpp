@@ -20,6 +20,7 @@ void Game::update(double i_dt)
   if (d_world)
     d_world->update(i_dt);
   d_gui.update(i_dt);
+  d_camera.update(i_dt);
 }
 
 void Game::render(Dx::IRenderer2d& i_renderer) const
