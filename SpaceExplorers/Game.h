@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Camera.h"
+#include "Fwd.h"
 #include "Gui.h"
-#include "IApp.h"
 #include "World.h"
 
 #include <LaggyDx/LaggyDxFwd.h>

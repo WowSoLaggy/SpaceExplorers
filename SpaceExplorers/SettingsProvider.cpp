@@ -2,23 +2,37 @@
 #include "SettingsProvider.h"
 
 
-std::string SettingsProvider::getApplicationName()
+namespace
 {
-  return "Space Explorers";
+  ExternalSettings createDefaultExternalSettings()
+  {
+    ExternalSettings settings;
+    settings.clientWidth = 1280;
+    settings.clientHeight = 720;
+    return settings;
+  }
+
+  InternalSettings createDefaultInternalSettings()
+  {
+    InternalSettings settings;
+    settings.applicationName = "Space Explorers";
+    settings.resourcesFolder = "Data";
+    settings.tileSize = 64;
+    settings.defaultFontName = "MyFont.spritefont";
+    return settings;
+  }
+
+} // anonymous NS
+
+
+const ExternalSettings& SettingsProvider::getDefaultExternalSettings()
+{
+  static const ExternalSettings externalSettings = createDefaultExternalSettings();
+  return externalSettings;
 }
 
-std::string SettingsProvider::getResourcesFolder()
+const InternalSettings& SettingsProvider::getDefaultInternalSettings()
 {
-  return "Data";
-}
-
-
-int SettingsProvider::getClientWidth()
-{
-  return 1280;
-}
-
-int SettingsProvider::getClientHeight()
-{
-  return 720;
+  static const InternalSettings internalSettings = createDefaultInternalSettings();
+  return internalSettings;
 }

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Game.h"
 
+#include "SettingsProvider.h"
+
 #include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>
 
@@ -13,11 +15,11 @@ namespace
 
 Game::Game(IApp& i_app, const Dx::IResourceController& i_resourceController)
   : d_app(i_app)
-  , d_camera(i_app.getClientWidth(), i_app.getClientHeight())
+  , d_camera(SettingsProvider::getDefaultExternalSettings().clientWidth,
+    SettingsProvider::getDefaultExternalSettings().clientHeight)
   , d_gui(i_resourceController)
 {
   d_gui.getCursor().setTexture("Cursor.png");
-
   d_world = World::createTestWorld(i_resourceController);
 
   s_fontResource = &i_resourceController.getFontResource("MyFont.spritefont");

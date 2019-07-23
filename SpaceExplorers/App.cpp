@@ -25,14 +25,17 @@ App::App()
 
   Sdk::randomize();
 
+  const auto& externalSettings = SettingsProvider::getDefaultExternalSettings();
+  const auto& internalSettings = SettingsProvider::getDefaultInternalSettings();
+
   d_window = std::make_unique<Sdk::Window>(
-    SettingsProvider::getClientWidth(), SettingsProvider::getClientHeight(), "Space Explorers");
+    externalSettings.clientWidth, externalSettings.clientHeight, internalSettings.applicationName);
 
   d_renderDevice = Dx::IRenderDevice::create(
-    d_window->getHWnd(), SettingsProvider::getClientWidth(), SettingsProvider::getClientHeight());
+    d_window->getHWnd(), externalSettings.clientWidth, externalSettings.clientHeight);
   CONTRACT_EXPECT(d_renderDevice);
 
-  d_resourceController = Dx::IResourceController::create(SettingsProvider::getResourcesFolder());
+  d_resourceController = Dx::IResourceController::create(internalSettings.resourcesFolder);
   CONTRACT_EXPECT(d_resourceController);
   d_resourceController->loadResources(*d_renderDevice);
 
@@ -75,17 +78,6 @@ void App::run()
 
   while (getContinueLoop())
     mainloop();
-}
-
-
-int App::getClientWidth()
-{
-  return SettingsProvider::getClientWidth();
-}
-
-int App::getClientHeight()
-{
-  return SettingsProvider::getClientHeight();
 }
 
 

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Structure.h"
 
-#include "TileSize.h"
+#include "GameSettings.h"
 
 #include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>

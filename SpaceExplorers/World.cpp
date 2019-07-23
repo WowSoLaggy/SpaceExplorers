@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "World.h"
 
-#include "TileSize.h"
+#include "GameSettings.h"
 
 
 namespace
@@ -36,7 +36,7 @@ int World::render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) con
   }
 
   /*for (const auto& item : d_objects)
-    renderedThings += item->render(i_renderer);*/
+    item->render(i_renderer);*/
 
   return renderedThings;
 }

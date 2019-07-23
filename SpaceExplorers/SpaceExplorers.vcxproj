@@ -179,9 +179,12 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cursor.h" />
+    <ClInclude Include="ExternalSettings.h" />
+    <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IApp.h" />
     <ClInclude Include="IGuiControl.h" />
+    <ClInclude Include="InternalSettings.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="Prototypes.h" />
@@ -190,7 +193,6 @@
     <ClInclude Include="Structure.h" />
     <ClInclude Include="StructurePrototype.h" />
     <ClInclude Include="Tile.h" />
-    <ClInclude Include="TileSize.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>

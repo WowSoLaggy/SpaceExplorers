@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Game.h"
 
+#include "IApp.h"
+
 #include <LaggyDx/KeyboardState.h>
 #include <LaggyDx/MouseState.h>
 

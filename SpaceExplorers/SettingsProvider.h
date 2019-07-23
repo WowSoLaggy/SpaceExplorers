@@ -1,14 +1,12 @@
 #pragma once
 
-#include <string>
+#include "ExternalSettings.h"
+#include "InternalSettings.h"
 
 
 class SettingsProvider
 {
 public:
-  static std::string getApplicationName();
-  static std::string getResourcesFolder();
-
-  static int getClientWidth();
-  static int getClientHeight();
+  static const ExternalSettings& getDefaultExternalSettings();
+  static const InternalSettings& getDefaultInternalSettings();
 };

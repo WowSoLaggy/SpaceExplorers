@@ -20,9 +20,6 @@ public:
   void run();
   void stop() override;
 
-  virtual int getClientWidth() override;
-  virtual int getClientHeight() override;
-
 private:
   std::unique_ptr<Game> d_game;
 
