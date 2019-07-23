@@ -1,5 +1,6 @@
 #pragma once
 
+#include <LaggySdk/Rect.h>
 #include <LaggySdk/Vector.h>
 
 
@@ -11,7 +12,10 @@ public:
   void setLookAt(Sdk::Vector2I i_lookAt);
   const Sdk::Vector2I& getLookAt() const;
 
-  Sdk::Vector2I getTopLeftTranslation() const;
+  Sdk::Vector2I getTopLeftPoint() const;
+  Sdk::Vector2I getBottomRightPoint() const;
+
+  Sdk::RectI getViewport() const;
 
   void moveLeft();
   void moveRight();

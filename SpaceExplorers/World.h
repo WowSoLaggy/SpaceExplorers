@@ -5,6 +5,7 @@
 #include "Tile.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
+#include <LaggySdk/Rect.h>
 #include <LaggySdk/Vector.h>
 
 #include <unordered_map>
@@ -18,7 +19,7 @@ public:
 
 public:
   void update(double i_dt);
-  int render(Dx::IRenderer2d& i_renderer) const;
+  int render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) const;
 
 private:
   std::unordered_map<Sdk::Vector2I, Tile, Sdk::Vector2_hash> d_tilesMap;

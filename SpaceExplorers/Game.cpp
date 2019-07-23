@@ -34,11 +34,11 @@ void Game::update(double i_dt)
 
 void Game::render(Dx::IRenderer2d& i_renderer) const
 {
-  i_renderer.setTranslation(d_camera.getTopLeftTranslation());
+  i_renderer.setTranslation(d_camera.getTopLeftPoint());
 
   int renderedObjects = 0;
   if (d_world)
-    renderedObjects += d_world->render(i_renderer);
+    renderedObjects += d_world->render(i_renderer, d_camera.getViewport());
   d_gui.render(i_renderer);
 
   if (d_debugOutput)

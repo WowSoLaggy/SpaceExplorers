@@ -20,9 +20,19 @@ const Sdk::Vector2I& Camera::getLookAt() const
 }
 
 
-Sdk::Vector2I Camera::getTopLeftTranslation() const
+Sdk::Vector2I Camera::getTopLeftPoint() const
 {
   return { d_lookAt.x - d_clientWidth / 2, d_lookAt.y - d_clientHeight / 2 };
+}
+
+Sdk::Vector2I Camera::getBottomRightPoint() const
+{
+  return { d_lookAt.x + d_clientWidth / 2, d_lookAt.y + d_clientHeight / 2 };
+}
+
+Sdk::RectI Camera::getViewport() const
+{
+  return { getTopLeftPoint(), getBottomRightPoint() };
 }
 
 
