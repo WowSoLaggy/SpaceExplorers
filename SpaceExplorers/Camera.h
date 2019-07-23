@@ -21,7 +21,7 @@ public:
   void update(double i_dt);
 
 private:
-  const int MoveSpeed = 1000;
+  const int MoveSpeed = 2000;
 
   const int d_clientWidth;
   const int d_clientHeight;
