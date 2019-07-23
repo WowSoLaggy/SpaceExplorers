@@ -126,5 +126,8 @@
     <ClInclude Include="Tile.h">
       <Filter>src\World</Filter>
     </ClInclude>
+    <ClInclude Include="TileSize.h">
+      <Filter>src\World</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

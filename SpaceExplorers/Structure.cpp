@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Structure.h"
 
+#include "TileSize.h"
+
 #include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>
 #include <LaggyDx/ITextureResource.h>
@@ -14,7 +16,7 @@ Structure::Structure(
 {
   d_sprite.texture = &i_resourceController.getTextureResource(d_prototype.textureFileName);
   d_sprite.size = d_sprite.texture->getSize();
-  d_sprite.position = i_coordsTile * 64;
+  d_sprite.position = i_coordsTile * TileSize;
 }
 
 
