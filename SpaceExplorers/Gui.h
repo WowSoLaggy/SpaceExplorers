@@ -24,6 +24,5 @@ private:
 
   Cursor d_cursor;
 
-  using IGuiControlPtr = std::shared_ptr<IGuiControl>;
   std::vector<IGuiControlPtr> d_guiControls;
 };

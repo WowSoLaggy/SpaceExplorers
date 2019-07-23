@@ -24,11 +24,18 @@ const Cursor& Gui::getCursor() const
 
 void Gui::update(double i_dt)
 {
+  for (const auto gui : d_guiControls)
+    gui->update(i_dt);
+
   d_cursor.update(i_dt);
 }
 
 void Gui::render(Dx::IRenderer2d& i_renderer) const
 {
   i_renderer.resetTranslation();
+
+  for (const auto gui : d_guiControls)
+    gui->render(i_renderer);
+
   d_cursor.render(i_renderer);
 }
