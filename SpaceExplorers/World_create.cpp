@@ -25,21 +25,21 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
 
   ///
 
-  const int Lattices = 3;
+  const int Lattices = 5;
   for (int y = -Lattices; y < Lattices; ++y)
   {
     for (int x = -Lattices; x < Lattices; ++x)
       tile(x, y).setPanelling(create(Prototypes::Lattice(), { x, y }));
   }
 
-  const int Floors = 2;
+  const int Floors = 4;
   for (int y = -Floors; y < Floors; ++y)
   {
     for (int x = -Floors; x < Floors; ++x)
       tile(x, y).setFloor(create(Prototypes::Floor(), { x, y }));
   }
 
-  const int Walls = 2;
+  const int Walls = 4;
   for (int y = -Floors; y < Floors; ++y)
   {
     for (int x = -Floors; x < Floors; ++x)
