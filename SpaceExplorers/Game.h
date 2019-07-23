@@ -21,6 +21,10 @@ public:
   void handleKeyboard(const Dx::KeyboardState& i_keyboardState);
   void handleMouse(const Dx::MouseState& i_mouseState);
 
+  void showDebugLabel();
+  void hideDebugLabel();
+  void updateDebugLabel(std::string i_text) const;
+
 private:
   IApp& d_app;
 
@@ -29,4 +33,5 @@ private:
   std::unique_ptr<World> d_world;
 
   bool d_debugOutput = true;
+  std::shared_ptr<Label> d_debugLabel;
 };

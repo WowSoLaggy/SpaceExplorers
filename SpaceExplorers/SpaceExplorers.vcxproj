@@ -159,6 +159,8 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_input.cpp" />
+    <ClCompile Include="Gui_create.cpp" />
+    <ClCompile Include="Label.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Gui.cpp" />
@@ -187,6 +189,7 @@
     <ClInclude Include="InternalSettings.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Gui.h" />
+    <ClInclude Include="Label.h" />
     <ClInclude Include="Prototypes.h" />
     <ClInclude Include="SettingsProvider.h" />
     <ClInclude Include="stdafx.h" />

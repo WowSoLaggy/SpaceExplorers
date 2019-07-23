@@ -79,6 +79,12 @@
       <Filter>src\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Label.cpp">
+      <Filter>src\Gui\GuiControls</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui_create.cpp">
+      <Filter>src\Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -125,6 +131,9 @@
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>src\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>src\Gui\GuiControls</Filter>
     </ClInclude>
     <ClInclude Include="Fwd.h">
       <Filter>src</Filter>

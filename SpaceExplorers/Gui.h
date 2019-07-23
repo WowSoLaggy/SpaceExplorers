@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Cursor.h"
+#include "Fwd.h"
 #include "IGuiControl.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
@@ -18,6 +19,8 @@ public:
 
   void update(double i_dt);
   void render(Dx::IRenderer2d& i_renderer) const;
+
+  std::shared_ptr<Label> createDebugLabel();
 
 private:
   const Dx::IResourceController& d_resourceController;

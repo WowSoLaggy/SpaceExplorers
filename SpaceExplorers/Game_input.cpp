@@ -16,7 +16,12 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
     d_app.stop();
 
   if (pressedKeys.F12)
-    d_debugOutput = !d_debugOutput;
+  {
+    if (d_debugOutput)
+      hideDebugLabel();
+    else
+      showDebugLabel();
+  }
 
   if (currentKeys.A)
     d_camera.moveLeft();

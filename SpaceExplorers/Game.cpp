@@ -1,17 +1,12 @@
 #include "stdafx.h"
 #include "Game.h"
 
+#include "Label.h"
 #include "SettingsProvider.h"
 
 #include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>
 
-
-// TODO: ae Delete it ASAP!
-namespace
-{
-  const Dx::IFontResource* s_fontResource;
-}
 
 Game::Game(IApp& i_app, const Dx::IResourceController& i_resourceController)
   : d_app(i_app)
@@ -22,7 +17,8 @@ Game::Game(IApp& i_app, const Dx::IResourceController& i_resourceController)
   d_gui.getCursor().setTexture("Cursor.png");
   d_world = World::createTestWorld(i_resourceController);
 
-  s_fontResource = &i_resourceController.getFontResource("MyFont.spritefont");
+  if (d_debugOutput)
+    showDebugLabel();
 }
 
 
@@ -45,7 +41,26 @@ void Game::render(Dx::IRenderer2d& i_renderer) const
 
   if (d_debugOutput)
   {
-    const std::string str = "Objects: " + std::to_string(renderedObjects);
-    i_renderer.renderText(str, *s_fontResource, { 0, 0 });
+    const std::string str = "Structures: " + std::to_string(renderedObjects);
+    updateDebugLabel(str);
   }
+}
+
+
+void Game::showDebugLabel()
+{
+  d_debugLabel = d_gui.createDebugLabel();
+  d_debugOutput = true;
+}
+
+void Game::hideDebugLabel()
+{
+  d_debugOutput = false;
+  d_debugLabel.reset();
+}
+
+void Game::updateDebugLabel(std::string i_text) const
+{
+  if (d_debugLabel)
+    d_debugLabel->setText(i_text);
 }
