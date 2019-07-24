@@ -1,15 +1,17 @@
 #include "stdafx.h"
 #include "World.h"
 
-#include "GameSettings.h"
+#include "SettingsProvider.h"
 
 
 namespace
 {
   Sdk::RectI getTileRect(const Sdk::Vector2I& i_coords)
   {
-    const Sdk::Vector2I topLeft = i_coords * TileSize;
-    const Sdk::Vector2I bottomRight = topLeft + Sdk::Vector2I{ TileSize, TileSize };
+    const int tileSize = SettingsProvider::getDefaultInternalSettings().tileSize;
+
+    const Sdk::Vector2I topLeft = i_coords * tileSize;
+    const Sdk::Vector2I bottomRight = topLeft + Sdk::Vector2I{ tileSize, tileSize };
 
     return Sdk::RectI{ topLeft, bottomRight};
   }

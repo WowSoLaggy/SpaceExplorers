@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "Label.h"
 
-#include "GameSettings.h"
+#include "SettingsProvider.h"
 
 #include <LaggyDx/IResourceController.h>
 #include <LaggyDx/IRenderer2d.h>
 
 
 Label::Label(const Dx::IResourceController& i_resourceController)
-  : d_fontResource(i_resourceController.getFontResource(DefaultFontName))
+  : d_fontResource(i_resourceController.getFontResource(SettingsProvider::getDefaultInternalSettings().defaultFontName))
 {
 }
 
