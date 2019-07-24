@@ -14,18 +14,18 @@ Cursor::Cursor(const Dx::IResourceController& i_resourceController)
 
 void Cursor::setTexture(const std::string& i_textureName)
 {
-  d_sprite.texture = &d_resourceController.getTextureResource(i_textureName);
-  d_sprite.size = d_sprite.texture->getSize();
+  d_sprite.setTexture(&d_resourceController.getTextureResource(i_textureName));
 }
 
 void Cursor::setPosition(Sdk::Vector2I i_position)
 {
-  d_sprite.position = std::move(i_position);
+  d_sprite.setPosition(std::move(i_position));
 }
 
 void Cursor::movePosition(const Sdk::Vector2I& i_offset)
 {
-  d_sprite.position += i_offset * 2;
+  const auto position = d_sprite.getPosition();
+  d_sprite.setPosition(position + i_offset * 2);
 }
 
 

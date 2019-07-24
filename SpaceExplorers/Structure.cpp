@@ -14,9 +14,8 @@ Structure::Structure(
   Sdk::Vector2I i_coordsTile)
   : d_prototype(i_prototype)
 {
-  d_sprite.texture = &i_resourceController.getTextureResource(d_prototype.textureFileName);
-  d_sprite.size = d_sprite.texture->getSize();
-  d_sprite.position = i_coordsTile * SettingsProvider::getDefaultInternalSettings().tileSize;
+  d_sprite.setTexture(&i_resourceController.getTextureResource(d_prototype.textureFileName));
+  d_sprite.setPosition(i_coordsTile * SettingsProvider::getDefaultInternalSettings().tileSize);
 }
 
 
