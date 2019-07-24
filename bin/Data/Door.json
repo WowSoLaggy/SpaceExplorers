@@ -8,28 +8,22 @@
   "Animations":
   [
     {
-      "Open":
-      {
-        "Start": 1,
-        "End": 6,
-        "FrameTime": 100
-      }
+      "Name": "Open",
+      "Start": 0,
+      "End": 5,
+      "FrameTime": 0.1
     },
     {
-      "Close":
-      {
-        "Start": 6,
-        "End": 1,
-        "FrameTime": 100
-      }
+      "Name": "Close",
+      "Start": 5,
+      "End": 0,
+      "FrameTime": 0.1
     },
     {
-      "Blink":
-      {
-        "Start": 7,
-        "End": 8,
-        "FrameTime": 250
-      }
+      "Name": "Blink",
+      "Start": 6,
+      "End": 7,
+      "FrameTime": 0.25
     }
   ]
 }
