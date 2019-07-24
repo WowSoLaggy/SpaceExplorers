@@ -23,6 +23,11 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
     return world->d_tilesMap[{x, y}];
   };
 
+  auto createWall = [&](int x, int y)
+  {
+    tile(x, y).setWall(create(Prototypes::Wall(), { x, y }));
+  };
+
   ///
 
   const int Lattices = 5;
@@ -45,7 +50,7 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
     for (int x = -Floors; x < Floors; ++x)
     {
       if (x == -Floors || x == Floors - 1 || y == -Floors || y == Floors - 1)
-        tile(x, y).setWall(create(Prototypes::Wall(), { x, y }));
+        createWall(x, y);
     }
   }
 
