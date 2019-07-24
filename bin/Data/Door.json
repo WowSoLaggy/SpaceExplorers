@@ -1,0 +1,29 @@
+{
+  "Image":
+  {
+    "Width": 64,
+    "Height": 64,
+    "Alpha": true,
+  },
+  "Animations":
+  [
+    "Open":
+    {
+      "Start": 1,
+      "End": 6,
+      "FrameTime": 100
+    },
+    "Close":
+    {
+      "Start": 6,
+      "End": 1,
+      "FrameTime": 100
+    },
+    "Blink":
+    {
+      "Start": 7,
+      "End": 8,
+      "FrameTime": 250
+    }
+  ]
+}

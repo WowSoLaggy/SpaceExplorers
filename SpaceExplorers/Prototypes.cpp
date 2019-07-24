@@ -24,4 +24,11 @@ namespace Prototypes
     prototype.textureFileName = "Wall.png";
     return prototype;
   }
+
+  const StructurePrototype& Door()
+  {
+    static StructurePrototype prototype;
+    prototype.textureFileName = "Door.png";
+    return prototype;
+  }
 } // ns Prototypes

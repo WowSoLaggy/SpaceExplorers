@@ -8,4 +8,5 @@ namespace Prototypes
   const StructurePrototype& Lattice();
   const StructurePrototype& Floor();
   const StructurePrototype& Wall();
+  const StructurePrototype& Door();
 } // ns Prototypes

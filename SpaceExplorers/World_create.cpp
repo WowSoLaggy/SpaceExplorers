@@ -28,6 +28,11 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
     tile(x, y).setWall(create(Prototypes::Wall(), { x, y }));
   };
 
+  auto createDoor = [&](int x, int y)
+  {
+    tile(x, y).setWall(create(Prototypes::Door(), { x, y }));
+  };
+
   ///
 
   const int Lattices = 5;
@@ -53,6 +58,14 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
         createWall(x, y);
     }
   }
+
+
+  createWall(0, 0);
+  createWall(1, 0);
+  createWall(2, 0);
+  createDoor(0, 1);
+  createWall(0, 2);
+
 
   ///
 
