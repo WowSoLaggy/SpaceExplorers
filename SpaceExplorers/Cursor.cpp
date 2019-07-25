@@ -22,6 +22,11 @@ void Cursor::setPosition(Sdk::Vector2I i_position)
   d_sprite.setPosition(std::move(i_position));
 }
 
+const Sdk::Vector2I& Cursor::getPosition() const
+{
+  return d_sprite.getPosition();
+}
+
 void Cursor::movePosition(const Sdk::Vector2I& i_offset)
 {
   const auto position = d_sprite.getPosition();

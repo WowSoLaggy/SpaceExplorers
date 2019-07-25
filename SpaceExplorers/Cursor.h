@@ -12,6 +12,7 @@ public:
 
   void setTexture(const std::string& i_textureName);
   void setPosition(Sdk::Vector2I i_position);
+  const Sdk::Vector2I& getPosition() const;
   void movePosition(const Sdk::Vector2I& i_offset);
 
   void show();
