@@ -33,5 +33,6 @@ private:
   std::unique_ptr<World> d_world;
 
   bool d_debugOutput = true;
+  bool d_mouseDown = false; //< TODO: ae Remove it
   std::shared_ptr<Label> d_debugLabel;
 };

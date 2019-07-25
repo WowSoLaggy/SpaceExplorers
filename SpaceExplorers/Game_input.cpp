@@ -35,8 +35,16 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
 
 void Game::handleMouse(const Dx::MouseState& i_mouseState)
 {
+  const auto& mousePosRaw = i_mouseState.getPosition();
   if (i_mouseState.getMode() == Dx::MouseMode::Absolute)
-    d_gui.getCursor().setPosition(i_mouseState.getPosition());
+    d_gui.getCursor().setPosition(mousePosRaw);
   else
-    d_gui.getCursor().movePosition(i_mouseState.getPosition());
+    d_gui.getCursor().movePosition(mousePosRaw);
+
+  const auto& mousePos = d_gui.getCursor().getPosition();
+
+  if (i_mouseState.getLeftButtonState() == Dx::ButtonState::Pressed)
+    d_mouseDown = true;
+  else if (i_mouseState.getLeftButtonState() == Dx::ButtonState::Released)
+    d_mouseDown = false;
 }
