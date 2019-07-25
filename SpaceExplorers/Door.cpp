@@ -1,7 +1,10 @@
 #include "stdafx.h"
 #include "Door.h"
 
+#include "SettingsProvider.h"
+
 #include <LaggyDx/AnimatedSprite.h>
+#include <LaggyDx/IResourceController.h>
 #include <LaggySdk/Contracts.h>
 
 
@@ -11,7 +14,11 @@ Door::Door(
   Sdk::Vector2I i_coordsTile)
   : Structure(i_resourceController, i_prototype, i_coordsTile)
 {
+  // TODO: ae Remove this duplication from the base class ctor
   d_sprite = std::make_shared<Dx::AnimatedSprite>();
+
+  d_sprite->setTexture(&i_resourceController.getTextureResource(d_prototype.textureFileName));
+  d_sprite->setPosition(i_coordsTile * SettingsProvider::getDefaultInternalSettings().tileSize);
 }
 
 
