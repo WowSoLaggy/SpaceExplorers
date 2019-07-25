@@ -14,8 +14,10 @@ Structure::Structure(
   Sdk::Vector2I i_coordsTile)
   : d_prototype(i_prototype)
 {
-  d_sprite.setTexture(&i_resourceController.getTextureResource(d_prototype.textureFileName));
-  d_sprite.setPosition(i_coordsTile * SettingsProvider::getDefaultInternalSettings().tileSize);
+  d_sprite = std::make_shared<Dx::Sprite>();
+
+  d_sprite->setTexture(&i_resourceController.getTextureResource(d_prototype.textureFileName));
+  d_sprite->setPosition(i_coordsTile * SettingsProvider::getDefaultInternalSettings().tileSize);
 }
 
 
@@ -26,7 +28,7 @@ void Structure::update(double i_dt)
 
 void Structure::render(Dx::IRenderer2d& i_renderer) const
 {
-  i_renderer.renderSprite(d_sprite);
+  i_renderer.renderSprite(*d_sprite);
 }
 
 

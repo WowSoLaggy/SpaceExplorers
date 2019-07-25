@@ -25,7 +25,7 @@ public:
 
 protected:
   const StructurePrototype& d_prototype;
-  Dx::Sprite d_sprite{};
+  std::shared_ptr<Dx::Sprite> d_sprite;
 };
 
 using StructurePtr = std::shared_ptr<Structure>;
