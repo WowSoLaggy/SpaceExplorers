@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "World.h"
 
+#include "Door.h"
 #include "Prototypes.h"
 #include "Structure.h"
 
@@ -13,8 +14,11 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
 
   ///
 
-  auto create = [&](const StructurePrototype& i_prototype, Sdk::Vector2I i_tileCoords)
+  auto create = [&](const StructurePrototype& i_prototype, Sdk::Vector2I i_tileCoords) -> StructurePtr
   {
+    if (i_prototype.behavior == Behavior::Door)
+      return std::make_shared<Door>(i_resourceController, i_prototype, std::move(i_tileCoords));
+      
     return std::make_shared<Structure>(i_resourceController, i_prototype, std::move(i_tileCoords));
   };
 

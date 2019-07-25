@@ -21,9 +21,16 @@ Structure::Structure(
 
 void Structure::update(double i_dt)
 {
+  // nop
 }
 
 void Structure::render(Dx::IRenderer2d& i_renderer) const
 {
   i_renderer.renderSprite(d_sprite);
+}
+
+
+void Structure::interact(const Actions i_action)
+{
+  // nop
 }

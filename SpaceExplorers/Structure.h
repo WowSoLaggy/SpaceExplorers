@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Actions.h"
 #include "StructurePrototype.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
@@ -17,10 +18,12 @@ public:
     const StructurePrototype& i_prototype,
     Sdk::Vector2I i_coordsTile);
 
-  void update(double i_dt);
-  void render(Dx::IRenderer2d& i_renderer) const;
+  virtual void update(double i_dt);
+  virtual void render(Dx::IRenderer2d& i_renderer) const;
 
-private:
+  virtual void interact(Actions i_action);
+
+protected:
   const StructurePrototype& d_prototype;
   Dx::Sprite d_sprite{};
 };

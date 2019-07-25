@@ -34,6 +34,9 @@
     <Filter Include="src\Settings">
       <UniqueIdentifier>{d0f687b7-45d6-49d1-a5ad-bc95219963af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\World\Structures">
+      <UniqueIdentifier>{824638d1-11c5-4915-ae2a-824124b5818a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -53,9 +56,6 @@
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>src\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Structure.cpp">
-      <Filter>src\World\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>src\World\Objects</Filter>
@@ -85,6 +85,12 @@
     <ClCompile Include="Gui_create.cpp">
       <Filter>src\Gui</Filter>
     </ClCompile>
+    <ClCompile Include="Structure.cpp">
+      <Filter>src\World\Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>src\World\Structures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -101,9 +107,6 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>src\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Structure.h">
-      <Filter>src\World\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>src\World\Objects</Filter>
@@ -143,6 +146,18 @@
     </ClInclude>
     <ClInclude Include="InternalSettings.h">
       <Filter>src\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviors.h">
+      <Filter>src\World\Prototypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Structure.h">
+      <Filter>src\World\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>src\World\Structures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

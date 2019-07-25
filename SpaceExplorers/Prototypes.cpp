@@ -29,6 +29,7 @@ namespace Prototypes
   {
     static StructurePrototype prototype;
     prototype.textureFileName = "Door.png";
+    prototype.behavior = Behavior::Door;
     return prototype;
   }
 } // ns Prototypes

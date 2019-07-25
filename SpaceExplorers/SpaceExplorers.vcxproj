@@ -157,6 +157,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="Door.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_input.cpp" />
     <ClCompile Include="Gui_create.cpp" />
@@ -178,9 +179,12 @@
     <ClCompile Include="World_create.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actions.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="Behaviors.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cursor.h" />
+    <ClInclude Include="Door.h" />
     <ClInclude Include="ExternalSettings.h" />
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
