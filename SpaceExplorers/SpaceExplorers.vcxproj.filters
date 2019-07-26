@@ -78,7 +78,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>src\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Label.cpp">
       <Filter>src\Gui\GuiControls</Filter>
     </ClCompile>
@@ -90,6 +89,9 @@
     </ClCompile>
     <ClCompile Include="Door.cpp">
       <Filter>src\World\Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>src\World</Filter>
     </ClCompile>
     <ClCompile Include="Game_utils.cpp">
       <Filter>src\Game</Filter>
