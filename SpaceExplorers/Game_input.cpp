@@ -44,7 +44,24 @@ void Game::handleMouse(const Dx::MouseState& i_mouseState)
   const auto& mousePos = d_gui.getCursor().getPosition();
 
   if (i_mouseState.getLeftButtonState() == Dx::ButtonState::Pressed)
-    d_mouseDown = true;
-  else if (i_mouseState.getLeftButtonState() == Dx::ButtonState::Released)
-    d_mouseDown = false;
+    onClick(mousePos);
+}
+
+
+void Game::onClick(Sdk::Vector2I i_mousePos)
+{
+  if (!d_world)
+    return;
+
+  const auto tileCoords = screenToTile(i_mousePos);
+
+  auto* tile = d_world->getTile(tileCoords);
+  if (!tile)
+    return;
+
+  auto structure = tile->getTopStructure();
+  if (!structure)
+    return;
+
+  structure->interact();
 }

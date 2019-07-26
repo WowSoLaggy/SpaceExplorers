@@ -41,9 +41,7 @@ void Game::render(Dx::IRenderer2d& i_renderer) const
 
   if (d_debugOutput)
   {
-    std::string str = "Structures: " + std::to_string(renderedObjects) + "\n";
-    str += "Mouse: ";
-    str += d_mouseDown ? "DOWN" : "UP";
+    const std::string str = "Structures: " + std::to_string(renderedObjects) + "\n";
     updateDebugLabel(str);
   }
 }

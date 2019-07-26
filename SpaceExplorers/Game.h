@@ -34,10 +34,11 @@ private:
   std::unique_ptr<World> d_world;
 
   bool d_debugOutput = true;
-  bool d_mouseDown = false; //< TODO: ae Remove it
   std::shared_ptr<Label> d_debugLabel;
 
   Sdk::Vector2I screenToWorld(Sdk::Vector2I i_coords) const;
   Sdk::Vector2I worldToTile(Sdk::Vector2I i_coords) const;
   Sdk::Vector2I screenToTile(Sdk::Vector2I i_coords) const;
+
+  void onClick(Sdk::Vector2I i_mousePos);
 };
