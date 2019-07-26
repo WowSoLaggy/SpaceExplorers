@@ -23,6 +23,8 @@ public:
 
   virtual void interact(Actions i_action = Actions::Default);
 
+  bool isTransparent() const;
+
 protected:
   const StructurePrototype& d_prototype;
   std::shared_ptr<Dx::Sprite> d_sprite;

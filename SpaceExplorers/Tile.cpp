@@ -14,14 +14,23 @@ void Tile::update(double i_dt)
 
 int Tile::render(Dx::IRenderer2d& i_renderer) const
 {
-  if (d_wall)
-    d_wall->render(i_renderer);
-  else if (d_floor)
-    d_floor->render(i_renderer);
-  else if (d_panelling)
-    d_panelling->render(i_renderer);
+  const std::vector<StructurePtr> renderList{ d_panelling, d_floor, d_wall };
+  auto it = renderList.end() - 1;
 
-  return 1;
+  while (it != renderList.begin() && (*it == nullptr || (*it)->isTransparent()))
+    --it;
+
+  int drawnObjects = 0;
+  for (; it != renderList.end(); ++it)
+  {
+    if (*it != nullptr)
+    {
+      (*it)->render(i_renderer);
+      ++drawnObjects;
+    }
+  }
+
+  return drawnObjects;
 }
 
 

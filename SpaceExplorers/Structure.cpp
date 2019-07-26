@@ -3,6 +3,7 @@
 
 #include "SettingsProvider.h"
 
+#include <LaggyDx/ImageDescription.h>
 #include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>
 #include <LaggyDx/ITextureResource.h>
@@ -35,4 +36,10 @@ void Structure::render(Dx::IRenderer2d& i_renderer) const
 void Structure::interact(const Actions i_action)
 {
   // nop
+}
+
+
+bool Structure::isTransparent() const
+{
+  return d_sprite->getTexture()->getDescription().alpha;
 }
