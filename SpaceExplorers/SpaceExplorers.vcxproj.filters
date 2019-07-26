@@ -37,6 +37,9 @@
     <Filter Include="src\World\Structures">
       <UniqueIdentifier>{824638d1-11c5-4915-ae2a-824124b5818a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\World\Tile">
+      <UniqueIdentifier>{16ebc7a1-eb12-4f62-ba7d-d83b3de44e7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -90,11 +93,11 @@
     <ClCompile Include="Door.cpp">
       <Filter>src\World\Structures</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>src\World</Filter>
-    </ClCompile>
     <ClCompile Include="Game_utils.cpp">
       <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>src\World\Tile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,9 +140,6 @@
     <ClInclude Include="Camera.h">
       <Filter>src\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>src\World</Filter>
-    </ClInclude>
     <ClInclude Include="Label.h">
       <Filter>src\Gui\GuiControls</Filter>
     </ClInclude>
@@ -163,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="Door.h">
       <Filter>src\World\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>src\World\Tile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
