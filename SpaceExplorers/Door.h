@@ -18,6 +18,17 @@ public:
   virtual void interact(Actions i_action) override;
 
 private:
+  enum class State
+  {
+    Open,
+    Closed,
+    Opening,
+    Closing,
+  };
+
+  State d_state = State::Closed;
+
   Actions getDefaultAction() const;
   Dx::AnimatedSprite& getAnimatedSprite();
+  const Dx::AnimatedSprite& getAnimatedSprite() const;
 };
