@@ -39,3 +39,24 @@ void Tile::setWall(StructurePtr i_wall)
 {
   d_wall = i_wall;
 }
+
+
+StructurePtr Tile::getTopStructure()
+{
+  if (d_wall)
+    return d_wall;
+  else if (d_floor)
+    return d_floor;
+  else
+    return d_panelling;
+}
+
+const StructurePtr Tile::getTopStructure() const
+{
+  if (d_wall)
+    return d_wall;
+  else if (d_floor)
+    return d_floor;
+  else
+    return d_panelling;
+}

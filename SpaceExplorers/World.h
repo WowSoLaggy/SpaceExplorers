@@ -21,6 +21,11 @@ public:
   void update(double i_dt);
   int render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) const;
 
+  Tile* getTile(const Sdk::Vector2I& i_coords);
+  const Tile* getTile(const Sdk::Vector2I& i_coords) const;
+
+  Tile& getOrCreateTile(const Sdk::Vector2I& i_coords);
+
 private:
   std::unordered_map<Sdk::Vector2I, Tile, Sdk::Vector2_hash> d_tilesMap;
 

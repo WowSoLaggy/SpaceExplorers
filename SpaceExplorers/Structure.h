@@ -21,7 +21,7 @@ public:
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
 
-  virtual void interact(Actions i_action);
+  virtual void interact(Actions i_action = Actions::Default);
 
 protected:
   const StructurePrototype& d_prototype;

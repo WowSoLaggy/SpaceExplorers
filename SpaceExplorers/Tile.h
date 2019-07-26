@@ -15,6 +15,9 @@ public:
   void setFloor(StructurePtr i_floor);
   void setWall(StructurePtr i_wall);
 
+  StructurePtr getTopStructure();
+  const StructurePtr getTopStructure() const;
+
 private:
   StructurePtr d_panelling;
   StructurePtr d_floor;

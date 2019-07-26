@@ -42,3 +42,25 @@ int World::render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) con
 
   return renderedThings;
 }
+
+
+Tile* World::getTile(const Sdk::Vector2I& i_coords)
+{
+  if (auto it = d_tilesMap.find(i_coords); it != d_tilesMap.end())
+    return &it->second;
+
+  return nullptr;
+}
+
+const Tile* World::getTile(const Sdk::Vector2I& i_coords) const
+{
+  if (auto it = d_tilesMap.find(i_coords); it != d_tilesMap.end())
+    return &it->second;
+
+  return nullptr;
+}
+
+Tile& World::getOrCreateTile(const Sdk::Vector2I& i_coords)
+{
+  return d_tilesMap[i_coords];
+}
