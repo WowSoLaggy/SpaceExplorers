@@ -160,6 +160,7 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_input.cpp" />
+    <ClCompile Include="Game_utils.cpp" />
     <ClCompile Include="Gui_create.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="main.cpp" />
