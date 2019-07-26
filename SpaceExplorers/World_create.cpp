@@ -27,6 +27,16 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
     return world->d_tilesMap[{x, y}];
   };
 
+  auto createLattice = [&](int x, int y)
+  {
+    tile(x, y).setPanelling(create(Prototypes::Lattice(), { x, y }));
+  };
+
+  auto createFloor = [&](int x, int y)
+  {
+    tile(x, y).setFloor(create(Prototypes::Floor(), { x, y }));
+  };
+
   auto createWall = [&](int x, int y)
   {
     tile(x, y).setWall(create(Prototypes::Wall(), { x, y }));
@@ -43,15 +53,31 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
   for (int y = -Lattices; y < Lattices; ++y)
   {
     for (int x = -Lattices; x < Lattices; ++x)
-      tile(x, y).setPanelling(create(Prototypes::Lattice(), { x, y }));
+      createLattice(x, y);
   }
+
+  for (int y = -3; y < 3; ++y)
+  {
+    for (int x = -8; x < -5; ++x)
+      createLattice(x, y);
+  }
+
+  //
 
   const int Floors = 4;
   for (int y = -Floors; y < Floors; ++y)
   {
     for (int x = -Floors; x < Floors; ++x)
-      tile(x, y).setFloor(create(Prototypes::Floor(), { x, y }));
+      createFloor(x, y);
   }
+
+  for (int y = -2; y < 2; ++y)
+  {
+    for (int x = -7; x < -4; ++x)
+      createFloor(x, y);
+  }
+
+  //
 
   const int Walls = 4;
   for (int y = -Floors; y < Floors; ++y)
@@ -64,11 +90,24 @@ std::unique_ptr<World> World::createTestWorld(const Dx::IResourceController& i_r
   }
 
 
+  createWall(0, -3);
+  createDoor(0, -2);
+  createWall(0, -1);
   createWall(0, 0);
   createWall(1, 0);
   createWall(2, 0);
   createDoor(0, 1);
   createWall(0, 2);
+
+  createWall(-5, -2);
+  createWall(-6, -2);
+  createWall(-7, -2);
+  createWall(-7, -1);
+  createDoor(-7, 0);
+  createWall(-7, 1);
+  createWall(-6, 1);
+  createWall(-5, 1);
+  createDoor(-4, -1);
 
 
   ///
