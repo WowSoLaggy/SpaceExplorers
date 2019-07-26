@@ -10,19 +10,19 @@
     {
       "Name": "Open",
       "Start": 0,
-      "End": 5,
+      "End": 6,
       "FrameTime": 0.1
     },
     {
       "Name": "Close",
-      "Start": 5,
+      "Start": 6,
       "End": 0,
       "FrameTime": 0.1
     },
     {
       "Name": "Blink",
-      "Start": 6,
-      "End": 7,
+      "Start": 7,
+      "End": 8,
       "FrameTime": 0.25
     }
   ]
