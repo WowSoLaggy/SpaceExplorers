@@ -12,10 +12,11 @@ Game::Game(IApp& i_app, const Dx::IResourceController& i_resourceController)
   : d_app(i_app)
   , d_camera(SettingsProvider::getDefaultExternalSettings().clientWidth,
     SettingsProvider::getDefaultExternalSettings().clientHeight)
-  , d_gui(i_resourceController)
+  , d_gui(i_resourceController, d_camera.getViewport().size())
 {
-  d_gui.getCursor().setTexture("Cursor.png");
   d_world = World::createTestWorld(d_camera.getViewport().size(), i_resourceController);
+  d_gui.getCursor().setTexture("Cursor.png");
+  d_gui.createIngameGui();
 
   if (d_debugOutput)
     showDebugLabel();

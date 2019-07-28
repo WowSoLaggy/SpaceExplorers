@@ -2,6 +2,7 @@
 
 #include "IGuiControl.h"
 
+#include <LaggyDx/LaggyDxFwd.h>
 #include <LaggySdk/Vector.h>
 
 #include <string>
