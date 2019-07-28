@@ -7,8 +7,8 @@ namespace
   ExternalSettings createDefaultExternalSettings()
   {
     ExternalSettings settings;
-    settings.clientWidth = 1280;
-    settings.clientHeight = 720;
+    settings.clientWidth = 1600;
+    settings.clientHeight = 900;
     return settings;
   }
 
@@ -27,12 +27,12 @@ namespace
 
 const ExternalSettings& SettingsProvider::getDefaultExternalSettings()
 {
-  static const ExternalSettings externalSettings = createDefaultExternalSettings();
+  static const auto externalSettings = createDefaultExternalSettings();
   return externalSettings;
 }
 
 const InternalSettings& SettingsProvider::getDefaultInternalSettings()
 {
-  static const InternalSettings internalSettings = createDefaultInternalSettings();
+  static const auto internalSettings = createDefaultInternalSettings();
   return internalSettings;
 }
