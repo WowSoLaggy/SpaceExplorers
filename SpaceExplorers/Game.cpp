@@ -32,14 +32,13 @@ void Game::update(double i_dt)
 
 void Game::render(Dx::IRenderer2d& i_renderer) const
 {
-  int renderedObjects = 0;
   if (d_world)
-    renderedObjects += d_world->render(i_renderer, d_camera.getViewport());
+    d_world->render(i_renderer, d_camera.getViewport());
   d_gui.render(i_renderer);
 
   if (d_debugOutput)
   {
-    const std::string str = "Structures: " + std::to_string(renderedObjects) + "\n";
+    const std::string str = "Structures: " + std::to_string(i_renderer.resetRenderedSprites()) + "\n";
     updateDebugLabel(str);
   }
 }

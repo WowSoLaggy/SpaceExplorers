@@ -30,26 +30,21 @@ void World::update(double i_dt)
     item->update(i_dt);
 }
 
-int World::render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) const
+void World::render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) const
 {
-  int renderedThings = 0;
-
   i_renderer.resetTranslation();
   i_renderer.renderSprite(d_background);
-  ++renderedThings;
 
   i_renderer.setTranslation(i_viewport.topLeft());
   for (const auto&[coords, tile] : d_tilesMap)
   {
     const auto tileRect = getTileRect(coords);
     if (i_viewport.intersectRect(tileRect))
-      renderedThings += tile.render(i_renderer);
+      tile.render(i_renderer);
   }
 
   /*for (const auto& item : d_objects)
     item->render(i_renderer);*/
-
-  return renderedThings;
 }
 
 
