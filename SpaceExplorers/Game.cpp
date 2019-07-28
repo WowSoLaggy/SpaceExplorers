@@ -15,7 +15,7 @@ Game::Game(IApp& i_app, const Dx::IResourceController& i_resourceController)
   , d_gui(i_resourceController)
 {
   d_gui.getCursor().setTexture("Cursor.png");
-  d_world = World::createTestWorld(i_resourceController);
+  d_world = World::createTestWorld(d_camera.getViewport().size(), i_resourceController);
 
   if (d_debugOutput)
     showDebugLabel();
@@ -32,8 +32,6 @@ void Game::update(double i_dt)
 
 void Game::render(Dx::IRenderer2d& i_renderer) const
 {
-  i_renderer.setTranslation(d_camera.getTopLeftPoint());
-
   int renderedObjects = 0;
   if (d_world)
     renderedObjects += d_world->render(i_renderer, d_camera.getViewport());
