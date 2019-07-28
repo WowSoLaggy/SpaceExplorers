@@ -3,6 +3,7 @@
 
 class IApp;
 class Label;
+class Inventory;
 
 struct ExternalSettings;
 struct InternalSettings;

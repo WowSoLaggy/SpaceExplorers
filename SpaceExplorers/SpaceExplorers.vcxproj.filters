@@ -99,6 +99,9 @@
     <ClCompile Include="Tile.cpp">
       <Filter>src\World\Tile</Filter>
     </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>src\Gui\GuiControls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>src\World\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>src\Gui\GuiControls</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

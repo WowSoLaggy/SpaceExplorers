@@ -162,6 +162,7 @@
     <ClCompile Include="Game_input.cpp" />
     <ClCompile Include="Game_utils.cpp" />
     <ClCompile Include="Gui_create.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="IApp.h" />
     <ClInclude Include="IGuiControl.h" />
     <ClInclude Include="InternalSettings.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="Label.h" />
