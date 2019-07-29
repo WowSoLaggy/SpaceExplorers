@@ -1,15 +1,19 @@
 #include "stdafx.h"
 #include "Inventory.h"
 
+#include "StructurePrototype.h"
+
 #include <LaggyDx/ImageDescription.h>
 #include <LaggyDx/ITextureResource.h>
 #include <LaggyDx/IResourceController.h>
 #include <LaggyDx/IRenderer2d.h>
+#include <LaggySdk/Contracts.h>
 
 
 Inventory::Inventory(const Dx::IResourceController& i_resourceController)
   : d_resourceController(i_resourceController)
 {
+  d_items.resize(SlotsCount, nullptr);
   recreateSprites();
 }
 
@@ -24,6 +28,8 @@ void Inventory::render(Dx::IRenderer2d& i_renderer) const
   i_renderer.setTranslation(-d_position);
 
   for (const auto& sprite : d_sprites)
+    i_renderer.renderSprite(sprite);
+  for (const auto& sprite : d_itemSprites)
     i_renderer.renderSprite(sprite);
 
   i_renderer.setTranslation(initTranslation);
@@ -88,6 +94,54 @@ void Inventory::recreateSprites()
       d_sprites.emplace_back(Dx::Sprite{
         &textureItem, { CornerSize + SlotSize * x, CornerSize + SlotSize * y },
         textureItem.getDescription().size(), Sdk::Vector4F::identity() });
+
+      d_itemSprites.emplace_back(Dx::Sprite{
+        nullptr, { CornerSize + SlotSize * x + 4, CornerSize + SlotSize * y + 4 },
+        textureItem.getDescription().size(), Sdk::Vector4F::identity() });
+
+      updateItemSprite(x + y * SlotsHor);
     }
   }
+}
+
+
+void Inventory::checkIndex(int i_index) const
+{
+  CONTRACT_EXPECT(0 <= i_index);
+  CONTRACT_EXPECT(i_index < SlotsCount);
+}
+
+
+void Inventory::resetItem(int i_index)
+{
+  checkIndex(i_index);
+
+  d_items.at(i_index) = nullptr;
+  updateItemSprite(i_index);
+}
+
+void Inventory::setItem(int i_index, const StructurePrototype& i_prototype)
+{
+  checkIndex(i_index);
+
+  d_items.at(i_index) = &i_prototype;
+  updateItemSprite(i_index);
+}
+
+const StructurePrototype* Inventory::getItem(int i_index) const
+{
+  checkIndex(i_index);
+
+  return d_items.at(i_index);
+}
+
+void Inventory::updateItemSprite(int i_index)
+{
+  checkIndex(i_index);
+
+  const auto* item = d_items.at(i_index);
+  const Dx::ITextureResource* texture = item ?
+    &d_resourceController.getTextureResource(item->textureFileName) : nullptr;
+
+  d_itemSprites.at(i_index).setTexture(texture);
 }
