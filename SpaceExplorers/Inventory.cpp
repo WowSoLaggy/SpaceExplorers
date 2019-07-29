@@ -27,10 +27,17 @@ void Inventory::render(Dx::IRenderer2d& i_renderer) const
   const auto initTranslation = i_renderer.getTranslation();
   i_renderer.setTranslation(-d_position);
 
-  for (const auto& sprite : d_sprites)
+  // Grid
+  for (const auto& sprite : d_gridSprites)
     i_renderer.renderSprite(sprite);
+
+  // Items
   for (const auto& sprite : d_itemSprites)
     i_renderer.renderSprite(sprite);
+
+  // Selection
+  if (hasSelection())
+    i_renderer.renderSprite(d_selectionSprite);
 
   i_renderer.setTranslation(initTranslation);
 }
@@ -53,36 +60,37 @@ void Inventory::recreateSprites()
   const auto& textureL(d_resourceController.getTextureResource("GridL.png"));
   const auto& textureR(d_resourceController.getTextureResource("GridR.png"));
   const auto& textureItem(d_resourceController.getTextureResource("GridItem.png"));
+  const auto& textureFrame(d_resourceController.getTextureResource("GridFrame.png"));
 
-  d_sprites.emplace_back(Dx::Sprite{
+  d_gridSprites.emplace_back(Dx::Sprite{
     &textureTl, { 0, 0 },
     textureTl.getDescription().size(), Sdk::Vector4F::identity() });
-  d_sprites.emplace_back(Dx::Sprite{
+  d_gridSprites.emplace_back(Dx::Sprite{
     &textureTr, { CornerSize + SlotsHor * SlotSize, 0 },
     textureTr.getDescription().size(), Sdk::Vector4F::identity() });
-  d_sprites.emplace_back(Dx::Sprite{
+  d_gridSprites.emplace_back(Dx::Sprite{
     &textureBl, { 0, CornerSize + SlotsVert * SlotSize },
     textureBl.getDescription().size(), Sdk::Vector4F::identity() });
-  d_sprites.emplace_back(Dx::Sprite{
+  d_gridSprites.emplace_back(Dx::Sprite{
     &textureBr, { CornerSize + SlotsHor * SlotSize, CornerSize + SlotsVert * SlotSize },
     textureBr.getDescription().size(), Sdk::Vector4F::identity() });
 
   for (int i = 0; i < SlotsHor; ++i)
   {
-    d_sprites.emplace_back(Dx::Sprite{
+    d_gridSprites.emplace_back(Dx::Sprite{
       &textureT, { CornerSize + SlotSize * i, 0 },
       textureT.getDescription().size(), Sdk::Vector4F::identity() });
-    d_sprites.emplace_back(Dx::Sprite{
+    d_gridSprites.emplace_back(Dx::Sprite{
       &textureB, { CornerSize + SlotSize * i, CornerSize + SlotsVert * SlotSize },
       textureB.getDescription().size(), Sdk::Vector4F::identity() });
   }
 
   for (int i = 0; i < SlotsVert; ++i)
   {
-    d_sprites.emplace_back(Dx::Sprite{
+    d_gridSprites.emplace_back(Dx::Sprite{
       &textureL, { 0, CornerSize + SlotSize * i },
       textureL.getDescription().size(), Sdk::Vector4F::identity() });
-    d_sprites.emplace_back(Dx::Sprite{
+    d_gridSprites.emplace_back(Dx::Sprite{
       &textureR, { CornerSize + SlotSize * SlotsHor, CornerSize + SlotSize * i },
       textureR.getDescription().size(), Sdk::Vector4F::identity() });
   }
@@ -91,7 +99,7 @@ void Inventory::recreateSprites()
   {
     for (int x = 0; x < SlotsHor; ++x)
     {
-      d_sprites.emplace_back(Dx::Sprite{
+      d_gridSprites.emplace_back(Dx::Sprite{
         &textureItem, { CornerSize + SlotSize * x, CornerSize + SlotSize * y },
         textureItem.getDescription().size(), Sdk::Vector4F::identity() });
 
@@ -102,6 +110,10 @@ void Inventory::recreateSprites()
       updateItemSprite(x + y * SlotsHor);
     }
   }
+
+  d_selectionSprite = {
+    &textureFrame, { CornerSize + 2, CornerSize + 2 },
+    textureFrame.getDescription().size(), Sdk::Vector4F::identity() };
 }
 
 
@@ -144,4 +156,45 @@ void Inventory::updateItemSprite(int i_index)
     &d_resourceController.getTextureResource(item->textureFileName) : nullptr;
 
   d_itemSprites.at(i_index).setTexture(texture);
+}
+
+
+void Inventory::selectItem(int i_index)
+{
+  CheckIndex(i_index);
+
+  d_selectedIndex = i_index;
+  updateSelectionSprite();
+}
+
+void Inventory::unselectItem()
+{
+  d_selectedIndex = std::nullopt;
+}
+
+std::optional<int> Inventory::getSelectedIndex() const
+{
+  return d_selectedIndex;
+}
+
+const StructurePrototype* Inventory::getSelectedItem() const
+{
+  if (!d_selectedIndex)
+    return nullptr;
+  return d_items.at(*d_selectedIndex);
+}
+
+bool Inventory::hasSelection() const
+{
+  return d_selectedIndex.has_value();
+}
+
+void Inventory::updateSelectionSprite()
+{
+  if (!d_selectedIndex)
+    return;
+
+  int x = *d_selectedIndex % SlotsHor;
+  int y = *d_selectedIndex / SlotsHor;
+  d_selectionSprite.setPosition({ CornerSize + SlotSize * x + 2, CornerSize + SlotSize * y + 2 });
 }

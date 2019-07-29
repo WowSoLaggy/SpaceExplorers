@@ -25,6 +25,12 @@ public:
   void setItem(int i_index, const StructurePrototype& i_prototype);
   const StructurePrototype* getItem(int i_index) const;
 
+  void selectItem(int i_index);
+  void unselectItem();
+  std::optional<int> getSelectedIndex() const;
+  const StructurePrototype* getSelectedItem() const;
+  bool hasSelection() const;
+
 private:
   static const int SlotsHor = 8;
   static const int SlotsVert = 1;
@@ -36,11 +42,14 @@ private:
   const Dx::IResourceController& d_resourceController;
 
   Sdk::Vector2I d_position;
-  std::vector<Dx::Sprite> d_sprites;
+  std::vector<Dx::Sprite> d_gridSprites;
 
   std::vector<const StructurePrototype*> d_items;
   std::vector<Dx::Sprite> d_itemSprites;
+  std::optional<int> d_selectedIndex;
+  Dx::Sprite d_selectionSprite;
 
   void recreateSprites();
   void updateItemSprite(int i_index);
+  void updateSelectionSprite();
 };
