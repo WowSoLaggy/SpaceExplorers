@@ -4,6 +4,9 @@
 #include "IApp.h"
 #include "Inventory.h"
 
+#include <LaggyDx/ImageDescription.h>
+#include <LaggyDx/IResourceController.h>
+#include <LaggyDx/ITextureResource.h>
 #include <LaggyDx/KeyboardState.h>
 #include <LaggyDx/MouseState.h>
 
@@ -59,19 +62,23 @@ void Game::handleMouse(const Dx::MouseState& i_mouseState)
   else
     d_gui.getCursor().movePosition(mousePosRaw);
 
-  const auto& mousePos = d_gui.getCursor().getPosition();
-
   if (i_mouseState.getLeftButtonState() == Dx::ButtonState::Pressed)
-    onClick(mousePos);
+    onLClick();
+  else if (i_mouseState.getRightButtonState() == Dx::ButtonState::Pressed)
+    onRClick();
+
+  if (d_buildStructure)
+    updateBuildPos();
 }
 
 
-void Game::onClick(Sdk::Vector2I i_mousePos)
+void Game::onLClick()
 {
   if (!d_world)
     return;
 
-  const auto tileCoords = screenToTile(i_mousePos);
+  const auto& mousePos = d_gui.getCursor().getPosition();
+  const auto tileCoords = screenToTile(mousePos);
 
   auto* tile = d_world->getTile(tileCoords);
   if (!tile)
@@ -84,15 +91,54 @@ void Game::onClick(Sdk::Vector2I i_mousePos)
   structure->interact();
 }
 
+void Game::onRClick()
+{
+  if (!d_world)
+    return;
+  onSelectInventory(std::nullopt);
+}
 
-void Game::onSelectInventory(int i_index)
+
+void Game::onSelectInventory(std::optional<int> i_index)
 {
   auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
   if (!inventory)
     return;
 
-  if (inventory->getSelectedIndex() == i_index)
+  if (!i_index.has_value() || inventory->getSelectedIndex() == *i_index)
     inventory->unselectItem();
   else
-    inventory->selectItem(i_index);
+    inventory->selectItem(*i_index);
+
+  onEnterBuildMode(inventory->getSelectedItem());
+}
+
+void Game::onEnterBuildMode(const StructurePrototype* i_buildStructure)
+{
+  d_buildStructure = i_buildStructure;
+  if (!d_buildStructure)
+    return;
+
+  const auto& texture = d_resourceController.getTextureResource(d_buildStructure->textureFileName);
+  d_buildSprite = Dx::Sprite{ &texture, { 0, 0 }, texture.getDescription().size(), getBuildColor() };
+  updateBuildPos();
+}
+
+void Game::updateBuildPos()
+{
+  const auto pos = tileToScreen(screenToTile(d_gui.getCursor().getPosition()));
+  d_buildSprite.setPosition(pos);
+}
+
+bool Game::canBuild() const
+{
+  if (!d_buildStructure)
+    return false;
+
+  return false;
+}
+
+Sdk::Vector4F Game::getBuildColor() const
+{
+  return canBuild() ? Sdk::Vector4F{ 0.8f, 1.5f, 0.8f, 0.7f } : Sdk::Vector4F{ 1.5f, 0.7f, 0.7f, 0.7f };
 }

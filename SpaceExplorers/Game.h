@@ -3,9 +3,11 @@
 #include "Camera.h"
 #include "Fwd.h"
 #include "Gui.h"
+#include "StructurePrototype.h"
 #include "World.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
+#include <LaggyDx/Sprite.h>
 #include <LaggySdk/Vector.h>
 
 #include <memory>
@@ -28,6 +30,7 @@ public:
 
 private:
   IApp& d_app;
+  const Dx::IResourceController& d_resourceController;
 
   Camera d_camera;
   Gui d_gui;
@@ -39,7 +42,16 @@ private:
   Sdk::Vector2I screenToWorld(Sdk::Vector2I i_coords) const;
   Sdk::Vector2I worldToTile(Sdk::Vector2I i_coords) const;
   Sdk::Vector2I screenToTile(Sdk::Vector2I i_coords) const;
+  Sdk::Vector2I tileToScreen(Sdk::Vector2I i_coords) const;
 
-  void onClick(Sdk::Vector2I i_mousePos);
-  void onSelectInventory(int i_index);
+  const StructurePrototype* d_buildStructure = nullptr;
+  Dx::Sprite d_buildSprite;
+
+  void onLClick();
+  void onRClick();
+  void onSelectInventory(std::optional<int> i_index);
+  void onEnterBuildMode(const StructurePrototype* i_buildStructure);
+  void updateBuildPos();
+  bool canBuild() const;
+  Sdk::Vector4F getBuildColor() const;
 };

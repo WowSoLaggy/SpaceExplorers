@@ -10,6 +10,7 @@
 
 Game::Game(IApp& i_app, const Dx::IResourceController& i_resourceController)
   : d_app(i_app)
+  , d_resourceController(i_resourceController)
   , d_camera(SettingsProvider::getDefaultExternalSettings().clientWidth,
     SettingsProvider::getDefaultExternalSettings().clientHeight)
   , d_gui(i_resourceController, d_camera.getViewport().size())
@@ -35,6 +36,10 @@ void Game::render(Dx::IRenderer2d& i_renderer) const
 {
   if (d_world)
     d_world->render(i_renderer, d_camera.getViewport());
+
+  if (d_buildStructure)
+    i_renderer.renderSprite(d_buildSprite);
+
   d_gui.render(i_renderer);
 
   if (d_debugOutput)
