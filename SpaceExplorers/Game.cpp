@@ -39,7 +39,7 @@ void Game::render(Dx::IRenderer2d& i_renderer) const
 
   if (d_debugOutput)
   {
-    const std::string str = "Structures: " + std::to_string(i_renderer.resetRenderedSprites()) + "\n";
+    const std::string str = "Sprites: " + std::to_string(i_renderer.resetRenderedSprites()) + "\n";
     updateDebugLabel(str);
   }
 }
