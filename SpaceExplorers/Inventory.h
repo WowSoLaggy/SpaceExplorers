@@ -26,11 +26,12 @@ public:
   const StructurePrototype* getItem(int i_index) const;
 
 private:
-  const int SlotsHor = 8;
-  const int SlotsVert = 1;
-  const int SlotsCount = SlotsHor * SlotsVert;
-  const int CornerSize = 13;
-  const int SlotSize = 72;
+  static const int SlotsHor = 8;
+  static const int SlotsVert = 1;
+  static const int SlotsCount = SlotsHor * SlotsVert;
+  static const int CornerSize = 13;
+  static const int SlotSize = 72;
+  static void CheckIndex(int i_index);
 
   const Dx::IResourceController& d_resourceController;
 
@@ -39,8 +40,6 @@ private:
 
   std::vector<const StructurePrototype*> d_items;
   std::vector<Dx::Sprite> d_itemSprites;
-
-  void checkIndex(int i_index) const;
 
   void recreateSprites();
   void updateItemSprite(int i_index);

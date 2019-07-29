@@ -105,7 +105,7 @@ void Inventory::recreateSprites()
 }
 
 
-void Inventory::checkIndex(int i_index) const
+void Inventory::CheckIndex(int i_index)
 {
   CONTRACT_EXPECT(0 <= i_index);
   CONTRACT_EXPECT(i_index < SlotsCount);
@@ -114,7 +114,7 @@ void Inventory::checkIndex(int i_index) const
 
 void Inventory::resetItem(int i_index)
 {
-  checkIndex(i_index);
+  CheckIndex(i_index);
 
   d_items.at(i_index) = nullptr;
   updateItemSprite(i_index);
@@ -122,7 +122,7 @@ void Inventory::resetItem(int i_index)
 
 void Inventory::setItem(int i_index, const StructurePrototype& i_prototype)
 {
-  checkIndex(i_index);
+  CheckIndex(i_index);
 
   d_items.at(i_index) = &i_prototype;
   updateItemSprite(i_index);
@@ -130,14 +130,14 @@ void Inventory::setItem(int i_index, const StructurePrototype& i_prototype)
 
 const StructurePrototype* Inventory::getItem(int i_index) const
 {
-  checkIndex(i_index);
+  CheckIndex(i_index);
 
   return d_items.at(i_index);
 }
 
 void Inventory::updateItemSprite(int i_index)
 {
-  checkIndex(i_index);
+  CheckIndex(i_index);
 
   const auto* item = d_items.at(i_index);
   const Dx::ITextureResource* texture = item ?
