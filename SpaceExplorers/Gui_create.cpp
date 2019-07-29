@@ -22,13 +22,13 @@ void Gui::createIngameGui()
 std::shared_ptr<Label> Gui::createDebugLabel()
 {
   auto control = std::make_shared<Label>(d_resourceController);
-  d_guiControls.push_back(control);
+  d_guiControls.insert({ "DebugLabel", control });
   return control;
 }
 
 std::shared_ptr<Inventory> Gui::createInventory()
 {
   auto control = std::make_shared<Inventory>(d_resourceController);
-  d_guiControls.push_back(control);
+  d_guiControls.insert({ "Inventory", control });
   return control;
 }

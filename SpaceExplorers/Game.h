@@ -41,4 +41,5 @@ private:
   Sdk::Vector2I screenToTile(Sdk::Vector2I i_coords) const;
 
   void onClick(Sdk::Vector2I i_mousePos);
+  void onSelectInventory(int i_index);
 };

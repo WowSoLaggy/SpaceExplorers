@@ -8,6 +8,7 @@
 #include <LaggySdk/Vector.h>
 
 #include <memory>
+#include <unordered_map>
 
 
 class Gui
@@ -24,13 +25,14 @@ public:
   void createIngameGui();
 
   std::shared_ptr<Label> createDebugLabel();
+  IGuiControlPtr getControl(const std::string& i_name);
 
 private:
   const Dx::IResourceController& d_resourceController;
   Sdk::Vector2I d_clientSize;
 
   Cursor d_cursor;
-  std::vector<IGuiControlPtr> d_guiControls;
+  std::unordered_map<std::string, IGuiControlPtr> d_guiControls;
 
   std::shared_ptr<Inventory> createInventory();
 };
