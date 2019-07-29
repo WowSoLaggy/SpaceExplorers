@@ -25,3 +25,8 @@ Sdk::Vector2I Game::screenToTile(Sdk::Vector2I i_coords) const
 {
   return worldToTile(screenToWorld(i_coords));
 }
+
+Sdk::Vector2I Game::tileToScreen(Sdk::Vector2I i_coords) const
+{
+  return i_coords * SettingsProvider::getDefaultInternalSettings().tileSize;
+}
