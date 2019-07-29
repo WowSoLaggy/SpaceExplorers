@@ -94,7 +94,6 @@ void App::mainloop()
   d_renderer2d->beginScene();
 
   d_game->render(*d_renderer2d);
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
   d_renderer2d->endScene();
   d_renderDevice->endScene();
