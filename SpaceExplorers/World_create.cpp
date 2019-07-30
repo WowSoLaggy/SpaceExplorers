@@ -32,22 +32,22 @@ std::unique_ptr<World> World::createTestWorld(
 
   auto createLattice = [&](int x, int y)
   {
-    tile(x, y).setPanelling(create(Prototypes::Lattice(), { x, y }));
+    tile(x, y).setStructure(Layer::Panneling, create(Prototypes::Lattice(), { x, y }));
   };
 
   auto createFloor = [&](int x, int y)
   {
-    tile(x, y).setFloor(create(Prototypes::Floor(), { x, y }));
+    tile(x, y).setStructure(Layer::Floor, create(Prototypes::Floor(), { x, y }));
   };
 
   auto createWall = [&](int x, int y)
   {
-    tile(x, y).setWall(create(Prototypes::Wall(), { x, y }));
+    tile(x, y).setStructure(Layer::Wall, create(Prototypes::Wall(), { x, y }));
   };
 
   auto createDoor = [&](int x, int y)
   {
-    tile(x, y).setWall(create(Prototypes::Door(), { x, y }));
+    tile(x, y).setStructure(Layer::Wall, create(Prototypes::Door(), { x, y }));
   };
 
   ///

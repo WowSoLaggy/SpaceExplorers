@@ -4,22 +4,21 @@
 
 #include <LaggyDx/LaggyDxFwd.h>
 
+#include <map>
+
 
 class Tile
 {
 public:
   void update(double i_dt);
-  int render(Dx::IRenderer2d& i_renderer) const;
+  void render(Dx::IRenderer2d& i_renderer) const;
 
-  void setPanelling(StructurePtr i_panneling);
-  void setFloor(StructurePtr i_floor);
-  void setWall(StructurePtr i_wall);
+  void setStructure(Layer i_layer, StructurePtr i_structure);
+  void removeStructure(Layer i_layer);
 
   StructurePtr getTopStructure();
   const StructurePtr getTopStructure() const;
 
 private:
-  StructurePtr d_panelling;
-  StructurePtr d_floor;
-  StructurePtr d_wall;
+  std::map<Layer, StructurePtr> d_layersMap;
 };

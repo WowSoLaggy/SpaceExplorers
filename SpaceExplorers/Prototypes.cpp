@@ -8,6 +8,7 @@ namespace Prototypes
   {
     static StructurePrototype prototype;
     prototype.textureFileName = "Lattice.png";
+    prototype.layer = Layer::Panneling;
     return prototype;
   }
 
@@ -15,6 +16,7 @@ namespace Prototypes
   {
     static StructurePrototype prototype;
     prototype.textureFileName = "Floor.png";
+    prototype.layer = Layer::Floor;
     return prototype;
   }
 
@@ -22,6 +24,7 @@ namespace Prototypes
   {
     static StructurePrototype prototype;
     prototype.textureFileName = "Wall.png";
+    prototype.layer = Layer::Wall;
     return prototype;
   }
 
@@ -30,6 +33,7 @@ namespace Prototypes
     static StructurePrototype prototype;
     prototype.textureFileName = "Door.png";
     prototype.behavior = Behavior::Door;
+    prototype.layer = Layer::Wall;
     return prototype;
   }
 } // ns Prototypes

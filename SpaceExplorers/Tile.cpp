@@ -1,71 +1,61 @@
 #include "stdafx.h"
 #include "Tile.h"
 
+#include <LaggySdk/Contracts.h>
+
 
 void Tile::update(double i_dt)
 {
-  if (d_wall)
-    d_wall->update(i_dt);
-  if (d_floor)
-    d_floor->update(i_dt);
-  if (d_panelling)
-    d_panelling->update(i_dt);
+  for (auto& [_, structure] : d_layersMap)
+  {
+    CONTRACT_EXPECT(structure);
+    structure->update(i_dt);
+  }
 }
 
-int Tile::render(Dx::IRenderer2d& i_renderer) const
+void Tile::render(Dx::IRenderer2d& i_renderer) const
 {
-  const std::vector<StructurePtr> renderList{ d_panelling, d_floor, d_wall };
-  auto it = renderList.end() - 1;
+  if (d_layersMap.empty())
+    return;
 
-  while (it != renderList.begin() && (*it == nullptr || (*it)->isTransparent()))
+  auto it = std::prev(d_layersMap.cend());
+  while (it != d_layersMap.cbegin() && it->second->isTransparent())
     --it;
 
-  int drawnObjects = 0;
-  for (; it != renderList.end(); ++it)
-  {
-    if (*it != nullptr)
-    {
-      (*it)->render(i_renderer);
-      ++drawnObjects;
-    }
-  }
-
-  return drawnObjects;
+  for (; it != d_layersMap.cend(); ++it)
+    it->second->render(i_renderer);
 }
 
 
-void Tile::setPanelling(StructurePtr i_panneling)
+void Tile::setStructure(Layer i_layer, StructurePtr i_structure)
 {
-  d_panelling = i_panneling;
+  CONTRACT_EXPECT(i_structure);
+  d_layersMap[i_layer] = i_structure;
 }
 
-void Tile::setFloor(StructurePtr i_floor)
+void Tile::removeStructure(Layer i_layer)
 {
-  d_floor = i_floor;
-}
-
-void Tile::setWall(StructurePtr i_wall)
-{
-  d_wall = i_wall;
+  CONTRACT_EXPECT(d_layersMap.count(i_layer) != 0);
+  d_layersMap.erase(i_layer);
 }
 
 
 StructurePtr Tile::getTopStructure()
 {
-  if (d_wall)
-    return d_wall;
-  else if (d_floor)
-    return d_floor;
-  else
-    return d_panelling;
+  if (d_layersMap.empty())
+    return nullptr;
+  
+  auto structure = d_layersMap.rbegin()->second;
+  CONTRACT_EXPECT(structure);
+  return structure;
 }
 
 const StructurePtr Tile::getTopStructure() const
 {
-  if (d_wall)
-    return d_wall;
-  else if (d_floor)
-    return d_floor;
-  else
-    return d_panelling;
+  if (d_layersMap.empty())
+    return nullptr;
+
+  auto structure = d_layersMap.crbegin()->second;
+  CONTRACT_EXPECT(structure);
+  return structure;
 }
