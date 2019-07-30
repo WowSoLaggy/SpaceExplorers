@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Behaviors.h"
+#include "Traits.h"
 
 #include <string>
 

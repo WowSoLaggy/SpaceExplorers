@@ -161,9 +161,6 @@
     <ClInclude Include="Actions.h">
       <Filter>src\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Behaviors.h">
-      <Filter>src\Game\World\Prototypes</Filter>
-    </ClInclude>
     <ClInclude Include="Structure.h">
       <Filter>src\Game\World\Structures</Filter>
     </ClInclude>
@@ -175,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>src\Game\Gui\GuiControls</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits.h">
+      <Filter>src\Game\World\Prototypes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
