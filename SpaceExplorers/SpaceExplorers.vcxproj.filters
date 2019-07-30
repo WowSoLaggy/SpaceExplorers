@@ -7,37 +7,37 @@
     <Filter Include="src\App">
       <UniqueIdentifier>{e9b45ef6-8b71-4c8d-a70d-35f1b8052891}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\World">
-      <UniqueIdentifier>{f7240feb-166d-48d4-a40a-53c5f865e5d3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Game">
       <UniqueIdentifier>{68fe41fb-9a3d-4f05-8f34-83a76b35f8f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\World\Objects">
-      <UniqueIdentifier>{4b805a66-8695-4d34-aa62-da6c5d8ba1a0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Gui">
-      <UniqueIdentifier>{ef52b4c2-6658-40d7-862b-41b13c3389a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Gui\GuiControls">
-      <UniqueIdentifier>{ba07a084-04a5-47c0-973a-9981834bcd07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Gui\Cursor">
-      <UniqueIdentifier>{f1708bd0-daa3-40e8-a726-ecad6aff4efe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\World\Prototypes">
-      <UniqueIdentifier>{24788ca8-6a6c-48e3-9ff1-9b9875f6f926}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Camera">
-      <UniqueIdentifier>{9ca1cb00-08d7-487e-8b87-e2eec2f8af86}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Settings">
       <UniqueIdentifier>{d0f687b7-45d6-49d1-a5ad-bc95219963af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\World\Structures">
+    <Filter Include="src\Game\Gui">
+      <UniqueIdentifier>{ef52b4c2-6658-40d7-862b-41b13c3389a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\Gui\GuiControls">
+      <UniqueIdentifier>{ba07a084-04a5-47c0-973a-9981834bcd07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\Gui\Cursor">
+      <UniqueIdentifier>{f1708bd0-daa3-40e8-a726-ecad6aff4efe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\Camera">
+      <UniqueIdentifier>{9ca1cb00-08d7-487e-8b87-e2eec2f8af86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\World">
+      <UniqueIdentifier>{f7240feb-166d-48d4-a40a-53c5f865e5d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\World\Objects">
+      <UniqueIdentifier>{4b805a66-8695-4d34-aa62-da6c5d8ba1a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\World\Prototypes">
+      <UniqueIdentifier>{24788ca8-6a6c-48e3-9ff1-9b9875f6f926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\World\Structures">
       <UniqueIdentifier>{824638d1-11c5-4915-ae2a-824124b5818a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\World\Tile">
+    <Filter Include="src\Game\World\Tile">
       <UniqueIdentifier>{16ebc7a1-eb12-4f62-ba7d-d83b3de44e7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -55,52 +55,52 @@
       <Filter>src\Settings</Filter>
     </ClCompile>
     <ClCompile Include="World.cpp">
-      <Filter>src\World</Filter>
+      <Filter>src\Game\World</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>src\Game</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>src\World\Objects</Filter>
+      <Filter>src\Game\World\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Gui.cpp">
-      <Filter>src\Gui</Filter>
+      <Filter>src\Game\Gui</Filter>
     </ClCompile>
     <ClCompile Include="Game_input.cpp">
       <Filter>src\Game</Filter>
     </ClCompile>
     <ClCompile Include="Cursor.cpp">
-      <Filter>src\Gui\Cursor</Filter>
+      <Filter>src\Game\Gui\Cursor</Filter>
     </ClCompile>
     <ClCompile Include="World_create.cpp">
-      <Filter>src\World</Filter>
+      <Filter>src\Game\World</Filter>
     </ClCompile>
     <ClCompile Include="Prototypes.cpp">
-      <Filter>src\World\Prototypes</Filter>
+      <Filter>src\Game\World\Prototypes</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>src\Camera</Filter>
+      <Filter>src\Game\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Label.cpp">
-      <Filter>src\Gui\GuiControls</Filter>
+      <Filter>src\Game\Gui\GuiControls</Filter>
     </ClCompile>
     <ClCompile Include="Gui_create.cpp">
-      <Filter>src\Gui</Filter>
+      <Filter>src\Game\Gui</Filter>
     </ClCompile>
     <ClCompile Include="Structure.cpp">
-      <Filter>src\World\Structures</Filter>
+      <Filter>src\Game\World\Structures</Filter>
     </ClCompile>
     <ClCompile Include="Door.cpp">
-      <Filter>src\World\Structures</Filter>
+      <Filter>src\Game\World\Structures</Filter>
     </ClCompile>
     <ClCompile Include="Game_utils.cpp">
       <Filter>src\Game</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
-      <Filter>src\World\Tile</Filter>
+      <Filter>src\Game\World\Tile</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
-      <Filter>src\Gui\GuiControls</Filter>
+      <Filter>src\Game\Gui\GuiControls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,37 +114,37 @@
       <Filter>src\Settings</Filter>
     </ClInclude>
     <ClInclude Include="World.h">
-      <Filter>src\World</Filter>
+      <Filter>src\Game\World</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>src\Game</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>src\World\Objects</Filter>
+      <Filter>src\Game\World\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Gui.h">
-      <Filter>src\Gui</Filter>
+      <Filter>src\Game\Gui</Filter>
     </ClInclude>
     <ClInclude Include="IGuiControl.h">
-      <Filter>src\Gui\GuiControls</Filter>
+      <Filter>src\Game\Gui\GuiControls</Filter>
     </ClInclude>
     <ClInclude Include="Cursor.h">
-      <Filter>src\Gui\Cursor</Filter>
+      <Filter>src\Game\Gui\Cursor</Filter>
     </ClInclude>
     <ClInclude Include="IApp.h">
       <Filter>src\App</Filter>
     </ClInclude>
     <ClInclude Include="StructurePrototype.h">
-      <Filter>src\World\Prototypes</Filter>
+      <Filter>src\Game\World\Prototypes</Filter>
     </ClInclude>
     <ClInclude Include="Prototypes.h">
-      <Filter>src\World\Prototypes</Filter>
+      <Filter>src\Game\World\Prototypes</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>src\Camera</Filter>
+      <Filter>src\Game\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Label.h">
-      <Filter>src\Gui\GuiControls</Filter>
+      <Filter>src\Game\Gui\GuiControls</Filter>
     </ClInclude>
     <ClInclude Include="Fwd.h">
       <Filter>src</Filter>
@@ -159,19 +159,19 @@
       <Filter>src\Game</Filter>
     </ClInclude>
     <ClInclude Include="Behaviors.h">
-      <Filter>src\World\Prototypes</Filter>
+      <Filter>src\Game\World\Prototypes</Filter>
     </ClInclude>
     <ClInclude Include="Structure.h">
-      <Filter>src\World\Structures</Filter>
+      <Filter>src\Game\World\Structures</Filter>
     </ClInclude>
     <ClInclude Include="Door.h">
-      <Filter>src\World\Structures</Filter>
+      <Filter>src\Game\World\Structures</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
-      <Filter>src\World\Tile</Filter>
+      <Filter>src\Game\World\Tile</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
-      <Filter>src\Gui\GuiControls</Filter>
+      <Filter>src\Game\Gui\GuiControls</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
