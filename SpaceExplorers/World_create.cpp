@@ -12,42 +12,25 @@ std::unique_ptr<World> World::createTestWorld(
   Sdk::Vector2I i_backgroundSize,
   const Dx::IResourceController& i_resourceController)
 {
-  auto world = std::make_unique<World>();
-  world->setBackground("Space.png", std::move(i_backgroundSize), i_resourceController);
+  auto world = std::make_unique<World>(i_resourceController);
+  world->setBackground("Space.png", std::move(i_backgroundSize));
 
   ///
 
-  auto create = [&](const StructurePrototype& i_prototype, Sdk::Vector2I i_tileCoords) -> StructurePtr
-  {
-    if (i_prototype.behavior == Behavior::Door)
-      return std::make_shared<Door>(i_resourceController, i_prototype, std::move(i_tileCoords));
-      
-    return std::make_shared<Structure>(i_resourceController, i_prototype, std::move(i_tileCoords));
+  auto createLattice = [&](int x, int y) {
+    world->createStructureAt(Prototypes::Lattice(), { x, y });
   };
 
-  auto tile = [&](int x, int y) -> Tile&
-  {
-    return world->d_tilesMap[{x, y}];
+  auto createFloor = [&](int x, int y) {
+    world->createStructureAt(Prototypes::Floor(), { x, y });
   };
 
-  auto createLattice = [&](int x, int y)
-  {
-    tile(x, y).setStructure(Layer::Panneling, create(Prototypes::Lattice(), { x, y }));
+  auto createWall = [&](int x, int y) {
+    world->createStructureAt(Prototypes::Wall(), { x, y });
   };
 
-  auto createFloor = [&](int x, int y)
-  {
-    tile(x, y).setStructure(Layer::Floor, create(Prototypes::Floor(), { x, y }));
-  };
-
-  auto createWall = [&](int x, int y)
-  {
-    tile(x, y).setStructure(Layer::Wall, create(Prototypes::Wall(), { x, y }));
-  };
-
-  auto createDoor = [&](int x, int y)
-  {
-    tile(x, y).setStructure(Layer::Wall, create(Prototypes::Door(), { x, y }));
+  auto createDoor = [&](int x, int y) {
+    world->createStructureAt(Prototypes::Door(), { x, y });
   };
 
   ///

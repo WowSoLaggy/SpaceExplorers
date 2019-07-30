@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "World.h"
 
+#include "Door.h"
+#include "Structure.h"
 #include "SettingsProvider.h"
 
 #include <LaggyDx/ITextureResource.h>
@@ -20,6 +22,13 @@ namespace
     return Sdk::RectI{ topLeft, bottomRight};
   }
 } // anonymous NS
+
+
+World::World(const Dx::IResourceController& i_resourceController)
+  : d_resourceController(i_resourceController)
+{
+}
+
 
 void World::update(double i_dt)
 {
@@ -70,11 +79,23 @@ Tile& World::getOrCreateTile(const Sdk::Vector2I& i_coords)
 }
 
 
-void World::setBackground(const std::string& i_backgroundTextureFilename,
-                          Sdk::Vector2I i_backgroundSize,
-                          const Dx::IResourceController& i_resourceController)
+void World::createStructureAt(const StructurePrototype& i_prototype, const Sdk::Vector2I& i_coords)
 {
-  const Dx::ITextureResource* texture = &i_resourceController.getTextureResource(i_backgroundTextureFilename);
+  StructurePtr structure;
+
+  if (i_prototype.behavior == Behavior::Door)
+    structure = std::make_shared<Door>(d_resourceController, i_prototype, i_coords);
+  else 
+    structure = std::make_shared<Structure>(d_resourceController, i_prototype, i_coords);
+
+  d_tilesMap[i_coords].setStructure(i_prototype.layer, structure);
+}
+
+
+void World::setBackground(const std::string& i_backgroundTextureFilename,
+                          Sdk::Vector2I i_backgroundSize)
+{
+  const Dx::ITextureResource* texture = &d_resourceController.getTextureResource(i_backgroundTextureFilename);
   d_background.setTexture(texture);
   d_background.setSize(std::move(i_backgroundSize));
 }
