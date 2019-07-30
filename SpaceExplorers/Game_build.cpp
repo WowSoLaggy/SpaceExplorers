@@ -83,5 +83,16 @@ bool Game::canBuild() const
   CONTRACT_EXPECT(isInBuildMode());
   CONTRACT_EXPECT(d_buildStructure);
 
-  return false;
+  const auto layer = d_buildStructure->layer;
+  const auto* tile = d_world->getTile(screenToTile(d_gui.getCursor().getPosition()));
+
+  if (!tile)
+    return layer == Layer::Panneling;
+
+  if (tile->hasStructureOnLayer(layer))
+    return false;
+  if (!tile->hasStructureOnLayer(getPrevLayer(layer)))
+    return false;
+
+  return true;
 }
