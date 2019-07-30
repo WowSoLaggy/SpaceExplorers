@@ -6,6 +6,7 @@
 
 #include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>
+#include <LaggySdk/Contracts.h>
 
 
 Game::Game(IApp& i_app, const Dx::IResourceController& i_resourceController)
@@ -37,7 +38,7 @@ void Game::render(Dx::IRenderer2d& i_renderer) const
   if (d_world)
     d_world->render(i_renderer, d_camera.getViewport());
 
-  if (d_buildStructure)
+  if (isInBuildMode())
     i_renderer.renderSprite(d_buildSprite);
 
   d_gui.render(i_renderer);

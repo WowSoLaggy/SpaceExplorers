@@ -44,14 +44,24 @@ private:
   Sdk::Vector2I screenToTile(Sdk::Vector2I i_coords) const;
   Sdk::Vector2I tileToScreen(Sdk::Vector2I i_coords) const;
 
+  void onLClick();
+  void onRClick();
+
+  void onSelectInventory(int i_index);
+  void onUnselectInventory();
+
+  //
+  // BUILD MODE
+  //
+
   const StructurePrototype* d_buildStructure = nullptr;
   Dx::Sprite d_buildSprite;
 
-  void onLClick();
-  void onRClick();
-  void onSelectInventory(std::optional<int> i_index);
-  void onEnterBuildMode(const StructurePrototype* i_buildStructure);
-  void updateBuildPos();
+  bool isInBuildMode() const;
+
+  void onEnterBuildMode(const StructurePrototype& i_buildStructure);
+  void onExitBuildMode();
+  
+  void updateBuildSprite();
   bool canBuild() const;
-  Sdk::Vector4F getBuildColor() const;
 };
