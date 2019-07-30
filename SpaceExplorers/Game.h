@@ -50,6 +50,8 @@ private:
   void onSelectInventory(int i_index);
   void onUnselectInventory();
 
+  void tryInteract();
+
   //
   // BUILD MODE
   //
