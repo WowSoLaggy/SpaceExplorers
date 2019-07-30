@@ -19,6 +19,8 @@ public:
   StructurePtr getTopStructure();
   const StructurePtr getTopStructure() const;
 
+  bool hasStructureOnLayer(Layer i_layer) const;
+
 private:
   std::map<Layer, StructurePtr> d_layersMap;
 };

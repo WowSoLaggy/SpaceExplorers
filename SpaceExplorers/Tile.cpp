@@ -29,13 +29,14 @@ void Tile::render(Dx::IRenderer2d& i_renderer) const
 
 void Tile::setStructure(Layer i_layer, StructurePtr i_structure)
 {
+  CONTRACT_EXPECT(i_layer != Layer::None);
   CONTRACT_EXPECT(i_structure);
   d_layersMap[i_layer] = i_structure;
 }
 
 void Tile::removeStructure(Layer i_layer)
 {
-  CONTRACT_EXPECT(d_layersMap.count(i_layer) != 0);
+  CONTRACT_EXPECT(hasStructureOnLayer(i_layer));
   d_layersMap.erase(i_layer);
 }
 
@@ -58,4 +59,10 @@ const StructurePtr Tile::getTopStructure() const
   auto structure = d_layersMap.crbegin()->second;
   CONTRACT_EXPECT(structure);
   return structure;
+}
+
+
+bool Tile::hasStructureOnLayer(Layer i_layer) const
+{
+  return d_layersMap.find(i_layer) != d_layersMap.cend();
 }
