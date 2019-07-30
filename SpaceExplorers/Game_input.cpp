@@ -73,7 +73,10 @@ void Game::onLClick()
   if (!d_world)
     return;
 
-  tryInteract();
+  if (isInBuildMode())
+    tryBuild();
+  else
+    tryInteract();
 }
 
 void Game::onRClick()

@@ -81,7 +81,7 @@ void Game::updateBuildSprite()
 bool Game::canBuild() const
 {
   CONTRACT_EXPECT(isInBuildMode());
-  CONTRACT_EXPECT(d_buildStructure);
+  CONTRACT_ASSERT(d_buildStructure);
 
   const auto layer = d_buildStructure->layer;
   const auto* tile = d_world->getTile(screenToTile(d_gui.getCursor().getPosition()));
@@ -95,4 +95,17 @@ bool Game::canBuild() const
     return false;
 
   return true;
+}
+
+
+void Game::tryBuild()
+{
+  CONTRACT_EXPECT(isInBuildMode());
+  CONTRACT_ASSERT(d_world);
+  CONTRACT_ASSERT(d_buildStructure);
+
+  if (!canBuild())
+    return;
+
+  d_world->createStructureAt(*d_buildStructure, screenToTile(d_gui.getCursor().getPosition()));
 }

@@ -66,4 +66,6 @@ private:
   
   void updateBuildSprite();
   bool canBuild() const;
+
+  void tryBuild();
 };
