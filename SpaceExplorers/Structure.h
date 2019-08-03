@@ -25,6 +25,9 @@ public:
 
   bool isTransparent() const;
 
+  void resetColor();
+  void setColor(Sdk::Vector4F i_color);
+
 protected:
   const StructurePrototype& d_prototype;
   std::shared_ptr<Dx::Sprite> d_sprite;

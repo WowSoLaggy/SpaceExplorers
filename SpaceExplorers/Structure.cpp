@@ -43,3 +43,14 @@ bool Structure::isTransparent() const
 {
   return d_sprite->getTexture()->getDescription().alpha;
 }
+
+
+void Structure::resetColor()
+{
+  d_sprite->setColor(Sdk::Vector4F::identity());
+}
+
+void Structure::setColor(Sdk::Vector4F i_color)
+{
+  d_sprite->setColor(std::move(i_color));
+}
