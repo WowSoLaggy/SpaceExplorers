@@ -72,7 +72,7 @@ void Game::onExitBuildMode()
 
 void Game::updateBuildSprite()
 {
-  const auto pos = tileToScreen(screenToTile(d_gui.getCursor().getPosition()));
+  const auto pos = tileToScreen(cursorToTile());
   d_buildSprite.setPosition(pos);
 
   d_buildSprite.setColor(getBuildColor(canBuild()));
@@ -84,7 +84,7 @@ bool Game::canBuild() const
   CONTRACT_ASSERT(d_buildStructure);
 
   const auto layer = d_buildStructure->layer;
-  const auto* tile = d_world->getTile(screenToTile(d_gui.getCursor().getPosition()));
+  const auto* tile = d_world->getTile(cursorToTile());
 
   if (!tile)
     return layer == Layer::Panneling;
@@ -107,5 +107,5 @@ void Game::tryBuild()
   if (!canBuild())
     return;
 
-  d_world->createStructureAt(*d_buildStructure, screenToTile(d_gui.getCursor().getPosition()));
+  d_world->createStructureAt(*d_buildStructure, cursorToTile());
 }
