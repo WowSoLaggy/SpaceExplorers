@@ -64,7 +64,7 @@ void Game::handleMouse(const Dx::MouseState& i_mouseState)
     onRClick();
 
   if (isInBuildMode())
-    updateBuildSprite();
+    updateBuildMode();
 }
 
 

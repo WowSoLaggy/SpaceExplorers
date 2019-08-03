@@ -11,10 +11,8 @@
 
 namespace
 {
-  Sdk::Vector4F getBuildColor(bool i_canBuild)
-  {
-    return i_canBuild ? Sdk::Vector4F{ 0.8f, 1.5f, 0.8f, 0.7f } : Sdk::Vector4F{ 1.5f, 0.7f, 0.7f, 0.7f };
-  }
+  const Sdk::Vector4F ColorCanBuild = { 0.8f, 1.5f, 0.8f, 0.7f };
+  const Sdk::Vector4F ColorCannotBuild = { 1.5f, 0.7f, 0.7f, 0.7f };
 } // anonymous NS
 
 
@@ -61,7 +59,7 @@ void Game::onEnterBuildMode(const StructurePrototype& i_buildStructure)
   d_buildSprite.setTexture(&texture);
   d_buildSprite.setSize(texture.getDescription().size());
 
-  updateBuildSprite();
+  updateBuildMode();
 }
 
 void Game::onExitBuildMode()
@@ -70,12 +68,12 @@ void Game::onExitBuildMode()
 }
 
 
-void Game::updateBuildSprite()
+void Game::updateBuildMode()
 {
   const auto pos = tileToScreen(cursorToTile());
   d_buildSprite.setPosition(pos);
 
-  d_buildSprite.setColor(getBuildColor(canBuild()));
+  d_buildSprite.setColor(canBuild() ? ColorCanBuild : ColorCannotBuild);
 }
 
 bool Game::canBuild() const

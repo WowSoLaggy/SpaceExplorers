@@ -65,7 +65,7 @@ private:
   void onEnterBuildMode(const StructurePrototype& i_buildStructure);
   void onExitBuildMode();
   
-  void updateBuildSprite();
+  void updateBuildMode();
   bool canBuild() const;
 
   void tryBuild();
