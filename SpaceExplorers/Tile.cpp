@@ -62,6 +62,11 @@ const StructurePtr Tile::getTopStructure() const
 }
 
 
+bool Tile::hasStructures() const
+{
+  return !d_layersMap.empty();
+}
+
 bool Tile::hasStructureOnLayer(Layer i_layer) const
 {
   return d_layersMap.find(i_layer) != d_layersMap.cend();

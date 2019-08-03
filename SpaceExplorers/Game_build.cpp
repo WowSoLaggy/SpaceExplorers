@@ -84,7 +84,7 @@ bool Game::canBuild() const
   const auto layer = d_buildStructure->layer;
   const auto* tile = d_world->getTile(cursorToTile());
 
-  if (!tile)
+  if (!tile || !tile->hasStructures())
     return layer == Layer::Panneling;
 
   if (tile->hasStructureOnLayer(layer))

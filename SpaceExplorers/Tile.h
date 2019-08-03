@@ -19,6 +19,7 @@ public:
   StructurePtr getTopStructure();
   const StructurePtr getTopStructure() const;
 
+  bool hasStructures() const;
   bool hasStructureOnLayer(Layer i_layer) const;
 
 private:
