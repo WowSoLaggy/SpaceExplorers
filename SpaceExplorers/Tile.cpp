@@ -40,6 +40,12 @@ void Tile::removeStructure(Layer i_layer)
   d_layersMap.erase(i_layer);
 }
 
+void Tile::removeStructure(StructurePtr i_structure)
+{
+  d_layersMap.erase(std::find_if(d_layersMap.begin(), d_layersMap.end(),
+                    [&](const auto& i_pair) { return i_pair.second == i_structure; }));
+}
+
 
 StructurePtr Tile::getTopStructure()
 {

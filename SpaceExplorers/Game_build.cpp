@@ -13,6 +13,7 @@ namespace
 {
   const Sdk::Vector4F ColorCanBuild = { 0.8f, 1.5f, 0.8f, 0.7f };
   const Sdk::Vector4F ColorCannotBuild = { 1.5f, 0.7f, 0.7f, 0.7f };
+  const Sdk::Vector4F ColorRemoval = { 1.5f, 0.7f, 0.7f, 1.0f };
 } // anonymous NS
 
 
@@ -53,6 +54,9 @@ void Game::onUnselectInventory()
 
 void Game::onEnterBuildMode(const StructurePrototype& i_buildStructure)
 {
+  if (isInRemovalMode())
+    onExitRemovalMode();
+
   d_buildStructure = &i_buildStructure;
 
   const auto& texture = d_resourceController.getTextureResource(d_buildStructure->textureFileName);
@@ -106,4 +110,77 @@ void Game::tryBuild()
     return;
 
   d_world->createStructureAt(*d_buildStructure, cursorToTile());
+}
+
+
+//
+// REMOVAL MODE
+//
+
+
+bool Game::isInRemovalMode() const
+{
+  return d_isRemovalMode;
+}
+
+
+void Game::onEnterRemovalMode()
+{
+  if (isInBuildMode())
+    onExitBuildMode();
+
+  d_isRemovalMode = true;
+  updateRemovalMode();
+}
+
+void Game::onExitRemovalMode()
+{
+  if (d_structToRemove)
+  {
+    d_structToRemove->resetColor();
+    d_structToRemove = nullptr;
+  }
+
+  d_isRemovalMode = false;
+}
+
+
+void Game::updateRemovalMode()
+{
+  CONTRACT_ASSERT(isInRemovalMode());
+  
+  auto structToRemove = getStructToRemove();
+  if (structToRemove == d_structToRemove)
+    return;
+
+  if (d_structToRemove)
+    d_structToRemove->resetColor();
+
+  d_structToRemove = structToRemove;
+  if (!d_structToRemove)
+    return;
+
+  d_structToRemove->setColor(ColorRemoval);
+}
+
+StructurePtr Game::getStructToRemove() const
+{
+  const auto* tile = d_world->getTile(cursorToTile());
+  if (!tile)
+    return nullptr;
+
+  return tile->getTopStructure();
+}
+
+
+void Game::tryRemove()
+{
+  if (!d_structToRemove)
+    return;
+
+  auto* tile = d_world->getTile(d_structToRemove->getCoordsTile());
+  CONTRACT_EXPECT(tile);
+
+  tile->removeStructure(d_structToRemove);
+  updateRemovalMode();
 }

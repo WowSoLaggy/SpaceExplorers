@@ -14,11 +14,12 @@ Structure::Structure(
   const StructurePrototype& i_prototype,
   Sdk::Vector2I i_coordsTile)
   : d_prototype(i_prototype)
+  , d_coordsTile(std::move(i_coordsTile))
 {
   d_sprite = std::make_shared<Dx::Sprite>();
 
   d_sprite->setTexture(&i_resourceController.getTextureResource(d_prototype.textureFileName));
-  d_sprite->setPosition(i_coordsTile * SettingsProvider::getDefaultInternalSettings().tileSize);
+  d_sprite->setPosition(d_coordsTile * SettingsProvider::getDefaultInternalSettings().tileSize);
 }
 
 
@@ -42,6 +43,11 @@ void Structure::interact(const Actions i_action)
 bool Structure::isTransparent() const
 {
   return d_sprite->getTexture()->getDescription().alpha;
+}
+
+const Sdk::Vector2I& Structure::getCoordsTile() const
+{
+  return d_coordsTile;
 }
 
 

@@ -24,6 +24,7 @@ public:
   virtual void interact(Actions i_action = Actions::Default);
 
   bool isTransparent() const;
+  const Sdk::Vector2I& getCoordsTile() const;
 
   void resetColor();
   void setColor(Sdk::Vector4F i_color);
@@ -31,6 +32,7 @@ public:
 protected:
   const StructurePrototype& d_prototype;
   std::shared_ptr<Dx::Sprite> d_sprite;
+  const Sdk::Vector2I d_coordsTile;
 };
 
 using StructurePtr = std::shared_ptr<Structure>;

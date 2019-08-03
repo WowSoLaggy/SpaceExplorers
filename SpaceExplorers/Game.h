@@ -69,4 +69,20 @@ private:
   bool canBuild() const;
 
   void tryBuild();
+
+  //
+  // REMOVAL MODE
+  //
+
+  bool isInRemovalMode() const;
+  bool d_isRemovalMode = false;
+  StructurePtr d_structToRemove = nullptr;
+
+  void onEnterRemovalMode();
+  void onExitRemovalMode();
+
+  void updateRemovalMode();
+  StructurePtr getStructToRemove() const;
+
+  void tryRemove();
 };

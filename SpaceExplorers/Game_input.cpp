@@ -32,6 +32,14 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
   if (currentKeys.S)
     d_camera.moveDown();
 
+  if (pressedKeys.R)
+  {
+    if (isInRemovalMode())
+      onExitRemovalMode();
+    else
+      onEnterRemovalMode();
+  }
+
   if (pressedKeys.D1)
     onSelectInventory(0);
   else if (pressedKeys.D2)
@@ -65,6 +73,8 @@ void Game::handleMouse(const Dx::MouseState& i_mouseState)
 
   if (isInBuildMode())
     updateBuildMode();
+  else if (isInRemovalMode())
+    updateRemovalMode();
 }
 
 
@@ -75,6 +85,8 @@ void Game::onLClick()
 
   if (isInBuildMode())
     tryBuild();
+  else if (isInRemovalMode())
+    tryRemove();
   else
     tryInteract();
 }
@@ -85,4 +97,6 @@ void Game::onRClick()
     return;
 
   onUnselectInventory();
+  if (isInRemovalMode())
+    onExitRemovalMode();
 }

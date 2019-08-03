@@ -15,6 +15,7 @@ public:
 
   void setStructure(Layer i_layer, StructurePtr i_structure);
   void removeStructure(Layer i_layer);
+  void removeStructure(StructurePtr i_structure);
 
   StructurePtr getTopStructure();
   const StructurePtr getTopStructure() const;
