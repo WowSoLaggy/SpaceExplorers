@@ -62,41 +62,64 @@ void Game::handleMouse(const Dx::MouseState& i_mouseState)
 {
   const auto& mousePosRaw = i_mouseState.getPosition();
   if (i_mouseState.getMode() == Dx::MouseMode::Absolute)
-    d_gui.getCursor().setPosition(mousePosRaw);
+  {
+    if (mousePosRaw != d_gui.getCursor().getPosition())
+    {
+      d_gui.getCursor().setPosition(mousePosRaw);
+      onMouseMove();
+    }
+  }
   else
-    d_gui.getCursor().movePosition(mousePosRaw);
+  {
+    if (mousePosRaw != Sdk::Vector2I{ 0, 0 })
+    {
+      d_gui.getCursor().movePosition(mousePosRaw);
+      onMouseMove();
+    }
+  }
 
   if (i_mouseState.getLeftButtonState() == Dx::ButtonState::Pressed)
-    onLClick();
+    onMouseClick(Dx::MouseKey::Left);
   else if (i_mouseState.getRightButtonState() == Dx::ButtonState::Pressed)
-    onRClick();
+    onMouseClick(Dx::MouseKey::Right);
+}
+
+
+void Game::onMouseClick(Dx::MouseKey i_button)
+{
+  d_gui.onMouseClick(i_button, d_gui.getCursor().getPosition());
+
+  if (!d_world)
+    return;
+
+  if (i_button == Dx::MouseKey::Left)
+  {
+    if (isInBuildMode())
+      tryBuild();
+    else if (isInRemovalMode())
+      tryRemove();
+    else
+      tryInteract();
+  }
+  else if (i_button == Dx::MouseKey::Right)
+  {
+    onUnselectInventory();
+    if (isInRemovalMode())
+      onExitRemovalMode();
+  }
+}
+
+void Game::onMouseRelease(Dx::MouseKey i_button)
+{
+  d_gui.onMouseRelease(i_button, d_gui.getCursor().getPosition());
+}
+
+void Game::onMouseMove()
+{
+  d_gui.onMouseMove(d_gui.getCursor().getPosition());
 
   if (isInBuildMode())
     updateBuildMode();
   else if (isInRemovalMode())
     updateRemovalMode();
-}
-
-
-void Game::onLClick()
-{
-  if (!d_world)
-    return;
-
-  if (isInBuildMode())
-    tryBuild();
-  else if (isInRemovalMode())
-    tryRemove();
-  else
-    tryInteract();
-}
-
-void Game::onRClick()
-{
-  if (!d_world)
-    return;
-
-  onUnselectInventory();
-  if (isInRemovalMode())
-    onExitRemovalMode();
 }

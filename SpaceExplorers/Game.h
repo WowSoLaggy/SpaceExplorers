@@ -50,8 +50,13 @@ private:
   Sdk::Vector2I cursorToTile() const;
   Sdk::Vector2I tileToScreen(Sdk::Vector2I i_coords) const;
 
-  void onLClick();
-  void onRClick();
+  void onMouseClick(Dx::MouseKey i_button);
+  void onMouseRelease(Dx::MouseKey i_button);
+  void onMouseMove();
+
+  //
+  // IN-GAME
+  //
 
   void onSelectInventory(int i_index);
   void onUnselectInventory();

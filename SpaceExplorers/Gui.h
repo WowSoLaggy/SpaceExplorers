@@ -30,6 +30,10 @@ public:
   void deleteControl(IGuiControlPtr i_guiControl);
   void deleteControl(const std::string& i_name);
 
+  void onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos);
+  void onMouseRelease(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos);
+  void onMouseMove(const Sdk::Vector2I& i_mousePos);
+
 private:
   const Dx::IResourceController& d_resourceController;
   Sdk::Vector2I d_clientSize;

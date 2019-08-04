@@ -111,6 +111,9 @@
     <ClCompile Include="Panel.cpp">
       <Filter>src\Game\Gui\GuiControls</Filter>
     </ClCompile>
+    <ClCompile Include="Gui_input.cpp">
+      <Filter>src\Game\Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <LaggyDx/LaggyDxFwd.h>
+#include <LaggyDx/MouseKey.h>
 #include <LaggySdk/Vector.h>
 
 
@@ -13,6 +14,10 @@ public:
   virtual void render(Dx::IRenderer2d& i_renderer) const { };
 
   virtual Sdk::Vector2I getSize() const = 0;
+
+  virtual void onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos) { };
+  virtual void onMouseRelease(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos) { };
+  virtual void onMouseMove(const Sdk::Vector2I& i_mousePos) { };
 
   void setName(std::string i_name) { d_name = std::move(i_name); }
   const std::string& getName() const { return d_name; }

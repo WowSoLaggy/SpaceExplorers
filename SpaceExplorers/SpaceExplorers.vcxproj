@@ -164,6 +164,7 @@
     <ClCompile Include="Game_interact.cpp" />
     <ClCompile Include="Game_utils.cpp" />
     <ClCompile Include="Gui_create.cpp" />
+    <ClCompile Include="Gui_input.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="main.cpp" />
