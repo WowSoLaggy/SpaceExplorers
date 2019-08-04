@@ -57,6 +57,8 @@ void Game::onEnterBuildMode(const StructurePrototype& i_buildStructure)
   if (isInRemovalMode())
     onExitRemovalMode();
 
+  d_gui.getCursor().setTexture(CursorBuildTexture);
+
   d_buildStructure = &i_buildStructure;
 
   const auto& texture = d_resourceController.getTextureResource(d_buildStructure->textureFileName);
@@ -69,6 +71,7 @@ void Game::onEnterBuildMode(const StructurePrototype& i_buildStructure)
 void Game::onExitBuildMode()
 {
   d_buildStructure = nullptr;
+  d_gui.getCursor().setTexture(CursorTexture);
 }
 
 
@@ -129,6 +132,7 @@ void Game::onEnterRemovalMode()
   if (isInBuildMode())
     onExitBuildMode();
 
+  d_gui.getCursor().setTexture(CursorRemoveTexture);
   d_isRemovalMode = true;
   updateRemovalMode();
 }
@@ -142,6 +146,7 @@ void Game::onExitRemovalMode()
   }
 
   d_isRemovalMode = false;
+  d_gui.getCursor().setTexture(CursorTexture);
 }
 
 

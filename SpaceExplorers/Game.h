@@ -29,6 +29,11 @@ public:
   void updateDebugLabel(std::string i_text) const;
 
 private:
+  const std::string CursorTexture = "Cursor.png";
+  const std::string CursorBuildTexture = "CursorBuild.png";
+  const std::string CursorRemoveTexture = "CursorRemove.png";
+
+private:
   IApp& d_app;
   const Dx::IResourceController& d_resourceController;
 
