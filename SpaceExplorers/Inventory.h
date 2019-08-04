@@ -18,7 +18,7 @@ public:
   virtual void render(Dx::IRenderer2d& i_renderer) const override;
 
   void setPosition(Sdk::Vector2I i_position) { d_position = std::move(i_position); }
-  Sdk::Vector2I getSize() const;
+  virtual Sdk::Vector2I getSize() const override;
 
   void resetItem(int i_index);
   void setItem(int i_index, const StructurePrototype& i_prototype);

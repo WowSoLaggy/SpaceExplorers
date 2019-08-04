@@ -22,7 +22,7 @@ void Panel::setPosition(Sdk::Vector2I i_position)
 }
 
 
-const Sdk::Vector2I& Panel::getSize() const
+Sdk::Vector2I Panel::getSize() const
 {
   return d_sprite.getSize();
 }

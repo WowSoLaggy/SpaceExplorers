@@ -19,7 +19,7 @@ public:
   void setTexture(const std::string& i_textureName);
   void setPosition(Sdk::Vector2I i_position);
 
-  const Sdk::Vector2I& getSize() const;
+  virtual Sdk::Vector2I getSize() const override;
   void setSize(Sdk::Vector2I i_size);
 
 private:
