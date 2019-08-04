@@ -18,10 +18,6 @@ Inventory::Inventory(const Dx::IResourceController& i_resourceController)
 }
 
 
-void Inventory::update(double i_dt)
-{
-}
-
 void Inventory::render(Dx::IRenderer2d& i_renderer) const
 {
   const auto initTranslation = i_renderer.getTranslation();

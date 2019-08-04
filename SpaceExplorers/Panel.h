@@ -14,8 +14,7 @@ class Panel : public IGuiControl
 public:
   Panel(const Dx::IResourceController& i_resourceController);
 
-  void update(double i_dt) override;
-  void render(Dx::IRenderer2d& i_renderer) const override;
+  virtual void render(Dx::IRenderer2d& i_renderer) const override;
 
   void setTexture(const std::string& i_textureName);
   void setPosition(Sdk::Vector2I i_position);

@@ -33,10 +33,6 @@ void Panel::setSize(Sdk::Vector2I i_size)
 }
 
 
-void Panel::update(double i_dt)
-{
-}
-
 void Panel::render(Dx::IRenderer2d& i_renderer) const
 {
   i_renderer.renderSprite(d_sprite);

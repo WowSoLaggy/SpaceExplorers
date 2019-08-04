@@ -13,10 +13,6 @@ Label::Label(const Dx::IResourceController& i_resourceController)
 }
 
 
-void Label::update(double i_dt)
-{
-}
-
 void Label::render(Dx::IRenderer2d& i_renderer) const
 {
   i_renderer.renderText(d_text, d_fontResource, d_position);
