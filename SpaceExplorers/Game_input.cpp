@@ -80,8 +80,13 @@ void Game::handleMouse(const Dx::MouseState& i_mouseState)
 
   if (i_mouseState.getLeftButtonState() == Dx::ButtonState::Pressed)
     onMouseClick(Dx::MouseKey::Left);
-  else if (i_mouseState.getRightButtonState() == Dx::ButtonState::Pressed)
+  else if (i_mouseState.getLeftButtonState() == Dx::ButtonState::Released)
+    onMouseRelease(Dx::MouseKey::Left);
+  
+  if (i_mouseState.getRightButtonState() == Dx::ButtonState::Pressed)
     onMouseClick(Dx::MouseKey::Right);
+  else if (i_mouseState.getRightButtonState() == Dx::ButtonState::Released)
+    onMouseRelease(Dx::MouseKey::Right);
 }
 
 
