@@ -51,5 +51,6 @@ void Cursor::update(double i_dt)
 
 void Cursor::render(Dx::IRenderer2d& i_renderer) const
 {
-  i_renderer.renderSprite(d_sprite);
+  if (d_visible)
+    i_renderer.renderSprite(d_sprite);
 }
