@@ -53,7 +53,7 @@ void Game::render(Dx::IRenderer2d& i_renderer) const
 
 void Game::showDebugLabel()
 {
-  d_debugLabel = d_gui.createDebugLabel();
+  d_debugLabel = d_gui.createDebugLabel("DebugLabel");
   d_debugOutput = true;
 }
 

@@ -42,6 +42,11 @@ void Gui::render(Dx::IRenderer2d& i_renderer) const
 }
 
 
+void Gui::clearControls()
+{
+  d_guiControls.clear();
+}
+
 IGuiControlPtr Gui::getControl(const std::string& i_name)
 {
   return d_guiControls.at(i_name);

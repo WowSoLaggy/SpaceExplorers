@@ -3,9 +3,9 @@
 
 class IApp;
 
-class Panel;
-class Label;
 class Inventory;
+class Label;
+class Panel;
 
 struct ExternalSettings;
 struct InternalSettings;
