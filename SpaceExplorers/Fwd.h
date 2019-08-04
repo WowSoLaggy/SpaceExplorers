@@ -2,6 +2,8 @@
 
 
 class IApp;
+
+class Panel;
 class Label;
 class Inventory;
 

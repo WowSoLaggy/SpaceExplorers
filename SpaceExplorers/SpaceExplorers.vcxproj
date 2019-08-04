@@ -169,6 +169,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Gui.cpp" />
+    <ClCompile Include="Panel.cpp" />
     <ClCompile Include="Prototypes.cpp" />
     <ClCompile Include="SettingsProvider.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -185,6 +186,7 @@
   <ItemGroup>
     <ClInclude Include="Actions.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="Panel.h" />
     <ClInclude Include="Traits.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cursor.h" />

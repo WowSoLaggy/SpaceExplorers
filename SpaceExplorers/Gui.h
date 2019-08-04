@@ -34,5 +34,6 @@ private:
   Cursor d_cursor;
   std::unordered_map<std::string, IGuiControlPtr> d_guiControls;
 
+  std::shared_ptr<Panel> createPanel();
   std::shared_ptr<Inventory> createInventory();
 };
