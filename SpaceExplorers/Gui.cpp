@@ -24,8 +24,34 @@ const Cursor& Gui::getCursor() const
 }
 
 
+void Gui::addRemoveControls()
+{
+  if (d_clearAll)
+  {
+    d_guiControls.clear();
+    d_controlsToRemove.clear();
+    d_clearAll = false;
+  }
+  else if (!d_controlsToRemove.empty())
+  {
+    for (auto& name : d_controlsToRemove)
+      d_guiControls.erase(name);
+    d_controlsToRemove.clear();
+  }
+
+  if (!d_controlsToAdd.empty())
+  {
+    for (auto& control : d_controlsToAdd)
+      d_guiControls[control->getName()] = control;
+    d_controlsToAdd.clear();
+  }
+}
+
+
 void Gui::update(double i_dt)
 {
+  addRemoveControls();
+
   for (const auto& [_, control] : d_guiControls)
     control->update(i_dt);
 
@@ -45,7 +71,7 @@ void Gui::render(Dx::IRenderer2d& i_renderer) const
 
 void Gui::clearControls()
 {
-  d_guiControls.clear();
+  d_clearAll = true;
 }
 
 IGuiControlPtr Gui::getControl(const std::string& i_name)

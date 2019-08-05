@@ -98,8 +98,8 @@ std::shared_ptr<Button> Gui::createButton(const std::string& i_name /*= ""*/)
 
 void Gui::addControl(IGuiControlPtr i_control, const std::string& i_name)
 {
-  d_guiControls[i_name] = i_control;
   i_control->setName(std::move(i_name));
+  d_controlsToAdd.push_back(i_control);
 }
 
 
@@ -110,5 +110,5 @@ void Gui::deleteControl(IGuiControlPtr i_guiControl)
 
 void Gui::deleteControl(const std::string& i_name)
 {
-  d_guiControls.erase(i_name);
+  d_controlsToRemove.push_back(i_name);
 }

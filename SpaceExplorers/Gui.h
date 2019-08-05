@@ -9,6 +9,7 @@
 
 #include <memory>
 #include <unordered_map>
+#include <vector>
 
 
 class Gui
@@ -43,6 +44,10 @@ private:
 
   Cursor d_cursor;
   std::unordered_map<std::string, IGuiControlPtr> d_guiControls;
+  bool d_clearAll = false;
+  std::vector<std::string> d_controlsToRemove;
+  std::vector<IGuiControlPtr> d_controlsToAdd;
+  void addRemoveControls();
 
   void addControl(IGuiControlPtr i_control, const std::string& i_name);
 
