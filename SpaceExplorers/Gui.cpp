@@ -4,8 +4,9 @@
 #include <LaggyDx/IRenderer2d.h>
 
 
-Gui::Gui(const Dx::IResourceController& i_resourceController, Sdk::Vector2I i_clientSize)
-  : d_resourceController(i_resourceController)
+Gui::Gui(Game& i_game, const Dx::IResourceController& i_resourceController, Sdk::Vector2I i_clientSize)
+  : d_game(i_game)
+  , d_resourceController(i_resourceController)
   , d_clientSize(i_clientSize)
   , d_cursor(i_resourceController)
 {

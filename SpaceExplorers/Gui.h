@@ -14,7 +14,7 @@
 class Gui
 {
 public:
-  Gui(const Dx::IResourceController& i_resourceController, Sdk::Vector2I i_clientSize);
+  Gui(Game& i_game, const Dx::IResourceController& i_resourceController, Sdk::Vector2I i_clientSize);
 
   Cursor& getCursor();
   const Cursor& getCursor() const;
@@ -23,6 +23,8 @@ public:
   void render(Dx::IRenderer2d& i_renderer) const;
 
   void clearControls();
+  void showLoadingScreen();
+  void showMainMenu();
   void showIngameGui();
 
   std::shared_ptr<Label> createDebugLabel(const std::string& i_name = "");
@@ -35,6 +37,7 @@ public:
   void onMouseMove(const Sdk::Vector2I& i_mousePos);
 
 private:
+  Game& d_game;
   const Dx::IResourceController& d_resourceController;
   Sdk::Vector2I d_clientSize;
 

@@ -10,6 +10,7 @@
 #include <LaggyDx/Sprite.h>
 #include <LaggySdk/Vector.h>
 
+#include <future>
 #include <memory>
 
 
@@ -33,6 +34,13 @@ private:
   const std::string CursorBuildTexture = "CursorBuild.png";
   const std::string CursorRemoveTexture = "CursorRemove.png";
 
+  enum class State
+  {
+    NotLoaded,
+    LoadingResources,
+    Loaded,
+  };
+
 private:
   IApp& d_app;
   const Dx::IResourceController& d_resourceController;
@@ -41,7 +49,7 @@ private:
   Gui d_gui;
   std::unique_ptr<World> d_world;
 
-  bool d_debugOutput = true;
+  bool d_debugOutput = false;
   std::shared_ptr<Label> d_debugLabel;
 
   Sdk::Vector2I screenToWorld(Sdk::Vector2I i_coords) const;
@@ -50,9 +58,27 @@ private:
   Sdk::Vector2I cursorToTile() const;
   Sdk::Vector2I tileToScreen(Sdk::Vector2I i_coords) const;
 
+  State d_state = State::NotLoaded;
+  std::future<void> loadResourcesResult;
+  void loadResources();
+
   void onMouseClick(Dx::MouseKey i_button);
   void onMouseRelease(Dx::MouseKey i_button);
   void onMouseMove();
+
+  //
+  // STATES
+  //
+
+public:
+  void onNewGame();
+  void onExitGame();
+
+private:
+
+  void onGameStarted();
+  void checkIsGameLoaded();
+  void onGameLoaded();
 
   //
   // IN-GAME

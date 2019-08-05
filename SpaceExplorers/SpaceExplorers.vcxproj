@@ -163,6 +163,7 @@
     <ClCompile Include="Game_build.cpp" />
     <ClCompile Include="Game_input.cpp" />
     <ClCompile Include="Game_interact.cpp" />
+    <ClCompile Include="Game_states.cpp" />
     <ClCompile Include="Game_utils.cpp" />
     <ClCompile Include="Gui_create.cpp" />
     <ClCompile Include="Gui_input.cpp" />

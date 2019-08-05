@@ -111,6 +111,9 @@
     <ClCompile Include="Panel.cpp">
       <Filter>src\Game\Gui\GuiControls</Filter>
     </ClCompile>
+    <ClCompile Include="Game_states.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>src\Gui\GuiControls</Filter>
     </ClCompile>

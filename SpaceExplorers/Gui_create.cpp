@@ -3,6 +3,7 @@
 
 #include "Button.h"
 #include "Inventory.h"
+#include "Game.h"
 #include "Label.h"
 #include "Panel.h"
 #include "Prototypes.h"
@@ -17,6 +18,41 @@ namespace
     return Sdk::generateRandomString(32);
   }
 } // anonymous NS
+
+void Gui::showLoadingScreen()
+{
+  auto background = createPanel();
+  background->setTexture("Black.png");
+  background->setSize(d_clientSize);
+
+  auto loading = createPanel();
+  loading->setTexture("Loading.png");
+  const auto loadingSize = loading->getSize();
+  loading->setPosition({ (d_clientSize.x - loadingSize.x) / 2, (d_clientSize.y - loadingSize.y) / 2 });
+}
+
+void Gui::showMainMenu()
+{
+  auto background = createPanel();
+  background->setTexture("Black.png");
+  background->setSize(d_clientSize);
+
+  auto btnNewGame = createButton();
+  const auto btnNewGameSize = btnNewGame->getSize();
+  btnNewGame->setPosition({ 
+    (d_clientSize.x - btnNewGameSize.x) / 2, 
+    (d_clientSize.y - btnNewGameSize.y) / 2 - 24});
+  btnNewGame->setText("New Game");
+  btnNewGame->setHandler(std::bind(&Game::onNewGame, &d_game));
+
+  auto btnExit = createButton();
+  const auto btnExitSize = btnExit->getSize();
+  btnExit->setPosition({ 
+    (d_clientSize.x - btnExitSize.x) / 2, 
+    (d_clientSize.y - btnExitSize.y) / 2 + 24});
+  btnExit->setText("Exit");
+  btnExit->setHandler(std::bind(&Game::onExitGame, &d_game));
+}
 
 void Gui::showIngameGui()
 {

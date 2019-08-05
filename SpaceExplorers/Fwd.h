@@ -2,6 +2,7 @@
 
 
 class IApp;
+class Game;
 
 class Button;
 class Inventory;
