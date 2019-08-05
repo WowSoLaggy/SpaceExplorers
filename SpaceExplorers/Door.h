@@ -9,7 +9,7 @@ class Door : public Structure
 {
 public:
   Door(
-    const Dx::IResourceController& i_resourceController,
+    Dx::IResourceController& i_resourceController,
     const StructurePrototype& i_prototype,
     Sdk::Vector2I i_coordsTile);
 

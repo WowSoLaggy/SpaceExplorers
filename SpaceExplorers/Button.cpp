@@ -8,7 +8,7 @@
 #include <LaggyDx/IResourceController.h>
 
 
-Button::Button(const Dx::IResourceController& i_resourceController)
+Button::Button(Dx::IResourceController& i_resourceController)
   : d_resourceController(i_resourceController)
   , d_font(i_resourceController.getFontResource(SettingsProvider::getDefaultInternalSettings().defaultFontName))
 {

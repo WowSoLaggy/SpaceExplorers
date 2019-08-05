@@ -6,7 +6,7 @@
 #include <LaggyDx/ITextureResource.h>
 
 
-Cursor::Cursor(const Dx::IResourceController& i_resourceController)
+Cursor::Cursor(Dx::IResourceController& i_resourceController)
   : d_resourceController(i_resourceController)
 {
 }

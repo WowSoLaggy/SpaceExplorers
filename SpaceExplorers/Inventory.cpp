@@ -10,7 +10,7 @@
 #include <LaggySdk/Contracts.h>
 
 
-Inventory::Inventory(const Dx::IResourceController& i_resourceController)
+Inventory::Inventory(Dx::IResourceController& i_resourceController)
   : d_resourceController(i_resourceController)
 {
   d_items.resize(SlotsCount, nullptr);

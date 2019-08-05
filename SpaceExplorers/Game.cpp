@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 
+#include "IApp.h"
 #include "Label.h"
 #include "SettingsProvider.h"
 
@@ -9,7 +10,7 @@
 #include <LaggySdk/Contracts.h>
 
 
-Game::Game(IApp& i_app, const Dx::IResourceController& i_resourceController)
+Game::Game(IApp& i_app, Dx::IResourceController& i_resourceController)
   : d_app(i_app)
   , d_resourceController(i_resourceController)
   , d_camera(SettingsProvider::getDefaultExternalSettings().clientWidth,
@@ -80,5 +81,6 @@ void Game::updateDebugLabel(std::string i_text) const
 
 void Game::loadResources()
 {
+  d_resourceController.loadResources();
   std::this_thread::sleep_for(100ms);
 }

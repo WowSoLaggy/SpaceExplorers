@@ -17,7 +17,7 @@
 class Game
 {
 public:
-  Game(IApp& i_app, const Dx::IResourceController& i_resourceController);
+  Game(IApp& i_app, Dx::IResourceController& i_resourceController);
 
   void update(double i_dt);
   void render(Dx::IRenderer2d& i_renderer) const;
@@ -43,7 +43,7 @@ private:
 
 private:
   IApp& d_app;
-  const Dx::IResourceController& d_resourceController;
+  Dx::IResourceController& d_resourceController;
 
   Camera d_camera;
   Gui d_gui;

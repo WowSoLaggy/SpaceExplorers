@@ -33,17 +33,16 @@ App::App()
 
   d_renderDevice = Dx::IRenderDevice::create(
     d_window->getHWnd(), externalSettings.clientWidth, externalSettings.clientHeight);
-  CONTRACT_EXPECT(d_renderDevice);
+  CONTRACT_ENSURE(d_renderDevice);
 
-  d_resourceController = Dx::IResourceController::create(internalSettings.resourcesFolder);
-  CONTRACT_EXPECT(d_resourceController);
-  d_resourceController->loadResources(*d_renderDevice);
+  d_resourceController = Dx::IResourceController::create(*d_renderDevice, internalSettings.resourcesFolder);
+  CONTRACT_ENSURE(d_resourceController);
 
   d_renderer2d = Dx::IRenderer2d::create(*d_renderDevice);
-  CONTRACT_EXPECT(d_renderer2d);
+  CONTRACT_ENSURE(d_renderer2d);
 
   d_inputDevice = Dx::IInputDevice::create(d_window->getHWnd());
-  CONTRACT_EXPECT(d_inputDevice);
+  CONTRACT_ENSURE(d_inputDevice);
 
   d_game = std::make_unique<Game>(*this, *d_resourceController);
 

@@ -12,7 +12,7 @@
 class Panel : public IGuiControl
 {
 public:
-  Panel(const Dx::IResourceController& i_resourceController);
+  Panel(Dx::IResourceController& i_resourceController);
 
   virtual void render(Dx::IRenderer2d& i_renderer) const override;
 
@@ -23,7 +23,7 @@ public:
   void setSize(Sdk::Vector2I i_size);
 
 private:
-  const Dx::IResourceController& d_resourceController;
+  Dx::IResourceController& d_resourceController;
 
   Dx::Sprite d_sprite;
 };

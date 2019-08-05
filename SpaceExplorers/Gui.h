@@ -15,7 +15,7 @@
 class Gui
 {
 public:
-  Gui(Game& i_game, const Dx::IResourceController& i_resourceController, Sdk::Vector2I i_clientSize);
+  Gui(Game& i_game, Dx::IResourceController& i_resourceController, Sdk::Vector2I i_clientSize);
 
   Cursor& getCursor();
   const Cursor& getCursor() const;
@@ -39,7 +39,7 @@ public:
 
 private:
   Game& d_game;
-  const Dx::IResourceController& d_resourceController;
+  Dx::IResourceController& d_resourceController;
   Sdk::Vector2I d_clientSize;
 
   Cursor d_cursor;

@@ -13,7 +13,7 @@
 class Inventory : public IGuiControl
 {
 public:
-  Inventory(const Dx::IResourceController& i_resourceController);
+  Inventory(Dx::IResourceController& i_resourceController);
 
   virtual void render(Dx::IRenderer2d& i_renderer) const override;
 
@@ -38,7 +38,7 @@ private:
   static const int SlotSize = 72;
   static void CheckIndex(int i_index);
 
-  const Dx::IResourceController& d_resourceController;
+  Dx::IResourceController& d_resourceController;
 
   Sdk::Vector2I d_position;
   std::vector<Dx::Sprite> d_gridSprites;

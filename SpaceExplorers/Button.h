@@ -16,7 +16,7 @@ using ButtonHandler = std::function<void()>;
 class Button : public IGuiControl
 {
 public:
-  Button(const Dx::IResourceController& i_resourceController);
+  Button(Dx::IResourceController& i_resourceController);
 
   virtual void render(Dx::IRenderer2d& i_renderer) const override;
   virtual Sdk::Vector2I getSize() const override;
@@ -47,7 +47,7 @@ private:
   };
 
 private:
-  const Dx::IResourceController& d_resourceController;
+  Dx::IResourceController& d_resourceController;
   Dx::Sprite d_sprite;
   State d_state = State::Normal;
 

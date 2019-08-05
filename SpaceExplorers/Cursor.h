@@ -8,7 +8,7 @@
 class Cursor
 {
 public:
-  Cursor(const Dx::IResourceController& i_resourceController);
+  Cursor(Dx::IResourceController& i_resourceController);
 
   void setTexture(const std::string& i_textureName);
   void setPosition(Sdk::Vector2I i_position);
@@ -22,7 +22,7 @@ public:
   void render(Dx::IRenderer2d& i_renderer) const;
 
 private:
-  const Dx::IResourceController& d_resourceController;
+  Dx::IResourceController& d_resourceController;
   bool d_visible = false;
   Dx::Sprite d_sprite{};
 };

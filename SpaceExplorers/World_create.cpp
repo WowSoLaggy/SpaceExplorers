@@ -10,7 +10,7 @@
 
 std::unique_ptr<World> World::createTestWorld(
   Sdk::Vector2I i_backgroundSize,
-  const Dx::IResourceController& i_resourceController)
+  Dx::IResourceController& i_resourceController)
 {
   auto world = std::make_unique<World>(i_resourceController);
   world->setBackground("Space.png", std::move(i_backgroundSize));

@@ -24,7 +24,7 @@ namespace
 } // anonymous NS
 
 
-World::World(const Dx::IResourceController& i_resourceController)
+World::World(Dx::IResourceController& i_resourceController)
   : d_resourceController(i_resourceController)
 {
 }

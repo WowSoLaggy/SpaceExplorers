@@ -11,7 +11,7 @@
 class Label : public IGuiControl
 {
 public:
-  Label(const Dx::IResourceController& i_resourceController);
+  Label(Dx::IResourceController& i_resourceController);
 
   virtual void render(Dx::IRenderer2d& i_renderer) const override;
   virtual Sdk::Vector2I getSize() const override;

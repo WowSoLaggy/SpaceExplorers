@@ -5,7 +5,7 @@
 #include <LaggyDx/IRenderer2d.h>
 
 
-Panel::Panel(const Dx::IResourceController& i_resourceController)
+Panel::Panel(Dx::IResourceController& i_resourceController)
   : d_resourceController(i_resourceController)
 {
 }

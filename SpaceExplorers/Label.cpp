@@ -7,7 +7,7 @@
 #include <LaggyDx/IRenderer2d.h>
 
 
-Label::Label(const Dx::IResourceController& i_resourceController)
+Label::Label(Dx::IResourceController& i_resourceController)
   : d_fontResource(i_resourceController.getFontResource(SettingsProvider::getDefaultInternalSettings().defaultFontName))
 {
 }

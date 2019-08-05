@@ -18,7 +18,7 @@ public:
   ~App();
 
   void run();
-  void stop() override;
+  virtual void stop() override;
 
 private:
   std::unique_ptr<Game> d_game;
