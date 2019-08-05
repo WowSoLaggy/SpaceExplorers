@@ -3,6 +3,7 @@
 
 class IApp;
 
+class Button;
 class Inventory;
 class Label;
 class Panel;

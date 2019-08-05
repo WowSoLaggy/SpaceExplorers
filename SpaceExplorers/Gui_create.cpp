@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Gui.h"
 
+#include "Button.h"
 #include "Inventory.h"
 #include "Label.h"
 #include "Panel.h"
@@ -47,6 +48,13 @@ std::shared_ptr<Panel> Gui::createPanel(const std::string& i_name /*= ""*/)
 std::shared_ptr<Inventory> Gui::createInventory(const std::string& i_name /*= ""*/)
 {
   auto control = std::make_shared<Inventory>(d_resourceController);
+  addControl(control, i_name.empty() ? randStr() : i_name);
+  return control;
+}
+
+std::shared_ptr<Button> Gui::createButton(const std::string& i_name /*= ""*/)
+{
+  auto control = std::make_shared<Button>(d_resourceController);
   addControl(control, i_name.empty() ? randStr() : i_name);
   return control;
 }
