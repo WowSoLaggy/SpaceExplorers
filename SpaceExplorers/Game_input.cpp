@@ -15,7 +15,7 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
   if (pressedKeys.Escape)
     d_app.stop();
 
-  if (pressedKeys.F12)
+  if (pressedKeys.OemTilde)
   {
     if (d_debugOutput)
       hideDebugLabel();
