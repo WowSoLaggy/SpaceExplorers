@@ -44,6 +44,7 @@ private:
 
   Cursor d_cursor;
   std::unordered_map<std::string, IGuiControlPtr> d_guiControls;
+  std::vector<IGuiControlPtr> d_guiControlsVector;
   bool d_clearAll = false;
   std::vector<std::string> d_controlsToRemove;
   std::vector<IGuiControlPtr> d_controlsToAdd;
