@@ -37,6 +37,11 @@ Dx::AnimatedSprite& Door::getAnimatedSprite()
   return dynamic_cast<Dx::AnimatedSprite&>(*d_sprite);
 }
 
+const Dx::AnimatedSprite& Door::getAnimatedSprite() const
+{
+  return dynamic_cast<Dx::AnimatedSprite&>(*d_sprite);
+}
+
 
 Actions Door::getDefaultAction() const
 {
