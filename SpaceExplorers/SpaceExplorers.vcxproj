@@ -159,6 +159,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Door.cpp" />
+    <ClCompile Include="Door_save.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_build.cpp" />
     <ClCompile Include="Game_input.cpp" />
@@ -181,9 +182,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Structure.cpp" />
+    <ClCompile Include="Structure_save.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Tile_save.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="World_create.cpp" />
+    <ClCompile Include="World_save.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions.h" />

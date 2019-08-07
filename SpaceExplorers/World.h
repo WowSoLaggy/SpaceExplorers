@@ -8,6 +8,7 @@
 #include <LaggySdk/Rect.h>
 #include <LaggySdk/Vector.h>
 
+#include <iostream>
 #include <unordered_map>
 #include <vector>
 
@@ -39,4 +40,7 @@ private:
   Dx::Sprite d_background;
 
   std::unordered_map<Sdk::Vector2I, Tile, Sdk::Vector2_hash> d_tilesMap;
+
+
+  friend std::ostream& operator<<(std::ostream& io_stream, const World& i_world);
 };

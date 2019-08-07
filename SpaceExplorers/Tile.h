@@ -4,6 +4,7 @@
 
 #include <LaggyDx/LaggyDxFwd.h>
 
+#include <iostream>
 #include <map>
 
 
@@ -25,4 +26,7 @@ public:
 
 private:
   std::map<Layer, StructurePtr> d_layersMap;
+
+
+  friend std::ostream& operator<<(std::ostream& io_stream, const Tile& i_tile);
 };

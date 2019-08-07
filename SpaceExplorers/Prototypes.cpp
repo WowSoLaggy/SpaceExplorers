@@ -7,6 +7,7 @@ namespace Prototypes
   const StructurePrototype& Lattice()
   {
     static StructurePrototype prototype;
+    prototype.name = "Lattice";
     prototype.textureFileName = "Lattice.png";
     prototype.layer = Layer::Panneling;
     return prototype;
@@ -15,6 +16,7 @@ namespace Prototypes
   const StructurePrototype& Floor()
   {
     static StructurePrototype prototype;
+    prototype.name = "Floor";
     prototype.textureFileName = "Floor.png";
     prototype.layer = Layer::Floor;
     return prototype;
@@ -23,6 +25,7 @@ namespace Prototypes
   const StructurePrototype& Wall()
   {
     static StructurePrototype prototype;
+    prototype.name = "Wall";
     prototype.textureFileName = "Wall.png";
     prototype.layer = Layer::Wall;
     return prototype;
@@ -31,6 +34,7 @@ namespace Prototypes
   const StructurePrototype& Door()
   {
     static StructurePrototype prototype;
+    prototype.name = "Door";
     prototype.textureFileName = "Door.png";
     prototype.behavior = Behavior::Door;
     prototype.layer = Layer::Wall;

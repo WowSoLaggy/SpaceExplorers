@@ -4,6 +4,8 @@
 
 #include <LaggyDx/LaggyDxFwd.h>
 
+#include <cstdint>
+
 
 class Door : public Structure
 {
@@ -18,9 +20,9 @@ public:
   virtual void interact(Actions i_action) override;
 
 private:
-  enum class State
+  enum class State : std::int32_t
   {
-    Open,
+    Open = 0,
     Closed,
     Opening,
     Closing,
@@ -31,4 +33,7 @@ private:
   Actions getDefaultAction() const;
   Dx::AnimatedSprite& getAnimatedSprite();
   const Dx::AnimatedSprite& getAnimatedSprite() const;
+
+protected:
+  virtual std::ostream& write(std::ostream& io_stream) const override;
 };

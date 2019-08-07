@@ -7,6 +7,7 @@
 #include <LaggyDx/Sprite.h>
 #include <LaggySdk/Vector.h>
 
+#include <iostream>
 #include <memory>
 
 
@@ -33,6 +34,10 @@ protected:
   const StructurePrototype& d_prototype;
   std::shared_ptr<Dx::Sprite> d_sprite;
   const Sdk::Vector2I d_coordsTile;
+
+protected:
+  virtual std::ostream& write(std::ostream& io_stream) const;
+  friend std::ostream& operator<<(std::ostream& io_stream, const Structure& i_structure);
 };
 
 using StructurePtr = std::shared_ptr<Structure>;

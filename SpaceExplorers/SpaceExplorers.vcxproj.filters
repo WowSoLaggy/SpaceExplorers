@@ -114,6 +114,18 @@
     <ClCompile Include="Gui_input.cpp">
       <Filter>src\Gui</Filter>
     </ClCompile>
+    <ClCompile Include="Tile_save.cpp">
+      <Filter>src\World\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="Structure_save.cpp">
+      <Filter>src\World\Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="World_save.cpp">
+      <Filter>src\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Door_save.cpp">
+      <Filter>src\World\Structures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
