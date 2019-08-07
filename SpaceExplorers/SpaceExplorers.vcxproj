@@ -170,7 +170,6 @@
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="Panel.cpp" />
     <ClCompile Include="Prototypes.cpp" />
@@ -202,7 +201,6 @@
     <ClInclude Include="IGuiControl.h" />
     <ClInclude Include="InternalSettings.h" />
     <ClInclude Include="Inventory.h" />
-    <ClInclude Include="Object.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Prototypes.h" />

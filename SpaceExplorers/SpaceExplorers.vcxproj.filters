@@ -28,9 +28,6 @@
     <Filter Include="src\World">
       <UniqueIdentifier>{f7240feb-166d-48d4-a40a-53c5f865e5d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\World\Objects">
-      <UniqueIdentifier>{4b805a66-8695-4d34-aa62-da6c5d8ba1a0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\World\Prototypes">
       <UniqueIdentifier>{24788ca8-6a6c-48e3-9ff1-9b9875f6f926}</UniqueIdentifier>
     </Filter>
@@ -59,9 +56,6 @@
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>src\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>src\World\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Gui.cpp">
       <Filter>src\Gui</Filter>
@@ -136,9 +130,6 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>src\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>src\World\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Gui.h">
       <Filter>src\Gui</Filter>

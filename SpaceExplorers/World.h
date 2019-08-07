@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Object.h"
 #include "Structure.h"
 #include "Tile.h"
 
@@ -40,5 +39,4 @@ private:
   Dx::Sprite d_background;
 
   std::unordered_map<Sdk::Vector2I, Tile, Sdk::Vector2_hash> d_tilesMap;
-  std::vector<ObjectPtr> d_objects;
 };
