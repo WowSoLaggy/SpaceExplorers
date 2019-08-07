@@ -7,6 +7,7 @@ struct InternalSettings
 {
   std::string applicationName;
   std::string resourcesFolder;
+  std::string savesFolder;
 
   int tileSize = 0;
   std::string defaultFontName;

@@ -56,6 +56,9 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
     onSelectInventory(6);
   else if (pressedKeys.D8)
     onSelectInventory(7);
+
+  if (pressedKeys.Add && d_world)
+    onSaveGame();
 }
 
 void Game::handleMouse(const Dx::MouseState& i_mouseState)

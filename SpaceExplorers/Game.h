@@ -81,6 +81,12 @@ private:
   void onGameLoaded();
 
   //
+  // SAVE - LOAD GAME
+  //
+
+  void onSaveGame();
+
+  //
   // IN-GAME
   //
 

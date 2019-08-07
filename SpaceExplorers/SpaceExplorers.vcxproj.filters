@@ -114,6 +114,9 @@
     <ClCompile Include="Gui_input.cpp">
       <Filter>src\Gui</Filter>
     </ClCompile>
+    <ClCompile Include="Game_save.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
     <ClCompile Include="Tile_save.cpp">
       <Filter>src\World\Tile</Filter>
     </ClCompile>
