@@ -72,6 +72,7 @@ private:
 
 public:
   void onNewGame();
+  void onLoadGame();
   void onExitGame();
 
 private:
@@ -85,6 +86,7 @@ private:
   //
 
   void onSaveGame();
+  void loadWorld();
 
   //
   // IN-GAME

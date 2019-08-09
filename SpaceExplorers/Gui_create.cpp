@@ -52,6 +52,17 @@ void Gui::showMainMenu()
   }
 
   {
+    // Load game
+    auto btn = createButton();
+    const auto size = btn->getSize();
+    btn->setPosition({
+      (d_clientSize.x - size.x) / 2,
+      (d_clientSize.y - size.y) / 2 + 24 });
+    btn->setText("Load Game");
+    btn->setHandler(std::bind(&Game::onLoadGame, &d_game));
+  }
+
+  {
     // Exit
     auto btn = createButton();
     const auto size = btn->getSize();

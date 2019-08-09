@@ -21,5 +21,12 @@ void Game::onSaveGame()
   CONTRACT_EXPECT(d_world);
 
   std::ofstream file(getFilename(), std::ios::binary);
-  file << *d_world;
+  d_world->writeTo(file);
+}
+
+
+void Game::loadWorld()
+{
+  std::ifstream file(getFilename(), std::ios::binary);
+  d_world = World::readFrom(file, d_camera.getViewport().size(), d_resourceController);
 }

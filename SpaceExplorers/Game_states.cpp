@@ -43,6 +43,16 @@ void Game::onNewGame()
   d_gui.clearControls();
 
   d_world = World::createTestWorld(d_camera.getViewport().size(), d_resourceController);
+
+  d_gui.showIngameGui();
+}
+
+void Game::onLoadGame()
+{
+  d_gui.clearControls();
+
+  loadWorld();
+
   d_gui.showIngameGui();
 }
 
