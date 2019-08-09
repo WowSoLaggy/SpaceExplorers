@@ -16,6 +16,10 @@
 class World
 {
 public:
+  static std::unique_ptr<World> createEmptyWorld(
+    Sdk::Vector2I i_backgroundSize,
+    Dx::IResourceController& i_resourceController);
+
   static std::unique_ptr<World> createTestWorld(
     Sdk::Vector2I i_backgroundSize,
     Dx::IResourceController& i_resourceController);
@@ -41,6 +45,9 @@ private:
 
   std::unordered_map<Sdk::Vector2I, Tile, Sdk::Vector2_hash> d_tilesMap;
 
-
-  friend std::ostream& operator<<(std::ostream& io_stream, const World& i_world);
+public:
+  void writeTo(std::ostream& io_stream) const;
+  static std::unique_ptr<World> readFrom(std::istream& io_stream,
+                                         Sdk::Vector2I i_backgroundSize,
+                                         Dx::IResourceController& i_resourceController);
 };

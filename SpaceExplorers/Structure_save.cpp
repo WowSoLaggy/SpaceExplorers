@@ -4,22 +4,27 @@
 #include <LaggySdk/Streams.h>
 
 
-std::ostream& Structure::write(std::ostream& io_stream) const
+void Structure::writeTo(std::ostream& io_stream) const
 {
-  Sdk::write(io_stream, (int)d_prototype.name.length());
-  io_stream << d_prototype.name;
+  Sdk::writeString(io_stream, d_prototype.name);
 
   bool hasSprite = d_sprite != nullptr;
-  io_stream << hasSprite;
+  Sdk::write(io_stream, hasSprite);
   if (hasSprite)
-    io_stream << *d_sprite;
+    d_sprite->writeTo(io_stream);
 
   io_stream << d_coordsTile;
-
-  return io_stream;
 }
 
-std::ostream& operator<<(std::ostream& io_stream, const Structure& i_structure)
+void Structure::readFrom(std::istream& io_stream)
 {
-  return i_structure.write(io_stream);
+  bool hasSprite;
+  Sdk::read(io_stream, hasSprite);
+  if (hasSprite)
+  {
+    d_sprite = std::make_shared<Dx::Sprite>();
+    d_sprite->readFrom(io_stream, d_resourceController);
+  }
+
+  io_stream >> d_coordsTile;
 }

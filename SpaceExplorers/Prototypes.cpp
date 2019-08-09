@@ -4,6 +4,20 @@
 
 namespace Prototypes
 {
+  const StructurePrototype& getPrototype(const std::string& i_name)
+  {
+    static const std::map<std::string, std::function<const StructurePrototype&()>> GettersMap
+    {
+      { "Lattice", Lattice },
+      { "Floor", Floor },
+      { "Wall", Wall },
+      { "Door", Door },
+    };
+
+    return GettersMap.at(i_name)();
+  }
+
+
   const StructurePrototype& Lattice()
   {
     static StructurePrototype prototype;

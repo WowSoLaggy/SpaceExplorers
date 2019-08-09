@@ -129,6 +129,9 @@
     <ClCompile Include="Door_save.cpp">
       <Filter>src\World\Structures</Filter>
     </ClCompile>
+    <ClCompile Include="StructureReader.cpp">
+      <Filter>src\World\Structures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -202,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>src\Gui\GuiControls</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureReader.h">
+      <Filter>src\World\Structures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

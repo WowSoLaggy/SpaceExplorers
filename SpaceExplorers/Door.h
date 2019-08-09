@@ -35,5 +35,6 @@ private:
   const Dx::AnimatedSprite& getAnimatedSprite() const;
 
 protected:
-  virtual std::ostream& write(std::ostream& io_stream) const override;
+  virtual void writeTo(std::ostream& io_stream) const override;
+  virtual void readFrom(std::istream& io_stream) override;
 };

@@ -27,6 +27,9 @@ public:
 private:
   std::map<Layer, StructurePtr> d_layersMap;
 
-
-  friend std::ostream& operator<<(std::ostream& io_stream, const Tile& i_tile);
+public:
+  void writeTo(std::ostream& io_stream) const;
+  void readFrom(std::istream& io_stream,
+                Dx::IResourceController& i_resourceController,
+                const Sdk::Vector2I& i_coords);
 };

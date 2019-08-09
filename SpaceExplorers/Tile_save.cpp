@@ -1,20 +1,36 @@
 #include "stdafx.h"
 #include "Tile.h"
 
+#include "StructureReader.h"
+
 #include <LaggySdk/Contracts.h>
 #include <LaggySdk/Streams.h>
 
 
-std::ostream& operator<<(std::ostream& io_stream, const Tile& i_tile)
+void Tile::writeTo(std::ostream& io_stream) const
 {
-  Sdk::write(io_stream, (int)i_tile.d_layersMap.size());
-  for (const auto&[layer, structurePtr] : i_tile.d_layersMap)
+  Sdk::write(io_stream, (int)d_layersMap.size());
+  for (const auto&[layer, structurePtr] : d_layersMap)
   {
     CONTRACT_EXPECT(structurePtr);
 
     Sdk::write(io_stream, layer);
-    io_stream << *structurePtr;
+    structurePtr->writeTo(io_stream);
   }
+}
 
-  return io_stream;
+void Tile::readFrom(std::istream& io_stream,
+                    Dx::IResourceController& i_resourceController,
+                    const Sdk::Vector2I& i_coords)
+{
+  int layersCount;
+  Sdk::read(io_stream, layersCount);
+
+  for (int i = 0; i < layersCount; ++i)
+  {
+    Layer layer;
+    Sdk::read(io_stream, layer);
+
+    d_layersMap[layer] = readStructureFrom(io_stream, i_resourceController, std::move(i_coords));
+  }
 }

@@ -13,12 +13,13 @@ Structure::Structure(
   Dx::IResourceController& i_resourceController,
   const StructurePrototype& i_prototype,
   Sdk::Vector2I i_coordsTile)
-  : d_prototype(i_prototype)
+  : d_resourceController(i_resourceController)
+  , d_prototype(i_prototype)
   , d_coordsTile(std::move(i_coordsTile))
 {
   d_sprite = std::make_shared<Dx::Sprite>();
 
-  d_sprite->setTexture(&i_resourceController.getTextureResource(d_prototype.textureFileName));
+  d_sprite->setTexture(&d_resourceController.getTextureResource(d_prototype.textureFileName));
   d_sprite->setPosition(d_coordsTile * SettingsProvider::getDefaultInternalSettings().tileSize);
 }
 

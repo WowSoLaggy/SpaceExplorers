@@ -31,13 +31,14 @@ public:
   void setColor(Sdk::Vector4F i_color);
 
 protected:
+  Dx::IResourceController& d_resourceController;
   const StructurePrototype& d_prototype;
   std::shared_ptr<Dx::Sprite> d_sprite;
-  const Sdk::Vector2I d_coordsTile;
+  Sdk::Vector2I d_coordsTile;
 
-protected:
-  virtual std::ostream& write(std::ostream& io_stream) const;
-  friend std::ostream& operator<<(std::ostream& io_stream, const Structure& i_structure);
+public:
+  virtual void writeTo(std::ostream& io_stream) const;
+  virtual void readFrom(std::istream& io_stream);
 };
 
 using StructurePtr = std::shared_ptr<Structure>;
