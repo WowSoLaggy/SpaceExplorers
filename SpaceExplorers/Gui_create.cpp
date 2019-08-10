@@ -87,7 +87,7 @@ void Gui::showIngameGui()
 }
 
 
-std::shared_ptr<Label> Gui::createDebugLabel(const std::string& i_name /*= ""*/)
+std::shared_ptr<Label> Gui::createLabel(const std::string& i_name /*= ""*/)
 {
   auto control = std::make_shared<Label>(d_resourceController);
   addControl(control, i_name.empty() ? randStr() : i_name);

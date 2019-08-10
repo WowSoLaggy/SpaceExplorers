@@ -62,13 +62,14 @@ void Game::render(Dx::IRenderer2d& i_renderer) const
 
 void Game::showDebugLabel()
 {
-  d_debugLabel = d_gui.createDebugLabel("DebugLabel");
+  d_debugLabel = d_gui.createLabel("DebugLabel");
   d_debugOutput = true;
 }
 
 void Game::hideDebugLabel()
 {
   d_debugOutput = false;
+  d_gui.deleteControl(d_debugLabel);
   d_debugLabel.reset();
 }
 
