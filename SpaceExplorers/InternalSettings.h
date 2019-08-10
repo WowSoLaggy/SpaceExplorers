@@ -11,4 +11,5 @@ struct InternalSettings
 
   int tileSize = 0;
   std::string defaultFontName;
+  std::string defaultPrototypesFile;
 };

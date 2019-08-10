@@ -2,14 +2,20 @@
 
 #include "StructurePrototype.h"
 
+#include <string>
+#include <unordered_map>
 
-namespace Prototypes
+
+using PrototypesCollection = std::unordered_map<std::string, StructurePrototype>;
+
+class Prototypes
 {
-  const StructurePrototype& getPrototype(const std::string& i_name);
+public:
+  static void load(const fs::path& i_filename);
+  static const StructurePrototype& getPrototype(const std::string& i_name);
 
-  const StructurePrototype& Lattice();
-  const StructurePrototype& Floor();
-  const StructurePrototype& Wall();
-  const StructurePrototype& Door();
+private:
+  PrototypesCollection d_collection;
 
-} // ns Prototypes
+  static Prototypes& getInstance();
+};

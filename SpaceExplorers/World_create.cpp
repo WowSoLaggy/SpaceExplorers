@@ -26,20 +26,8 @@ std::unique_ptr<World> World::createTestWorld(
 
   ///
 
-  auto createLattice = [&](int x, int y) {
-    world->createStructureAt(Prototypes::Lattice(), { x, y });
-  };
-
-  auto createFloor = [&](int x, int y) {
-    world->createStructureAt(Prototypes::Floor(), { x, y });
-  };
-
-  auto createWall = [&](int x, int y) {
-    world->createStructureAt(Prototypes::Wall(), { x, y });
-  };
-
-  auto createDoor = [&](int x, int y) {
-    world->createStructureAt(Prototypes::Door(), { x, y });
+  auto create = [&](int x, int y, const std::string& i_protoName) {
+    world->createStructureAt(Prototypes::getPrototype(i_protoName), { x, y });
   };
 
   ///
@@ -48,13 +36,13 @@ std::unique_ptr<World> World::createTestWorld(
   for (int y = -Lattices; y < Lattices; ++y)
   {
     for (int x = -Lattices; x < Lattices; ++x)
-      createLattice(x, y);
+      create(x, y, "Lattice");
   }
 
   for (int y = -3; y < 3; ++y)
   {
     for (int x = -8; x < -5; ++x)
-      createLattice(x, y);
+      create(x, y, "Lattice");
   }
 
   //
@@ -63,13 +51,13 @@ std::unique_ptr<World> World::createTestWorld(
   for (int y = -Floors; y < Floors; ++y)
   {
     for (int x = -Floors; x < Floors; ++x)
-      createFloor(x, y);
+      create(x, y, "Floor");
   }
 
   for (int y = -2; y < 2; ++y)
   {
     for (int x = -7; x < -4; ++x)
-      createFloor(x, y);
+      create(x, y, "Floor");
   }
 
   //
@@ -80,29 +68,29 @@ std::unique_ptr<World> World::createTestWorld(
     for (int x = -Floors; x < Floors; ++x)
     {
       if (x == -Floors || x == Floors - 1 || y == -Floors || y == Floors - 1)
-        createWall(x, y);
+        create(x, y, "Wall");
     }
   }
 
 
-  createWall(0, -3);
-  createDoor(0, -2);
-  createWall(0, -1);
-  createWall(0, 0);
-  createWall(1, 0);
-  createWall(2, 0);
-  createDoor(0, 1);
-  createWall(0, 2);
+  create(0, -3, "Wall");
+  create(0, -2, "Door");
+  create(0, -1, "Wall");
+  create(0, 0, "Wall");
+  create(1, 0, "Wall");
+  create(2, 0, "Wall");
+  create(0, 1, "Door");
+  create(0, 2, "Wall");
 
-  createWall(-5, -2);
-  createWall(-6, -2);
-  createWall(-7, -2);
-  createWall(-7, -1);
-  createDoor(-7, 0);
-  createWall(-7, 1);
-  createWall(-6, 1);
-  createWall(-5, 1);
-  createDoor(-4, -1);
+  create(-5, -2, "Wall");
+  create(-6, -2, "Wall");
+  create(-7, -2, "Wall");
+  create(-7, -1, "Wall");
+  create(-7, 0, "Door");
+  create(-7, 1, "Wall");
+  create(-6, 1, "Wall");
+  create(-5, 1, "Wall");
+  create(-4, -1, "Door");
 
 
   ///

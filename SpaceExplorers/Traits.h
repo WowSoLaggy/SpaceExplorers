@@ -5,7 +5,7 @@
 
 enum class Behavior : int32_t
 {
-  None = 0,
+  Default = 0,
   Door,
 };
 

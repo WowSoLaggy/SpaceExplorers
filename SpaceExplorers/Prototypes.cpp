@@ -1,57 +1,64 @@
 #include "stdafx.h"
 #include "Prototypes.h"
 
+#include <LaggySdk/Contracts.h>
+#include <LaggySdk/json.h>
 
-namespace Prototypes
+#include <unordered_map>
+
+
+namespace
 {
-  const StructurePrototype& getPrototype(const std::string& i_name)
+  const std::unordered_map<std::string, Layer> LayerNames
   {
-    static const std::map<std::string, std::function<const StructurePrototype&()>> GettersMap
-    {
-      { "Lattice", Lattice },
-      { "Floor", Floor },
-      { "Wall", Wall },
-      { "Door", Door },
-    };
+    { "None", Layer::None },
+    { "Panneling", Layer::Panneling },
+    { "Floor", Layer::Floor },
+    { "Wall", Layer::Wall },
+  };
 
-    return GettersMap.at(i_name)();
-  }
-
-
-  const StructurePrototype& Lattice()
+  const std::unordered_map<std::string, Behavior> BehaviorNames
   {
-    static StructurePrototype prototype;
-    prototype.name = "Lattice";
-    prototype.textureFileName = "Lattice.png";
-    prototype.layer = Layer::Panneling;
-    return prototype;
-  }
+    { "Default", Behavior::Default },
+    { "Door", Behavior::Door },
+  };
+} // anonymous NS
 
-  const StructurePrototype& Floor()
-  {
-    static StructurePrototype prototype;
-    prototype.name = "Floor";
-    prototype.textureFileName = "Floor.png";
-    prototype.layer = Layer::Floor;
-    return prototype;
-  }
 
-  const StructurePrototype& Wall()
-  {
-    static StructurePrototype prototype;
-    prototype.name = "Wall";
-    prototype.textureFileName = "Wall.png";
-    prototype.layer = Layer::Wall;
-    return prototype;
-  }
+Prototypes& Prototypes::getInstance()
+{
+  static Prototypes prototypes;
+  return prototypes;
+}
 
-  const StructurePrototype& Door()
+void Prototypes::load(const fs::path& i_filename)
+{
+  if (!fs::exists(i_filename))
+    return;
+
+  std::ifstream file(i_filename.string(), std::ifstream::binary);
+
+  Json::Reader reader;
+  Json::Value root;
+  CONTRACT_ASSERT(reader.parse(file, root, false));
+
+  auto& prototypes = getInstance();
+  for (const auto& protoName : root.getMemberNames())
   {
-    static StructurePrototype prototype;
-    prototype.name = "Door";
-    prototype.textureFileName = "Door.png";
-    prototype.behavior = Behavior::Door;
-    prototype.layer = Layer::Wall;
-    return prototype;
+    const auto& node = root[protoName];
+
+    StructurePrototype proto;
+    proto.name = protoName;
+    proto.textureFileName = node["TextureName"].asString();
+    proto.layer = LayerNames.at(node["Layer"].asString());
+    proto.behavior = BehaviorNames.at(node["Behavior"].asString());
+
+    prototypes.d_collection.insert({ proto.name, std::move(proto) });
   }
-} // ns Prototypes
+}
+
+
+const StructurePrototype& Prototypes::getPrototype(const std::string& i_name)
+{
+  return getInstance().d_collection.at(i_name);
+}

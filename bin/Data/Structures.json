@@ -1,0 +1,29 @@
+{
+  "Lattice":
+  {
+    "TextureName": "Lattice.png",
+    "Layer": "Panneling",
+    "Behavior": "Default"
+  },
+  
+  "Floor":
+  {
+    "TextureName": "Floor.png",
+    "Layer": "Floor",
+    "Behavior": "Default"
+  },
+  
+  "Wall":
+  {
+    "TextureName": "Wall.png",
+    "Layer": "Wall",
+    "Behavior": "Default"
+  },
+  
+  "Door":
+  {
+    "TextureName": "Door.png",
+    "Layer": "Wall",
+    "Behavior": "Door"
+  }
+}

@@ -10,6 +10,6 @@ struct StructurePrototype
   std::string name = "";
 
   std::string textureFileName = "";
-  Behavior behavior = Behavior::None;
+  Behavior behavior = Behavior::Default;
   Layer layer = Layer::None;
 };

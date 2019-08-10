@@ -80,10 +80,10 @@ void Gui::showIngameGui()
   const auto inventorySize = inventory->getSize();
   inventory->setPosition({ (d_clientSize.x - inventorySize.x) / 2, d_clientSize.y - inventorySize.y });
 
-  inventory->setItem(0, Prototypes::Lattice());
-  inventory->setItem(1, Prototypes::Floor());
-  inventory->setItem(2, Prototypes::Wall());
-  inventory->setItem(3, Prototypes::Door());
+  inventory->setItem(0, Prototypes::getPrototype("Lattice"));
+  inventory->setItem(1, Prototypes::getPrototype("Floor"));
+  inventory->setItem(2, Prototypes::getPrototype("Wall"));
+  inventory->setItem(3, Prototypes::getPrototype("Door"));
 }
 
 
