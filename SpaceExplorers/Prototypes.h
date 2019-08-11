@@ -13,3 +13,11 @@ struct StructurePrototype
   Behavior behavior = Behavior::Default;
   Layer layer = Layer::None;
 };
+
+struct ObjectPrototype
+{
+  std::string name = "";
+
+  std::string textureFileName = "";
+};
+

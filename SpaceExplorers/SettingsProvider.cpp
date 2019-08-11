@@ -21,6 +21,7 @@ namespace
     settings.tileSize = 64;
     settings.defaultFontName = "MyFont.spritefont";
     settings.structuresPrototypesFile = "Structures.json";
+    settings.objectsPrototypesFile = "Objects.json";
     return settings;
   }
 

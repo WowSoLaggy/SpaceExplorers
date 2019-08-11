@@ -13,4 +13,5 @@ struct InternalSettings
   std::string defaultFontName;
 
   std::string structuresPrototypesFile;
+  std::string objectsPrototypesFile;
 };
