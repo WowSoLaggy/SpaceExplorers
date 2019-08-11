@@ -13,3 +13,6 @@ struct ExternalSettings;
 struct InternalSettings;
 
 struct StructurePrototype;
+struct ObjectPrototype;
+
+class World;

@@ -40,6 +40,9 @@
     <Filter Include="src\World\Objects">
       <UniqueIdentifier>{a195876b-373c-4b4e-9b7c-448931aebf30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\World\ObjectsReader">
+      <UniqueIdentifier>{fb1f3a2c-db02-4dda-916e-5508a1870786}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -129,9 +132,6 @@
     <ClCompile Include="Door_save.cpp">
       <Filter>src\World\Structures</Filter>
     </ClCompile>
-    <ClCompile Include="StructureReader.cpp">
-      <Filter>src\World\Structures</Filter>
-    </ClCompile>
     <ClCompile Include="PrototypesCollection.cpp">
       <Filter>src\World\Prototypes</Filter>
     </ClCompile>
@@ -143,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="Game_control.cpp">
       <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectsReader.cpp">
+      <Filter>src\World\ObjectsReader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,9 +215,6 @@
     <ClInclude Include="Button.h">
       <Filter>src\Gui\GuiControls</Filter>
     </ClInclude>
-    <ClInclude Include="StructureReader.h">
-      <Filter>src\World\Structures</Filter>
-    </ClInclude>
     <ClInclude Include="PrototypesCollection.h">
       <Filter>src\World\Prototypes</Filter>
     </ClInclude>
@@ -223,6 +223,9 @@
     </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectsReader.h">
+      <Filter>src\World\ObjectsReader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

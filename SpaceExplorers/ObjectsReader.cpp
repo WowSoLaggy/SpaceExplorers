@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "StructureReader.h"
+#include "ObjectsReader.h"
 
 #include "Door.h"
 #include "PrototypesCollection.h"
@@ -22,3 +22,17 @@ StructurePtr readStructureFrom(std::istream& io_stream,
 
   return structurePtr;
 }
+
+ObjectPtr readObjectFrom(std::istream& io_stream,
+                         Dx::IResourceController& i_resourceController,
+                         const World& i_world)
+{
+  const auto prototypeName = Sdk::readString(io_stream);
+  const auto& prototype = PrototypesCollection::getObject(prototypeName);
+
+  auto objectPtr = std::make_shared<Object>(i_resourceController, i_world, prototype);
+  objectPtr->readFrom(io_stream);
+
+  return objectPtr;
+}
+

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "World.h"
 
+#include "ObjectsReader.h"
+
 #include <LaggyDx/Sprite.h>
 #include <LaggySdk/Streams.h>
 
@@ -15,6 +17,10 @@ void World::writeTo(std::ostream& io_stream) const
     io_stream << coords;
     tile.writeTo(io_stream);
   }
+
+  Sdk::write(io_stream, (int)d_objects.size());
+  for (const auto&[_, object] : d_objects)
+    object->writeTo(io_stream);
 }
 
 std::unique_ptr<World> World::readFrom(std::istream& io_stream,
@@ -33,6 +39,14 @@ std::unique_ptr<World> World::readFrom(std::istream& io_stream,
     io_stream >> coords;
 
     world->d_tilesMap[coords].readFrom(io_stream, i_resourceController, coords);
+  }
+
+  int objectsCount;
+  Sdk::read(io_stream, objectsCount);
+  for (int i = 0; i < objectsCount; ++i)
+  {
+    auto objectPtr = readObjectFrom(io_stream, i_resourceController, *world);
+    world->d_objects.insert({ objectPtr->getName(), std::move(objectPtr) });
   }
 
   return world;

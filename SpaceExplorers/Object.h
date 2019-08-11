@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Prototypes.h"
+#include "Fwd.h"
 
 #include <LaggyDx/AnimatedSprite.h>
 #include <LaggyDx/LaggyDxFwd.h>

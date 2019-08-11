@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Tile.h"
 
-#include "StructureReader.h"
+#include "ObjectsReader.h"
 
 #include <LaggySdk/Contracts.h>
 #include <LaggySdk/Streams.h>

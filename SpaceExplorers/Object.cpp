@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Object.h"
 
+#include "Prototypes.h"
+
 #include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>
 #include <LaggyDx/ITextureResource.h>
