@@ -1,0 +1,35 @@
+{
+  "Description":
+  {
+    "Width": 64,
+    "Height": 64,
+    "Alpha": true
+  },
+  "Animations":
+  [
+    {
+      "Name": "Down",
+      "Start": 0,
+      "End": 0,
+      "FrameTime": 0.1
+    },
+    {
+      "Name": "Up",
+      "Start": 1,
+      "End": 1,
+      "FrameTime": 0.1
+    },
+    {
+      "Name": "Right",
+      "Start": 2,
+      "End": 2,
+      "FrameTime": 0.25
+    },
+    {
+      "Name": "Left",
+      "Start": 3,
+      "End": 3,
+      "FrameTime": 0.25
+    }
+  ]
+}
