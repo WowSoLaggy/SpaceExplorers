@@ -53,7 +53,7 @@ void Prototypes::load(const fs::path& i_filename)
     proto.layer = LayerNames.at(node["Layer"].asString());
     proto.behavior = BehaviorNames.at(node["Behavior"].asString());
 
-    prototypes.d_collection.insert({ proto.name, std::move(proto) });
+    prototypes.d_collection.insert({ protoName, std::move(proto) });
   }
 }
 
