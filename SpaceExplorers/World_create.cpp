@@ -27,7 +27,7 @@ std::unique_ptr<World> World::createTestWorld(
   ///
 
   auto create = [&](int x, int y, const std::string& i_protoName) {
-    world->createStructureAt(PrototypesCollection::getPrototype(i_protoName), { x, y });
+    world->createStructureAt(PrototypesCollection::getStructure(i_protoName), { x, y });
   };
 
   ///

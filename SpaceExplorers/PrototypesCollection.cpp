@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "PrototypesCollection.h"
 
+#include "SettingsProvider.h"
+
 #include <LaggySdk/Contracts.h>
 #include <LaggySdk/json.h>
 
@@ -31,10 +33,18 @@ PrototypesCollection& PrototypesCollection::getInstance()
   return collection;
 }
 
-void PrototypesCollection::load(const fs::path& i_filename)
+void PrototypesCollection::load()
 {
-  if (!fs::exists(i_filename))
-    return;
+  auto& prototypes = getInstance();
+  const auto& settings = SettingsProvider::getDefaultInternalSettings();
+
+  prototypes.loadStructures(".//" + settings.resourcesFolder + "//" + settings.structuresPrototypesFile);
+}
+
+
+void PrototypesCollection::loadStructures(const fs::path& i_filename)
+{
+  CONTRACT_EXPECT(fs::exists(i_filename));
 
   std::ifstream file(i_filename.string(), std::ifstream::binary);
 

@@ -20,7 +20,7 @@ namespace
     settings.savesFolder = "Saves";
     settings.tileSize = 64;
     settings.defaultFontName = "MyFont.spritefont";
-    settings.defaultPrototypesFile = "Structures.json";
+    settings.structuresPrototypesFile = "Structures.json";
     return settings;
   }
 

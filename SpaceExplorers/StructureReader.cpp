@@ -10,7 +10,7 @@ StructurePtr readStructureFrom(std::istream& io_stream,
                                Sdk::Vector2I i_coordsTile)
 {
   const auto prototypeName = Sdk::readString(io_stream);
-  const auto& prototype = PrototypesCollection::getPrototype(prototypeName);
+  const auto& prototype = PrototypesCollection::getStructure(prototypeName);
 
   StructurePtr structurePtr;
   if (prototype.behavior == Behavior::Door)

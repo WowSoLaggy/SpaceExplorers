@@ -83,8 +83,7 @@ void Game::updateDebugLabel(std::string i_text) const
 
 void Game::loadResources()
 {
-  const auto& settings = SettingsProvider::getDefaultInternalSettings();
-  PrototypesCollection::load(".//" + settings.resourcesFolder + "//" + settings.defaultPrototypesFile);
+  PrototypesCollection::load();
   d_resourceController.loadResources();
   std::this_thread::sleep_for(100ms);
 }
