@@ -53,7 +53,10 @@ void World::render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) co
   }
 
   for (auto& object : d_objects)
-    object.render(i_renderer);
+  {
+    if (i_viewport.intersectRect(object.getRect()))
+      object.render(i_renderer);
+  }
 }
 
 
