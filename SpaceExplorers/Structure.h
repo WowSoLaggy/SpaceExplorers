@@ -23,6 +23,7 @@ public:
   virtual void render(Dx::IRenderer2d& i_renderer) const;
 
   virtual void interact(Actions i_action = Actions::Default);
+  virtual bool isPassable() const;
 
   bool isTransparent() const;
   const Sdk::Vector2I& getCoordsTile() const;

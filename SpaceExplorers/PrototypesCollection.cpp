@@ -62,6 +62,7 @@ void PrototypesCollection::loadStructures(const fs::path& i_filename)
     proto.textureFileName = node["TextureName"].asString();
     proto.layer = LayerNames.at(node["Layer"].asString());
     proto.behavior = BehaviorNames.at(node["Behavior"].asString());
+    proto.isPassable = node["Passable"].asBool();
 
     d_collectionStructures.insert({ protoName, std::move(proto) });
   }

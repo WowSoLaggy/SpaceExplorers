@@ -81,3 +81,9 @@ void Door::interact(Actions i_action)
     }
   }
 }
+
+
+bool Door::isPassable() const
+{
+  return d_state == State::Open;
+}

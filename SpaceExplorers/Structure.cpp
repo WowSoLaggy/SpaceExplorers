@@ -40,6 +40,11 @@ void Structure::interact(const Actions i_action)
   // nop
 }
 
+bool Structure::isPassable() const
+{
+  return d_prototype.isPassable;
+}
+
 
 bool Structure::isTransparent() const
 {

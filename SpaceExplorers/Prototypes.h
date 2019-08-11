@@ -12,6 +12,7 @@ struct StructurePrototype
   std::string textureFileName = "";
   Behavior behavior = Behavior::Default;
   Layer layer = Layer::None;
+  bool isPassable = true;
 };
 
 struct ObjectPrototype

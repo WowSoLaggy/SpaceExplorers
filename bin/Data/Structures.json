@@ -3,27 +3,31 @@
   {
     "TextureName": "Lattice.png",
     "Layer": "Panneling",
-    "Behavior": "Default"
+    "Behavior": "Default",
+    "Passable": true
   },
   
   "Floor":
   {
     "TextureName": "Floor.png",
     "Layer": "Floor",
-    "Behavior": "Default"
+    "Behavior": "Default",
+    "Passable": true
   },
   
   "Wall":
   {
     "TextureName": "Wall.png",
     "Layer": "Wall",
-    "Behavior": "Default"
+    "Behavior": "Default",
+    "Passable": false
   },
   
   "Door":
   {
     "TextureName": "Door.png",
     "Layer": "Wall",
-    "Behavior": "Door"
+    "Behavior": "Door",
+    "Passable": false
   }
 }

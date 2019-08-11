@@ -18,6 +18,7 @@ public:
   virtual void update(double i_dt) override;
 
   virtual void interact(Actions i_action) override;
+  virtual bool isPassable() const override;
 
 private:
   enum class State : std::int32_t
