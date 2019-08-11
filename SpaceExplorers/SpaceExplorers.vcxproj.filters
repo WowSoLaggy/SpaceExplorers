@@ -161,9 +161,6 @@
     <ClInclude Include="IApp.h">
       <Filter>src\App</Filter>
     </ClInclude>
-    <ClInclude Include="StructurePrototype.h">
-      <Filter>src\World\Prototypes</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>src\Game\Camera</Filter>
     </ClInclude>
@@ -207,6 +204,9 @@
       <Filter>src\World\Structures</Filter>
     </ClInclude>
     <ClInclude Include="PrototypesCollection.h">
+      <Filter>src\World\Prototypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Prototypes.h">
       <Filter>src\World\Prototypes</Filter>
     </ClInclude>
   </ItemGroup>

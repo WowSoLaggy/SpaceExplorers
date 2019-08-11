@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Inventory.h"
 
-#include "StructurePrototype.h"
+#include "Prototypes.h"
 
 #include <LaggyDx/ImageDescription.h>
 #include <LaggyDx/ITextureResource.h>

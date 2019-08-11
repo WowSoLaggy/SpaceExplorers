@@ -1,6 +1,6 @@
 #pragma once
 
-#include "StructurePrototype.h"
+#include "Prototypes.h"
 
 #include <string>
 #include <unordered_map>

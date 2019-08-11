@@ -214,7 +214,7 @@
     <ClInclude Include="SettingsProvider.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Structure.h" />
-    <ClInclude Include="StructurePrototype.h" />
+    <ClInclude Include="Prototypes.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

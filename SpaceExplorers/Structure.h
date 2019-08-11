@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Actions.h"
-#include "StructurePrototype.h"
+#include "Prototypes.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
 #include <LaggyDx/Sprite.h>

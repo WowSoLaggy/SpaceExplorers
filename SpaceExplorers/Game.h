@@ -3,7 +3,7 @@
 #include "Camera.h"
 #include "Fwd.h"
 #include "Gui.h"
-#include "StructurePrototype.h"
+#include "Prototypes.h"
 #include "World.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
