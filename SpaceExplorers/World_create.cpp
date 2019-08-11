@@ -97,10 +97,10 @@ std::unique_ptr<World> World::createTestWorld(
 
 
   {
-    Object avatar(i_resourceController, PrototypesCollection::getObject("Man"));
-    avatar.setPosition({ -32, -32 });
-    avatar.setName("Tom");
-    world->d_objects.push_back(std::move(avatar));
+    auto objectPtr = std::make_shared<Object>(i_resourceController, PrototypesCollection::getObject("Man"));
+    objectPtr->setPosition({ -32, -32 });
+    objectPtr->setName("Tom");
+    world->d_objects.insert({ objectPtr->getName(), std::move(objectPtr) });
   }
 
 

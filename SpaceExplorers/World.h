@@ -11,7 +11,6 @@
 
 #include <iostream>
 #include <unordered_map>
-#include <vector>
 
 
 class World
@@ -40,12 +39,17 @@ public:
   void setBackground(const std::string& i_backgroundTextureFilename,
                      Sdk::Vector2I i_backgroundSize);
 
+  Object& getObject(const std::string& i_name) { return *d_objects.at(i_name); }
+  const Object& getObject(const std::string& i_name) const { return *d_objects.at(i_name); }
+  ObjectPtr& getObjectPtr(const std::string& i_name) { return d_objects.at(i_name); }
+  const ObjectPtr& getObjectPtr(const std::string& i_name) const { return d_objects.at(i_name); }
+
 private:
   Dx::IResourceController& d_resourceController;
   Dx::Sprite d_background;
 
   std::unordered_map<Sdk::Vector2I, Tile, Sdk::Vector2_hash> d_tilesMap;
-  std::vector<Object> d_objects;
+  std::unordered_map<std::string, ObjectPtr> d_objects;
 
 public:
   void writeTo(std::ostream& io_stream) const;
