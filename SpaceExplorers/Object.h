@@ -50,6 +50,8 @@ private:
   int d_moveXSign = 0;
   int d_moveYSign = 0;
 
+  void updateMoveAnimation();
+
 public:
   virtual void writeTo(std::ostream& io_stream) const;
   virtual void readFrom(std::istream& io_stream);

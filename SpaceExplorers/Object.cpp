@@ -27,6 +27,8 @@ void Object::update(double i_dt)
     pos.y += (int)(MoveSpeed * i_dt * d_moveYSign);
     setPosition(pos);
 
+    updateMoveAnimation();
+
     d_moveXSign = 0;
     d_moveYSign = 0;
   }
@@ -68,4 +70,17 @@ void Object::moveUp()
 void Object::moveDown()
 {
   d_moveYSign += 1;
+}
+
+
+void Object::updateMoveAnimation()
+{
+  if (d_moveXSign < 0)
+    d_sprite.playAnimation("Left");
+  else if (d_moveXSign > 0)
+    d_sprite.playAnimation("Right");
+  else if (d_moveYSign < 0)
+    d_sprite.playAnimation("Up");
+  else if (d_moveYSign > 0)
+    d_sprite.playAnimation("Down");
 }
