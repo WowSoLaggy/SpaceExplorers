@@ -2,8 +2,8 @@
 
 #include "Prototypes.h"
 
+#include <LaggyDx/AnimatedSprite.h>
 #include <LaggyDx/LaggyDxFwd.h>
-#include <LaggyDx/Sprite.h>
 #include <LaggySdk/Rect.h>
 #include <LaggySdk/Vector.h>
 
@@ -35,10 +35,13 @@ public:
   void moveUp();
   void moveDown();
 
-protected:
+private:
+  const int MoveSpeed = 256;
+
+private:
   Dx::IResourceController& d_resourceController;
   const ObjectPrototype& d_prototype;
-  std::shared_ptr<Dx::Sprite> d_sprite;
+  Dx::AnimatedSprite d_sprite;
   Sdk::Vector2I d_position;
   Sdk::RectI d_rect;
 

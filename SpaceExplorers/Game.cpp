@@ -40,16 +40,22 @@ void Game::update(double i_dt)
   if (d_world)
     d_world->update(i_dt);
   d_gui.update(i_dt);
+
+  if (isControlAvatar())
+    lookAtAvatar();
+
   d_camera.update(i_dt);
 }
 
 void Game::render(Dx::IRenderer2d& i_renderer) const
 {
   if (d_world)
+  {
     d_world->render(i_renderer, d_camera.getViewport());
 
-  if (isInBuildMode())
-    i_renderer.renderSprite(d_buildSprite);
+    if (isInBuildMode())
+      i_renderer.renderSprite(d_buildSprite);
+  }
 
   d_gui.render(i_renderer);
 

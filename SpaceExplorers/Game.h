@@ -132,13 +132,21 @@ private:
   void tryRemove();
 
   //
-  // AVATAR
+  // CONTROL
   //
 
   bool d_controlAvatar = false;
   std::shared_ptr<Object> d_avatar;
 
+  bool isControlAvatar() const { return d_controlAvatar; }
+
   void switchControlMode();
   void onControlAvatar();
   void onControlCamera();
+  void lookAtAvatar();
+
+  void moveLeft();
+  void moveRight();
+  void moveUp();
+  void moveDown();
 };
