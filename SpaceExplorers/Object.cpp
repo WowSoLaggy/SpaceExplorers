@@ -34,6 +34,8 @@ void Object::update(double i_dt)
     d_moveXSign = 0;
     d_moveYSign = 0;
   }
+
+  d_sprite.update(i_dt);
 }
 
 void Object::render(Dx::IRenderer2d& i_renderer) const
