@@ -84,7 +84,7 @@ void Object::updateMovement(double i_dt)
   };
   auto canMove = [&](Sdk::RectI i_curRect, const Sdk::Vector2I& i_diff) -> bool
   {
-    i_curRect.shrink(4);
+    i_curRect.shrink(2);
 
     std::unordered_set<Sdk::Vector2I, Sdk::Vector2_hash> tilesToCheck;
     tilesToCheck.insert(worldToTile(i_curRect.topLeft() + i_diff));
@@ -99,15 +99,26 @@ void Object::updateMovement(double i_dt)
     return true;
   };
 
-  if (d_moveXSign != 0 || d_moveYSign != 0)
+  if (d_moveXSign != 0)
   {
     Sdk::Vector2I diff;
     diff.x = (int)(MoveSpeed * i_dt * d_moveXSign);
+
+    if (canMove(d_rect, diff))
+      setPosition(getPosition() + diff);
+  }
+
+  if (d_moveYSign != 0)
+  {
+    Sdk::Vector2I diff;
     diff.y = (int)(MoveSpeed * i_dt * d_moveYSign);
 
     if (canMove(d_rect, diff))
       setPosition(getPosition() + diff);
+  }
 
+  if (d_moveXSign != 0 || d_moveYSign != 0)
+  {
     updateMoveAnimation();
     d_moveXSign = 0;
     d_moveYSign = 0;
