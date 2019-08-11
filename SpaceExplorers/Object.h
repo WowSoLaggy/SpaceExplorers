@@ -17,7 +17,7 @@ class Object
 public:
   Object(
     Dx::IResourceController& i_resourceController,
-    const ObjectPrototype& i_prototype);
+    const World& i_world, const ObjectPrototype& i_prototype);
 
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
@@ -40,6 +40,7 @@ private:
 
 private:
   Dx::IResourceController& d_resourceController;
+  const World& d_world;
   const ObjectPrototype& d_prototype;
   Dx::AnimatedSprite d_sprite;
   Sdk::Vector2I d_position;
@@ -50,6 +51,7 @@ private:
   int d_moveXSign = 0;
   int d_moveYSign = 0;
 
+  void updateMovement(double i_dt);
   void updateMoveAnimation();
 
 public:
