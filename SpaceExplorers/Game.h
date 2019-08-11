@@ -80,6 +80,7 @@ private:
   void onGameStarted();
   void checkIsGameLoaded();
   void onGameLoaded();
+  void onEnterGame();
 
   //
   // SAVE - LOAD GAME
