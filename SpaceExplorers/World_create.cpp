@@ -2,7 +2,7 @@
 #include "World.h"
 
 #include "Door.h"
-#include "Prototypes.h"
+#include "PrototypesCollection.h"
 #include "Structure.h"
 
 #include <LaggyDx/IResourceController.h>
@@ -27,7 +27,7 @@ std::unique_ptr<World> World::createTestWorld(
   ///
 
   auto create = [&](int x, int y, const std::string& i_protoName) {
-    world->createStructureAt(Prototypes::getPrototype(i_protoName), { x, y });
+    world->createStructureAt(PrototypesCollection::getPrototype(i_protoName), { x, y });
   };
 
   ///

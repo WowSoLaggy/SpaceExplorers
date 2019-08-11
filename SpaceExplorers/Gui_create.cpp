@@ -6,7 +6,7 @@
 #include "Game.h"
 #include "Label.h"
 #include "Panel.h"
-#include "Prototypes.h"
+#include "PrototypesCollection.h"
 
 #include <LaggySdk/StringUtils.h>
 
@@ -80,10 +80,10 @@ void Gui::showIngameGui()
   const auto inventorySize = inventory->getSize();
   inventory->setPosition({ (d_clientSize.x - inventorySize.x) / 2, d_clientSize.y - inventorySize.y });
 
-  inventory->setItem(0, Prototypes::getPrototype("Lattice"));
-  inventory->setItem(1, Prototypes::getPrototype("Floor"));
-  inventory->setItem(2, Prototypes::getPrototype("Wall"));
-  inventory->setItem(3, Prototypes::getPrototype("Door"));
+  inventory->setItem(0, PrototypesCollection::getPrototype("Lattice"));
+  inventory->setItem(1, PrototypesCollection::getPrototype("Floor"));
+  inventory->setItem(2, PrototypesCollection::getPrototype("Wall"));
+  inventory->setItem(3, PrototypesCollection::getPrototype("Door"));
 }
 
 

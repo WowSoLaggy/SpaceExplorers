@@ -69,9 +69,6 @@
     <ClCompile Include="World_create.cpp">
       <Filter>src\World</Filter>
     </ClCompile>
-    <ClCompile Include="Prototypes.cpp">
-      <Filter>src\World\Prototypes</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>src\Game\Camera</Filter>
     </ClCompile>
@@ -132,6 +129,9 @@
     <ClCompile Include="StructureReader.cpp">
       <Filter>src\World\Structures</Filter>
     </ClCompile>
+    <ClCompile Include="PrototypesCollection.cpp">
+      <Filter>src\World\Prototypes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -162,9 +162,6 @@
       <Filter>src\App</Filter>
     </ClInclude>
     <ClInclude Include="StructurePrototype.h">
-      <Filter>src\World\Prototypes</Filter>
-    </ClInclude>
-    <ClInclude Include="Prototypes.h">
       <Filter>src\World\Prototypes</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
@@ -208,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="StructureReader.h">
       <Filter>src\World\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="PrototypesCollection.h">
+      <Filter>src\World\Prototypes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -174,7 +174,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="Panel.cpp" />
-    <ClCompile Include="Prototypes.cpp" />
+    <ClCompile Include="PrototypesCollection.cpp" />
     <ClCompile Include="SettingsProvider.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -210,7 +210,7 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="Label.h" />
-    <ClInclude Include="Prototypes.h" />
+    <ClInclude Include="PrototypesCollection.h" />
     <ClInclude Include="SettingsProvider.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Structure.h" />

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Prototypes.h"
+#include "PrototypesCollection.h"
 
 #include <LaggySdk/Contracts.h>
 #include <LaggySdk/json.h>
@@ -25,13 +25,13 @@ namespace
 } // anonymous NS
 
 
-Prototypes& Prototypes::getInstance()
+PrototypesCollection& PrototypesCollection::getInstance()
 {
-  static Prototypes prototypes;
-  return prototypes;
+  static PrototypesCollection collection;
+  return collection;
 }
 
-void Prototypes::load(const fs::path& i_filename)
+void PrototypesCollection::load(const fs::path& i_filename)
 {
   if (!fs::exists(i_filename))
     return;
@@ -58,7 +58,7 @@ void Prototypes::load(const fs::path& i_filename)
 }
 
 
-const StructurePrototype& Prototypes::getPrototype(const std::string& i_name)
+const StructurePrototype& PrototypesCollection::getPrototype(const std::string& i_name)
 {
   return getInstance().d_collection.at(i_name);
 }

@@ -3,7 +3,7 @@
 
 #include "IApp.h"
 #include "Label.h"
-#include "Prototypes.h"
+#include "PrototypesCollection.h"
 #include "SettingsProvider.h"
 
 #include <LaggyDx/IRenderer2d.h>
@@ -84,7 +84,7 @@ void Game::updateDebugLabel(std::string i_text) const
 void Game::loadResources()
 {
   const auto& settings = SettingsProvider::getDefaultInternalSettings();
-  Prototypes::load(".//" + settings.resourcesFolder + "//" + settings.defaultPrototypesFile);
+  PrototypesCollection::load(".//" + settings.resourcesFolder + "//" + settings.defaultPrototypesFile);
   d_resourceController.loadResources();
   std::this_thread::sleep_for(100ms);
 }

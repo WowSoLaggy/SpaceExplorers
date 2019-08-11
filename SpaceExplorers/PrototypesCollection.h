@@ -6,16 +6,14 @@
 #include <unordered_map>
 
 
-using PrototypesCollection = std::unordered_map<std::string, StructurePrototype>;
-
-class Prototypes
+class PrototypesCollection
 {
 public:
   static void load(const fs::path& i_filename);
   static const StructurePrototype& getPrototype(const std::string& i_name);
 
 private:
-  PrototypesCollection d_collection;
+  std::unordered_map<std::string, StructurePrototype> d_collection;
 
-  static Prototypes& getInstance();
+  static PrototypesCollection& getInstance();
 };
