@@ -84,7 +84,7 @@ void Object::updateMovement(double i_dt)
   };
   auto canMove = [&](Sdk::RectI i_curRect, const Sdk::Vector2I& i_diff) -> bool
   {
-    i_curRect.shrink(1);
+    i_curRect.shrink(4);
 
     std::unordered_set<Sdk::Vector2I, Sdk::Vector2_hash> tilesToCheck;
     tilesToCheck.insert(worldToTile(i_curRect.topLeft() + i_diff));
