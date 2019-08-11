@@ -12,12 +12,11 @@ Object::Object(
   Sdk::Vector2I i_position)
   : d_resourceController(i_resourceController)
   , d_prototype(i_prototype)
-  , d_position(std::move(i_position))
 {
   d_sprite = std::make_shared<Dx::Sprite>();
-
   d_sprite->setTexture(&d_resourceController.getTextureResource(d_prototype.textureFileName));
-  d_sprite->setPosition(d_position);
+
+  setPosition(std::move(i_position));
 }
 
 
@@ -29,4 +28,16 @@ void Object::update(double i_dt)
 void Object::render(Dx::IRenderer2d& i_renderer) const
 {
   i_renderer.renderSprite(*d_sprite);
+}
+
+
+void Object::setPosition(Sdk::Vector2I i_position)
+{
+  d_position = std::move(i_position);
+
+  const auto& size = d_sprite->getSize();
+  const auto topLeft = d_position - size / 2;
+  d_rect = { topLeft, topLeft + size };
+
+  d_sprite->setPosition(topLeft);
 }

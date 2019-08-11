@@ -4,6 +4,7 @@
 
 #include <LaggyDx/LaggyDxFwd.h>
 #include <LaggyDx/Sprite.h>
+#include <LaggySdk/Rect.h>
 #include <LaggySdk/Vector.h>
 
 #include <iostream>
@@ -21,11 +22,16 @@ public:
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
 
+  void setPosition(Sdk::Vector2I i_position);
+
+  const Sdk::RectI& getRect() const { return d_rect; }
+
 protected:
   Dx::IResourceController& d_resourceController;
   const ObjectPrototype& d_prototype;
   std::shared_ptr<Dx::Sprite> d_sprite;
   Sdk::Vector2I d_position;
+  Sdk::RectI d_rect;
 
 public:
   virtual void writeTo(std::ostream& io_stream) const;
