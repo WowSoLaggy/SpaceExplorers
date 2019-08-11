@@ -16,13 +16,13 @@ class Object
 public:
   Object(
     Dx::IResourceController& i_resourceController,
-    const ObjectPrototype& i_prototype,
-    Sdk::Vector2I i_position);
+    const ObjectPrototype& i_prototype);
 
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
 
   void setPosition(Sdk::Vector2I i_position);
+  const Sdk::Vector2I& getPosition() const { return d_position; }
 
   const Sdk::RectI& getRect() const { return d_rect; }
 

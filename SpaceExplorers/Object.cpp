@@ -8,15 +8,14 @@
 
 Object::Object(
   Dx::IResourceController& i_resourceController,
-  const ObjectPrototype& i_prototype,
-  Sdk::Vector2I i_position)
+  const ObjectPrototype& i_prototype)
   : d_resourceController(i_resourceController)
   , d_prototype(i_prototype)
 {
   d_sprite = std::make_shared<Dx::Sprite>();
   d_sprite->setTexture(&d_resourceController.getTextureResource(d_prototype.textureFileName));
-
-  setPosition(std::move(i_position));
+  
+  setPosition({ 0, 0 });
 }
 
 
