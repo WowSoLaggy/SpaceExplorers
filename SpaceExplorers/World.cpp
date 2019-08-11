@@ -34,6 +34,9 @@ void World::update(double i_dt)
 {
   for (auto&[_, tile] : d_tilesMap)
     tile.update(i_dt);
+
+  for (auto& object : d_objects)
+    object.update(i_dt);
 }
 
 void World::render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) const
@@ -48,6 +51,9 @@ void World::render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) co
     if (i_viewport.intersectRect(tileRect))
       tile.render(i_renderer);
   }
+
+  for (auto& object : d_objects)
+    object.render(i_renderer);
 }
 
 

@@ -95,5 +95,14 @@ std::unique_ptr<World> World::createTestWorld(
 
   ///
 
+
+  {
+    Object avatar(i_resourceController, PrototypesCollection::getObject("Man"), { 0, 0 });
+    world->d_objects.push_back(std::move(avatar));
+  }
+
+
+  ///
+
   return world;
 }

@@ -37,6 +37,9 @@
     <Filter Include="src\World\Tile">
       <UniqueIdentifier>{16ebc7a1-eb12-4f62-ba7d-d83b3de44e7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\World\Objects">
+      <UniqueIdentifier>{a195876b-373c-4b4e-9b7c-448931aebf30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -132,6 +135,12 @@
     <ClCompile Include="PrototypesCollection.cpp">
       <Filter>src\World\Prototypes</Filter>
     </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Object_save.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -208,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="Prototypes.h">
       <Filter>src\World\Prototypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>src\World\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
