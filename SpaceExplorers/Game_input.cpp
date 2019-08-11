@@ -23,6 +23,9 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
       showDebugLabel();
   }
 
+  if (!d_world)
+    return;
+
   if (currentKeys.A)
     d_camera.moveLeft();
   if (currentKeys.D)
@@ -57,7 +60,7 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
   else if (pressedKeys.D8)
     onSelectInventory(7);
 
-  if (pressedKeys.Add && d_world)
+  if (pressedKeys.Add)
     onSaveGame();
 }
 
