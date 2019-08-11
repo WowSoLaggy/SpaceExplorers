@@ -99,6 +99,7 @@ std::unique_ptr<World> World::createTestWorld(
   {
     Object avatar(i_resourceController, PrototypesCollection::getObject("Man"));
     avatar.setPosition({ -32, -32 });
+    avatar.setName("Tom");
     world->d_objects.push_back(std::move(avatar));
   }
 
