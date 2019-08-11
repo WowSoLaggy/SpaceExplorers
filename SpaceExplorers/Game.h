@@ -121,7 +121,7 @@ private:
 
   bool isInRemovalMode() const;
   bool d_isRemovalMode = false;
-  StructurePtr d_structToRemove = nullptr;
+  StructurePtr d_structToRemove;
 
   void onEnterRemovalMode();
   void onExitRemovalMode();
@@ -130,4 +130,15 @@ private:
   StructurePtr getStructToRemove() const;
 
   void tryRemove();
+
+  //
+  // AVATAR
+  //
+
+  bool d_controlAvatar = false;
+  std::shared_ptr<Object> d_avatar;
+
+  void switchControlMode();
+  void onControlAvatar();
+  void onControlCamera();
 };

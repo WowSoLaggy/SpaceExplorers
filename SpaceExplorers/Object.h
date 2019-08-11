@@ -30,6 +30,11 @@ public:
 
   const Sdk::RectI& getRect() const { return d_rect; }
 
+  void moveLeft();
+  void moveRight();
+  void moveUp();
+  void moveDown();
+
 protected:
   Dx::IResourceController& d_resourceController;
   const ObjectPrototype& d_prototype;
@@ -38,6 +43,9 @@ protected:
   Sdk::RectI d_rect;
 
   std::string d_name;
+
+  int d_moveXSign = 0;
+  int d_moveYSign = 0;
 
 public:
   virtual void writeTo(std::ostream& io_stream) const;

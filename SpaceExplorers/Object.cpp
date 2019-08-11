@@ -40,3 +40,24 @@ void Object::setPosition(Sdk::Vector2I i_position)
 
   d_sprite->setPosition(topLeft);
 }
+
+
+void Object::moveLeft()
+{
+  d_moveXSign -= 1;
+}
+
+void Object::moveRight()
+{
+  d_moveXSign += 1;
+}
+
+void Object::moveUp()
+{
+  d_moveYSign -= 1;
+}
+
+void Object::moveDown()
+{
+  d_moveYSign += 1;
+}

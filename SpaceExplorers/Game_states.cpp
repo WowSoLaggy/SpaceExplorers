@@ -54,6 +54,7 @@ void Game::onEnterGame()
 {
   d_gui.clearControls();
   d_gui.showIngameGui();
+  onControlAvatar();
 }
 
 void Game::onExitGame()

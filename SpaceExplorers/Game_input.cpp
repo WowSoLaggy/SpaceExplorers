@@ -26,14 +26,37 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
   if (!d_world)
     return;
 
+  if (pressedKeys.C)
+    switchControlMode();
+
   if (currentKeys.A)
-    d_camera.moveLeft();
+  {
+    if (d_controlAvatar)
+      d_avatar->moveLeft();
+    else
+      d_camera.moveLeft();
+  }
   if (currentKeys.D)
-    d_camera.moveRight();
+  {
+    if (d_controlAvatar)
+      d_avatar->moveRight();
+    else
+      d_camera.moveRight();
+  }
   if (currentKeys.W)
-    d_camera.moveUp();
+  {
+    if (d_controlAvatar)
+      d_avatar->moveUp();
+    else
+      d_camera.moveUp();
+  }
   if (currentKeys.S)
-    d_camera.moveDown();
+  {
+    if (d_controlAvatar)
+      d_avatar->moveDown();
+    else
+      d_camera.moveDown();
+  }
 
   if (pressedKeys.R)
   {

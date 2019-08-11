@@ -141,6 +141,9 @@
     <ClCompile Include="Object_save.cpp">
       <Filter>src\World\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Game_avatar.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
