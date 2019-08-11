@@ -190,6 +190,7 @@
     <ClCompile Include="Structure_save.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Tile_save.cpp" />
+    <ClCompile Include="Utils.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="World_create.cpp" />
     <ClCompile Include="World_save.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="Structure.h" />
     <ClInclude Include="Prototypes.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>

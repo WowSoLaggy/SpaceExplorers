@@ -2,6 +2,7 @@
 #include "Game.h"
 
 #include "Inventory.h"
+#include "Utils.h"
 
 #include <LaggyDx/ImageDescription.h>
 #include <LaggyDx/IResourceController.h>

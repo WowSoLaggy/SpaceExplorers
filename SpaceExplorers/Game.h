@@ -52,11 +52,7 @@ private:
   bool d_debugOutput = false;
   std::shared_ptr<Label> d_debugLabel;
 
-  Sdk::Vector2I screenToWorld(Sdk::Vector2I i_coords) const;
-  Sdk::Vector2I worldToTile(Sdk::Vector2I i_coords) const;
-  Sdk::Vector2I screenToTile(Sdk::Vector2I i_coords) const;
   Sdk::Vector2I cursorToTile() const;
-  Sdk::Vector2I tileToScreen(Sdk::Vector2I i_coords) const;
 
   State d_state = State::NotLoaded;
   std::future<void> loadResourcesResult;

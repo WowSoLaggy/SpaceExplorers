@@ -15,4 +15,5 @@ struct InternalSettings;
 struct StructurePrototype;
 struct ObjectPrototype;
 
+class Camera;
 class World;

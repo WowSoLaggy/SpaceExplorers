@@ -43,6 +43,9 @@
     <Filter Include="src\World\ObjectsReader">
       <UniqueIdentifier>{fb1f3a2c-db02-4dda-916e-5508a1870786}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Utils">
+      <UniqueIdentifier>{74df05f8-5138-4696-b2bc-b44dcc8a7819}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -147,6 +150,9 @@
     <ClCompile Include="ObjectsReader.cpp">
       <Filter>src\World\ObjectsReader</Filter>
     </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -226,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="ObjectsReader.h">
       <Filter>src\World\ObjectsReader</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>src\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
