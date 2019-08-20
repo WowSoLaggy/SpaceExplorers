@@ -96,12 +96,9 @@ std::unique_ptr<World> World::createTestWorld(
   ///
 
 
-  {
-    auto objectPtr = std::make_shared<Object>(i_resourceController, *world, PrototypesCollection::getObject("Man"));
-    objectPtr->setPosition({ -32, -32 });
-    objectPtr->setName("Tom");
-    world->d_objects.insert({ objectPtr->getName(), std::move(objectPtr) });
-  }
+  world->createAvatarAt(PrototypesCollection::getObject("Man"), { -32, -32 }, "Tom");
+
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -64 });
 
 
   ///

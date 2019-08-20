@@ -2,6 +2,7 @@
 #include "World.h"
 
 #include "Door.h"
+#include "Prototypes.h"
 #include "Structure.h"
 #include "SettingsProvider.h"
 
@@ -92,6 +93,23 @@ void World::createStructureAt(const StructurePrototype& i_prototype, const Sdk::
     structure = std::make_shared<Structure>(d_resourceController, i_prototype, i_coords);
 
   d_tilesMap[i_coords].setStructure(i_prototype.layer, structure);
+}
+
+void World::createObjectAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords)
+{
+  auto objectPtr = std::make_shared<Object>(d_resourceController, *this, i_prototype);
+  objectPtr->setPosition(std::move(i_coords));
+
+  d_objects.insert({ objectPtr->getName(), std::move(objectPtr) });
+}
+
+void World::createAvatarAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name)
+{
+  auto objectPtr = std::make_shared<Object>(d_resourceController, *this, i_prototype);
+  objectPtr->setPosition(std::move(i_coords));
+  objectPtr->setName(std::move(i_name));
+  
+  d_objects.insert({ objectPtr->getName(), std::move(objectPtr) });
 }
 
 
