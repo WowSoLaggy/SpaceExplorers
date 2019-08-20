@@ -2,5 +2,10 @@
   "Man":
   {
     "TextureName": "Man.png"
+  },
+  
+  "Rods":
+  {
+    "TextureName": "Rods.png"
   }
 }
