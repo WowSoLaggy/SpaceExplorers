@@ -19,8 +19,12 @@ void World::writeTo(std::ostream& io_stream) const
   }
 
   Sdk::write(io_stream, (int)d_objects.size());
-  for (const auto&[_, object] : d_objects)
+  for (const auto& object : d_objects)
     object->writeTo(io_stream);
+
+  Sdk::write(io_stream, (int)d_avatars.size());
+  for (const auto&[_, avatar] : d_avatars)
+    avatar->writeTo(io_stream);
 }
 
 std::unique_ptr<World> World::readFrom(std::istream& io_stream,
@@ -46,7 +50,15 @@ std::unique_ptr<World> World::readFrom(std::istream& io_stream,
   for (int i = 0; i < objectsCount; ++i)
   {
     auto objectPtr = readObjectFrom(io_stream, i_resourceController, *world);
-    world->d_objects.insert({ objectPtr->getName(), std::move(objectPtr) });
+    world->d_objects.push_back(std::move(objectPtr));
+  }
+
+  int avatarsCount;
+  Sdk::read(io_stream, avatarsCount);
+  for (int i = 0; i < avatarsCount; ++i)
+  {
+    auto objectPtr = readObjectFrom(io_stream, i_resourceController, *world);
+    world->d_avatars.insert({ objectPtr->getName(), std::move(objectPtr) });
   }
 
   return world;

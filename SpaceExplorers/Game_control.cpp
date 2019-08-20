@@ -18,7 +18,7 @@ void Game::onControlAvatar()
 {
   d_controlAvatar = true;
 
-  d_avatar = d_world->getObjectPtr("Tom");
+  d_avatar = d_world->getAvatarPtr("Tom");
   CONTRACT_ASSERT(d_avatar);
 
   lookAtAvatar();

@@ -30,10 +30,6 @@ public:
   void update(double i_dt);
   void render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) const;
 
-  Tile* getTile(const Sdk::Vector2I& i_coords);
-  const Tile* getTile(const Sdk::Vector2I& i_coords) const;
-  Tile& getOrCreateTile(const Sdk::Vector2I& i_coords);
-
   void createStructureAt(const StructurePrototype& i_prototype, const Sdk::Vector2I& i_coords);
   void createObjectAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords);
   void createAvatarAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name);
@@ -41,17 +37,22 @@ public:
   void setBackground(const std::string& i_backgroundTextureFilename,
                      Sdk::Vector2I i_backgroundSize);
 
-  Object& getObject(const std::string& i_name) { return *d_objects.at(i_name); }
-  const Object& getObject(const std::string& i_name) const { return *d_objects.at(i_name); }
-  ObjectPtr& getObjectPtr(const std::string& i_name) { return d_objects.at(i_name); }
-  const ObjectPtr& getObjectPtr(const std::string& i_name) const { return d_objects.at(i_name); }
+  Tile* getTile(const Sdk::Vector2I& i_coords);
+  const Tile* getTile(const Sdk::Vector2I& i_coords) const;
+  Tile& getOrCreateTile(const Sdk::Vector2I& i_coords);
+
+  Object& getAvatar(const std::string& i_name) { return *d_avatars.at(i_name); }
+  const Object& getAvatar(const std::string& i_name) const { return *d_avatars.at(i_name); }
+  ObjectPtr& getAvatarPtr(const std::string& i_name) { return d_avatars.at(i_name); }
+  const ObjectPtr& getAvatarPtr(const std::string& i_name) const { return d_avatars.at(i_name); }
 
 private:
   Dx::IResourceController& d_resourceController;
   Dx::Sprite d_background;
 
   std::unordered_map<Sdk::Vector2I, Tile, Sdk::Vector2_hash> d_tilesMap;
-  std::unordered_map<std::string, ObjectPtr> d_objects;
+  std::unordered_map<std::string, ObjectPtr> d_avatars;
+  std::vector<ObjectPtr> d_objects;
 
 public:
   void writeTo(std::ostream& io_stream) const;
