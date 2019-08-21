@@ -53,6 +53,6 @@ private:
   void addControl(IGuiControlPtr i_control, const std::string& i_name);
 
   std::shared_ptr<Panel> createPanel(const std::string& i_name = "");
-  std::shared_ptr<Inventory> createInventory(const std::string& i_name = "");
+  std::shared_ptr<GInventory> createInventory(const std::string& i_name = "");
   std::shared_ptr<Button> createButton(const std::string& i_name = "");
 };

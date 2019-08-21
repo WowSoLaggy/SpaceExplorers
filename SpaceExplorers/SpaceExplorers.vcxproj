@@ -171,7 +171,7 @@
     <ClCompile Include="Game_utils.cpp" />
     <ClCompile Include="Gui_create.cpp" />
     <ClCompile Include="Gui_input.cpp" />
-    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="GInventory.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Gui.cpp" />
@@ -214,7 +214,7 @@
     <ClInclude Include="IApp.h" />
     <ClInclude Include="IGuiControl.h" />
     <ClInclude Include="InternalSettings.h" />
-    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="GInventory.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="PrototypesCollection.h" />

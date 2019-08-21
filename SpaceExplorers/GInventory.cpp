@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Inventory.h"
+#include "GInventory.h"
 
 #include "Prototypes.h"
 
@@ -10,7 +10,7 @@
 #include <LaggySdk/Contracts.h>
 
 
-Inventory::Inventory(Dx::IResourceController& i_resourceController)
+GInventory::GInventory(Dx::IResourceController& i_resourceController)
   : d_resourceController(i_resourceController)
 {
   d_items.resize(SlotsCount, nullptr);
@@ -18,7 +18,7 @@ Inventory::Inventory(Dx::IResourceController& i_resourceController)
 }
 
 
-void Inventory::render(Dx::IRenderer2d& i_renderer) const
+void GInventory::render(Dx::IRenderer2d& i_renderer) const
 {
   const auto initTranslation = i_renderer.getTranslation();
   i_renderer.setTranslation(-d_position);
@@ -39,13 +39,13 @@ void Inventory::render(Dx::IRenderer2d& i_renderer) const
 }
 
 
-Sdk::Vector2I Inventory::getSize() const
+Sdk::Vector2I GInventory::getSize() const
 {
   return { CornerSize * 2 + SlotsHor * SlotSize, CornerSize * 2 + SlotsVert * SlotSize };
 }
 
 
-void Inventory::recreateSprites()
+void GInventory::recreateSprites()
 {
   const auto& textureTl(d_resourceController.getTextureResource("GridTl.png"));
   const auto& textureTr(d_resourceController.getTextureResource("GridTr.png"));
@@ -113,20 +113,20 @@ void Inventory::recreateSprites()
 }
 
 
-void Inventory::CheckIndex(int i_index)
+void GInventory::CheckIndex(int i_index)
 {
   CONTRACT_EXPECT(0 <= i_index);
   CONTRACT_EXPECT(i_index < SlotsCount);
 }
 
 
-void Inventory::resetAllItems()
+void GInventory::resetAllItems()
 {
   for (int i = 0; i < SlotsCount; ++i)
     resetItem(i);
 }
 
-void Inventory::resetItem(int i_index)
+void GInventory::resetItem(int i_index)
 {
   CheckIndex(i_index);
 
@@ -134,7 +134,7 @@ void Inventory::resetItem(int i_index)
   updateItemSprite(i_index);
 }
 
-void Inventory::setItem(int i_index, const StructurePrototype& i_prototype)
+void GInventory::setItem(int i_index, const StructurePrototype& i_prototype)
 {
   CheckIndex(i_index);
 
@@ -142,14 +142,14 @@ void Inventory::setItem(int i_index, const StructurePrototype& i_prototype)
   updateItemSprite(i_index);
 }
 
-const StructurePrototype* Inventory::getItem(int i_index) const
+const StructurePrototype* GInventory::getItem(int i_index) const
 {
   CheckIndex(i_index);
 
   return d_items.at(i_index);
 }
 
-void Inventory::updateItemSprite(int i_index)
+void GInventory::updateItemSprite(int i_index)
 {
   CheckIndex(i_index);
 
@@ -161,7 +161,7 @@ void Inventory::updateItemSprite(int i_index)
 }
 
 
-void Inventory::selectItem(int i_index)
+void GInventory::selectItem(int i_index)
 {
   CheckIndex(i_index);
 
@@ -169,29 +169,29 @@ void Inventory::selectItem(int i_index)
   updateSelectionSprite();
 }
 
-void Inventory::unselectItem()
+void GInventory::unselectItem()
 {
   d_selectedIndex = std::nullopt;
 }
 
-std::optional<int> Inventory::getSelectedIndex() const
+std::optional<int> GInventory::getSelectedIndex() const
 {
   return d_selectedIndex;
 }
 
-const StructurePrototype* Inventory::getSelectedItem() const
+const StructurePrototype* GInventory::getSelectedItem() const
 {
   if (!d_selectedIndex)
     return nullptr;
   return d_items.at(*d_selectedIndex);
 }
 
-bool Inventory::hasSelection() const
+bool GInventory::hasSelection() const
 {
   return d_selectedIndex.has_value();
 }
 
-void Inventory::updateSelectionSprite()
+void GInventory::updateSelectionSprite()
 {
   if (!d_selectedIndex)
     return;

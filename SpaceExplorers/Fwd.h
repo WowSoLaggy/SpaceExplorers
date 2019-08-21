@@ -5,7 +5,7 @@ class IApp;
 class Game;
 
 class Button;
-class Inventory;
+class GInventory;
 class Label;
 class Panel;
 

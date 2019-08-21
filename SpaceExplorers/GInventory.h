@@ -10,10 +10,10 @@
 #include <vector>
 
 
-class Inventory : public IGuiControl
+class GInventory : public IGuiControl
 {
 public:
-  Inventory(Dx::IResourceController& i_resourceController);
+  GInventory(Dx::IResourceController& i_resourceController);
 
   virtual void render(Dx::IRenderer2d& i_renderer) const override;
 
