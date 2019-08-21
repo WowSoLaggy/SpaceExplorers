@@ -223,3 +223,27 @@ std::optional<int> Inventory::getObjectIndex(ObjectPtr i_object) const
 
   return std::nullopt;
 }
+
+
+bool Inventory::tryAddObject(ObjectPtr i_object)
+{
+  std::optional<int> index;
+  if (i_object->getPrototype().isStackable)
+  {
+    if (index = getObjectIndex(i_object))
+    {
+      getItem(*index)->addQuantity(1);
+      return true;
+    }
+  }
+
+  index = getFreeSlot();
+  if (!index)
+  {
+    // No free space!
+    return false;
+  }
+
+  setItem(*index, i_object);
+  return true;
+}

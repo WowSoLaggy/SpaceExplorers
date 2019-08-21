@@ -32,8 +32,7 @@ public:
   ObjectPtr getSelectedItem() const;
   bool hasSelection() const;
 
-  std::optional<int> getFreeSlot() const;
-  std::optional<int> getObjectIndex(ObjectPtr i_object) const;
+  bool tryAddObject(ObjectPtr i_object);
 
 private:
   static const int SlotsHor = 8;
@@ -56,4 +55,7 @@ private:
   void recreateSprites();
   void updateItemSprite(int i_index);
   void updateSelectionSprite();
+
+  std::optional<int> getFreeSlot() const;
+  std::optional<int> getObjectIndex(ObjectPtr i_object) const;
 };
