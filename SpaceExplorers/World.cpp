@@ -129,3 +129,33 @@ void World::setBackground(const std::string& i_backgroundTextureFilename,
   d_background.setTexture(texture);
   d_background.setSize(std::move(i_backgroundSize));
 }
+
+
+ObjectPtr World::getObjectAt(const Sdk::Vector2I& i_coords) const
+{
+  for (const auto& [_, avatar] : d_avatars)
+  {
+    if (avatar->getRect().containsPoint(i_coords))
+      return avatar;
+  }
+
+  for (const auto& obj : d_objects)
+  {
+    if (obj->getRect().containsPoint(i_coords))
+      return obj;
+  }
+
+  return nullptr;
+}
+
+void World::deleteObject(ObjectPtr i_object)
+{
+  d_objects.erase(std::find(d_objects.cbegin(), d_objects.cend(), i_object));
+}
+
+void World::deleteObject(const Object& i_object)
+{
+  d_objects.erase(std::find_if(d_objects.cbegin(), d_objects.cend(), [&](ObjectPtr i_right) {
+    return i_right.get() == &i_object;
+  }));
+}

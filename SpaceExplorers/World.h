@@ -47,6 +47,10 @@ public:
   AvatarPtr getAvatarPtr(const std::string& i_name) { return d_avatars.at(i_name); }
   const AvatarPtr getAvatarPtr(const std::string& i_name) const { return d_avatars.at(i_name); }
 
+  ObjectPtr getObjectAt(const Sdk::Vector2I& i_coords) const;
+  void deleteObject(ObjectPtr i_object);
+  void deleteObject(const Object& i_object);
+
 private:
   Dx::IResourceController& d_resourceController;
   Dx::Sprite d_background;

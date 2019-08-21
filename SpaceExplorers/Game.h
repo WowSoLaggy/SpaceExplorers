@@ -53,6 +53,7 @@ private:
   std::shared_ptr<Label> d_debugLabel;
 
   Sdk::Vector2I cursorToTile() const;
+  Sdk::Vector2I cursorToWorld() const;
 
   State d_state = State::NotLoaded;
   std::future<void> loadResourcesResult;
@@ -93,6 +94,7 @@ private:
   void onUnselectInventory();
 
   void tryInteract();
+  void tryPickup(Avatar& io_avatar, Object& io_object);
 
   //
   // BUILD MODE
