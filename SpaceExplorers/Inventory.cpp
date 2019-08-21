@@ -134,15 +134,15 @@ void Inventory::resetItem(int i_index)
   updateItemSprite(i_index);
 }
 
-void Inventory::setItem(int i_index, const StructurePrototype& i_prototype)
+void Inventory::setItem(int i_index, ObjectPtr i_object)
 {
   CheckIndex(i_index);
 
-  d_items.at(i_index) = &i_prototype;
+  d_items.at(i_index) = i_object;
   updateItemSprite(i_index);
 }
 
-const StructurePrototype* Inventory::getItem(int i_index) const
+ObjectPtr Inventory::getItem(int i_index) const
 {
   CheckIndex(i_index);
 
@@ -153,9 +153,9 @@ void Inventory::updateItemSprite(int i_index)
 {
   CheckIndex(i_index);
 
-  const auto* item = d_items.at(i_index);
+  auto item = d_items.at(i_index);
   const Dx::ITextureResource* texture = item ?
-    &d_resourceController.getTextureResource(item->textureFileName) : nullptr;
+    &d_resourceController.getTextureResource(item->getPrototype().textureFileName) : nullptr;
 
   d_itemSprites.at(i_index).setTexture(texture);
 }
@@ -179,7 +179,7 @@ std::optional<int> Inventory::getSelectedIndex() const
   return d_selectedIndex;
 }
 
-const StructurePrototype* Inventory::getSelectedItem() const
+ObjectPtr Inventory::getSelectedItem() const
 {
   if (!d_selectedIndex)
     return nullptr;
@@ -199,4 +199,27 @@ void Inventory::updateSelectionSprite()
   int x = *d_selectedIndex % SlotsHor;
   int y = *d_selectedIndex / SlotsHor;
   d_selectionSprite.setPosition({ CornerSize + SlotSize * x + 2, CornerSize + SlotSize * y + 2 });
+}
+
+
+std::optional<int> Inventory::getFreeSlot() const
+{
+  for (int i = 0; i < SlotsCount; ++i)
+  {
+    if (!d_items[i])
+      return i;
+  }
+
+  return std::nullopt;
+}
+
+std::optional<int> Inventory::getObjectIndex(ObjectPtr i_object) const
+{
+  for (int i = 0; i < SlotsCount; ++i)
+  {
+    if (d_items[i] && d_items[i] == i_object)
+      return i;
+  }
+
+  return std::nullopt;
 }

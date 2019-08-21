@@ -19,6 +19,8 @@ public:
     Dx::IResourceController& i_resourceController,
     const World& i_world, const ObjectPrototype& i_prototype);
 
+  const ObjectPrototype& getPrototype() const { return d_prototype; }
+
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
 

@@ -109,7 +109,7 @@ void Game::moveDown()
 void Game::onSelectInventory(int i_index)
 {
   auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
-  CONTRACT_EXPECT(inventory);
+  CONTRACT_ASSERT(inventory);
 
   if (inventory->getSelectedIndex() == i_index)
     onUnselectInventory();
@@ -120,7 +120,7 @@ void Game::onSelectInventory(int i_index)
 void Game::onUnselectInventory()
 {
   auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
-  CONTRACT_EXPECT(inventory);
+  CONTRACT_ASSERT(inventory);
 
   inventory->unselectItem();
 }

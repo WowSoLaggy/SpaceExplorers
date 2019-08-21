@@ -85,6 +85,7 @@ void PrototypesCollection::loadObjects(const fs::path& i_filename)
     ObjectPrototype proto;
     proto.name = protoName;
     proto.textureFileName = node["TextureName"].asString();
+    proto.isStackable = node["Stackable"].asBool();
 
     d_collectionObjects.insert({ protoName, std::move(proto) });
   }

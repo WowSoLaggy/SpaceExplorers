@@ -20,5 +20,6 @@ struct ObjectPrototype
   std::string name = "";
 
   std::string textureFileName = "";
+  bool isStackable = false;
 };
 

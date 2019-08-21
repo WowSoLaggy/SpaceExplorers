@@ -2,6 +2,7 @@
 
 #include "Fwd.h"
 #include "IGuiControl.h"
+#include "Object.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
 #include <LaggyDx/Sprite.h>
@@ -22,14 +23,17 @@ public:
 
   void resetAllItems();
   void resetItem(int i_index);
-  void setItem(int i_index, const StructurePrototype& i_prototype);
-  const StructurePrototype* getItem(int i_index) const;
+  void setItem(int i_index, ObjectPtr i_object);
+  ObjectPtr getItem(int i_index) const;
 
   void selectItem(int i_index);
   void unselectItem();
   std::optional<int> getSelectedIndex() const;
-  const StructurePrototype* getSelectedItem() const;
+  ObjectPtr getSelectedItem() const;
   bool hasSelection() const;
+
+  std::optional<int> getFreeSlot() const;
+  std::optional<int> getObjectIndex(ObjectPtr i_object) const;
 
 private:
   static const int SlotsHor = 8;
@@ -44,7 +48,7 @@ private:
   Sdk::Vector2I d_position;
   std::vector<Dx::Sprite> d_gridSprites;
 
-  std::vector<const StructurePrototype*> d_items;
+  std::vector<ObjectPtr> d_items;
   std::vector<Dx::Sprite> d_itemSprites;
   std::optional<int> d_selectedIndex;
   Dx::Sprite d_selectionSprite;

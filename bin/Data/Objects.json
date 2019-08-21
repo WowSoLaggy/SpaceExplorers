@@ -1,11 +1,13 @@
 {
   "Man":
   {
-    "TextureName": "Man.png"
+    "TextureName": "Man.png",
+    "Stackable": false
   },
   
   "Rods":
   {
-    "TextureName": "Rods.png"
+    "TextureName": "Rods.png",
+    "Stackable": true
   }
 }
