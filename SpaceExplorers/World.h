@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Avatar.h"
 #include "Object.h"
 #include "Structure.h"
 #include "Tile.h"
@@ -41,17 +42,17 @@ public:
   const Tile* getTile(const Sdk::Vector2I& i_coords) const;
   Tile& getOrCreateTile(const Sdk::Vector2I& i_coords);
 
-  Object getAvatar(const std::string& i_name) { return *d_avatars.at(i_name); }
-  const Object getAvatar(const std::string& i_name) const { return *d_avatars.at(i_name); }
-  ObjectPtr getAvatarPtr(const std::string& i_name) { return d_avatars.at(i_name); }
-  const ObjectPtr getAvatarPtr(const std::string& i_name) const { return d_avatars.at(i_name); }
+  Avatar getAvatar(const std::string& i_name) { return *d_avatars.at(i_name); }
+  const Avatar getAvatar(const std::string& i_name) const { return *d_avatars.at(i_name); }
+  AvatarPtr getAvatarPtr(const std::string& i_name) { return d_avatars.at(i_name); }
+  const AvatarPtr getAvatarPtr(const std::string& i_name) const { return d_avatars.at(i_name); }
 
 private:
   Dx::IResourceController& d_resourceController;
   Dx::Sprite d_background;
 
   std::unordered_map<Sdk::Vector2I, Tile, Sdk::Vector2_hash> d_tilesMap;
-  std::unordered_map<std::string, ObjectPtr> d_avatars;
+  std::unordered_map<std::string, AvatarPtr> d_avatars;
   std::vector<ObjectPtr> d_objects;
 
 public:

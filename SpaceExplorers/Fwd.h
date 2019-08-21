@@ -17,3 +17,6 @@ struct ObjectPrototype;
 
 class Camera;
 class World;
+class Avatar;
+class Object;
+class Structure;

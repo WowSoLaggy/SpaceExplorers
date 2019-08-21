@@ -30,15 +30,7 @@ public:
 
   const Sdk::RectI& getRect() const { return d_rect; }
 
-  void moveLeft();
-  void moveRight();
-  void moveUp();
-  void moveDown();
-
-private:
-  const int MoveSpeed = 256;
-
-private:
+protected:
   Dx::IResourceController& d_resourceController;
   const World& d_world;
   const ObjectPrototype& d_prototype;
@@ -47,12 +39,6 @@ private:
   Sdk::RectI d_rect;
 
   std::string d_name;
-
-  int d_moveXSign = 0;
-  int d_moveYSign = 0;
-
-  void updateMovement(double i_dt);
-  void updateMoveAnimation();
 
 public:
   virtual void writeTo(std::ostream& io_stream) const;

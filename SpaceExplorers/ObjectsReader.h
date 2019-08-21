@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Avatar.h"
 #include "Fwd.h"
 #include "Object.h"
 #include "Structure.h"
@@ -13,5 +14,8 @@ StructurePtr readStructureFrom(std::istream& io_stream,
                                Sdk::Vector2I i_coordsTile);
 
 ObjectPtr readObjectFrom(std::istream& io_stream,
+                         Dx::IResourceController& i_resourceController,
+                         const World& i_world);
+AvatarPtr readAvatarFrom(std::istream& io_stream,
                          Dx::IResourceController& i_resourceController,
                          const World& i_world);

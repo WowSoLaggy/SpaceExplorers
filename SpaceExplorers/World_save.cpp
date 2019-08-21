@@ -57,7 +57,7 @@ std::unique_ptr<World> World::readFrom(std::istream& io_stream,
   Sdk::read(io_stream, avatarsCount);
   for (int i = 0; i < avatarsCount; ++i)
   {
-    auto objectPtr = readObjectFrom(io_stream, i_resourceController, *world);
+    auto objectPtr = readAvatarFrom(io_stream, i_resourceController, *world);
     world->d_avatars.insert({ objectPtr->getName(), std::move(objectPtr) });
   }
 

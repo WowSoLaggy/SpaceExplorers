@@ -153,6 +153,9 @@
     <ClCompile Include="Utils.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Avatar.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Avatar.h">
+      <Filter>src\World\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

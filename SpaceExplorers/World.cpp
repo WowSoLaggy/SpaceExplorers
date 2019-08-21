@@ -114,7 +114,7 @@ void World::createObjectAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_c
 
 void World::createAvatarAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name)
 {
-  auto objectPtr = std::make_shared<Object>(d_resourceController, *this, i_prototype);
+  auto objectPtr = std::make_shared<Avatar>(d_resourceController, *this, i_prototype);
   objectPtr->setPosition(std::move(i_coords));
   objectPtr->setName(std::move(i_name));
   

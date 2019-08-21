@@ -132,7 +132,7 @@ private:
   //
 
   bool d_controlAvatar = false;
-  std::shared_ptr<Object> d_avatar;
+  std::shared_ptr<Avatar> d_avatar;
 
   bool isControlAvatar() const { return d_controlAvatar; }
 
