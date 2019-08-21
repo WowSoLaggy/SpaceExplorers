@@ -94,7 +94,7 @@ private:
   void onUnselectInventory();
 
   void tryInteract();
-  void tryPickup(Avatar& io_avatar, Object& io_object);
+  void tryPickup(Avatar& io_avatar, ObjectPtr io_object);
 
   //
   // BUILD MODE

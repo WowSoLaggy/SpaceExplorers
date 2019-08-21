@@ -7,7 +7,7 @@ void Game::tryInteract()
   if (auto obj = d_world->getObjectAt(cursorToWorld()))
   {
     if (!obj->isAvatar() && d_avatar)
-      tryPickup(*d_avatar, *obj);
+      tryPickup(*d_avatar, obj);
     return;
   }
 
@@ -24,7 +24,7 @@ void Game::tryInteract()
   structure->interact();
 }
 
-void Game::tryPickup(Avatar& io_avatar, Object& io_object)
+void Game::tryPickup(Avatar& io_avatar, ObjectPtr io_object)
 {
   d_world->deleteObject(io_object);
 }
