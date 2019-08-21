@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 
-#include "GInventory.h"
+#include "Inventory.h"
 #include "PrototypesCollection.h"
 
 #include <LaggySdk/Contracts.h>
@@ -11,7 +11,7 @@ namespace
 {
   void setFreeModeInventory(Gui& io_gui)
   {
-    auto inventory = std::dynamic_pointer_cast<GInventory>(io_gui.getControl("Inventory"));
+    auto inventory = std::dynamic_pointer_cast<Inventory>(io_gui.getControl("Inventory"));
     CONTRACT_ASSERT(inventory);
 
     inventory->resetAllItems();
@@ -24,7 +24,7 @@ namespace
 
   void setAvatarInventory(Gui& io_gui, const Object& i_object)
   {
-    auto inventory = std::dynamic_pointer_cast<GInventory>(io_gui.getControl("Inventory"));
+    auto inventory = std::dynamic_pointer_cast<Inventory>(io_gui.getControl("Inventory"));
     CONTRACT_ASSERT(inventory);
 
     inventory->resetAllItems();

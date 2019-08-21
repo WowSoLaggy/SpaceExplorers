@@ -99,6 +99,9 @@
     <ClCompile Include="Tile.cpp">
       <Filter>src\World\Tile</Filter>
     </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>src\Gui\GuiControls</Filter>
+    </ClCompile>
     <ClCompile Include="Game_build.cpp">
       <Filter>src\Game</Filter>
     </ClCompile>
@@ -152,9 +155,6 @@
     </ClCompile>
     <ClCompile Include="Avatar.cpp">
       <Filter>src\World\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="GInventory.cpp">
-      <Filter>src\Gui\GuiControls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +212,9 @@
     <ClInclude Include="Tile.h">
       <Filter>src\World\Tile</Filter>
     </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>src\Gui\GuiControls</Filter>
+    </ClInclude>
     <ClInclude Include="Traits.h">
       <Filter>src\World\Prototypes</Filter>
     </ClInclude>
@@ -238,9 +241,6 @@
     </ClInclude>
     <ClInclude Include="Avatar.h">
       <Filter>src\World\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="GInventory.h">
-      <Filter>src\Gui\GuiControls</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

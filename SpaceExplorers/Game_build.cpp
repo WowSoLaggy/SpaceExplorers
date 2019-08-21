@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 
-#include "GInventory.h"
+#include "Inventory.h"
 #include "Utils.h"
 
 #include <LaggyDx/ImageDescription.h>
@@ -26,7 +26,7 @@ bool Game::isInBuildMode() const
 
 void Game::onSelectInventory(int i_index)
 {
-  auto inventory = std::dynamic_pointer_cast<GInventory>(d_gui.getControl("Inventory"));
+  auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
   CONTRACT_EXPECT(inventory);
 
   if (inventory->getSelectedIndex() == i_index)
@@ -43,7 +43,7 @@ void Game::onSelectInventory(int i_index)
 
 void Game::onUnselectInventory()
 {
-  auto inventory = std::dynamic_pointer_cast<GInventory>(d_gui.getControl("Inventory"));
+  auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
   CONTRACT_EXPECT(inventory);
 
   inventory->unselectItem();
