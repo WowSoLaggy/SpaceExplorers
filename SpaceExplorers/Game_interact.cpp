@@ -38,11 +38,15 @@ void Game::tryPickup(Avatar& io_avatar, ObjectPtr io_object)
 
   std::optional<int> index;
   if (io_object->getPrototype().isStackable)
-    index = inventory->getObjectIndex(io_object);
+  {
+    if (index = inventory->getObjectIndex(io_object))
+    {
+      inventory->getItem(*index)->addQuantity(1);
+      return;
+    }
+  }
 
-  if (!index)
-    index = inventory->getFreeSlot();
-
+  index = inventory->getFreeSlot();
   if (!index)
   {
     // No free space in inventory!

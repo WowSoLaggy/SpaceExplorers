@@ -7,6 +7,7 @@
 #include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>
 #include <LaggyDx/ITextureResource.h>
+#include <LaggySdk/Contracts.h>
 
 #include <unordered_set>
 
@@ -44,4 +45,33 @@ void Object::setPosition(Sdk::Vector2I i_position)
   d_rect = { topLeft, topLeft + size };
 
   d_sprite.setPosition(topLeft);
+}
+
+
+bool Object::canBeStackedWith(ObjectPtr i_object) const
+{
+  return 
+    i_object &&
+    d_prototype.name == i_object->d_prototype.name &&
+    d_name == i_object->d_name;
+}
+
+
+void Object::setQuantity(int i_quantity)
+{
+  CONTRACT_EXPECT(d_prototype.isStackable);
+  d_quantity = i_quantity;
+  CONTRACT_ENSURE(d_quantity >= 0);
+}
+
+void Object::addQuantity(int i_delta)
+{
+  CONTRACT_EXPECT(d_prototype.isStackable);
+  d_quantity += i_delta;
+  CONTRACT_ENSURE(d_quantity >= 0);
+}
+
+int Object::getQuantity() const
+{
+  return d_quantity;
 }

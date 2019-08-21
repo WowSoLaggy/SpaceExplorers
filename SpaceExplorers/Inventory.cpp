@@ -217,7 +217,7 @@ std::optional<int> Inventory::getObjectIndex(ObjectPtr i_object) const
 {
   for (int i = 0; i < SlotsCount; ++i)
   {
-    if (d_items[i] && d_items[i] == i_object)
+    if (d_items[i] && d_items[i]->canBeStackedWith(i_object))
       return i;
   }
 

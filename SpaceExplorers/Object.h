@@ -25,6 +25,8 @@ public:
   virtual void render(Dx::IRenderer2d& i_renderer) const;
 
   virtual bool isAvatar() const { return false; }
+ 
+  bool canBeStackedWith(ObjectPtr i_object) const;
 
   void setPosition(Sdk::Vector2I i_position);
   const Sdk::Vector2I& getPosition() const { return d_position; }
@@ -33,6 +35,10 @@ public:
   const std::string& getName() const { return d_name; }
 
   const Sdk::RectI& getRect() const { return d_rect; }
+
+  void setQuantity(int i_quantity);
+  void addQuantity(int i_delta);
+  int getQuantity() const;
 
 protected:
   Dx::IResourceController& d_resourceController;
@@ -43,10 +49,9 @@ protected:
   Sdk::RectI d_rect;
 
   std::string d_name;
+  int d_quantity = 1;
 
 public:
   virtual void writeTo(std::ostream& io_stream) const;
   virtual void readFrom(std::istream& io_stream);
 };
-
-using ObjectPtr = std::shared_ptr<Object>;

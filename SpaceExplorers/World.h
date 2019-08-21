@@ -32,7 +32,7 @@ public:
   void render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) const;
 
   void createStructureAt(const StructurePrototype& i_prototype, const Sdk::Vector2I& i_coords);
-  void createObjectAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords);
+  void createObjectAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name = "");
   void createAvatarAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name);
 
   void setBackground(const std::string& i_backgroundTextureFilename,
