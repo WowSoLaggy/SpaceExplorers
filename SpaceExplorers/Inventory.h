@@ -43,6 +43,7 @@ private:
   static void CheckIndex(int i_index);
 
   Dx::IResourceController& d_resourceController;
+  const Dx::IFontResource& d_fontResource;
 
   Sdk::Vector2I d_position;
   std::vector<Dx::Sprite> d_gridSprites;

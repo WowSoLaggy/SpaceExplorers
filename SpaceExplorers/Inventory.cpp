@@ -2,6 +2,7 @@
 #include "Inventory.h"
 
 #include "Prototypes.h"
+#include "SettingsProvider.h"
 
 #include <LaggyDx/ImageDescription.h>
 #include <LaggyDx/ITextureResource.h>
@@ -12,6 +13,7 @@
 
 Inventory::Inventory(Dx::IResourceController& i_resourceController)
   : d_resourceController(i_resourceController)
+  , d_fontResource(i_resourceController.getFontResource(SettingsProvider::getDefaultInternalSettings().defaultFontName))
 {
   d_items.resize(SlotsCount, nullptr);
   recreateSprites();
@@ -34,6 +36,16 @@ void Inventory::render(Dx::IRenderer2d& i_renderer) const
   // Selection
   if (hasSelection())
     i_renderer.renderSprite(d_selectionSprite);
+
+  // Quantity
+  for (int i = 0; i < SlotsCount; ++i)
+  {
+    if (!d_items[i])
+      continue;
+    
+    i_renderer.renderText(std::to_string(d_items[i]->getQuantity()), d_fontResource, d_itemSprites[i].getPosition());
+  }
+
 
   i_renderer.setTranslation(initTranslation);
 }
