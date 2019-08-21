@@ -41,10 +41,10 @@ public:
   const Tile* getTile(const Sdk::Vector2I& i_coords) const;
   Tile& getOrCreateTile(const Sdk::Vector2I& i_coords);
 
-  Object& getAvatar(const std::string& i_name) { return *d_avatars.at(i_name); }
-  const Object& getAvatar(const std::string& i_name) const { return *d_avatars.at(i_name); }
-  ObjectPtr& getAvatarPtr(const std::string& i_name) { return d_avatars.at(i_name); }
-  const ObjectPtr& getAvatarPtr(const std::string& i_name) const { return d_avatars.at(i_name); }
+  Object getAvatar(const std::string& i_name) { return *d_avatars.at(i_name); }
+  const Object getAvatar(const std::string& i_name) const { return *d_avatars.at(i_name); }
+  ObjectPtr getAvatarPtr(const std::string& i_name) { return d_avatars.at(i_name); }
+  const ObjectPtr getAvatarPtr(const std::string& i_name) const { return d_avatars.at(i_name); }
 
 private:
   Dx::IResourceController& d_resourceController;
