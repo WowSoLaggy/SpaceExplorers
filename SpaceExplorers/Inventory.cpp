@@ -120,6 +120,12 @@ void Inventory::CheckIndex(int i_index)
 }
 
 
+void Inventory::resetAllItems()
+{
+  for (int i = 0; i < SlotsCount; ++i)
+    resetItem(i);
+}
+
 void Inventory::resetItem(int i_index)
 {
   CheckIndex(i_index);

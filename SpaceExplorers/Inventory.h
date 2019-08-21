@@ -20,6 +20,7 @@ public:
   void setPosition(Sdk::Vector2I i_position) { d_position = std::move(i_position); }
   virtual Sdk::Vector2I getSize() const override;
 
+  void resetAllItems();
   void resetItem(int i_index);
   void setItem(int i_index, const StructurePrototype& i_prototype);
   const StructurePrototype* getItem(int i_index) const;
