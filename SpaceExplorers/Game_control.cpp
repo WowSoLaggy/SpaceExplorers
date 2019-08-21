@@ -1,7 +1,36 @@
 #include "stdafx.h"
 #include "Game.h"
 
+#include "Inventory.h"
+#include "PrototypesCollection.h"
+
 #include <LaggySdk/Contracts.h>
+
+
+namespace
+{
+  void setFreeModeInventory(Gui& io_gui)
+  {
+    auto inventory = std::dynamic_pointer_cast<Inventory>(io_gui.getControl("Inventory"));
+    CONTRACT_ASSERT(inventory);
+
+    inventory->resetAllItems();
+
+    inventory->setItem(0, PrototypesCollection::getStructure("Lattice"));
+    inventory->setItem(1, PrototypesCollection::getStructure("Floor"));
+    inventory->setItem(2, PrototypesCollection::getStructure("Wall"));
+    inventory->setItem(3, PrototypesCollection::getStructure("Door"));
+  }
+
+  void setAvatarInventory(Gui& io_gui, const Object& i_object)
+  {
+    auto inventory = std::dynamic_pointer_cast<Inventory>(io_gui.getControl("Inventory"));
+    CONTRACT_ASSERT(inventory);
+
+    inventory->resetAllItems();
+  }
+
+} // anonymous NS
 
 
 void Game::switchControlMode()
@@ -22,6 +51,7 @@ void Game::onControlAvatar()
   CONTRACT_ASSERT(d_avatar);
 
   lookAtAvatar();
+  setAvatarInventory(d_gui, *d_avatar);
 }
 
 void Game::onControlCamera()
@@ -30,6 +60,11 @@ void Game::onControlCamera()
 
   if (d_avatar)
     d_avatar.reset();
+
+  onUnselectInventory();
+  if (isInRemovalMode())
+    onExitRemovalMode();
+  setFreeModeInventory(d_gui);
 }
 
 void Game::lookAtAvatar()

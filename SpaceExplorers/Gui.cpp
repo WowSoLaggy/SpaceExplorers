@@ -89,5 +89,12 @@ void Gui::clearControls()
 
 IGuiControlPtr Gui::getControl(const std::string& i_name)
 {
-  return d_guiControls.at(i_name);
+  if (auto it = d_guiControls.find(i_name); it != d_guiControls.end())
+    return it->second;
+
+  const auto it = std::find_if(d_controlsToAdd.cbegin(), d_controlsToAdd.cend(), [&](const IGuiControlPtr& i_control) {
+    return i_control->getName() == i_name;
+  });
+
+  return *it;
 }
