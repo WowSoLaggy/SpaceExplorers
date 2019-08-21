@@ -38,14 +38,6 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
   if (currentKeys.S)
     moveDown();
 
-  if (pressedKeys.R)
-  {
-    if (isInRemovalMode())
-      onExitRemovalMode();
-    else
-      onEnterRemovalMode();
-  }
-
   if (pressedKeys.D1)
     onSelectInventory(0);
   else if (pressedKeys.D2)
@@ -107,20 +99,7 @@ void Game::onMouseClick(Dx::MouseKey i_button)
     return;
 
   if (i_button == Dx::MouseKey::Left)
-  {
-    if (isInBuildMode())
-      tryBuild();
-    else if (isInRemovalMode())
-      tryRemove();
-    else
-      tryInteract();
-  }
-  else if (i_button == Dx::MouseKey::Right)
-  {
-    onUnselectInventory();
-    if (isInRemovalMode())
-      onExitRemovalMode();
-  }
+    tryInteract();
 }
 
 void Game::onMouseRelease(Dx::MouseKey i_button)
@@ -131,9 +110,4 @@ void Game::onMouseRelease(Dx::MouseKey i_button)
 void Game::onMouseMove()
 {
   d_gui.onMouseMove(d_gui.getCursor().getPosition());
-
-  if (isInBuildMode())
-    updateBuildMode();
-  else if (isInRemovalMode())
-    updateRemovalMode();
 }

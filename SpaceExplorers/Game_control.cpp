@@ -16,10 +16,12 @@ namespace
 
     inventory->resetAllItems();
 
-    inventory->setItem(0, PrototypesCollection::getStructure("Lattice"));
+    // TODO: ae Free build mode objects
+    // e.g. infinite of all types
+    /*inventory->setItem(0, PrototypesCollection::getStructure("Lattice"));
     inventory->setItem(1, PrototypesCollection::getStructure("Floor"));
     inventory->setItem(2, PrototypesCollection::getStructure("Wall"));
-    inventory->setItem(3, PrototypesCollection::getStructure("Door"));
+    inventory->setItem(3, PrototypesCollection::getStructure("Door"));*/
   }
 
   void setAvatarInventory(Gui& io_gui, const Object& i_object)
@@ -62,8 +64,6 @@ void Game::onControlCamera()
     d_avatar.reset();
 
   onUnselectInventory();
-  if (isInRemovalMode())
-    onExitRemovalMode();
   setFreeModeInventory(d_gui);
 }
 
@@ -103,4 +103,24 @@ void Game::moveDown()
     d_avatar->moveDown();
   else
     d_camera.moveDown();
+}
+
+
+void Game::onSelectInventory(int i_index)
+{
+  auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
+  CONTRACT_EXPECT(inventory);
+
+  if (inventory->getSelectedIndex() == i_index)
+    onUnselectInventory();
+  else
+    inventory->selectItem(i_index);
+}
+
+void Game::onUnselectInventory()
+{
+  auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
+  CONTRACT_EXPECT(inventory);
+
+  inventory->unselectItem();
 }

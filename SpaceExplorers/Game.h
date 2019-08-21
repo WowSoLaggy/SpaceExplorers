@@ -97,39 +97,6 @@ private:
   void tryPickup(Avatar& io_avatar, ObjectPtr io_object);
 
   //
-  // BUILD MODE
-  //
-
-  const StructurePrototype* d_buildStructure = nullptr;
-  Dx::Sprite d_buildSprite;
-
-  bool isInBuildMode() const;
-
-  void onEnterBuildMode(const StructurePrototype& i_buildStructure);
-  void onExitBuildMode();
-  
-  void updateBuildMode();
-  bool canBuild() const;
-
-  void tryBuild();
-
-  //
-  // REMOVAL MODE
-  //
-
-  bool isInRemovalMode() const;
-  bool d_isRemovalMode = false;
-  StructurePtr d_structToRemove;
-
-  void onEnterRemovalMode();
-  void onExitRemovalMode();
-
-  void updateRemovalMode();
-  StructurePtr getStructToRemove() const;
-
-  void tryRemove();
-
-  //
   // CONTROL
   //
 

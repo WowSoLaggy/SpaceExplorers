@@ -163,7 +163,6 @@
     <ClCompile Include="Door_save.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_control.cpp" />
-    <ClCompile Include="Game_build.cpp" />
     <ClCompile Include="Game_input.cpp" />
     <ClCompile Include="Game_interact.cpp" />
     <ClCompile Include="Game_save.cpp" />

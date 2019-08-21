@@ -79,11 +79,6 @@ void Gui::showIngameGui()
   auto inventory = createInventory("Inventory");
   const auto inventorySize = inventory->getSize();
   inventory->setPosition({ (d_clientSize.x - inventorySize.x) / 2, d_clientSize.y - inventorySize.y });
-
-  inventory->setItem(0, PrototypesCollection::getStructure("Lattice"));
-  inventory->setItem(1, PrototypesCollection::getStructure("Floor"));
-  inventory->setItem(2, PrototypesCollection::getStructure("Wall"));
-  inventory->setItem(3, PrototypesCollection::getStructure("Door"));
 }
 
 

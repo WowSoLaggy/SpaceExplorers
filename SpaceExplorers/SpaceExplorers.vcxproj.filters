@@ -102,9 +102,6 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>src\Gui\GuiControls</Filter>
     </ClCompile>
-    <ClCompile Include="Game_build.cpp">
-      <Filter>src\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game_interact.cpp">
       <Filter>src\Game</Filter>
     </ClCompile>
