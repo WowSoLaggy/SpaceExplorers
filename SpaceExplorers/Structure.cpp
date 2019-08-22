@@ -35,7 +35,7 @@ void Structure::render(Dx::IRenderer2d& i_renderer) const
 }
 
 
-void Structure::interact(const Actions i_action)
+void Structure::interact(const Action i_action)
 {
   // nop
 }

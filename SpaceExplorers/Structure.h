@@ -22,7 +22,7 @@ public:
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
 
-  virtual void interact(Actions i_action = Actions::Default);
+  virtual void interact(Action i_action = Action::Default);
   virtual bool isPassable() const;
 
   bool isTransparent() const;

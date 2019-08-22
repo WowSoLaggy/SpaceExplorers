@@ -43,28 +43,28 @@ const Dx::AnimatedSprite& Door::getAnimatedSprite() const
 }
 
 
-Actions Door::getDefaultAction() const
+Action Door::getDefaultAction() const
 {
   if (d_state == State::Closed)
-    return Actions::Open;
+    return Action::Open;
   else if (d_state == State::Open)
-    return Actions::Close;
+    return Action::Close;
 
-  return Actions::None;
+  return Action::None;
 }
 
-void Door::interact(Actions i_action)
+void Door::interact(Action i_action)
 {
-  if (i_action == Actions::None)
+  if (i_action == Action::None)
     return;
-  else if (i_action == Actions::Default)
+  else if (i_action == Action::Default)
   {
     auto defaultAction = getDefaultAction();
-    CONTRACT_EXPECT(defaultAction != Actions::Default);
+    CONTRACT_EXPECT(defaultAction != Action::Default);
     interact(defaultAction);
     return;
   }
-  else if (i_action == Actions::Open)
+  else if (i_action == Action::Open)
   {
     if (d_state == State::Closed)
     {
@@ -72,7 +72,7 @@ void Door::interact(Actions i_action)
       d_state = State::Opening;
     }
   }
-  else if (i_action == Actions::Close)
+  else if (i_action == Action::Close)
   {
     if (d_state == State::Open)
     {
