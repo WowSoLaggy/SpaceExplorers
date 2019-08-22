@@ -7,34 +7,6 @@
 #include <LaggySdk/Contracts.h>
 
 
-namespace
-{
-  void setFreeModeInventory(Gui& io_gui)
-  {
-    auto inventory = std::dynamic_pointer_cast<Inventory>(io_gui.getControl("Inventory"));
-    CONTRACT_ASSERT(inventory);
-
-    inventory->resetAllItems();
-
-    // TODO: ae Free build mode objects
-    // e.g. infinite of all types
-    /*inventory->setItem(0, PrototypesCollection::getStructure("Lattice"));
-    inventory->setItem(1, PrototypesCollection::getStructure("Floor"));
-    inventory->setItem(2, PrototypesCollection::getStructure("Wall"));
-    inventory->setItem(3, PrototypesCollection::getStructure("Door"));*/
-  }
-
-  void setAvatarInventory(Gui& io_gui, const Object& i_object)
-  {
-    auto inventory = std::dynamic_pointer_cast<Inventory>(io_gui.getControl("Inventory"));
-    CONTRACT_ASSERT(inventory);
-
-    inventory->resetAllItems();
-  }
-
-} // anonymous NS
-
-
 void Game::switchControlMode()
 {
   CONTRACT_EXPECT(d_world);
@@ -53,7 +25,7 @@ void Game::onControlAvatar()
   CONTRACT_ASSERT(d_avatar);
 
   lookAtAvatar();
-  setAvatarInventory(d_gui, *d_avatar);
+  setAvatarInventory();
 }
 
 void Game::onControlCamera()
@@ -64,12 +36,39 @@ void Game::onControlCamera()
     d_avatar.reset();
 
   onUnselectInventory();
-  setFreeModeInventory(d_gui);
+  setFreeModeInventory();
 }
 
 void Game::lookAtAvatar()
 {
   d_camera.setLookAt(d_avatar->getPosition());
+}
+
+void Game::setFreeModeInventory()
+{
+  d_gui.deleteControl("Inventory");
+
+  // TODO: ae Free build mode objects
+  // e.g. infinite of all types
+  /*inventory->setItem(0, PrototypesCollection::getStructure("Lattice"));
+  inventory->setItem(1, PrototypesCollection::getStructure("Floor"));
+  inventory->setItem(2, PrototypesCollection::getStructure("Wall"));
+  inventory->setItem(3, PrototypesCollection::getStructure("Door"));*/
+}
+
+void Game::setAvatarInventory()
+{
+  CONTRACT_EXPECT(d_avatar);
+
+  d_gui.deleteControl("Inventory");
+
+  auto& container = d_avatar->getInventory();
+  auto inventory = d_gui.createInventory(container, container.getSize(), 1, "Inventory");
+  inventory->connect();
+
+  const auto inventorySize = inventory->getSize();
+  auto clientSize = d_camera.getViewport().size();
+  inventory->setPosition({ (clientSize.x - inventorySize.x) / 2, clientSize.y - inventorySize.y });
 }
 
 
@@ -109,7 +108,8 @@ void Game::moveDown()
 void Game::onSelectInventory(int i_index)
 {
   auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
-  CONTRACT_ASSERT(inventory);
+  if (!inventory)
+    return;
 
   if (inventory->getSelectedIndex() == i_index)
     onUnselectInventory();
@@ -120,7 +120,8 @@ void Game::onSelectInventory(int i_index)
 void Game::onUnselectInventory()
 {
   auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
-  CONTRACT_ASSERT(inventory);
+  if (!inventory)
+    return;
 
   inventory->unselectItem();
 }
@@ -128,6 +129,8 @@ void Game::onUnselectInventory()
 
 void Game::tryDrop()
 {
+  CONTRACT_EXPECT(d_avatar);
+
   auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
   CONTRACT_ASSERT(inventory);
 
@@ -141,7 +144,7 @@ void Game::tryDrop()
   newObj->setQuantity(1);
 
   if (item->getQuantity() <= 1)
-    inventory->resetItem(*inventory->getSelectedIndex());
+    d_avatar->getInventory().resetItem(*inventory->getSelectedIndex());
   else
     item->addQuantity(-1);
 }

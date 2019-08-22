@@ -116,13 +116,15 @@ ObjectPtr World::createObjectAt(const ObjectPrototype& i_prototype, Sdk::Vector2
   return objectPtr;
 }
 
-void World::createAvatarAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name)
+AvatarPtr World::createAvatarAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name)
 {
   auto objectPtr = std::make_shared<Avatar>(d_resourceController, *this, i_prototype);
   objectPtr->setPosition(std::move(i_coords));
   objectPtr->setName(std::move(i_name));
   
-  d_avatars.insert({ objectPtr->getName(), std::move(objectPtr) });
+  d_avatars.insert({ objectPtr->getName(), objectPtr });
+
+  return objectPtr;
 }
 
 

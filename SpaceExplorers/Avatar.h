@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Container.h"
 #include "Object.h"
 
 
@@ -19,12 +20,17 @@ public:
   void moveUp();
   void moveDown();
 
+  Container& getInventory() { return d_inventory; }
+  const Container& getInventory() const { return d_inventory; }
+
 private:
   const int MoveSpeed = 256;
 
 private:
   int d_moveXSign = 0;
   int d_moveYSign = 0;
+
+  Container d_inventory;
 
   void updateMovement(double i_dt);
   void updateMoveAnimation();

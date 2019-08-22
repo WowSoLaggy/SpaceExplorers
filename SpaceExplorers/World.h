@@ -33,7 +33,7 @@ public:
 
   void createStructureAt(const StructurePrototype& i_prototype, const Sdk::Vector2I& i_coords);
   ObjectPtr createObjectAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name = "");
-  void createAvatarAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name);
+  AvatarPtr createAvatarAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name);
 
   void setBackground(const std::string& i_backgroundTextureFilename,
                      Sdk::Vector2I i_backgroundSize);

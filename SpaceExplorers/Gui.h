@@ -29,6 +29,9 @@ public:
   void showIngameGui();
 
   std::shared_ptr<Label> createLabel(const std::string& i_name = "");
+  std::shared_ptr<Inventory> createInventory(Container& io_container, int i_sizeX, int i_sizeY,
+                                             const std::string& i_name = "");
+
   IGuiControlPtr getControl(const std::string& i_name);
   void deleteControl(IGuiControlPtr i_guiControl);
   void deleteControl(const std::string& i_name);
@@ -53,6 +56,5 @@ private:
   void addControl(IGuiControlPtr i_control, const std::string& i_name);
 
   std::shared_ptr<Panel> createPanel(const std::string& i_name = "");
-  std::shared_ptr<Inventory> createInventory(const std::string& i_name = "");
   std::shared_ptr<Button> createButton(const std::string& i_name = "");
 };

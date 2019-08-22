@@ -96,7 +96,8 @@ std::unique_ptr<World> World::createTestWorld(
   ///
 
 
-  world->createAvatarAt(PrototypesCollection::getObject("Man"), { -32, -32 }, "Tom");
+  auto tom = world->createAvatarAt(PrototypesCollection::getObject("Man"), { -32, -32 }, "Tom");
+  tom->getInventory().setSize(8);
 
   world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -64 });
   world->createObjectAt(PrototypesCollection::getObject("Rods"), { -134, -64 });

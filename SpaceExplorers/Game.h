@@ -110,6 +110,8 @@ private:
   void onControlAvatar();
   void onControlCamera();
   void lookAtAvatar();
+  void setAvatarInventory();
+  void setFreeModeInventory();
 
   void moveLeft();
   void moveRight();

@@ -26,17 +26,9 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
   if (!d_world)
     return;
 
+
   if (pressedKeys.C)
     switchControlMode();
-
-  if (currentKeys.A)
-    moveLeft();
-  if (currentKeys.D)
-    moveRight();
-  if (currentKeys.W)
-    moveUp();
-  if (currentKeys.S)
-    moveDown();
 
   if (pressedKeys.D1)
     onSelectInventory(0);
@@ -57,6 +49,18 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
 
   if (pressedKeys.Add)
     onSaveGame();
+
+  if (currentKeys.A)
+    moveLeft();
+  if (currentKeys.D)
+    moveRight();
+  if (currentKeys.W)
+    moveUp();
+  if (currentKeys.S)
+    moveDown();
+
+  if (!isControlAvatar())
+    return;
 
   if (pressedKeys.Q)
     tryDrop();

@@ -96,5 +96,5 @@ IGuiControlPtr Gui::getControl(const std::string& i_name)
     return i_control->getName() == i_name;
   });
 
-  return *it;
+  return it != d_controlsToAdd.cend() ? *it : nullptr;
 }

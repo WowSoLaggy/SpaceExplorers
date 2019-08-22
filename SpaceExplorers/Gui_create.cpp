@@ -76,9 +76,10 @@ void Gui::showMainMenu()
 
 void Gui::showIngameGui()
 {
-  auto inventory = createInventory("Inventory");
+  // TODO: ae Nothing here so far
+  /*auto inventory = createInventory("Inventory");
   const auto inventorySize = inventory->getSize();
-  inventory->setPosition({ (d_clientSize.x - inventorySize.x) / 2, d_clientSize.y - inventorySize.y });
+  inventory->setPosition({ (d_clientSize.x - inventorySize.x) / 2, d_clientSize.y - inventorySize.y });*/
 }
 
 
@@ -96,9 +97,10 @@ std::shared_ptr<Panel> Gui::createPanel(const std::string& i_name /*= ""*/)
   return control;
 }
 
-std::shared_ptr<Inventory> Gui::createInventory(const std::string& i_name /*= ""*/)
+std::shared_ptr<Inventory> Gui::createInventory(Container& io_container, int i_sizeX, int i_sizeY,
+                                                const std::string& i_name /*= ""*/)
 {
-  auto control = std::make_shared<Inventory>(d_resourceController);
+  auto control = std::make_shared<Inventory>(d_resourceController, io_container, i_sizeX, i_sizeY);
   addControl(control, i_name.empty() ? randStr() : i_name);
   return control;
 }
