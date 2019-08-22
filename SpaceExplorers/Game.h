@@ -54,6 +54,7 @@ private:
 
   Sdk::Vector2I cursorToTile() const;
   Sdk::Vector2I cursorToWorld() const;
+  ObjectPtr getSelectedTool() const;
 
   State d_state = State::NotLoaded;
   std::future<void> loadResourcesResult;
