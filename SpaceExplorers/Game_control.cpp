@@ -126,6 +126,32 @@ void Game::onUnselectInventory()
 }
 
 
+void Game::tryInteract()
+{
+  if (d_avatar)
+  {
+    if (auto obj = d_world->getObjectAt(cursorToWorld()))
+    {
+      auto selectedTool = getSelectedTool();
+      Action action = selectedTool ? Action::None : Action::Pickup;
+      d_avatar->interact(action, obj, selectedTool);
+      return;
+    }
+  }
+
+  const auto tileCoords = cursorToTile();
+
+  auto* tile = d_world->getTile(tileCoords);
+  if (!tile)
+    return;
+
+  auto structure = tile->getTopStructure();
+  if (!structure)
+    return;
+
+  structure->interact();
+}
+
 void Game::tryDrop()
 {
   CONTRACT_EXPECT(d_avatar);
