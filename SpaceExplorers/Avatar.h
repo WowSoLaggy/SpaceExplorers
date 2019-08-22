@@ -9,7 +9,7 @@ class Avatar : public Object
 public:
   Avatar(
     Dx::IResourceController& i_resourceController,
-    const World& i_world, const ObjectPrototype& i_prototype);
+    World& i_world, const ObjectPrototype& i_prototype);
 
   virtual void update(double i_dt) override;
 

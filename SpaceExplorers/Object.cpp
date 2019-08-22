@@ -14,7 +14,7 @@
 
 Object::Object(
   Dx::IResourceController& i_resourceController,
-  const World& i_world, const ObjectPrototype& i_prototype)
+  World& i_world, const ObjectPrototype& i_prototype)
   : d_resourceController(i_resourceController)
   , d_world(i_world)
   , d_prototype(i_prototype)

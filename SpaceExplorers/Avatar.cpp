@@ -7,7 +7,7 @@
 
 Avatar::Avatar(
   Dx::IResourceController& i_resourceController,
-  const World& i_world, const ObjectPrototype& i_prototype)
+  World& i_world, const ObjectPrototype& i_prototype)
   : Object(i_resourceController, i_world, i_prototype)
 {
 }

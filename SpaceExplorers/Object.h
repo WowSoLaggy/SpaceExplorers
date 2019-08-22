@@ -17,7 +17,7 @@ class Object
 public:
   Object(
     Dx::IResourceController& i_resourceController,
-    const World& i_world, const ObjectPrototype& i_prototype);
+    World& i_world, const ObjectPrototype& i_prototype);
 
   const ObjectPrototype& getPrototype() const { return d_prototype; }
 
@@ -42,7 +42,7 @@ public:
 
 protected:
   Dx::IResourceController& d_resourceController;
-  const World& d_world;
+  World& d_world;
   const ObjectPrototype& d_prototype;
   Dx::AnimatedSprite d_sprite;
   Sdk::Vector2I d_position;

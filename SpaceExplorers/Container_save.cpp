@@ -20,7 +20,7 @@ void Container::writeTo(std::ostream& io_stream) const
   }
 }
 
-void Container::readFrom(std::istream& io_stream, Dx::IResourceController& i_resouceContoller, const World& i_world)
+void Container::readFrom(std::istream& io_stream, Dx::IResourceController& i_resouceContoller, World& i_world)
 {
   int size;
   Sdk::read(io_stream, size);

@@ -26,7 +26,7 @@ StructurePtr readStructureFrom(std::istream& io_stream,
 
 ObjectPtr readObjectFrom(std::istream& io_stream,
                          Dx::IResourceController& i_resourceController,
-                         const World& i_world)
+                         World& i_world)
 {
   const auto prototypeName = Sdk::readString(io_stream);
   const auto& prototype = PrototypesCollection::getObject(prototypeName);
@@ -39,7 +39,7 @@ ObjectPtr readObjectFrom(std::istream& io_stream,
 
 AvatarPtr readAvatarFrom(std::istream& io_stream,
                          Dx::IResourceController& i_resourceController,
-                         const World& i_world)
+                         World& i_world)
 {
   const auto prototypeName = Sdk::readString(io_stream);
   const auto& prototype = PrototypesCollection::getObject(prototypeName);

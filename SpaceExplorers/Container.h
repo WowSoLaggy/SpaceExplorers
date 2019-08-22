@@ -30,5 +30,5 @@ private:
 
 public:
   void writeTo(std::ostream& io_stream) const;
-  void readFrom(std::istream& io_stream, Dx::IResourceController& i_resouceContoller, const World& i_world);
+  void readFrom(std::istream& io_stream, Dx::IResourceController& i_resouceContoller, World& i_world);
 };

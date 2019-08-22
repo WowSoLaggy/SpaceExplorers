@@ -32,7 +32,7 @@ public:
   std::shared_ptr<Inventory> createInventory(Container& io_container, int i_sizeX, int i_sizeY,
                                              const std::string& i_name = "");
 
-  IGuiControlPtr getControl(const std::string& i_name);
+  IGuiControlPtr getControl(const std::string& i_name) const;
   void deleteControl(IGuiControlPtr i_guiControl);
   void deleteControl(const std::string& i_name);
 
