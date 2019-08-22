@@ -32,6 +32,7 @@ public:
 
 private:
   int d_maxSpeed = 256;
+  int d_interactionDistSq = 96 * 96;
 
   int d_moveXSign = 0;
   int d_moveYSign = 0;
