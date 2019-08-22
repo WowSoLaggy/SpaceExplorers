@@ -110,18 +110,44 @@ void Avatar::updateMoveAnimation()
 }
 
 
-void Avatar::interact(Action i_action /*= Action::Default*/, ObjectPtr io_object /*= nullptr*/,
+void Avatar::interact(Action i_action /*= Action::Default*/, ThingPtr io_object /*= nullptr*/,
                       ObjectPtr i_tool /*= nullptr*/, const Sdk::Vector2I& i_where /*= Sdk::Vector2I::zero()*/)
 {
   CONTRACT_EXPECT(!i_tool || !i_tool->isAvatar());
 
-  if (i_action == Action::Pickup)
+  if (i_action == Action::Default)
   {
-    if (io_object && !io_object->isAvatar() && d_inventory.tryAddObject(io_object))
-      d_world.deleteObject(io_object);
+    if (!io_object || i_tool)
+      return;
+
+    if (io_object->isStructure())
+    {
+      auto structure = std::dynamic_pointer_cast<Structure>(io_object);
+      CONTRACT_ASSERT(structure);
+
+      if ((structure->getCoords() - d_position).lengthSq() <= d_interactionDistSq)
+        structure->interact(i_action);
+    }
+  }
+  else if (i_action == Action::Pickup)
+  {
+    if (!io_object || !io_object->isObject())
+      return;
+
+    auto obj = std::dynamic_pointer_cast<Object>(io_object);
+    CONTRACT_ASSERT(obj);
+
+    if ((obj->getPosition() - d_position).lengthSq() > d_interactionDistSq)
+      return;
+    
+    if (d_inventory.tryAddObject(obj))
+      d_world.deleteObject(obj);
   }
   else if (i_action == Action::Drop)
   {
+    if ((i_where - d_position).lengthSq() > d_interactionDistSq)
+      return;
+
     auto newObj = d_world.createObjectAt(i_tool->getPrototype(), i_where, i_tool->getName());
     newObj->setQuantity(1);
 

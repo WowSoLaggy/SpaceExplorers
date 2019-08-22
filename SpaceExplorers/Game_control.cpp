@@ -149,7 +149,10 @@ void Game::tryInteract()
   if (!structure)
     return;
 
-  structure->interact();
+  if (d_avatar)
+    d_avatar->interact(Action::Default, structure, getSelectedTool());
+  else
+    structure->interact();
 }
 
 void Game::tryDrop()

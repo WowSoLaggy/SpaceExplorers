@@ -24,7 +24,7 @@ public:
   void moveUp();
   void moveDown();
 
-  void interact(Action i_action = Action::Default, ObjectPtr io_object = nullptr,
+  void interact(Action i_action = Action::Default, ThingPtr io_object = nullptr,
                 ObjectPtr i_tool = nullptr, const Sdk::Vector2I& i_where = Sdk::Vector2I::zero());
 
   Container& getInventory() { return d_inventory; }
