@@ -124,3 +124,24 @@ void Game::onUnselectInventory()
 
   inventory->unselectItem();
 }
+
+
+void Game::tryDrop()
+{
+  auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
+  CONTRACT_ASSERT(inventory);
+
+  auto item = inventory->getSelectedItem();
+  if (!item)
+    return;
+
+  CONTRACT_ASSERT(item->getQuantity() > 0);
+
+  auto newObj = d_world->createObjectAt(item->getPrototype(), cursorToWorld(), item->getName());
+  newObj->setQuantity(1);
+
+  if (item->getQuantity() <= 1)
+    inventory->resetItem(*inventory->getSelectedIndex());
+  else
+    item->addQuantity(-1);
+}

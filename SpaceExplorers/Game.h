@@ -95,6 +95,7 @@ private:
 
   void tryInteract();
   void tryPickup(Avatar& io_avatar, ObjectPtr io_object);
+  void tryDrop();
 
   //
   // CONTROL

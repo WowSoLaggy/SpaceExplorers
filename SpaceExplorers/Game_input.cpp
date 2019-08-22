@@ -57,6 +57,9 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
 
   if (pressedKeys.Add)
     onSaveGame();
+
+  if (pressedKeys.Q)
+    tryDrop();
 }
 
 void Game::handleMouse(const Dx::MouseState& i_mouseState)
