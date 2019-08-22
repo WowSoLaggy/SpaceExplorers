@@ -85,5 +85,5 @@ void Door::interact(Action i_action)
 
 bool Door::isPassable() const
 {
-  return d_state == State::Open;
+  return d_state == State::Open || d_state == State::Closing;
 }
