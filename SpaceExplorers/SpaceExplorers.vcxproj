@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Avatar.cpp" />
+    <ClCompile Include="Avatar_save.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Container.cpp" />

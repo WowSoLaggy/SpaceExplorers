@@ -24,9 +24,8 @@ public:
   const Container& getInventory() const { return d_inventory; }
 
 private:
-  const int MoveSpeed = 256;
+  int d_maxSpeed = 256;
 
-private:
   int d_moveXSign = 0;
   int d_moveYSign = 0;
 
@@ -34,6 +33,10 @@ private:
 
   void updateMovement(double i_dt);
   void updateMoveAnimation();
+
+public:
+  virtual void writeTo(std::ostream& io_stream) const override;
+  virtual void readFrom(std::istream& io_stream) override;
 };
 
 using AvatarPtr = std::shared_ptr<Avatar>;

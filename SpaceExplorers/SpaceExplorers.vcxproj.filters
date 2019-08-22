@@ -159,6 +159,9 @@
     <ClCompile Include="Container.cpp">
       <Filter>src\Container</Filter>
     </ClCompile>
+    <ClCompile Include="Avatar_save.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

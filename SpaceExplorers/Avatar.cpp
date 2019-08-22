@@ -72,7 +72,7 @@ void Avatar::updateMovement(double i_dt)
   if (d_moveXSign != 0)
   {
     Sdk::Vector2I diff;
-    diff.x = (int)(MoveSpeed * i_dt * d_moveXSign);
+    diff.x = (int)(d_maxSpeed * i_dt * d_moveXSign);
 
     if (canMove(d_rect, diff))
       setPosition(getPosition() + diff);
@@ -81,7 +81,7 @@ void Avatar::updateMovement(double i_dt)
   if (d_moveYSign != 0)
   {
     Sdk::Vector2I diff;
-    diff.y = (int)(MoveSpeed * i_dt * d_moveYSign);
+    diff.y = (int)(d_maxSpeed * i_dt * d_moveYSign);
 
     if (canMove(d_rect, diff))
       setPosition(getPosition() + diff);
