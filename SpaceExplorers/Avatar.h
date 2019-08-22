@@ -4,6 +4,8 @@
 #include "Container.h"
 #include "Object.h"
 
+#include <LaggySdk/Vector.h>
+
 
 class Avatar : public Object
 {
@@ -21,7 +23,8 @@ public:
   void moveUp();
   void moveDown();
 
-  void interact(Action i_action, ObjectPtr io_object, ObjectPtr i_tool);
+  void interact(Action i_action = Action::Default, ObjectPtr io_object = nullptr,
+                ObjectPtr i_tool = nullptr, const Sdk::Vector2I& i_where = Sdk::Vector2I::zero());
 
   Container& getInventory() { return d_inventory; }
   const Container& getInventory() const { return d_inventory; }

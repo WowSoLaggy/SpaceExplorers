@@ -4,6 +4,8 @@
 #include "Utils.h"
 #include "World.h"
 
+#include <LaggySdk/Contracts.h>
+
 
 Avatar::Avatar(
   Dx::IResourceController& i_resourceController,
@@ -108,11 +110,28 @@ void Avatar::updateMoveAnimation()
 }
 
 
-void Avatar::interact(Action i_action, ObjectPtr io_object, ObjectPtr i_tool)
+void Avatar::interact(Action i_action /*= Action::Default*/, ObjectPtr io_object /*= nullptr*/,
+                      ObjectPtr i_tool /*= nullptr*/, const Sdk::Vector2I& i_where /*= Sdk::Vector2I::zero()*/)
 {
-  if (!io_object || io_object->isAvatar())
-    return;
+  CONTRACT_EXPECT(!i_tool || !i_tool->isAvatar());
 
-  if (i_action == Action::Pickup && d_inventory.tryAddObject(io_object))
-    d_world.deleteObject(io_object);
+  if (i_action == Action::Pickup)
+  {
+    if (io_object && !io_object->isAvatar() && d_inventory.tryAddObject(io_object))
+      d_world.deleteObject(io_object);
+  }
+  else if (i_action == Action::Drop)
+  {
+    auto newObj = d_world.createObjectAt(i_tool->getPrototype(), i_where, i_tool->getName());
+    newObj->setQuantity(1);
+
+    if (i_tool->getQuantity() <= 1)
+    {
+      auto indexOpt = d_inventory.getObjectIndex(i_tool);
+      CONTRACT_ASSERT(indexOpt);
+      d_inventory.resetItem(*indexOpt);
+    }
+    else
+      i_tool->addQuantity(-1);
+  }
 }
