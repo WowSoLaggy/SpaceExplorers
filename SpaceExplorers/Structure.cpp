@@ -20,7 +20,12 @@ Structure::Structure(
   d_sprite = std::make_shared<Dx::Sprite>();
 
   d_sprite->setTexture(&d_resourceController.getTextureResource(d_prototype.textureFileName));
+  
+  auto tileSize = SettingsProvider::getDefaultInternalSettings().tileSize;
   d_sprite->setPosition(d_coordsTile * SettingsProvider::getDefaultInternalSettings().tileSize);
+
+  d_coords = d_coordsTile * tileSize;
+  d_coords += { tileSize / 2, tileSize / 2 };
 }
 
 
@@ -49,6 +54,11 @@ bool Structure::isPassable() const
 bool Structure::isTransparent() const
 {
   return d_sprite->getTexture()->getDescription().alpha;
+}
+
+const Sdk::Vector2I& Structure::getCoords() const
+{
+  return d_coords;
 }
 
 const Sdk::Vector2I& Structure::getCoordsTile() const

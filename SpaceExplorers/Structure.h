@@ -29,6 +29,7 @@ public:
   virtual bool isPassable() const;
 
   bool isTransparent() const;
+  const Sdk::Vector2I& getCoords() const;
   const Sdk::Vector2I& getCoordsTile() const;
 
   void resetColor();
@@ -38,6 +39,7 @@ protected:
   Dx::IResourceController& d_resourceController;
   const StructurePrototype& d_prototype;
   std::shared_ptr<Dx::Sprite> d_sprite;
+  Sdk::Vector2I d_coords;
   Sdk::Vector2I d_coordsTile;
 
 public:
