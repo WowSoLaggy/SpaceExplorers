@@ -162,6 +162,9 @@
     <ClCompile Include="Avatar_save.cpp">
       <Filter>src\World\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Container_save.cpp">
+      <Filter>src\Container</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

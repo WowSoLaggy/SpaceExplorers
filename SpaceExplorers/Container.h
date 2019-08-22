@@ -2,6 +2,7 @@
 
 #include "Fwd.h"
 
+#include <LaggyDx/LaggyDxFwd.h>
 #include <LaggySdk/EventHandler.h>
 
 
@@ -26,4 +27,8 @@ private:
   std::vector<ObjectPtr> d_items;
 
   void checkIndex(int i_index) const;
+
+public:
+  void writeTo(std::ostream& io_stream) const;
+  void readFrom(std::istream& io_stream, Dx::IResourceController& i_resouceContoller, const World& i_world);
 };

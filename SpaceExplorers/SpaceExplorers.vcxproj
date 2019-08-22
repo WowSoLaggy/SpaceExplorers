@@ -160,6 +160,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Container.cpp" />
+    <ClCompile Include="Container_save.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Door_save.cpp" />

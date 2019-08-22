@@ -15,6 +15,8 @@ void Object::writeTo(std::ostream& io_stream) const
   io_stream << d_position;
   
   Sdk::writeString(io_stream, d_name);
+
+  Sdk::write(io_stream, d_quantity);
 }
 
 void Object::readFrom(std::istream& io_stream)
@@ -25,4 +27,6 @@ void Object::readFrom(std::istream& io_stream)
   setPosition(d_position);
 
   d_name = Sdk::readString(io_stream);
+
+  Sdk::read(io_stream, d_quantity);
 }
