@@ -23,12 +23,6 @@ Inventory::Inventory(Dx::IResourceController& i_resourceController, Container& i
   , d_slotsCount(i_sizeX * i_sizeY)
 {
   CONTRACT_EXPECT(d_container.getSize() == d_slotsCount);
-  //connectTo(d_container);
-  recreateSprites();
-}
-
-void Inventory::connect()
-{
   connectTo(d_container);
 }
 

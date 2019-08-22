@@ -18,8 +18,6 @@ public:
   Inventory(Dx::IResourceController& i_resourceController, Container& io_container,
             int i_sizeX, int i_sizeY);
 
-  void connect();
-
   virtual void render(Dx::IRenderer2d& i_renderer) const override;
   virtual void processEvent(const Sdk::IEvent& i_event) override;
 

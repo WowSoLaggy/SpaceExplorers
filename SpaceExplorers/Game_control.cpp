@@ -64,7 +64,6 @@ void Game::setAvatarInventory()
 
   auto& container = d_avatar->getInventory();
   auto inventory = d_gui.createInventory(container, container.getSize(), 1, "Inventory");
-  inventory->connect();
 
   const auto inventorySize = inventory->getSize();
   auto clientSize = d_camera.getViewport().size();
