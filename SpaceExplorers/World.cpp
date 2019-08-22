@@ -104,14 +104,16 @@ void World::createStructureAt(const StructurePrototype& i_prototype, const Sdk::
   d_tilesMap[i_coords].setStructure(i_prototype.layer, structure);
 }
 
-void World::createObjectAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name /*= ""*/)
+ObjectPtr World::createObjectAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name /*= ""*/)
 {
   auto objectPtr = std::make_shared<Object>(d_resourceController, *this, i_prototype);
   objectPtr->setPosition(std::move(i_coords));
 
   objectPtr->setName(!i_name.empty() ? i_name : i_prototype.name);
 
-  d_objects.push_back(std::move(objectPtr));
+  d_objects.push_back(objectPtr);
+
+  return objectPtr;
 }
 
 void World::createAvatarAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name)
