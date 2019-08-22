@@ -46,6 +46,9 @@
     <Filter Include="src\Utils">
       <UniqueIdentifier>{74df05f8-5138-4696-b2bc-b44dcc8a7819}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Container">
+      <UniqueIdentifier>{f4e61616-3206-4d85-a10d-a7f8d4186131}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -153,6 +156,9 @@
     <ClCompile Include="Avatar.cpp">
       <Filter>src\World\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Container.cpp">
+      <Filter>src\Container</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -238,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="Avatar.h">
       <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Container.h">
+      <Filter>src\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Container_events.h">
+      <Filter>src\Container</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

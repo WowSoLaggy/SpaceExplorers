@@ -21,3 +21,5 @@ class Avatar;
 class Object;
 using ObjectPtr = std::shared_ptr<Object>;
 class Structure;
+
+class Container;
