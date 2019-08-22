@@ -49,6 +49,9 @@
     <Filter Include="src\Container">
       <UniqueIdentifier>{f4e61616-3206-4d85-a10d-a7f8d4186131}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\World\Thing">
+      <UniqueIdentifier>{3250c239-d874-4fba-9dc8-1d69131604b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="Container_events.h">
       <Filter>src\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Thing.h">
+      <Filter>src\World\Thing</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

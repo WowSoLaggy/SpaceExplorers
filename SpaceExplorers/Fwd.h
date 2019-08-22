@@ -21,5 +21,8 @@ class Avatar;
 class Object;
 using ObjectPtr = std::shared_ptr<Object>;
 class Structure;
+using StructurePtr = std::shared_ptr<Structure>;
+class Thing;
+using ThingPtr = std::shared_ptr<Thing>;
 
 class Container;

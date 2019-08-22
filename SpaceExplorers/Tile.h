@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Fwd.h"
 #include "Structure.h"
 
 #include <LaggyDx/LaggyDxFwd.h>

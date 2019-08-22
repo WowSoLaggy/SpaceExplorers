@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Fwd.h"
+#include "Thing.h"
 
 #include <LaggyDx/AnimatedSprite.h>
 #include <LaggyDx/LaggyDxFwd.h>
@@ -12,7 +13,7 @@
 #include <string>
 
 
-class Object
+class Object : public Thing
 {
 public:
   Object(
@@ -24,7 +25,7 @@ public:
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
 
-  virtual bool isAvatar() const { return false; }
+  virtual bool isObject() const { return true; }
  
   bool canBeStackedWith(ObjectPtr i_object) const;
 

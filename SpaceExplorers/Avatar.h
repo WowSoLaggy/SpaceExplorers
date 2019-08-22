@@ -16,7 +16,8 @@ public:
 
   virtual void update(double i_dt) override;
 
-  virtual bool isAvatar() const override { return true; }
+  virtual bool isObject() const { return false; }
+  virtual bool isAvatar() const { return true; }
 
   void moveLeft();
   void moveRight();

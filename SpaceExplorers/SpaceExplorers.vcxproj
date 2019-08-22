@@ -207,6 +207,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="ObjectsReader.h" />
+    <ClInclude Include="Thing.h" />
     <ClInclude Include="Traits.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cursor.h" />

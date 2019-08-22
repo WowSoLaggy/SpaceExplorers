@@ -2,6 +2,7 @@
 
 #include "Actions.h"
 #include "Prototypes.h"
+#include "Thing.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
 #include <LaggyDx/Sprite.h>
@@ -11,7 +12,7 @@
 #include <memory>
 
 
-class Structure
+class Structure : public Thing
 {
 public:
   Structure(
@@ -21,6 +22,8 @@ public:
 
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
+
+  virtual bool isStructure() const { return true; }
 
   virtual void interact(Action i_action = Action::Default);
   virtual bool isPassable() const;
@@ -41,5 +44,3 @@ public:
   virtual void writeTo(std::ostream& io_stream) const;
   virtual void readFrom(std::istream& io_stream);
 };
-
-using StructurePtr = std::shared_ptr<Structure>;
