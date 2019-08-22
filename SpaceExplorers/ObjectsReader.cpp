@@ -44,9 +44,9 @@ AvatarPtr readAvatarFrom(std::istream& io_stream,
   const auto prototypeName = Sdk::readString(io_stream);
   const auto& prototype = PrototypesCollection::getObject(prototypeName);
 
-  auto objectPtr = std::make_shared<Avatar>(i_resourceController, i_world, prototype);
-  objectPtr->readFrom(io_stream);
+  auto avatarPtr = std::make_shared<Avatar>(i_resourceController, i_world, prototype);
+  avatarPtr->readFrom(io_stream);
 
-  return objectPtr;
+  return avatarPtr;
 }
 
