@@ -244,7 +244,7 @@ bool Inventory::tryAddObject(ObjectPtr i_object)
   {
     if (index = getObjectIndex(i_object))
     {
-      getItem(*index)->addQuantity(1);
+      getItem(*index)->addQuantity(i_object->getQuantity());
       return true;
     }
   }
