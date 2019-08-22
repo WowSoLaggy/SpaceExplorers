@@ -100,6 +100,8 @@ void Game::onMouseClick(Dx::MouseKey i_button)
 
   if (i_button == Dx::MouseKey::Left)
     tryInteract();
+  else if (i_button == Dx::MouseKey::Right)
+    onUnselectInventory();
 }
 
 void Game::onMouseRelease(Dx::MouseKey i_button)
