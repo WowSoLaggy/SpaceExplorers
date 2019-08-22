@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Inventory.h"
 
+#include "Container.h"
+#include "Container_events.h"
 #include "Prototypes.h"
 #include "SettingsProvider.h"
 
@@ -11,12 +13,23 @@
 #include <LaggySdk/Contracts.h>
 
 
-Inventory::Inventory(Dx::IResourceController& i_resourceController)
+Inventory::Inventory(Dx::IResourceController& i_resourceController, Container& io_container,
+                     int i_sizeX, int i_sizeY)
   : d_resourceController(i_resourceController)
   , d_fontResource(i_resourceController.getFontResource(SettingsProvider::getDefaultInternalSettings().defaultFontName))
+  , d_container(io_container)
+  , d_slotsHor(i_sizeX)
+  , d_slotsVert(i_sizeY)
+  , d_slotsCount(i_sizeX * i_sizeY)
 {
-  d_items.resize(SlotsCount, nullptr);
+  CONTRACT_EXPECT(d_container.getSize() == d_slotsCount);
+  //connectTo(d_container);
   recreateSprites();
+}
+
+void Inventory::connect()
+{
+  connectTo(d_container);
 }
 
 
@@ -38,12 +51,10 @@ void Inventory::render(Dx::IRenderer2d& i_renderer) const
     i_renderer.renderSprite(d_selectionSprite);
 
   // Quantity
-  for (int i = 0; i < SlotsCount; ++i)
+  for (int i = 0; i < d_slotsCount; ++i)
   {
-    if (!d_items[i])
-      continue;
-    
-    i_renderer.renderText(std::to_string(d_items[i]->getQuantity()), d_fontResource, d_itemSprites[i].getPosition());
+    if (const auto item = d_container.getItem(i))
+      i_renderer.renderText(std::to_string(item->getQuantity()), d_fontResource, d_itemSprites[i].getPosition());
   }
 
 
@@ -51,9 +62,16 @@ void Inventory::render(Dx::IRenderer2d& i_renderer) const
 }
 
 
+void Inventory::processEvent(const Sdk::IEvent& i_event)
+{
+  if (const auto* event = dynamic_cast<const SlotChangedEvent*>(&i_event))
+    updateItemSprite(event->getIndex());
+}
+
+
 Sdk::Vector2I Inventory::getSize() const
 {
-  return { CornerSize * 2 + SlotsHor * SlotSize, CornerSize * 2 + SlotsVert * SlotSize };
+  return { CornerSize * 2 + d_slotsHor * SlotSize, CornerSize * 2 + d_slotsVert * SlotSize };
 }
 
 
@@ -74,38 +92,38 @@ void Inventory::recreateSprites()
     &textureTl, { 0, 0 },
     textureTl.getDescription().size(), Sdk::Vector4F::identity() });
   d_gridSprites.emplace_back(Dx::Sprite{
-    &textureTr, { CornerSize + SlotsHor * SlotSize, 0 },
+    &textureTr, { CornerSize + d_slotsHor * SlotSize, 0 },
     textureTr.getDescription().size(), Sdk::Vector4F::identity() });
   d_gridSprites.emplace_back(Dx::Sprite{
-    &textureBl, { 0, CornerSize + SlotsVert * SlotSize },
+    &textureBl, { 0, CornerSize + d_slotsVert * SlotSize },
     textureBl.getDescription().size(), Sdk::Vector4F::identity() });
   d_gridSprites.emplace_back(Dx::Sprite{
-    &textureBr, { CornerSize + SlotsHor * SlotSize, CornerSize + SlotsVert * SlotSize },
+    &textureBr, { CornerSize + d_slotsHor * SlotSize, CornerSize + d_slotsVert * SlotSize },
     textureBr.getDescription().size(), Sdk::Vector4F::identity() });
 
-  for (int i = 0; i < SlotsHor; ++i)
+  for (int i = 0; i < d_slotsHor; ++i)
   {
     d_gridSprites.emplace_back(Dx::Sprite{
       &textureT, { CornerSize + SlotSize * i, 0 },
       textureT.getDescription().size(), Sdk::Vector4F::identity() });
     d_gridSprites.emplace_back(Dx::Sprite{
-      &textureB, { CornerSize + SlotSize * i, CornerSize + SlotsVert * SlotSize },
+      &textureB, { CornerSize + SlotSize * i, CornerSize + d_slotsVert * SlotSize },
       textureB.getDescription().size(), Sdk::Vector4F::identity() });
   }
 
-  for (int i = 0; i < SlotsVert; ++i)
+  for (int i = 0; i < d_slotsVert; ++i)
   {
     d_gridSprites.emplace_back(Dx::Sprite{
       &textureL, { 0, CornerSize + SlotSize * i },
       textureL.getDescription().size(), Sdk::Vector4F::identity() });
     d_gridSprites.emplace_back(Dx::Sprite{
-      &textureR, { CornerSize + SlotSize * SlotsHor, CornerSize + SlotSize * i },
+      &textureR, { CornerSize + SlotSize * d_slotsHor, CornerSize + SlotSize * i },
       textureR.getDescription().size(), Sdk::Vector4F::identity() });
   }
 
-  for (int y = 0; y < SlotsVert; ++y)
+  for (int y = 0; y < d_slotsVert; ++y)
   {
-    for (int x = 0; x < SlotsHor; ++x)
+    for (int x = 0; x < d_slotsHor; ++x)
     {
       d_gridSprites.emplace_back(Dx::Sprite{
         &textureItem, { CornerSize + SlotSize * x, CornerSize + SlotSize * y },
@@ -115,7 +133,7 @@ void Inventory::recreateSprites()
         nullptr, { CornerSize + SlotSize * x + 4, CornerSize + SlotSize * y + 4 },
         textureItem.getDescription().size(), Sdk::Vector4F::identity() });
 
-      updateItemSprite(x + y * SlotsHor);
+      updateItemSprite(x + y * d_slotsHor);
     }
   }
 
@@ -125,47 +143,18 @@ void Inventory::recreateSprites()
 }
 
 
-void Inventory::CheckIndex(int i_index)
+void Inventory::checkIndex(int i_index) const
 {
   CONTRACT_EXPECT(0 <= i_index);
-  CONTRACT_EXPECT(i_index < SlotsCount);
+  CONTRACT_EXPECT(i_index < d_slotsCount);
 }
 
-
-void Inventory::resetAllItems()
-{
-  for (int i = 0; i < SlotsCount; ++i)
-    resetItem(i);
-}
-
-void Inventory::resetItem(int i_index)
-{
-  CheckIndex(i_index);
-
-  d_items.at(i_index) = nullptr;
-  updateItemSprite(i_index);
-}
-
-void Inventory::setItem(int i_index, ObjectPtr i_object)
-{
-  CheckIndex(i_index);
-
-  d_items.at(i_index) = i_object;
-  updateItemSprite(i_index);
-}
-
-ObjectPtr Inventory::getItem(int i_index) const
-{
-  CheckIndex(i_index);
-
-  return d_items.at(i_index);
-}
 
 void Inventory::updateItemSprite(int i_index)
 {
-  CheckIndex(i_index);
+  checkIndex(i_index);
 
-  auto item = d_items.at(i_index);
+  auto item = d_container.getItem(i_index);
   const Dx::ITextureResource* texture = item ?
     &d_resourceController.getTextureResource(item->getPrototype().textureFileName) : nullptr;
 
@@ -175,7 +164,7 @@ void Inventory::updateItemSprite(int i_index)
 
 void Inventory::selectItem(int i_index)
 {
-  CheckIndex(i_index);
+  checkIndex(i_index);
 
   d_selectedIndex = i_index;
   updateSelectionSprite();
@@ -195,7 +184,7 @@ ObjectPtr Inventory::getSelectedItem() const
 {
   if (!d_selectedIndex)
     return nullptr;
-  return d_items.at(*d_selectedIndex);
+  return d_container.getItem(*d_selectedIndex);
 }
 
 bool Inventory::hasSelection() const
@@ -208,54 +197,7 @@ void Inventory::updateSelectionSprite()
   if (!d_selectedIndex)
     return;
 
-  int x = *d_selectedIndex % SlotsHor;
-  int y = *d_selectedIndex / SlotsHor;
+  int x = *d_selectedIndex % d_slotsHor;
+  int y = *d_selectedIndex / d_slotsHor;
   d_selectionSprite.setPosition({ CornerSize + SlotSize * x + 2, CornerSize + SlotSize * y + 2 });
-}
-
-
-std::optional<int> Inventory::getFreeSlot() const
-{
-  for (int i = 0; i < SlotsCount; ++i)
-  {
-    if (!d_items[i])
-      return i;
-  }
-
-  return std::nullopt;
-}
-
-std::optional<int> Inventory::getObjectIndex(ObjectPtr i_object) const
-{
-  for (int i = 0; i < SlotsCount; ++i)
-  {
-    if (d_items[i] && d_items[i]->canBeStackedWith(i_object))
-      return i;
-  }
-
-  return std::nullopt;
-}
-
-
-bool Inventory::tryAddObject(ObjectPtr i_object)
-{
-  std::optional<int> index;
-  if (i_object->getPrototype().isStackable)
-  {
-    if (index = getObjectIndex(i_object))
-    {
-      getItem(*index)->addQuantity(i_object->getQuantity());
-      return true;
-    }
-  }
-
-  index = getFreeSlot();
-  if (!index)
-  {
-    // No free space!
-    return false;
-  }
-
-  setItem(*index, i_object);
-  return true;
 }

@@ -6,25 +6,25 @@
 
 #include <LaggyDx/LaggyDxFwd.h>
 #include <LaggyDx/Sprite.h>
+#include <LaggySdk/EventHandler.h>
 #include <LaggySdk/Vector.h>
 
 #include <vector>
 
 
-class Inventory : public IGuiControl
+class Inventory : public IGuiControl, public Sdk::EventHandler
 {
 public:
-  Inventory(Dx::IResourceController& i_resourceController);
+  Inventory(Dx::IResourceController& i_resourceController, Container& io_container,
+            int i_sizeX, int i_sizeY);
+
+  void connect();
 
   virtual void render(Dx::IRenderer2d& i_renderer) const override;
+  virtual void processEvent(const Sdk::IEvent& i_event) override;
 
   void setPosition(Sdk::Vector2I i_position) { d_position = std::move(i_position); }
   virtual Sdk::Vector2I getSize() const override;
-
-  void resetAllItems();
-  void resetItem(int i_index);
-  void setItem(int i_index, ObjectPtr i_object);
-  ObjectPtr getItem(int i_index) const;
 
   void selectItem(int i_index);
   void unselectItem();
@@ -32,23 +32,21 @@ public:
   ObjectPtr getSelectedItem() const;
   bool hasSelection() const;
 
-  bool tryAddObject(ObjectPtr i_object);
-
 private:
-  static const int SlotsHor = 8;
-  static const int SlotsVert = 1;
-  static const int SlotsCount = SlotsHor * SlotsVert;
+  const int d_slotsHor = 0;
+  const int d_slotsVert = 0;
+  const int d_slotsCount = 0;
   static const int CornerSize = 13;
   static const int SlotSize = 72;
-  static void CheckIndex(int i_index);
+  void checkIndex(int i_index) const;
 
   Dx::IResourceController& d_resourceController;
   const Dx::IFontResource& d_fontResource;
+  Container& d_container;
 
   Sdk::Vector2I d_position;
   std::vector<Dx::Sprite> d_gridSprites;
 
-  std::vector<ObjectPtr> d_items;
   std::vector<Dx::Sprite> d_itemSprites;
   std::optional<int> d_selectedIndex;
   Dx::Sprite d_selectionSprite;
@@ -56,7 +54,4 @@ private:
   void recreateSprites();
   void updateItemSprite(int i_index);
   void updateSelectionSprite();
-
-  std::optional<int> getFreeSlot() const;
-  std::optional<int> getObjectIndex(ObjectPtr i_object) const;
 };
