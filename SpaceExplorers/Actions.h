@@ -9,4 +9,5 @@ enum class Action : int32_t
   Default,
   Open,
   Close,
+  Pickup,
 };

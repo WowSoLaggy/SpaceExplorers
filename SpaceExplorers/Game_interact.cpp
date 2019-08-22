@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 
+#include "Actions.h"
 #include "Inventory.h"
 
 #include <LaggySdk/Contracts.h>
@@ -8,11 +9,15 @@
 
 void Game::tryInteract()
 {
-  if (auto obj = d_world->getObjectAt(cursorToWorld()))
+  if (d_avatar)
   {
-    if (!obj->isAvatar() && d_avatar)
-      tryPickup(*d_avatar, obj);
-    return;
+    if (auto obj = d_world->getObjectAt(cursorToWorld()))
+    {
+      auto selectedTool = getSelectedTool();
+      Action action = selectedTool ? Action::None : Action::Pickup;
+      d_avatar->interact(action, obj, selectedTool);
+      return;
+    }
   }
 
   const auto tileCoords = cursorToTile();
@@ -26,12 +31,4 @@ void Game::tryInteract()
     return;
 
   structure->interact();
-}
-
-void Game::tryPickup(Avatar& io_avatar, ObjectPtr io_object)
-{
-  CONTRACT_EXPECT(io_object);
-
-  if (io_avatar.getInventory().tryAddObject(io_object))
-    d_world->deleteObject(io_object);
 }

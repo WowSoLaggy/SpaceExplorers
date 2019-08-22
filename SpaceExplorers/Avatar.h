@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Actions.h"
 #include "Container.h"
 #include "Object.h"
 
@@ -19,6 +20,8 @@ public:
   void moveRight();
   void moveUp();
   void moveDown();
+
+  void interact(Action i_action, ObjectPtr io_object, ObjectPtr i_tool);
 
   Container& getInventory() { return d_inventory; }
   const Container& getInventory() const { return d_inventory; }

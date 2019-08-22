@@ -106,3 +106,13 @@ void Avatar::updateMoveAnimation()
   else if (d_moveYSign > 0)
     d_sprite.playAnimation("Down");
 }
+
+
+void Avatar::interact(Action i_action, ObjectPtr io_object, ObjectPtr i_tool)
+{
+  if (!io_object || io_object->isAvatar())
+    return;
+
+  if (i_action == Action::Pickup && d_inventory.tryAddObject(io_object))
+    d_world.deleteObject(io_object);
+}

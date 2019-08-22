@@ -95,7 +95,6 @@ private:
   void onUnselectInventory();
 
   void tryInteract();
-  void tryPickup(Avatar& io_avatar, ObjectPtr io_object);
   void tryDrop();
 
   //
