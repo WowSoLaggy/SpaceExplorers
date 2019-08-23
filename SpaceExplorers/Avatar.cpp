@@ -4,6 +4,9 @@
 #include "Utils.h"
 #include "World.h"
 
+#include <LaggyDx/ImageDescription.h>
+#include <LaggyDx/IResourceController.h>
+#include <LaggyDx/ITextureResource.h>
 #include <LaggySdk/Contracts.h>
 
 
@@ -128,9 +131,27 @@ void Avatar::interact(Action i_action /*= Action::Default*/, ThingPtr io_object 
   else if (i_action == Action::Drop)
   {
     if ((i_where - d_position).lengthSq() > d_interactionDistSq)
+    {
+      // Can't throw too far away
       return;
+    }
 
-    auto newObj = d_world.createObjectAt(i_tool->getPrototype(), i_where, i_tool->getName());
+    const auto& proto = i_tool->getPrototype();
+
+    {
+      const auto& texture = d_resourceController.getTextureResource(proto.textureFileName);
+      const Sdk::Vector2I size { texture.getDescription().width, texture.getDescription().height };
+      const auto topLeft = i_where - size / 2;
+      Sdk::RectI rect = { topLeft, topLeft + size };
+      rect.shrink(4);
+      if (d_world.checkCollision(rect))
+      {
+        // No place for the object
+        return;
+      }
+    }
+
+    auto newObj = d_world.createObjectAt(proto, i_where, i_tool->getName());
     newObj->setQuantity(1);
 
     if (i_tool->getQuantity() <= 1)
