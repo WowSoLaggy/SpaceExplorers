@@ -51,6 +51,7 @@ public:
   void deleteObject(ObjectPtr i_object);
   void deleteObject(const Object& i_object);
 
+  // True - has collision
   bool checkCollision(const Sdk::RectI& i_rect) const;
 
 private:

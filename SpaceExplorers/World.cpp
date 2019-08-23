@@ -186,7 +186,7 @@ bool World::checkCollision(const Sdk::RectI& i_rect) const
   tilesToCheck.insert(worldToTile(i_rect.bottomLeft()));
   tilesToCheck.insert(worldToTile(i_rect.bottomRight()));
 
-  return std::all_of(tilesToCheck.cbegin(), tilesToCheck.cend(), [&](const Sdk::Vector2I& i_tileCoords) {
+  return !std::all_of(tilesToCheck.cbegin(), tilesToCheck.cend(), [&](const Sdk::Vector2I& i_tileCoords) {
     return isPassable(i_tileCoords);
   });
 }

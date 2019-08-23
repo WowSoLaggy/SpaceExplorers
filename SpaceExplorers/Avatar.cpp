@@ -50,7 +50,7 @@ void Avatar::updateMovement(double i_dt)
     i_curRect.move(i_diff);
     i_curRect.shrink(2);
     
-    return d_world.checkCollision(i_curRect);
+    return !d_world.checkCollision(i_curRect);
   };
 
   if (d_moveXSign != 0)
