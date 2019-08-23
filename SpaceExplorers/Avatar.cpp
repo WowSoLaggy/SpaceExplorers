@@ -45,30 +45,12 @@ void Avatar::moveDown()
 
 void Avatar::updateMovement(double i_dt)
 {
-  auto isPassable = [&](const Sdk::Vector2I& i_tileCoords) -> bool
-  {
-    if (const auto* pTile = d_world.getTile(i_tileCoords))
-    {
-      if (const auto topStructure = pTile->getTopStructure())
-        return topStructure->isPassable();
-    }
-    return true;
-  };
   auto canMove = [&](Sdk::RectI i_curRect, const Sdk::Vector2I& i_diff) -> bool
   {
+    i_curRect.move(i_diff);
     i_curRect.shrink(2);
-
-    std::unordered_set<Sdk::Vector2I, Sdk::Vector2_hash> tilesToCheck;
-    tilesToCheck.insert(worldToTile(i_curRect.topLeft() + i_diff));
-    tilesToCheck.insert(worldToTile(i_curRect.topRight() + i_diff));
-    tilesToCheck.insert(worldToTile(i_curRect.bottomLeft() + i_diff));
-    tilesToCheck.insert(worldToTile(i_curRect.bottomRight() + i_diff));
-
-    return std::all_of(tilesToCheck.cbegin(), tilesToCheck.cend(), [&](const Sdk::Vector2I& i_tileCoords) {
-      return isPassable(i_tileCoords);
-    });
-
-    return true;
+    
+    return d_world.checkCollision(i_curRect);
   };
 
   if (d_moveXSign != 0)

@@ -5,6 +5,7 @@
 #include "Prototypes.h"
 #include "Structure.h"
 #include "SettingsProvider.h"
+#include "Utils.h"
 
 #include <LaggyDx/ITextureResource.h>
 #include <LaggyDx/IRenderer2d.h>
@@ -164,4 +165,28 @@ void World::deleteObject(const Object& i_object)
   d_objects.erase(std::find_if(d_objects.cbegin(), d_objects.cend(), [&](ObjectPtr i_right) {
     return i_right.get() == &i_object;
   }));
+}
+
+
+bool World::checkCollision(const Sdk::RectI& i_rect) const
+{
+  auto isPassable = [&](const Sdk::Vector2I& i_tileCoords) -> bool
+  {
+    if (const auto* pTile = getTile(i_tileCoords))
+    {
+      if (const auto topStructure = pTile->getTopStructure())
+        return topStructure->isPassable();
+    }
+    return true;
+  };
+
+  std::unordered_set<Sdk::Vector2I, Sdk::Vector2_hash> tilesToCheck;
+  tilesToCheck.insert(worldToTile(i_rect.topLeft()));
+  tilesToCheck.insert(worldToTile(i_rect.topRight()));
+  tilesToCheck.insert(worldToTile(i_rect.bottomLeft()));
+  tilesToCheck.insert(worldToTile(i_rect.bottomRight()));
+
+  return std::all_of(tilesToCheck.cbegin(), tilesToCheck.cend(), [&](const Sdk::Vector2I& i_tileCoords) {
+    return isPassable(i_tileCoords);
+  });
 }

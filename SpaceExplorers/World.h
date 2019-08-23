@@ -51,6 +51,8 @@ public:
   void deleteObject(ObjectPtr i_object);
   void deleteObject(const Object& i_object);
 
+  bool checkCollision(const Sdk::RectI& i_rect) const;
+
 private:
   Dx::IResourceController& d_resourceController;
   Dx::Sprite d_background;
