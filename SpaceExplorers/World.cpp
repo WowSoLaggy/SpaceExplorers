@@ -138,6 +138,15 @@ void World::setBackground(const std::string& i_backgroundTextureFilename,
 }
 
 
+StructurePtr World::getStructureAt(const Sdk::Vector2I& i_coords) const
+{
+  auto* tile = getTile(worldToTile(i_coords));
+  if (!tile)
+    return nullptr;
+
+  return tile->getTopStructure();
+}
+
 ObjectPtr World::getObjectAt(const Sdk::Vector2I& i_coords) const
 {
   for (const auto& [_, avatar] : d_avatars)

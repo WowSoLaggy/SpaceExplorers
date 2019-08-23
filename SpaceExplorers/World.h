@@ -47,7 +47,9 @@ public:
   AvatarPtr getAvatarPtr(const std::string& i_name) { return d_avatars.at(i_name); }
   const AvatarPtr getAvatarPtr(const std::string& i_name) const { return d_avatars.at(i_name); }
 
+  StructurePtr getStructureAt(const Sdk::Vector2I& i_coords) const;
   ObjectPtr getObjectAt(const Sdk::Vector2I& i_coords) const;
+
   void deleteObject(ObjectPtr i_object);
   void deleteObject(const Object& i_object);
 

@@ -139,20 +139,13 @@ void Game::tryInteract()
     }
   }
 
-  const auto tileCoords = cursorToTile();
-
-  auto* tile = d_world->getTile(tileCoords);
-  if (!tile)
-    return;
-
-  auto structure = tile->getTopStructure();
-  if (!structure)
-    return;
-
-  if (d_avatar)
-    d_avatar->interact(Action::Default, structure, getSelectedTool());
-  else
-    structure->interact();
+  if (auto structure = d_world->getStructureAt(cursorToWorld()))
+  {
+    if (d_avatar)
+      d_avatar->interact(Action::Default, structure, getSelectedTool());
+    else
+      structure->interact();
+  }
 }
 
 void Game::tryDrop()
