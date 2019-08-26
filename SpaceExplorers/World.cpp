@@ -140,24 +140,36 @@ void World::setBackground(const std::string& i_backgroundTextureFilename,
 
 StructurePtr World::getStructureAt(const Sdk::Vector2I& i_coords) const
 {
-  auto* tile = getTile(worldToTile(i_coords));
+  const auto tileCoords = worldToTile(i_coords);
+
+  const auto* tile = getTile(tileCoords);
   if (!tile)
     return nullptr;
 
-  return tile->getTopStructure();
+  return tile->getStructure(i_coords - getTileRect(tileCoords).topLeft());
 }
 
 ObjectPtr World::getObjectAt(const Sdk::Vector2I& i_coords) const
 {
   for (const auto& [_, avatar] : d_avatars)
   {
-    if (avatar->getRect().containsPoint(i_coords))
+    const auto& rect = avatar->getRect();
+    if (!rect.containsPoint(i_coords))
+      continue;
+
+    const auto relativeCoords = i_coords - rect.topLeft();
+    if (avatar->checkAlpha(relativeCoords))
       return avatar;
   }
 
   for (const auto& obj : d_objects)
   {
-    if (obj->getRect().containsPoint(i_coords))
+    const auto& rect = obj->getRect();
+    if (!rect.containsPoint(i_coords))
+      continue;
+
+    const auto relativeCoords = i_coords - rect.topLeft();
+    if (obj->checkAlpha(relativeCoords))
       return obj;
   }
 
