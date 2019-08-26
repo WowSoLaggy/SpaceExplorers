@@ -4,6 +4,7 @@
 #include "Structure.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
+#include <LaggySdk/Vector.h>
 
 #include <iostream>
 #include <map>
@@ -21,6 +22,8 @@ public:
 
   StructurePtr getTopStructure();
   const StructurePtr getTopStructure() const;
+
+  StructurePtr getStructure(const Sdk::Vector2I& i_relativeCoords) const;
 
   bool hasStructures() const;
   bool hasStructureOnLayer(Layer i_layer) const;

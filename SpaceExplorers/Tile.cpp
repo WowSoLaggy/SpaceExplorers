@@ -63,8 +63,22 @@ const StructurePtr Tile::getTopStructure() const
     return nullptr;
 
   auto structure = d_layersMap.crbegin()->second;
-  CONTRACT_EXPECT(structure);
+  CONTRACT_ASSERT(structure);
   return structure;
+}
+
+
+StructurePtr Tile::getStructure(const Sdk::Vector2I& i_relativeCoords) const
+{
+  for (auto it = d_layersMap.crbegin(); it != d_layersMap.crend(); ++it)
+  {
+    auto structure = it->second;
+    CONTRACT_ASSERT(structure);
+    if (structure->checkAlpha(i_relativeCoords))
+      return structure;
+  }
+
+  return nullptr;
 }
 
 
