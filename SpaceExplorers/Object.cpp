@@ -75,3 +75,9 @@ int Object::getQuantity() const
 {
   return d_quantity;
 }
+
+
+bool Object::checkAlpha(Sdk::Vector2I i_coords) const
+{
+  return d_sprite.getTexture()->checkAlpha(i_coords, d_sprite.getFrame());
+}

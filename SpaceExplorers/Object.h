@@ -21,6 +21,7 @@ public:
     World& i_world, const ObjectPrototype& i_prototype);
 
   const ObjectPrototype& getPrototype() const { return d_prototype; }
+  const Dx::AnimatedSprite& getSprite() const { return d_sprite; }
 
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
@@ -36,6 +37,7 @@ public:
   const std::string& getName() const { return d_name; }
 
   const Sdk::RectI& getRect() const { return d_rect; }
+  bool checkAlpha(Sdk::Vector2I i_coords) const;
 
   void setQuantity(int i_quantity);
   void addQuantity(int i_delta);

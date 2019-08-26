@@ -5,6 +5,7 @@
 
 #include <LaggyDx/AnimatedSprite.h>
 #include <LaggyDx/IResourceController.h>
+#include <LaggyDx/ITextureResource.h>
 #include <LaggySdk/Contracts.h>
 
 
@@ -86,4 +87,11 @@ void Door::interact(Action i_action)
 bool Door::isPassable() const
 {
   return d_state == State::Open || d_state == State::Closing;
+}
+
+
+bool Door::checkAlpha(Sdk::Vector2I i_coords) const
+{
+  const auto& animSprite = dynamic_cast<Dx::AnimatedSprite&>(*d_sprite);
+  return d_sprite->getTexture()->checkAlpha(i_coords, animSprite.getFrame());
 }

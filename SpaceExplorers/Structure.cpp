@@ -76,3 +76,9 @@ void Structure::setColor(Sdk::Vector4F i_color)
 {
   d_sprite->setColor(std::move(i_color));
 }
+
+
+bool Structure::checkAlpha(Sdk::Vector2I i_coords) const
+{
+  return d_sprite->getTexture()->checkAlpha(i_coords);
+}
