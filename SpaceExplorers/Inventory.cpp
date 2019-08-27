@@ -38,8 +38,14 @@ void Inventory::render(Dx::IRenderer2d& i_renderer) const
     i_renderer.renderSprite(sprite);
 
   // Items
-  for (const auto& sprite : d_itemSprites)
-    i_renderer.renderSprite(sprite);
+  for (int itemIdx = 0; itemIdx < (int)d_itemSprites.size(); ++itemIdx)
+  //for (const auto& sprite : d_itemSprites)
+  {
+    const auto curTranslation = i_renderer.getTranslation();
+    i_renderer.setTranslation(curTranslation - d_itemOffsets.at(itemIdx));
+    i_renderer.renderSprite(d_itemSprites.at(itemIdx));
+    i_renderer.setTranslation(curTranslation);
+  }
 
   // Selection
   if (hasSelection())
@@ -128,6 +134,8 @@ void Inventory::recreateSprites()
         nullptr, { CornerSize + SlotSize * x + 4, CornerSize + SlotSize * y + 4 },
         textureItem.getDescription().size(), Sdk::Vector4F::identity() });
 
+      d_itemOffsets.emplace_back(Sdk::Vector2I{ 0, 0 });
+
       updateItemSprite(x + y * d_slotsHor);
     }
   }
@@ -152,6 +160,14 @@ void Inventory::updateItemSprite(int i_index)
   auto item = d_container.getItem(i_index);
   const Dx::ITextureResource* texture = item ?
     &d_resourceController.getTextureResource(item->getPrototype().textureFileName) : nullptr;
+
+  if (texture)
+  {
+    const int adaptedSlotSize = SlotSize - 8;
+    d_itemOffsets[i_index] = (Sdk::Vector2I{ adaptedSlotSize, adaptedSlotSize } - texture->getDescription().size()) / 2;
+  }
+  else
+    d_itemOffsets[i_index] = { 0, 0 };
 
   d_itemSprites.at(i_index).setTexture(texture);
 }

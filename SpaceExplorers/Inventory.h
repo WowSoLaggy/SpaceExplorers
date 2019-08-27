@@ -46,6 +46,7 @@ private:
   std::vector<Dx::Sprite> d_gridSprites;
 
   std::vector<Dx::Sprite> d_itemSprites;
+  std::vector<Sdk::Vector2I> d_itemOffsets;
   std::optional<int> d_selectedIndex;
   Dx::Sprite d_selectionSprite;
 
