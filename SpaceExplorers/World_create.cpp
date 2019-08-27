@@ -30,6 +30,10 @@ std::unique_ptr<World> World::createTestWorld(
     return world->createStructureAt(PrototypesCollection::getStructure(i_protoName), { x, y });
   };
 
+  auto createObject = [&](const std::string& i_protoName) -> ObjectPtr {
+    const auto& proto = PrototypesCollection::getObject(i_protoName);
+    auto objectPtr = std::make_shared<Object>(i_resourceController, *world, proto);
+    return objectPtr;
   };
 
   ///
@@ -100,6 +104,7 @@ std::unique_ptr<World> World::createTestWorld(
 
   auto tom = world->createAvatarAt(PrototypesCollection::getObject("Man"), { -32, -32 }, "Tom");
   tom->getInventory().setSize(8);
+  tom->getInventory().setItem(2, createObject("Welder"));
 
   world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -64 });
   world->createObjectAt(PrototypesCollection::getObject("Rods"), { -134, -64 });
