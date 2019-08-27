@@ -9,5 +9,11 @@
   {
     "TextureName": "Rods.png",
     "Stackable": true
+  },
+  
+  "Welder":
+  {
+    "TextureName": "Welder.png",
+    "Stackable": false
   }
 }

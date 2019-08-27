@@ -104,6 +104,8 @@ std::unique_ptr<World> World::createTestWorld(
   world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -134 });
   world->createObjectAt(PrototypesCollection::getObject("Rods"), { -134, -134 });
 
+  world->createObjectAt(PrototypesCollection::getObject("Welder"), { 128, 128 });
+
 
   ///
 
