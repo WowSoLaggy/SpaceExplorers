@@ -111,9 +111,9 @@ std::unique_ptr<World> World::createTestWorld(
   tom->getInventory().setItem(2, createObject("Welder"));
 
   world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -64 });
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -134, -64 });
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -134 });
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -134, -134 });
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -64 });
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -128 });
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -128 });
 
   world->createObjectAt(PrototypesCollection::getObject("Welder"), { 128, 128 });
 
