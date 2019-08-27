@@ -59,15 +59,15 @@ bool Object::canBeStackedWith(ObjectPtr i_object) const
 
 void Object::setQuantity(int i_quantity)
 {
-  CONTRACT_EXPECT(d_prototype.isStackable);
+  CONTRACT_EXPECT(i_quantity <= 1 || d_prototype.isStackable);
   d_quantity = i_quantity;
   CONTRACT_ENSURE(d_quantity >= 0);
 }
 
 void Object::addQuantity(int i_delta)
 {
-  CONTRACT_EXPECT(d_prototype.isStackable);
   d_quantity += i_delta;
+  CONTRACT_ENSURE(d_quantity <= 1 || d_prototype.isStackable);
   CONTRACT_ENSURE(d_quantity >= 0);
 }
 
