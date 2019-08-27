@@ -95,3 +95,25 @@ bool Door::checkAlpha(Sdk::Vector2I i_coords) const
   const auto& animSprite = dynamic_cast<Dx::AnimatedSprite&>(*d_sprite);
   return d_sprite->getTexture()->checkAlpha(i_coords, animSprite.getFrame());
 }
+
+
+void Door::setState(State i_state)
+{
+  d_state = i_state;
+
+  if (d_state == State::Open)
+  {
+    getAnimatedSprite().playAnimation("Open");
+    getAnimatedSprite().setFrameEnd();
+  }
+  else if (d_state == State::Closed)
+  {
+    getAnimatedSprite().playAnimation("Close");
+    getAnimatedSprite().setFrameEnd();
+  }
+  else if (d_state == State::Opening)
+    getAnimatedSprite().playAnimation("Open");
+  else if (d_state == State::Closing)
+    getAnimatedSprite().playAnimation("Close");
+
+}

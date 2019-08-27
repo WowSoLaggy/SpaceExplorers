@@ -30,6 +30,10 @@ std::unique_ptr<World> World::createTestWorld(
     return world->createStructureAt(PrototypesCollection::getStructure(i_protoName), { x, y });
   };
 
+  auto toDoor = [](StructurePtr i_structure) -> DoorPtr {
+    return std::dynamic_pointer_cast<Door>(i_structure);
+  };
+
   auto createObject = [&](const std::string& i_protoName) -> ObjectPtr {
     const auto& proto = PrototypesCollection::getObject(i_protoName);
     auto objectPtr = std::make_shared<Object>(i_resourceController, *world, proto);
@@ -80,7 +84,7 @@ std::unique_ptr<World> World::createTestWorld(
 
 
   create(0, -3, "Wall");
-  create(0, -2, "Door");
+  toDoor(create(0, -2, "Door"))->setState(Door::State::Open);
   create(0, -1, "Wall");
   create(0, 0, "Wall");
   create(1, 0, "Wall");

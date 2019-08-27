@@ -10,6 +10,15 @@
 class Door : public Structure
 {
 public:
+  enum class State : std::int32_t
+  {
+    Open = 0,
+    Closed,
+    Opening,
+    Closing,
+  };
+
+public:
   Door(
     Dx::IResourceController& i_resourceController,
     const StructurePrototype& i_prototype,
@@ -22,15 +31,9 @@ public:
 
   virtual bool checkAlpha(Sdk::Vector2I i_coords) const override;
 
-private:
-  enum class State : std::int32_t
-  {
-    Open = 0,
-    Closed,
-    Opening,
-    Closing,
-  };
+  void setState(State i_state);
 
+private:
   State d_state = State::Closed;
 
   Action getDefaultAction() const;
