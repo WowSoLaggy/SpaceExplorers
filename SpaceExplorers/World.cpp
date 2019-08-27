@@ -93,7 +93,7 @@ Tile& World::getOrCreateTile(const Sdk::Vector2I& i_coords)
 }
 
 
-void World::createStructureAt(const StructurePrototype& i_prototype, const Sdk::Vector2I& i_coords)
+StructurePtr World::createStructureAt(const StructurePrototype& i_prototype, const Sdk::Vector2I& i_coords)
 {
   StructurePtr structure;
 
@@ -103,6 +103,8 @@ void World::createStructureAt(const StructurePrototype& i_prototype, const Sdk::
     structure = std::make_shared<Structure>(d_resourceController, i_prototype, i_coords);
 
   d_tilesMap[i_coords].setStructure(i_prototype.layer, structure);
+
+  return structure;
 }
 
 ObjectPtr World::createObjectAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name /*= ""*/)
