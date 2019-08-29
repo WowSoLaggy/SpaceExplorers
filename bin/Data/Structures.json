@@ -7,6 +7,14 @@
     "Passable": true
   },
   
+  "Lattice_unwelded":
+  {
+    "TextureName": "Lattice_unwelded.png",
+    "Layer": "Panneling",
+    "Behavior": "Default",
+    "Passable": true
+  },
+  
   "Floor":
   {
     "TextureName": "Floor.png",
