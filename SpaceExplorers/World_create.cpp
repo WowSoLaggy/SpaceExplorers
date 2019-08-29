@@ -37,6 +37,7 @@ std::unique_ptr<World> World::createTestWorld(
   auto createObject = [&](const std::string& i_protoName) -> ObjectPtr {
     const auto& proto = PrototypesCollection::getObject(i_protoName);
     auto objectPtr = std::make_shared<Object>(i_resourceController, *world, proto);
+    objectPtr->setName(i_protoName);
     return objectPtr;
   };
 
@@ -96,7 +97,7 @@ std::unique_ptr<World> World::createTestWorld(
   create(-6, -2, "Wall");
   create(-7, -2, "Wall");
   create(-7, -1, "Wall");
-  create(-7, 0, "Door");
+  toDoor(create(-7, 0, "Door"))->setState(Door::State::Open);
   create(-7, 1, "Wall");
   create(-6, 1, "Wall");
   create(-5, 1, "Wall");
@@ -106,16 +107,25 @@ std::unique_ptr<World> World::createTestWorld(
   ///
 
 
-  auto tom = world->createAvatarAt(PrototypesCollection::getObject("Man"), { -32, -32 }, "Tom");
+  create(-9, 1, "Lattice_unwelded");
+
+
+  ///
+
+
+  auto tom = world->createAvatarAt(PrototypesCollection::getObject("Man"), { -352, 32 }, "Tom");
   tom->getInventory().setSize(8);
   tom->getInventory().setItem(2, createObject("Welder"));
+  auto rods = createObject("Rods");
+  rods->setQuantity(20);
+  tom->getInventory().setItem(0, rods);
 
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -64 });
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -64 });
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -128 });
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -128 });
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -64 }, "Rods")->setQuantity(20);
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -64 }, "Rods")->setQuantity(20);
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -128 }, "Rods")->setQuantity(20);
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -128 }, "Rods")->setQuantity(20);
 
-  world->createObjectAt(PrototypesCollection::getObject("Welder"), { 128, 128 });
+  world->createObjectAt(PrototypesCollection::getObject("Welder"), { 128, 128 }, "Welder");
 
 
   ///
