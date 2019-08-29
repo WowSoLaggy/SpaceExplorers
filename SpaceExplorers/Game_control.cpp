@@ -128,21 +128,23 @@ void Game::onUnselectInventory()
 
 void Game::tryInteract()
 {
+  const auto worldCoords = cursorToWorld();
+
   if (isControlAvatar())
   {
-    if (auto obj = d_world->getObjectAt(cursorToWorld()))
+    if (auto obj = d_world->getObjectAt(worldCoords))
     {
       auto selectedTool = getSelectedTool();
       Action action = selectedTool ? Action::None : Action::Pickup;
-      d_avatar->interact(action, obj, selectedTool);
+      d_avatar->interact(action, obj, selectedTool, worldCoords);
 
       return;
     }
   }
 
-  auto structure = d_world->getStructureAt(cursorToWorld());
+  auto structure = d_world->getStructureAt(worldCoords);
   if (isControlAvatar())
-    d_avatar->interact(Action::Default, structure, getSelectedTool(), cursorToWorld());
+    d_avatar->interact(Action::Default, structure, getSelectedTool(), worldCoords);
   else if (structure)
     structure->interact();
 }
