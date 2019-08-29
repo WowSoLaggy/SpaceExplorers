@@ -20,6 +20,8 @@ public:
     const StructurePrototype& i_prototype,
     Sdk::Vector2I i_coordsTile);
 
+  const StructurePrototype& getPrototype() const { return d_prototype; }
+
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
 

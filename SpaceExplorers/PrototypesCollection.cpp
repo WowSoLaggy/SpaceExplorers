@@ -92,9 +92,22 @@ void PrototypesCollection::loadObjects(const fs::path& i_filename)
 }
 
 
+const StructurePrototype* PrototypesCollection::findStructure(const std::string& i_name)
+{
+  auto it = getInstance().d_collectionStructures.find(i_name);
+  return it != getInstance().d_collectionStructures.end() ? &it->second : nullptr;
+}
+
 const StructurePrototype& PrototypesCollection::getStructure(const std::string& i_name)
 {
   return getInstance().d_collectionStructures.at(i_name);
+}
+
+
+const ObjectPrototype* PrototypesCollection::findObject(const std::string& i_name)
+{
+  auto it = getInstance().d_collectionObjects.find(i_name);
+  return it != getInstance().d_collectionObjects.end() ? &it->second : nullptr;
 }
 
 const ObjectPrototype& PrototypesCollection::getObject(const std::string& i_name)

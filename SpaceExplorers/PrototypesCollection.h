@@ -11,7 +11,10 @@ class PrototypesCollection
 public:
   static void load();
 
+  static const StructurePrototype* findStructure(const std::string& i_name);
   static const StructurePrototype& getStructure(const std::string& i_name);
+  
+  static const ObjectPrototype* findObject(const std::string& i_name);
   static const ObjectPrototype& getObject(const std::string& i_name);
 
 private:
