@@ -15,6 +15,22 @@
     "Passable": true
   },
   
+  "Plating":
+  {
+    "TextureName": "Plating.png",
+    "Layer": "Panneling",
+    "Behavior": "Default",
+    "Passable": true
+  },
+  
+  "Plating_unwelded":
+  {
+    "TextureName": "Plating_unwelded.png",
+    "Layer": "Panneling",
+    "Behavior": "Default",
+    "Passable": true
+  },
+  
   "Floor":
   {
     "TextureName": "Floor.png",

@@ -19,6 +19,24 @@
     ]
   },
   
+  "FloorTile":
+  {
+    "TextureName": "FloorTile.png",
+    "Stackable": true,
+    "ConsumedOnBuild": true,
+    "Receipts":
+    [
+      {
+        "Input": "Lattice",
+        "Output": "Plating_unwelded"
+      },
+      {
+        "Input": "Plating",
+        "Output": "Floor"
+      }
+    ]
+  },
+  
   "Welder":
   {
     "TextureName": "Welder.png",
@@ -29,6 +47,10 @@
       {
         "Input": "Lattice_unwelded",
         "Output": "Lattice"
+      },
+      {
+        "Input": "Plating_unwelded",
+        "Output": "Plating"
       }
     ]
   }
