@@ -46,11 +46,13 @@
     [
       {
         "Input": "Lattice_unwelded",
-        "Output": "Lattice"
+        "Output": "Lattice",
+        "Time": 1
       },
       {
         "Input": "Plating_unwelded",
-        "Output": "Plating"
+        "Output": "Plating",
+        "Time": 1
       }
     ]
   }

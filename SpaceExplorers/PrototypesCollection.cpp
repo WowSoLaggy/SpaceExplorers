@@ -93,7 +93,7 @@ void PrototypesCollection::loadObjects(const fs::path& i_filename)
     {
       proto.consumedOnBuild = node["ConsumedOnBuild"].asBool();
 
-      const auto& receiptsNode = node["Receipts"];
+      const auto& receiptsNode = node[ReceiptsNodeName];
       CONTRACT_ASSERT(receiptsNode.isArray());
 
       for (const auto& receiptNode : receiptsNode)
@@ -104,7 +104,12 @@ void PrototypesCollection::loadObjects(const fs::path& i_filename)
         const StructurePrototype* inputProto = findStructure(inputName);
         const StructurePrototype& outputProto = getStructure(outputName);
 
-        proto.receipts.emplace_back<Receipt>({ inputProto, outputProto });
+        double time = 0;
+        const std::string TimeNodeName = "Time";
+        if (receiptNode.find(TimeNodeName.data(), TimeNodeName.data() + TimeNodeName.length()))
+          time = receiptNode[TimeNodeName].asDouble();
+
+        proto.receipts.emplace_back<Receipt>({ inputProto, outputProto, time });
       }
     }
 

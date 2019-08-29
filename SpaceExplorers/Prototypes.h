@@ -20,6 +20,7 @@ struct Receipt
 {
   const StructurePrototype* input;
   const StructurePrototype& output;
+  const double time = 0;
 };
 
 struct ObjectPrototype
