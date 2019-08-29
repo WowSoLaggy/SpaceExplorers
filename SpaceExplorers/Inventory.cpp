@@ -54,7 +54,7 @@ void Inventory::render(Dx::IRenderer2d& i_renderer) const
   // Quantity
   for (int i = 0; i < d_slotsCount; ++i)
   {
-    if (const auto item = d_container.getItem(i))
+    if (const auto item = d_container.getItem(i); item && item->getPrototype().isStackable)
       i_renderer.renderText(std::to_string(item->getQuantity()), d_fontResource, d_itemSprites[i].getPosition());
   }
 
