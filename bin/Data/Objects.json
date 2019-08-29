@@ -8,12 +8,28 @@
   "Rods":
   {
     "TextureName": "Rods.png",
-    "Stackable": true
+    "Stackable": true,
+    "ConsumedOnBuild": true,
+    "Receipts":
+    [
+      {
+        "Input": "",
+        "Output": "Lattice_unwelded"
+      }
+    ]
   },
   
   "Welder":
   {
     "TextureName": "Welder.png",
-    "Stackable": false
+    "Stackable": false,
+    "ConsumedOnBuild": false,
+    "Receipts":
+    [
+      {
+        "Input": "Lattice_unwelded",
+        "Output": "Lattice"
+      }
+    ]
   }
 }

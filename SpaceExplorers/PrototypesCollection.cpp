@@ -83,9 +83,30 @@ void PrototypesCollection::loadObjects(const fs::path& i_filename)
     const auto& node = root[protoName];
 
     ObjectPrototype proto;
+
     proto.name = protoName;
     proto.textureFileName = node["TextureName"].asString();
     proto.isStackable = node["Stackable"].asBool();
+
+    const std::string ReceiptsNodeName = "Receipts";
+    if (node.find(ReceiptsNodeName.data(), ReceiptsNodeName.data() + ReceiptsNodeName.length()))
+    {
+      proto.consumedOnBuild = node["ConsumedOnBuild"].asBool();
+
+      const auto& receiptsNode = node["Receipts"];
+      CONTRACT_ASSERT(receiptsNode.isArray());
+
+      for (const auto& receiptNode : receiptsNode)
+      {
+        const std::string inputName = receiptNode["Input"].asString();
+        const std::string outputName = receiptNode["Output"].asString();
+
+        const StructurePrototype* inputProto = findStructure(inputName);
+        const StructurePrototype& outputProto = getStructure(outputName);
+
+        proto.receipts.emplace_back<Receipt>({ inputProto, outputProto });
+      }
+    }
 
     d_collectionObjects.insert({ protoName, std::move(proto) });
   }

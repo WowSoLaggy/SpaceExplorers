@@ -15,11 +15,21 @@ struct StructurePrototype
   bool isPassable = true;
 };
 
+
+struct Receipt
+{
+  const StructurePrototype* input;
+  const StructurePrototype& output;
+};
+
 struct ObjectPrototype
 {
   std::string name = "";
 
   std::string textureFileName = "";
   bool isStackable = false;
-};
 
+  bool hasReceipts() const { return !receipts.empty(); }
+  std::vector<Receipt> receipts;
+  bool consumedOnBuild = false;
+};

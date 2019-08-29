@@ -142,7 +142,7 @@ void Game::tryInteract()
 
   auto structure = d_world->getStructureAt(cursorToWorld());
   if (isControlAvatar())
-    d_avatar->interact(Action::Default, structure, getSelectedTool());
+    d_avatar->interact(Action::Default, structure, getSelectedTool(), cursorToWorld());
   else if (structure)
     structure->interact();
 }

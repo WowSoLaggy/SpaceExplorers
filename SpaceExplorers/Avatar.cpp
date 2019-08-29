@@ -102,6 +102,12 @@ void Avatar::interact(Action i_action /*= Action::Default*/, ThingPtr io_object 
 
   if (i_action == Action::Default)
   {
+    if (i_tool && i_tool->getPrototype().hasReceipts())
+    {
+      interact(Action::Build, io_object, i_tool, i_where);
+      return;
+    }
+
     if (!io_object || i_tool)
       return;
 
@@ -162,5 +168,56 @@ void Avatar::interact(Action i_action /*= Action::Default*/, ThingPtr io_object 
     }
     else
       i_tool->addQuantity(-1);
+  }
+  else if (i_action == Action::Build)
+  {
+    if (!i_tool)
+      return;
+    if (io_object && !io_object->isStructure())
+      return;
+    if ((i_where - d_position).lengthSq() > d_interactionDistSq)
+      return;
+
+    StructurePtr object = std::dynamic_pointer_cast<Structure>(io_object);
+
+    const StructurePrototype* inputProto = object ? &object->getPrototype() : nullptr;
+    const auto& receipts = i_tool->getPrototype().receipts;
+    auto it = std::find_if(receipts.cbegin(), receipts.cend(), [&](const auto& i_receipt) {
+      return i_receipt.input == inputProto;
+    });
+    if (it == receipts.cend())
+      return;
+
+    const auto& outputProto = it->output;
+    const auto tileCoords = worldToTile(i_where);
+
+    auto* tile = d_world.getTile(tileCoords);
+    if (tile)
+    {
+      if (inputProto && inputProto->layer == outputProto.layer && tile->hasStructureOnLayer(inputProto->layer))
+      {
+        // If input and output are on the same layer - remove the existing structure on this layer
+        tile->removeStructure(outputProto.layer);
+      }
+      else if (tile->hasStructureOnLayer(outputProto.layer))
+      {
+        // Otherwise output layer shall not be occupied
+        return;
+      }
+    }
+
+    d_world.createStructureAt(outputProto, tileCoords);
+
+    if (i_tool->getPrototype().consumedOnBuild)
+    {
+      if (i_tool->getQuantity() <= 1)
+      {
+        auto indexOpt = d_inventory.getObjectIndex(i_tool);
+        CONTRACT_ASSERT(indexOpt);
+        d_inventory.resetItem(*indexOpt);
+      }
+      else
+        i_tool->addQuantity(-1);
+    }
   }
 }

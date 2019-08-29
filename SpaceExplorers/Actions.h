@@ -11,4 +11,5 @@ enum class Action : int32_t
   Close,
   Pickup,
   Drop,
+  Build,
 };
