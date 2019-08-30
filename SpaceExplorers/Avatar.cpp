@@ -216,25 +216,42 @@ void Avatar::startBuilding(StructurePtr i_structure, ObjectPtr i_tool,
                            const Receipt& i_receipt, const Sdk::Vector2I& i_where)
 {
   d_buildContext = std::make_shared<BuildContext>(i_structure, i_tool, i_receipt, i_where);
-  notify(AvatarStartBuildEvent{});
+
+  if (i_structure && d_buildContext->takesTime())
+  {
+    const double progress = i_structure->getBuildTime() / i_receipt.time;
+    notify(AvatarStartBuildEvent{ progress, i_where });
+  }
 }
 
 void Avatar::stopBuilding()
 {
+  CONTRACT_EXPECT(d_buildContext);
+
+  if (d_buildContext->object && d_buildContext->takesTime())
+  {
+    const double progress = d_buildContext->object->getBuildTime() / d_buildContext->receipt.time;
+    notify(AvatarStopBuildEvent{ progress, d_buildContext->tileCoords });
+  }
+
   d_buildContext.reset();
-  notify(AvatarStopBuildEvent{});
 }
 
 void Avatar::updateBuild(double i_dt)
 {
   CONTRACT_EXPECT(isBuilding());
 
-  const auto& object = d_buildContext->d_object;
-  const auto& receipt = d_buildContext->d_receipt;
+  const auto& object = d_buildContext->object;
+  const auto& receipt = d_buildContext->receipt;
+  const auto& tileCoords = d_buildContext->tileCoords;
 
   if (object)
   {
     object->addBuildTime(i_dt);
+
+    if (d_buildContext->takesTime())
+      notify(AvatarUpdateBuildEvent{ object->getBuildTime() / receipt.time, tileCoords });
+
     if (object->getBuildTime() < receipt.time)
       return;
   }
@@ -246,10 +263,10 @@ void Avatar::finishBuild()
 {
   CONTRACT_EXPECT(isBuilding());
 
-  const auto& object = d_buildContext->d_object;
-  const auto& tool = d_buildContext->d_tool;
-  const auto& receipt = d_buildContext->d_receipt;
-  const auto& tileCoords = d_buildContext->d_tileCoords;
+  const auto& object = d_buildContext->object;
+  const auto& tool = d_buildContext->tool;
+  const auto& receipt = d_buildContext->receipt;
+  const auto& tileCoords = d_buildContext->tileCoords;
 
 
   if (object && object->getPrototype().layer == receipt.output.layer)
