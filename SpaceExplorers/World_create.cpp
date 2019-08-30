@@ -116,7 +116,8 @@ std::unique_ptr<World> World::createTestWorld(
   {
     auto tom = world->createAvatarAt(PrototypesCollection::getObject("Man"), { -352, 32 }, "Tom");
     tom->getInventory().setSize(8);
-    tom->getInventory().setItem(2, createObject("Welder"));
+    tom->getInventory().setItem(2, createObject("Crowbar"));
+    tom->getInventory().setItem(3, createObject("Welder"));
 
     auto rods = createObject("Rods");
     rods->setQuantity(40);

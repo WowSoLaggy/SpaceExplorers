@@ -55,5 +55,19 @@
         "Time": 1
       }
     ]
+  },
+  
+  "Crowbar":
+  {
+    "TextureName": "Crowbar.png",
+    "Stackable": false,
+    "ConsumedOnBuild": false,
+    "Receipts":
+    [
+      {
+        "Input": "Floor",
+        "Output": "",
+      }
+    ]
   }
 }
