@@ -52,30 +52,33 @@ void Avatar::moveDown()
 
 void Avatar::updateMovement(double i_dt)
 {
-  auto canMove = [&](Sdk::RectI i_curRect, const Sdk::Vector2I& i_diff) -> bool
+  if (!isBuilding())
   {
-    i_curRect.move(i_diff);
-    i_curRect.shrink(2);
-    
-    return !d_world.checkCollision(i_curRect);
-  };
+    auto canMove = [&](Sdk::RectI i_curRect, const Sdk::Vector2I& i_diff) -> bool
+    {
+      i_curRect.move(i_diff);
+      i_curRect.shrink(2);
 
-  if (d_moveXSign != 0)
-  {
-    Sdk::Vector2I diff;
-    diff.x = (int)(d_maxSpeed * i_dt * d_moveXSign);
+      return !d_world.checkCollision(i_curRect);
+    };
 
-    if (canMove(d_rect, diff))
-      setPosition(getPosition() + diff);
-  }
+    if (d_moveXSign != 0)
+    {
+      Sdk::Vector2I diff;
+      diff.x = (int)(d_maxSpeed * i_dt * d_moveXSign);
 
-  if (d_moveYSign != 0)
-  {
-    Sdk::Vector2I diff;
-    diff.y = (int)(d_maxSpeed * i_dt * d_moveYSign);
+      if (canMove(d_rect, diff))
+        setPosition(getPosition() + diff);
+    }
 
-    if (canMove(d_rect, diff))
-      setPosition(getPosition() + diff);
+    if (d_moveYSign != 0)
+    {
+      Sdk::Vector2I diff;
+      diff.y = (int)(d_maxSpeed * i_dt * d_moveYSign);
+
+      if (canMove(d_rect, diff))
+        setPosition(getPosition() + diff);
+    }
   }
 
   if (d_moveXSign != 0 || d_moveYSign != 0)
