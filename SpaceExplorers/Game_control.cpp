@@ -117,7 +117,12 @@ void Game::onSelectInventory(int i_index)
   if (inventory->getSelectedIndex() == i_index)
     onUnselectInventory();
   else
+  {
+    if (isControlAvatar() && d_avatar->isBuilding())
+      d_avatar->stopBuilding();
+
     inventory->selectItem(i_index);
+  }
 }
 
 void Game::onUnselectInventory()
@@ -127,6 +132,9 @@ void Game::onUnselectInventory()
     return;
 
   inventory->unselectItem();
+
+  if (isControlAvatar() && d_avatar->isBuilding())
+    d_avatar->stopBuilding();
 }
 
 
