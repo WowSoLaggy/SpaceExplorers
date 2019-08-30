@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Avatar.h"
 
+#include "BuildContext.h"
 #include "Utils.h"
 #include "World.h"
 
@@ -21,6 +22,8 @@ Avatar::Avatar(
 void Avatar::update(double i_dt)
 {
   updateMovement(i_dt);
+  if (isBuilding())
+    updateBuild(i_dt);
   Object::update(i_dt);
 }
 
@@ -188,36 +191,89 @@ void Avatar::interact(Action i_action, ThingPtr io_object,
     if (it == receipts.cend())
       return;
 
-    const auto& outputProto = it->output;
+    const auto& receipt = *it;
+    const auto& outputProto = receipt.output;
     const auto tileCoords = worldToTile(i_where);
 
     auto* tile = d_world.getTile(tileCoords);
     if (tile)
     {
-      if (inputProto && inputProto->layer == outputProto.layer && tile->hasStructureOnLayer(inputProto->layer))
+      const bool sameLayer = inputProto && inputProto->layer == outputProto.layer;
+      if (!sameLayer && tile->hasStructureOnLayer(outputProto.layer))
       {
-        // If input and output are on the same layer - remove the existing structure on this layer
-        tile->removeStructure(outputProto.layer);
-      }
-      else if (tile->hasStructureOnLayer(outputProto.layer))
-      {
-        // Otherwise output layer shall not be occupied
+        // Ooutput layer shall not be occupied
         return;
       }
     }
 
-    d_world.createStructureAt(outputProto, tileCoords);
-
-    if (i_tool->getPrototype().consumedOnBuild)
-    {
-      if (i_tool->getQuantity() <= 1)
-      {
-        auto indexOpt = d_inventory.getObjectIndex(i_tool);
-        CONTRACT_ASSERT(indexOpt);
-        d_inventory.resetItem(*indexOpt);
-      }
-      else
-        i_tool->addQuantity(-1);
-    }
+    startBuilding(object, i_tool, receipt, tileCoords);
   }
+}
+
+
+void Avatar::startBuilding(StructurePtr i_structure, ObjectPtr i_tool,
+                           const Receipt& i_receipt, const Sdk::Vector2I& i_where)
+{
+  d_buildContext = std::make_shared<BuildContext>(i_structure, i_tool, i_receipt, i_where);
+}
+
+void Avatar::stopBuilding()
+{
+  d_buildContext.reset();
+}
+
+void Avatar::updateBuild(double i_dt)
+{
+  CONTRACT_EXPECT(isBuilding());
+
+  const auto& object = d_buildContext->d_object;
+  const auto& receipt = d_buildContext->d_receipt;
+
+  if (object)
+  {
+    object->addBuildTime(i_dt);
+    if (object->getBuildTime() < receipt.time)
+      return;
+  }
+
+  finishBuild();
+}
+
+void Avatar::finishBuild()
+{
+  CONTRACT_EXPECT(isBuilding());
+
+  const auto& object = d_buildContext->d_object;
+  const auto& tool = d_buildContext->d_tool;
+  const auto& receipt = d_buildContext->d_receipt;
+  const auto& tileCoords = d_buildContext->d_tileCoords;
+
+
+  if (object && object->getPrototype().layer == receipt.output.layer)
+  {
+    // If input and output are on the same layer - remove the existing structure on this layer
+
+    auto* tile = d_world.getTile(tileCoords);
+    CONTRACT_ASSERT(tile);
+
+    tile->removeStructure(receipt.output.layer);
+  }
+
+
+  d_world.createStructureAt(receipt.output, tileCoords);
+
+
+  if (tool->getPrototype().consumedOnBuild)
+  {
+    if (tool->getQuantity() <= 1)
+    {
+      auto indexOpt = d_inventory.getObjectIndex(tool);
+      CONTRACT_ASSERT(indexOpt);
+      d_inventory.resetItem(*indexOpt);
+    }
+    else
+      tool->addQuantity(-1);
+  }
+
+  stopBuilding();
 }

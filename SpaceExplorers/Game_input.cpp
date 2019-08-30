@@ -114,6 +114,12 @@ void Game::onMouseClick(Dx::MouseKey i_button)
 void Game::onMouseRelease(Dx::MouseKey i_button)
 {
   d_gui.onMouseRelease(i_button, d_gui.getCursor().getPosition());
+
+  if (i_button == Dx::MouseKey::Left)
+  {
+    if (isControlAvatar() && d_avatar->isBuilding())
+      d_avatar->stopBuilding();
+  }
 }
 
 void Game::onMouseMove()

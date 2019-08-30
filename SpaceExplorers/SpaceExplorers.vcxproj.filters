@@ -260,5 +260,8 @@
     <ClInclude Include="Thing.h">
       <Filter>src\World\Thing</Filter>
     </ClInclude>
+    <ClInclude Include="BuildContext.h">
+      <Filter>src\World\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

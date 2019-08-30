@@ -14,6 +14,7 @@ struct InternalSettings;
 
 struct StructurePrototype;
 struct ObjectPrototype;
+struct Receipt;
 
 class Camera;
 class World;
@@ -28,3 +29,5 @@ class Thing;
 using ThingPtr = std::shared_ptr<Thing>;
 
 class Container;
+struct BuildContext;
+using BuildContextPtr = std::shared_ptr<BuildContext>;

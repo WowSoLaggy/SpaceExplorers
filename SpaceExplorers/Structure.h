@@ -39,12 +39,18 @@ public:
   void resetColor();
   void setColor(Sdk::Vector4F i_color);
 
+  void setBuildTime(double i_buildTime) { d_buildTime = i_buildTime; }
+  void addBuildTime(double i_addedBuildTime) { d_buildTime += i_addedBuildTime; }
+  double getBuildTime() const { return d_buildTime; }
+
 protected:
   Dx::IResourceController& d_resourceController;
   const StructurePrototype& d_prototype;
   std::shared_ptr<Dx::Sprite> d_sprite;
   Sdk::Vector2I d_coords;
   Sdk::Vector2I d_coordsTile;
+
+  double d_buildTime = 0;
 
 public:
   virtual void writeTo(std::ostream& io_stream) const;

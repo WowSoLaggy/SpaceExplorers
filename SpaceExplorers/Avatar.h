@@ -2,6 +2,7 @@
 
 #include "Actions.h"
 #include "Container.h"
+#include "Fwd.h"
 #include "Object.h"
 
 #include <LaggySdk/Vector.h>
@@ -27,6 +28,10 @@ public:
   void interact(Action i_action, ThingPtr io_object,
                 ObjectPtr i_tool, const Sdk::Vector2I& i_where);
 
+  void startBuilding(StructurePtr i_structure, ObjectPtr i_tool, const Receipt& i_receipt, const Sdk::Vector2I& i_where);
+  void stopBuilding();
+  bool isBuilding() const { return !!d_buildContext; }
+
   Container& getInventory() { return d_inventory; }
   const Container& getInventory() const { return d_inventory; }
 
@@ -38,6 +43,10 @@ private:
   int d_moveYSign = 0;
 
   Container d_inventory;
+
+  BuildContextPtr d_buildContext;
+  void updateBuild(double i_dt);
+  void finishBuild();
 
   void updateMovement(double i_dt);
   void updateMoveAnimation();
