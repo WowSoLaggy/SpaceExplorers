@@ -5,6 +5,7 @@
 
 #include <LaggyDx/AnimatedSprite.h>
 #include <LaggyDx/LaggyDxFwd.h>
+#include <LaggySdk/EventHandler.h>
 #include <LaggySdk/Rect.h>
 #include <LaggySdk/Vector.h>
 
@@ -13,7 +14,7 @@
 #include <string>
 
 
-class Object : public Thing
+class Object : public Thing, public Sdk::EventHandler
 {
 public:
   Object(

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Avatar.h"
 
+#include "Avatar_events.h"
 #include "BuildContext.h"
 #include "Utils.h"
 #include "World.h"
@@ -215,11 +216,13 @@ void Avatar::startBuilding(StructurePtr i_structure, ObjectPtr i_tool,
                            const Receipt& i_receipt, const Sdk::Vector2I& i_where)
 {
   d_buildContext = std::make_shared<BuildContext>(i_structure, i_tool, i_receipt, i_where);
+  notify(AvatarStartBuildEvent{});
 }
 
 void Avatar::stopBuilding()
 {
   d_buildContext.reset();
+  notify(AvatarStopBuildEvent{});
 }
 
 void Avatar::updateBuild(double i_dt)
