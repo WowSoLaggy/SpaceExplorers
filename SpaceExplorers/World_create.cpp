@@ -47,13 +47,27 @@ std::unique_ptr<World> World::createTestWorld(
   for (int y = -Lattices; y < Lattices; ++y)
   {
     for (int x = -Lattices; x < Lattices; ++x)
-      create(x, y, "Lattice");
+    {
+      if (x == -Lattices || x == Lattices - 1 || y == -Lattices || y == Lattices - 1)
+        create(x, y, "Lattice");
+      else
+        create(x, y, "Plating");
+    }
   }
 
   for (int y = -3; y < 3; ++y)
   {
-    for (int x = -8; x < -5; ++x)
-      create(x, y, "Lattice");
+    for (int x = -8; x < -4; ++x)
+    {
+      if (x == -8 || x == -4 - 1 || y == -3 || y == 3 - 1)
+        create(x, y, "Lattice");
+    }
+  }
+
+  for (int y = -2; y < 2; ++y)
+  {
+    for (int x = -7; x < -4; ++x)
+      create(x, y, "Plating");
   }
 
   //
