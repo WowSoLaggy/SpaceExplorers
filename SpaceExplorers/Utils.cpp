@@ -11,6 +11,13 @@ Sdk::Vector2I screenToWorld(Sdk::Vector2I i_coords, const Camera& i_camera)
   return i_coords;
 }
 
+Sdk::Vector2I worldToScreen(Sdk::Vector2I i_coords, const Camera& i_camera)
+{
+  i_coords -= i_camera.getTopLeftPoint();
+  return i_coords;
+}
+
+
 Sdk::Vector2I worldToTile(Sdk::Vector2I i_coords)
 {
   const int tileSize = SettingsProvider::getDefaultInternalSettings().tileSize;
