@@ -11,11 +11,11 @@
 struct BuildContext
 {
   BuildContext(StructurePtr i_object, ObjectPtr i_tool,
-               Receipt i_receipt, Sdk::Vector2I i_tileCoords)
+               Receipt i_receipt, Sdk::Vector2I i_coords)
     : object(i_object)
     , tool(i_tool)
     , receipt(i_receipt)
-    , tileCoords(i_tileCoords)
+    , coords(i_coords)
   {
   }
 
@@ -27,5 +27,5 @@ struct BuildContext
   StructurePtr object;
   ObjectPtr tool;
   Receipt receipt;
-  Sdk::Vector2I tileCoords;
+  Sdk::Vector2I coords;
 };

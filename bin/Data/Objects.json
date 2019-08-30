@@ -67,6 +67,7 @@
       {
         "Input": "Floor",
         "Output": "",
+        "Result": "FloorTile"
       }
     ]
   }

@@ -101,19 +101,40 @@ void PrototypesCollection::loadObjects(const fs::path& i_filename)
         const std::string inputName = receiptNode["Input"].asString();
         const std::string outputName = receiptNode["Output"].asString();
 
-        const StructurePrototype* inputProto = findStructure(inputName);
-        const StructurePrototype& outputProto = getStructure(outputName);
+        const StructurePrototype* inputProto = nullptr;
+        const StructurePrototype* outputProto = nullptr;
+
+        if (!inputName.empty())
+          inputProto = &getStructure(inputName);
+        if (!outputName.empty())
+          outputProto = &getStructure(outputName);
 
         double time = 0;
         const std::string TimeNodeName = "Time";
         if (receiptNode.find(TimeNodeName.data(), TimeNodeName.data() + TimeNodeName.length()))
           time = receiptNode[TimeNodeName].asDouble();
 
-        proto.receipts.emplace_back<Receipt>({ inputProto, outputProto, time });
+        std::string resultProtoName;
+        const std::string ResultNodeName = "Result";
+        if (receiptNode.find(ResultNodeName.data(), ResultNodeName.data() + ResultNodeName.length()))
+          resultProtoName = receiptNode[ResultNodeName].asString();
+
+        proto.receipts.emplace_back<Receipt>({ inputProto, outputProto, time, resultProtoName });
       }
     }
 
     d_collectionObjects.insert({ protoName, std::move(proto) });
+  }
+
+  // Now find all prototypes
+
+  for (auto& [_, proto] : d_collectionObjects)
+  {
+    for (auto& receipt : proto.receipts)
+    {
+      if (!receipt.resultName.empty())
+        receipt.result = &getObject(receipt.resultName);
+    }
   }
 }
 

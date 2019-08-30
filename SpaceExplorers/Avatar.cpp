@@ -196,21 +196,22 @@ void Avatar::interact(Action i_action, ThingPtr io_object,
       return;
 
     const auto& receipt = *it;
-    const auto& outputProto = receipt.output;
+    const auto* outputProto = receipt.output;
     const auto tileCoords = worldToTile(i_where);
 
     auto* tile = d_world.getTile(tileCoords);
     if (tile)
     {
-      const bool sameLayer = inputProto && inputProto->layer == outputProto.layer;
-      if (!sameLayer && tile->hasStructureOnLayer(outputProto.layer))
+      const bool sameLayer = inputProto && outputProto && inputProto->layer == outputProto->layer;
+      const bool outputLayerOccupied = outputProto && tile->hasStructureOnLayer(outputProto->layer);
+      if (!sameLayer && outputLayerOccupied)
       {
-        // Ooutput layer shall not be occupied
+        // Output layer shall not be occupied
         return;
       }
     }
 
-    startBuilding(object, i_tool, receipt, tileCoords);
+    startBuilding(object, i_tool, receipt, i_where);
   }
 }
 
@@ -234,7 +235,7 @@ void Avatar::stopBuilding()
   if (d_buildContext->object && d_buildContext->takesTime())
   {
     const double progress = d_buildContext->object->getBuildTime() / d_buildContext->receipt.time;
-    notify(AvatarStopBuildEvent{ progress, d_buildContext->tileCoords });
+    notify(AvatarStopBuildEvent{ progress, d_buildContext->coords });
   }
 
   d_buildContext.reset();
@@ -246,14 +247,14 @@ void Avatar::updateBuild(double i_dt)
 
   const auto& object = d_buildContext->object;
   const auto& receipt = d_buildContext->receipt;
-  const auto& tileCoords = d_buildContext->tileCoords;
+  const auto& coords = d_buildContext->coords;
 
   if (object)
   {
     object->addBuildTime(i_dt);
 
     if (d_buildContext->takesTime())
-      notify(AvatarUpdateBuildEvent{ object->getBuildTime() / receipt.time, tileCoords });
+      notify(AvatarUpdateBuildEvent{ object->getBuildTime() / receipt.time, coords });
 
     if (object->getBuildTime() < receipt.time)
       return;
@@ -269,21 +270,29 @@ void Avatar::finishBuild()
   const auto& object = d_buildContext->object;
   const auto& tool = d_buildContext->tool;
   const auto& receipt = d_buildContext->receipt;
-  const auto& tileCoords = d_buildContext->tileCoords;
+  const auto& coords = d_buildContext->coords;
+  const auto tileCoords = worldToTile(coords);
 
 
-  if (object && object->getPrototype().layer == receipt.output.layer)
+  const bool sameLayer = receipt.input && receipt.output && receipt.input->layer == receipt.output->layer;
+  const bool dismantling = receipt.input && !receipt.output;
+  if (sameLayer || dismantling)
   {
     // If input and output are on the same layer - remove the existing structure on this layer
 
     auto* tile = d_world.getTile(tileCoords);
     CONTRACT_ASSERT(tile);
 
-    tile->removeStructure(receipt.output.layer);
+    tile->removeStructure(receipt.input->layer);
   }
 
 
-  d_world.createStructureAt(receipt.output, tileCoords);
+  if (receipt.output)
+    d_world.createStructureAt(*receipt.output, tileCoords);
+
+
+  if (receipt.result)
+    d_world.createObjectAt(*receipt.result, coords, receipt.result->name);
 
 
   if (tool->getPrototype().consumedOnBuild)

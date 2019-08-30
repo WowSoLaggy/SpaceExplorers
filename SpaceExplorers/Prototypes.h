@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Fwd.h"
 #include "Traits.h"
 
 #include <string>
@@ -18,9 +19,11 @@ struct StructurePrototype
 
 struct Receipt
 {
-  const StructurePrototype* input;
-  const StructurePrototype& output;
+  const StructurePrototype* input = nullptr;
+  const StructurePrototype* output = nullptr;
   const double time = 0;
+  const std::string resultName;
+  const ObjectPrototype* result = nullptr;
 };
 
 struct ObjectPrototype

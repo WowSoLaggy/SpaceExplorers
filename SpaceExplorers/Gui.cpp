@@ -27,7 +27,7 @@ void Gui::processEvent(const Sdk::IEvent& i_event)
 
   auto getBuildProgressBarPosition = [&](const Sdk::Vector2I& i_tileCoords, const Sdk::Vector2I& i_barSize) {
     static const int tileSize = SettingsProvider::getDefaultInternalSettings().tileSize;
-    auto pos = i_tileCoords * tileSize;
+    auto pos = worldToTile(i_tileCoords) * tileSize;
     pos.x += (tileSize - i_barSize.x) / 2;
     pos.y -= i_barSize.y;
     return worldToScreen(pos, d_camera);
