@@ -8,6 +8,7 @@ class Button;
 class Inventory;
 class Label;
 class Panel;
+class BuildProgressBar;
 
 struct ExternalSettings;
 struct InternalSettings;

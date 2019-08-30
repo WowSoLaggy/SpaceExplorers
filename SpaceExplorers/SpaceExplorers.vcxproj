@@ -157,6 +157,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Avatar.cpp" />
     <ClCompile Include="Avatar_save.cpp" />
+    <ClCompile Include="BuildProgressBar.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Container.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="Avatar.h" />
     <ClInclude Include="Avatar_events.h" />
     <ClInclude Include="BuildContext.h" />
+    <ClInclude Include="BuildProgressBar.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Container.h" />
     <ClInclude Include="Container_events.h" />

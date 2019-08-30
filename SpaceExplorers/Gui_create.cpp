@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Gui.h"
 
+#include "BuildProgressBar.h"
 #include "Button.h"
 #include "Inventory.h"
 #include "Game.h"
@@ -108,6 +109,13 @@ std::shared_ptr<Inventory> Gui::createInventory(Container& io_container, int i_s
 std::shared_ptr<Button> Gui::createButton(const std::string& i_name /*= ""*/)
 {
   auto control = std::make_shared<Button>(d_resourceController);
+  addControl(control, i_name.empty() ? randStr() : i_name);
+  return control;
+}
+
+std::shared_ptr<BuildProgressBar> Gui::createBuildProgressBar(const std::string& i_name /*= ""*/)
+{
+  auto control = std::make_shared<BuildProgressBar>(d_resourceController);
   addControl(control, i_name.empty() ? randStr() : i_name);
   return control;
 }

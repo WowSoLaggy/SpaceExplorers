@@ -165,6 +165,9 @@
     <ClCompile Include="Container_save.cpp">
       <Filter>src\Container</Filter>
     </ClCompile>
+    <ClCompile Include="BuildProgressBar.cpp">
+      <Filter>src\Gui\GuiControls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -265,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="Avatar_events.h">
       <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildProgressBar.h">
+      <Filter>src\Gui\GuiControls</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
