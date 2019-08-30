@@ -12,15 +12,20 @@ struct BuildContext
 {
   BuildContext(StructurePtr i_object, ObjectPtr i_tool,
                Receipt i_receipt, Sdk::Vector2I i_tileCoords)
-    : d_object(i_object)
-    , d_tool(i_tool)
-    , d_receipt(i_receipt)
-    , d_tileCoords(i_tileCoords)
+    : object(i_object)
+    , tool(i_tool)
+    , receipt(i_receipt)
+    , tileCoords(i_tileCoords)
   {
   }
 
-  StructurePtr d_object;
-  ObjectPtr d_tool;
-  Receipt d_receipt;
-  Sdk::Vector2I d_tileCoords;
+  bool takesTime() const
+  {
+    return receipt.time > 0.01;
+  }
+
+  StructurePtr object;
+  ObjectPtr tool;
+  Receipt receipt;
+  Sdk::Vector2I tileCoords;
 };

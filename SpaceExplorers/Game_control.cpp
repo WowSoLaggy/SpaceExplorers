@@ -26,17 +26,21 @@ void Game::onControlAvatar()
 
   lookAtAvatar();
   setAvatarInventory();
+
+  d_gui.connectTo(*d_avatar);
 }
 
 void Game::onControlCamera()
 {
-  d_controlAvatar = false;
+  d_gui.disconnectFrom(*d_avatar);
+
+  onUnselectInventory();
+  setFreeModeInventory();
 
   if (d_avatar)
     d_avatar.reset();
 
-  onUnselectInventory();
-  setFreeModeInventory();
+  d_controlAvatar = false;
 }
 
 void Game::lookAtAvatar()

@@ -16,7 +16,7 @@ Game::Game(IApp& i_app, Dx::IResourceController& i_resourceController)
   , d_resourceController(i_resourceController)
   , d_camera(SettingsProvider::getDefaultExternalSettings().clientWidth,
     SettingsProvider::getDefaultExternalSettings().clientHeight)
-  , d_gui(*this, i_resourceController, d_camera.getViewport().size())
+  , d_gui(*this, i_resourceController, d_camera)
 {
 }
 

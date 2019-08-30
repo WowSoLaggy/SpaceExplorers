@@ -1,15 +1,60 @@
 #include "stdafx.h"
 #include "Gui.h"
 
+#include "Avatar_events.h"
+#include "BuildProgressBar.h"
+#include "Camera.h"
+#include "SettingsProvider.h"
+#include "Utils.h"
+
 #include <LaggyDx/IRenderer2d.h>
+#include <LaggySdk/Contracts.h>
 
 
-Gui::Gui(Game& i_game, Dx::IResourceController& i_resourceController, Sdk::Vector2I i_clientSize)
+Gui::Gui(Game& i_game, Dx::IResourceController& i_resourceController, const Camera& i_camera)
   : d_game(i_game)
   , d_resourceController(i_resourceController)
-  , d_clientSize(i_clientSize)
+  , d_clientSize(i_camera.getViewport().size())
   , d_cursor(i_resourceController)
+  , d_camera(i_camera)
 {
+}
+
+
+void Gui::processEvent(const Sdk::IEvent& i_event)
+{
+  static const std::string AvatarBuildProgressBarName = "BuildProgressBar";
+
+  auto getBuildProgressBarPosition = [&](const Sdk::Vector2I& i_tileCoords, const Sdk::Vector2I& i_barSize) {
+    static const int tileSize = SettingsProvider::getDefaultInternalSettings().tileSize;
+    auto pos = i_tileCoords * tileSize;
+    pos.x += (tileSize - i_barSize.x) / 2;
+    pos.y -= i_barSize.y;
+    return worldToScreen(pos, d_camera);
+  };
+
+
+  if (const auto* event = dynamic_cast<const AvatarStartBuildEvent*>(&i_event))
+  {
+    auto bar = createBuildProgressBar(AvatarBuildProgressBarName);
+    bar->setProgress(event->getProgress());
+    bar->setObjectPosition(getBuildProgressBarPosition(event->getPosition(), bar->getSize()));
+  }
+
+
+  else if (const auto* event = dynamic_cast<const AvatarUpdateBuildEvent*>(&i_event))
+  {
+    auto bar = std::dynamic_pointer_cast<BuildProgressBar>(getControl(AvatarBuildProgressBarName));
+    CONTRACT_ASSERT(bar);
+    bar->setProgress(event->getProgress());
+    bar->setObjectPosition(getBuildProgressBarPosition(event->getPosition(), bar->getSize()));
+  }
+
+
+  else if (dynamic_cast<const AvatarStopBuildEvent*>(&i_event))
+  {
+    deleteControl(AvatarBuildProgressBarName);
+  }
 }
 
 

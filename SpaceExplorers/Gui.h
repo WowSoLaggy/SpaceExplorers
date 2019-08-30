@@ -5,6 +5,7 @@
 #include "IGuiControl.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
+#include <LaggySdk/EventHandler.h>
 #include <LaggySdk/Vector.h>
 
 #include <memory>
@@ -12,10 +13,12 @@
 #include <vector>
 
 
-class Gui
+class Gui : public Sdk::EventHandler
 {
 public:
-  Gui(Game& i_game, Dx::IResourceController& i_resourceController, Sdk::Vector2I i_clientSize);
+  Gui(Game& i_game, Dx::IResourceController& i_resourceController, const Camera& i_camera);
+
+  virtual void processEvent(const Sdk::IEvent& i_event) override;
 
   Cursor& getCursor();
   const Cursor& getCursor() const;
@@ -44,6 +47,7 @@ private:
   Game& d_game;
   Dx::IResourceController& d_resourceController;
   Sdk::Vector2I d_clientSize;
+  const Camera& d_camera;
 
   Cursor d_cursor;
   std::unordered_map<std::string, IGuiControlPtr> d_guiControls;
