@@ -53,6 +53,36 @@
         "Input": "Plating_unwelded",
         "Output": "Plating",
         "Time": 1
+      },
+      {
+        "Input": "WallGirder_unwelded",
+        "Output": "WallGirder_0",
+        "Time": 1
+      },
+      {
+        "Input": "WallGirder",
+        "Output": "Wall",
+        "Time": 1
+      }
+    ]
+  },
+  
+  "CuttingTorch":
+  {
+    "TextureName": "CuttingTorch.png",
+    "Stackable": false,
+    "ConsumedOnBuild": false,
+    "Receipts":
+    [
+      {
+        "Input": "Wall",
+        "Output": "WallGirder",
+        "Time": 5
+      },
+      {
+        "Input": "WallGirder_0",
+        "Output": "WallGirder_unwelded",
+        "Time": 2
       }
     ]
   },
@@ -68,6 +98,48 @@
         "Input": "Floor",
         "Output": "",
         "Result": "FloorTile"
+      },
+      {
+        "Input": "WallGirder",
+        "Output": "WallGirder_1",
+        "Result": "Metal"
+      },
+      {
+        "Input": "WallGirder_1",
+        "Output": "WallGirder_0",
+        "Result": "Metal"
+      },
+      {
+        "Input": "WallGirder_unwelded",
+        "Output": "",
+        "Result": "Metal"
+      }
+    ]
+  },
+  
+  "Metal":
+  {
+    "TextureName": "Metal.png",
+    "Stackable": true,
+    "ConsumedOnBuild": true
+    ,
+    "Receipts":
+    [
+      {
+        "Input": "Floor",
+        "Output": "WallGirder_unwelded"
+      },
+      {
+        "Input": "Plating",
+        "Output": "WallGirder_unwelded"
+      },
+      {
+        "Input": "WallGirder_0",
+        "Output": "WallGirder_1"
+      },
+      {
+        "Input": "WallGirder_1",
+        "Output": "WallGirder"
       }
     ]
   }

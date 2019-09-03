@@ -47,6 +47,38 @@
     "Passable": false
   },
   
+  "WallGirder_unwelded":
+  {
+    "TextureName": "WallGirder_unwelded.png",
+    "Layer": "Wall",
+    "Behavior": "Default",
+    "Passable": true
+  },
+  
+  "WallGirder_0":
+  {
+    "TextureName": "WallGirder_0.png",
+    "Layer": "Wall",
+    "Behavior": "Default",
+    "Passable": true
+  },
+  
+  "WallGirder_1":
+  {
+    "TextureName": "WallGirder_1.png",
+    "Layer": "Wall",
+    "Behavior": "Default",
+    "Passable": false
+  },
+  
+  "WallGirder":
+  {
+    "TextureName": "WallGirder.png",
+    "Layer": "Wall",
+    "Behavior": "Default",
+    "Passable": false
+  },
+  
   "Door":
   {
     "TextureName": "Door.png",

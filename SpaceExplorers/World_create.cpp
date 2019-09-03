@@ -130,16 +130,21 @@ std::unique_ptr<World> World::createTestWorld(
   {
     auto tom = world->createAvatarAt(PrototypesCollection::getObject("Man"), { -352, 32 }, "Tom");
     tom->getInventory().setSize(8);
-    tom->getInventory().setItem(2, createObject("Crowbar"));
-    tom->getInventory().setItem(3, createObject("Welder"));
+    tom->getInventory().setItem(0, createObject("Crowbar"));
+    tom->getInventory().setItem(1, createObject("Welder"));
+    tom->getInventory().setItem(2, createObject("CuttingTorch"));
 
     auto rods = createObject("Rods");
     rods->setQuantity(40);
-    tom->getInventory().setItem(0, rods);
+    tom->getInventory().setItem(3, rods);
 
     auto floorTiles = createObject("FloorTile");
     floorTiles->setQuantity(40);
-    tom->getInventory().setItem(1, floorTiles);
+    tom->getInventory().setItem(4, floorTiles);
+
+    auto metal = createObject("Metal");
+    metal->setQuantity(40);
+    tom->getInventory().setItem(5, metal);
   }
 
   world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -64 }, "Rods")->setQuantity(20);
