@@ -37,8 +37,6 @@ private:
   State d_state = State::Closed;
 
   Action getDefaultAction() const;
-  Dx::AnimatedSprite& getAnimatedSprite();
-  const Dx::AnimatedSprite& getAnimatedSprite() const;
 
 protected:
   virtual void writeTo(std::ostream& io_stream) const override;

@@ -5,7 +5,7 @@
 #include "Thing.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
-#include <LaggyDx/Sprite.h>
+#include <LaggyDx/AnimatedSprite.h>
 #include <LaggySdk/Vector.h>
 
 #include <iostream>
@@ -46,7 +46,7 @@ public:
 protected:
   Dx::IResourceController& d_resourceController;
   const StructurePrototype& d_prototype;
-  std::shared_ptr<Dx::Sprite> d_sprite;
+  Dx::AnimatedSprite d_sprite;
   Sdk::Vector2I d_coords;
   Sdk::Vector2I d_coordsTile;
 

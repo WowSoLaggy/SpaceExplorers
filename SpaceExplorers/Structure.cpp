@@ -17,12 +17,10 @@ Structure::Structure(
   , d_prototype(i_prototype)
   , d_coordsTile(std::move(i_coordsTile))
 {
-  d_sprite = std::make_shared<Dx::Sprite>();
-
-  d_sprite->setTexture(&d_resourceController.getTextureResource(d_prototype.textureFileName));
+  d_sprite.setTexture(&d_resourceController.getTextureResource(d_prototype.textureFileName));
   
   auto tileSize = SettingsProvider::getDefaultInternalSettings().tileSize;
-  d_sprite->setPosition(d_coordsTile * SettingsProvider::getDefaultInternalSettings().tileSize);
+  d_sprite.setPosition(d_coordsTile * tileSize);
 
   d_coords = d_coordsTile * tileSize;
   d_coords += { tileSize / 2, tileSize / 2 };
@@ -36,7 +34,7 @@ void Structure::update(double i_dt)
 
 void Structure::render(Dx::IRenderer2d& i_renderer) const
 {
-  i_renderer.renderSprite(*d_sprite);
+  i_renderer.renderSprite(d_sprite);
 }
 
 
@@ -53,7 +51,7 @@ bool Structure::isPassable() const
 
 bool Structure::isTransparent() const
 {
-  return d_sprite->getTexture()->getDescription().alpha;
+  return d_sprite.getTexture()->getDescription().alpha;
 }
 
 const Sdk::Vector2I& Structure::getCoords() const
@@ -69,16 +67,16 @@ const Sdk::Vector2I& Structure::getCoordsTile() const
 
 void Structure::resetColor()
 {
-  d_sprite->setColor(Sdk::Vector4F::identity());
+  d_sprite.setColor(Sdk::Vector4F::identity());
 }
 
 void Structure::setColor(Sdk::Vector4F i_color)
 {
-  d_sprite->setColor(std::move(i_color));
+  d_sprite.setColor(std::move(i_color));
 }
 
 
 bool Structure::checkAlpha(Sdk::Vector2I i_coords) const
 {
-  return d_sprite->getTexture()->checkAlpha(i_coords);
+  return d_sprite.getTexture()->checkAlpha(i_coords);
 }
