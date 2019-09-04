@@ -85,5 +85,13 @@
     "Layer": "Wall",
     "Behavior": "Door",
     "Passable": false
+  },
+  
+  "Crate":
+  {
+    "TextureName": "Crate.png",
+    "Layer": "Wall",
+    "Behavior": "Default",
+    "Passable": true
   }
 }
