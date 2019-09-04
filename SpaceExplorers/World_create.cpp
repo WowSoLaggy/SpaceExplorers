@@ -121,7 +121,7 @@ std::unique_ptr<World> World::createTestWorld(
   ///
 
 
-  create(-9, 1, "Lattice_unwelded");
+  create(-6, -1, "Crate");
 
 
   ///
@@ -147,10 +147,16 @@ std::unique_ptr<World> World::createTestWorld(
     tom->getInventory().setItem(5, metal);
   }
 
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -64 }, "Rods")->setQuantity(20);
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -64 }, "Rods")->setQuantity(20);
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -128 }, "Rods")->setQuantity(20);
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -128 }, "Rods")->setQuantity(20);
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -64 }, "Rods")->setQuantity(40);
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -64 }, "Rods")->setQuantity(40);
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -128 }, "Rods")->setQuantity(40);
+  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -128 }, "Rods")->setQuantity(40);
+
+  world->createObjectAt(PrototypesCollection::getObject("Metal"), { -64, -96 }, "Metal")->setQuantity(40);
+  world->createObjectAt(PrototypesCollection::getObject("Metal"), { -128, -96 }, "Metal")->setQuantity(40);
+
+  world->createObjectAt(PrototypesCollection::getObject("FloorTile"), { -64, -32 }, "FloorTile")->setQuantity(40);
+  world->createObjectAt(PrototypesCollection::getObject("FloorTile"), { -128, -32 }, "FloorTile")->setQuantity(40);
 
   world->createObjectAt(PrototypesCollection::getObject("Welder"), { 128, 128 }, "Welder");
 
