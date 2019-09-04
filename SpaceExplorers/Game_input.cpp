@@ -100,7 +100,8 @@ void Game::handleMouse(const Dx::MouseState& i_mouseState)
 
 void Game::onMouseClick(Dx::MouseKey i_button)
 {
-  d_gui.onMouseClick(i_button, d_gui.getCursor().getPosition());
+  if (d_gui.onMouseClick(i_button, d_gui.getCursor().getPosition()))
+    return;
 
   if (!d_world)
     return;

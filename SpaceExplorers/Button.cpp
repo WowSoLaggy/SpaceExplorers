@@ -75,10 +75,15 @@ void Button::setState(State i_newState)
 }
 
 
-void Button::onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos)
+bool Button::onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos)
 {
   if (i_button == Dx::MouseKey::Left && d_rect.containsPoint(i_mousePos))
+  {
     setState(State::Pressed);
+    return true;
+  }
+
+  return false;
 }
 
 void Button::onMouseRelease(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos)

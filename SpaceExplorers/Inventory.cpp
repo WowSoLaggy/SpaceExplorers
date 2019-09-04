@@ -37,6 +37,10 @@ void Inventory::render(Dx::IRenderer2d& i_renderer) const
   for (const auto& sprite : d_gridSprites)
     i_renderer.renderSprite(sprite);
 
+  // Frames
+  for (const auto& sprite : d_framesSprites)
+    i_renderer.renderSprite(sprite);
+
   // Items
   for (int itemIdx = 0; itemIdx < (int)d_itemSprites.size(); ++itemIdx)
   //for (const auto& sprite : d_itemSprites)
@@ -126,7 +130,7 @@ void Inventory::recreateSprites()
   {
     for (int x = 0; x < d_slotsHor; ++x)
     {
-      d_gridSprites.emplace_back(Dx::Sprite{
+      d_framesSprites.emplace_back(Dx::Sprite{
         &textureItem, { CornerSize + SlotSize * x, CornerSize + SlotSize * y },
         textureItem.getDescription().size(), Sdk::Vector4F::identity() });
 
@@ -211,4 +215,24 @@ void Inventory::updateSelectionSprite()
   int x = *d_selectedIndex % d_slotsHor;
   int y = *d_selectedIndex / d_slotsHor;
   d_selectionSprite.setPosition({ CornerSize + SlotSize * x + 2, CornerSize + SlotSize * y + 2 });
+}
+
+
+bool Inventory::onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos)
+{
+  if (i_button != Dx::MouseKey::Left)
+    return false;
+
+  const auto relativePos = i_mousePos - d_position;
+
+  for (int idx = 0; idx < d_slotsCount; ++idx)
+  {
+    if (d_framesSprites.at(idx).getRect().containsPoint(relativePos))
+    {
+      selectItem(idx);
+      return true;
+    }
+  }
+
+  return false;
 }

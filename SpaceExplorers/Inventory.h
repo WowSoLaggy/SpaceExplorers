@@ -21,6 +21,8 @@ public:
   virtual void render(Dx::IRenderer2d& i_renderer) const override;
   virtual void processEvent(const Sdk::IEvent& i_event) override;
 
+  virtual bool onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos) override;
+
   void setPosition(Sdk::Vector2I i_position) { d_position = std::move(i_position); }
   virtual Sdk::Vector2I getSize() const override;
 
@@ -44,6 +46,7 @@ private:
 
   Sdk::Vector2I d_position;
   std::vector<Dx::Sprite> d_gridSprites;
+  std::vector<Dx::Sprite> d_framesSprites;
 
   std::vector<Dx::Sprite> d_itemSprites;
   std::vector<Sdk::Vector2I> d_itemOffsets;

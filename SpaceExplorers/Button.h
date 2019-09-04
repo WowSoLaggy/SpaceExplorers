@@ -21,7 +21,7 @@ public:
   virtual void render(Dx::IRenderer2d& i_renderer) const override;
   virtual Sdk::Vector2I getSize() const override;
 
-  virtual void onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos) override;
+  virtual bool onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos) override;
   virtual void onMouseRelease(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos) override;
   virtual void onMouseMove(const Sdk::Vector2I& i_mousePos) override;
 
