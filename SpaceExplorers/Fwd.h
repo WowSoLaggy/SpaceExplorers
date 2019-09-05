@@ -32,3 +32,6 @@ using ThingPtr = std::shared_ptr<Thing>;
 class Container;
 struct BuildContext;
 using BuildContextPtr = std::shared_ptr<BuildContext>;
+
+class BehaviorModelBase;
+class DoorModel;

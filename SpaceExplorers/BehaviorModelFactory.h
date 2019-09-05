@@ -1,6 +1,5 @@
 #pragma once
 
-#include "BehaviorModelBase.h"
 #include "Fwd.h"
 
 #include <memory>
@@ -9,5 +8,5 @@
 class BehaviorModelFactory
 {
 public:
-  static std::unique_ptr<BehaviorModelBase> get(Structure& io_structure);
+  static std::shared_ptr<BehaviorModelBase> get(Structure& io_structure);
 };

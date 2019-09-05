@@ -22,6 +22,7 @@ public:
     Sdk::Vector2I i_coordsTile);
 
   const StructurePrototype& getPrototype() const { return d_prototype; }
+  std::shared_ptr<BehaviorModelBase> getBehaviorModel() { return d_behaviorModel; }
 
   Dx::AnimatedSprite& getSprite() { return d_sprite; }
   const Dx::AnimatedSprite& getSprite() const { return d_sprite; }
@@ -54,7 +55,7 @@ protected:
   Sdk::Vector2I d_coords;
   Sdk::Vector2I d_coordsTile;
 
-  std::unique_ptr<BehaviorModelBase> d_behaviorModel;
+  std::shared_ptr<BehaviorModelBase> d_behaviorModel;
 
   double d_buildTime = 0;
 
