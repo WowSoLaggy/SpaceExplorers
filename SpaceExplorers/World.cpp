@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "World.h"
 
-#include "Door.h"
 #include "Prototypes.h"
 #include "Structure.h"
 #include "SettingsProvider.h"
@@ -95,13 +94,7 @@ Tile& World::getOrCreateTile(const Sdk::Vector2I& i_coords)
 
 StructurePtr World::createStructureAt(const StructurePrototype& i_prototype, const Sdk::Vector2I& i_coords)
 {
-  StructurePtr structure;
-
-  if (i_prototype.behavior == Behavior::Door)
-    structure = std::make_shared<Door>(d_resourceController, i_prototype, i_coords);
-  else 
-    structure = std::make_shared<Structure>(d_resourceController, i_prototype, i_coords);
-
+  StructurePtr structure = std::make_shared<Structure>(d_resourceController, i_prototype, i_coords);
   d_tilesMap[i_coords].setStructure(i_prototype.layer, structure);
 
   return structure;

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "World.h"
 
-#include "Door.h"
+#include "DoorModel.h"
 #include "PrototypesCollection.h"
 #include "Structure.h"
 
@@ -30,8 +30,8 @@ std::unique_ptr<World> World::createTestWorld(
     return world->createStructureAt(PrototypesCollection::getStructure(i_protoName), { x, y });
   };
 
-  auto toDoor = [](StructurePtr i_structure) -> DoorPtr {
-    return std::dynamic_pointer_cast<Door>(i_structure);
+  auto toDoor = [](StructurePtr i_structure) -> std::shared_ptr<DoorModel> {
+    return std::dynamic_pointer_cast<DoorModel>(i_structure->getBehaviorModel());
   };
 
   auto createObject = [&](const std::string& i_protoName) -> ObjectPtr {
@@ -99,7 +99,7 @@ std::unique_ptr<World> World::createTestWorld(
 
 
   create(0, -3, "Wall");
-  toDoor(create(0, -2, "Door"))->setState(Door::State::Open);
+  toDoor(create(0, -2, "Door"))->setState(DoorModel::State::Open);
   create(0, -1, "Wall");
   create(0, 0, "Wall");
   create(1, 0, "Wall");
@@ -111,7 +111,7 @@ std::unique_ptr<World> World::createTestWorld(
   create(-6, -2, "Wall");
   create(-7, -2, "Wall");
   create(-7, -1, "Wall");
-  toDoor(create(-7, 0, "Door"))->setState(Door::State::Open);
+  toDoor(create(-7, 0, "Door"))->setState(DoorModel::State::Open);
   create(-7, 1, "Wall");
   create(-6, 1, "Wall");
   create(-5, 1, "Wall");
