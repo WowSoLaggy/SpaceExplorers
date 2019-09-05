@@ -236,9 +236,6 @@
     <ClInclude Include="Inventory.h">
       <Filter>src\Gui\GuiControls</Filter>
     </ClInclude>
-    <ClInclude Include="Traits.h">
-      <Filter>src\World\Prototypes</Filter>
-    </ClInclude>
     <ClInclude Include="Panel.h">
       <Filter>src\Gui\GuiControls</Filter>
     </ClInclude>
@@ -286,6 +283,12 @@
     </ClInclude>
     <ClInclude Include="DoorModel.h">
       <Filter>src\World\BehaviorModels</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviors.h">
+      <Filter>src\World\BehaviorModels</Filter>
+    </ClInclude>
+    <ClInclude Include="Layers.h">
+      <Filter>src\World\Prototypes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

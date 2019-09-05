@@ -1,7 +1,8 @@
 #pragma once
 
+#include "Behaviors.h"
 #include "Fwd.h"
-#include "Traits.h"
+#include "Layers.h"
 
 #include <string>
 
