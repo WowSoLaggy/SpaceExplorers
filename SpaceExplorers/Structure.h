@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Actions.h"
+#include "BehaviorModelBase.h"
 #include "Prototypes.h"
 #include "Thing.h"
 
@@ -52,6 +53,8 @@ protected:
   Dx::AnimatedSprite d_sprite;
   Sdk::Vector2I d_coords;
   Sdk::Vector2I d_coordsTile;
+
+  std::unique_ptr<BehaviorModelBase> d_behaviorModel;
 
   double d_buildTime = 0;
 

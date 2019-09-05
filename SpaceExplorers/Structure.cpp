@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Structure.h"
 
+#include "BehaviorModelFactory.h"
 #include "SettingsProvider.h"
 
 #include <LaggyDx/ImageDescription.h>
@@ -24,6 +25,8 @@ Structure::Structure(
 
   d_coords = d_coordsTile * tileSize;
   d_coords += { tileSize / 2, tileSize / 2 };
+
+  d_behaviorModel = BehaviorModelFactory::get(*this);
 }
 
 
