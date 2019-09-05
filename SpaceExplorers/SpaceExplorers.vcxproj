@@ -157,6 +157,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Avatar.cpp" />
     <ClCompile Include="Avatar_save.cpp" />
+    <ClCompile Include="BehaviorModelBase.cpp" />
     <ClCompile Include="BuildProgressBar.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="Container_save.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Door.cpp" />
+    <ClCompile Include="DoorModel.cpp" />
     <ClCompile Include="Door_save.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_control.cpp" />
@@ -208,6 +210,8 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Container.h" />
     <ClInclude Include="Container_events.h" />
+    <ClInclude Include="BehaviorModelBase.h" />
+    <ClInclude Include="DoorModel.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="ObjectsReader.h" />

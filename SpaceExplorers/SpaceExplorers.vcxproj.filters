@@ -52,6 +52,9 @@
     <Filter Include="src\World\Thing">
       <UniqueIdentifier>{3250c239-d874-4fba-9dc8-1d69131604b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\World\BehaviorModels">
+      <UniqueIdentifier>{3445dfbf-74cc-4902-8832-dd4f8f0158ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -168,6 +171,12 @@
     <ClCompile Include="BuildProgressBar.cpp">
       <Filter>src\Gui\GuiControls</Filter>
     </ClCompile>
+    <ClCompile Include="DoorModel.cpp">
+      <Filter>src\World\BehaviorModels</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviorModelBase.cpp">
+      <Filter>src\World\BehaviorModels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -271,6 +280,12 @@
     </ClInclude>
     <ClInclude Include="BuildProgressBar.h">
       <Filter>src\Gui\GuiControls</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorModelBase.h">
+      <Filter>src\World\BehaviorModels</Filter>
+    </ClInclude>
+    <ClInclude Include="DoorModel.h">
+      <Filter>src\World\BehaviorModels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

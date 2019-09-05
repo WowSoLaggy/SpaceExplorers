@@ -22,6 +22,9 @@ public:
 
   const StructurePrototype& getPrototype() const { return d_prototype; }
 
+  Dx::AnimatedSprite& getSprite() { return d_sprite; }
+  const Dx::AnimatedSprite& getSprite() const { return d_sprite; }
+
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
 
