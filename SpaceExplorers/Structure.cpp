@@ -8,6 +8,7 @@
 #include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>
 #include <LaggyDx/ITextureResource.h>
+#include <LaggySdk/Contracts.h>
 
 
 Structure::Structure(
@@ -27,12 +28,14 @@ Structure::Structure(
   d_coords += { tileSize / 2, tileSize / 2 };
 
   d_behaviorModel = BehaviorModelFactory::get(*this);
+  CONTRACT_ENSURE(d_behaviorModel);
 }
 
 
 void Structure::update(double i_dt)
 {
-  // nop
+  CONTRACT_EXPECT(d_behaviorModel);
+  d_behaviorModel->update(i_dt);
 }
 
 void Structure::render(Dx::IRenderer2d& i_renderer) const
@@ -43,12 +46,14 @@ void Structure::render(Dx::IRenderer2d& i_renderer) const
 
 void Structure::interact(const Action i_action)
 {
-  // nop
+  CONTRACT_EXPECT(d_behaviorModel);
+  d_behaviorModel->interact(i_action);
 }
 
 bool Structure::isPassable() const
 {
-  return d_prototype.isPassable;
+  CONTRACT_EXPECT(d_behaviorModel);
+  return d_behaviorModel->isPassable();
 }
 
 
