@@ -29,8 +29,6 @@ public:
   virtual void interact(Action i_action) override;
   virtual bool isPassable() const override;
 
-  virtual bool checkAlpha(Sdk::Vector2I i_coords) const override;
-
   void setState(State i_state);
 
 private:

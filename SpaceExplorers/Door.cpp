@@ -74,12 +74,6 @@ bool Door::isPassable() const
 }
 
 
-bool Door::checkAlpha(Sdk::Vector2I i_coords) const
-{
-  return d_sprite.getTexture()->checkAlpha(i_coords, d_sprite.getFrame());
-}
-
-
 void Door::setState(State i_state)
 {
   d_state = i_state;
