@@ -177,6 +177,9 @@
     <ClCompile Include="BehaviorModelBase.cpp">
       <Filter>src\World\BehaviorModels</Filter>
     </ClCompile>
+    <ClCompile Include="BehaviorModelFactory.cpp">
+      <Filter>src\World\BehaviorModels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -289,6 +292,9 @@
     </ClInclude>
     <ClInclude Include="Layers.h">
       <Filter>src\World\Prototypes</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorModelFactory.h">
+      <Filter>src\World\BehaviorModels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
