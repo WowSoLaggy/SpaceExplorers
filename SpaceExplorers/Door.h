@@ -36,7 +36,7 @@ private:
 
   Action getDefaultAction() const;
 
-protected:
+public:
   virtual void writeTo(std::ostream& io_stream) const override;
   virtual void readFrom(std::istream& io_stream) override;
 };
