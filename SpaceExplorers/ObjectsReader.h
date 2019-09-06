@@ -11,6 +11,7 @@
 
 StructurePtr readStructureFrom(std::istream& io_stream,
                                Dx::IResourceController& i_resourceController,
+                               World& i_world,
                                Sdk::Vector2I i_coordsTile);
 
 ObjectPtr readObjectFrom(std::istream& io_stream,

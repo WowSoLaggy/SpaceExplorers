@@ -21,6 +21,7 @@ void Tile::writeTo(std::ostream& io_stream) const
 
 void Tile::readFrom(std::istream& io_stream,
                     Dx::IResourceController& i_resourceController,
+                    World& i_world,
                     const Sdk::Vector2I& i_coords)
 {
   int layersCount;
@@ -31,6 +32,6 @@ void Tile::readFrom(std::istream& io_stream,
     Layer layer;
     Sdk::read(io_stream, layer);
 
-    d_layersMap[layer] = readStructureFrom(io_stream, i_resourceController, std::move(i_coords));
+    d_layersMap[layer] = readStructureFrom(io_stream, i_resourceController, i_world, std::move(i_coords));
   }
 }

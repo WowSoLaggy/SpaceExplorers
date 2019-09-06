@@ -13,9 +13,10 @@
 
 Structure::Structure(
   Dx::IResourceController& i_resourceController,
-  const StructurePrototype& i_prototype,
+  World& i_world, const StructurePrototype& i_prototype,
   Sdk::Vector2I i_coordsTile)
   : d_resourceController(i_resourceController)
+  , d_world(i_world)
   , d_prototype(i_prototype)
   , d_coordsTile(std::move(i_coordsTile))
 {

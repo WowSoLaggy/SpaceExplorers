@@ -6,12 +6,13 @@
 
 StructurePtr readStructureFrom(std::istream& io_stream,
                                Dx::IResourceController& i_resourceController,
+                               World& i_world,
                                Sdk::Vector2I i_coordsTile)
 {
   const auto prototypeName = Sdk::readString(io_stream);
   const auto& prototype = PrototypesCollection::getStructure(prototypeName);
 
-  StructurePtr structurePtr = std::make_shared<Structure>(i_resourceController, prototype, std::move(i_coordsTile));
+  StructurePtr structurePtr = std::make_shared<Structure>(i_resourceController, i_world, prototype, std::move(i_coordsTile));
 
   structurePtr->readFrom(io_stream);
 

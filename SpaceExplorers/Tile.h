@@ -35,5 +35,6 @@ public:
   void writeTo(std::ostream& io_stream) const;
   void readFrom(std::istream& io_stream,
                 Dx::IResourceController& i_resourceController,
+                World& i_world,
                 const Sdk::Vector2I& i_coords);
 };

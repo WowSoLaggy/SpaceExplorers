@@ -18,7 +18,7 @@ class Structure : public Thing
 public:
   Structure(
     Dx::IResourceController& i_resourceController,
-    const StructurePrototype& i_prototype,
+    World& i_world, const StructurePrototype& i_prototype,
     Sdk::Vector2I i_coordsTile);
 
   const StructurePrototype& getPrototype() const { return d_prototype; }
@@ -50,6 +50,7 @@ public:
 
 protected:
   Dx::IResourceController& d_resourceController;
+  World& d_world;
   const StructurePrototype& d_prototype;
   Dx::AnimatedSprite d_sprite;
   Sdk::Vector2I d_coords;
