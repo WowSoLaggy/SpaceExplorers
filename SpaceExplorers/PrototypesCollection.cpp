@@ -23,6 +23,7 @@ namespace
   {
     { "Default", Behavior::Default },
     { "Door", Behavior::Door },
+    { "Container", Behavior::Container },
   };
 } // anonymous NS
 
@@ -63,6 +64,10 @@ void PrototypesCollection::loadStructures(const fs::path& i_filename)
     proto.layer = LayerNames.at(node["Layer"].asString());
     proto.behavior = BehaviorNames.at(node["Behavior"].asString());
     proto.isPassable = node["Passable"].asBool();
+
+    const std::string ContainerSizeNodeName = "ContainerSize";
+    if (node.find(ContainerSizeNodeName.data(), ContainerSizeNodeName.data() + ContainerSizeNodeName.length()))
+      proto.containerSize = node[ContainerSizeNodeName].asInt();
 
     d_collectionStructures.insert({ protoName, std::move(proto) });
   }

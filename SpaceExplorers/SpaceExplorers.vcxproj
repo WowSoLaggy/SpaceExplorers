@@ -163,6 +163,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Container.cpp" />
+    <ClCompile Include="ContainerModel.cpp" />
     <ClCompile Include="Container_save.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="DoorModel.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="BuildProgressBar.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Container.h" />
+    <ClInclude Include="ContainerModel.h" />
     <ClInclude Include="Container_events.h" />
     <ClInclude Include="BehaviorModelBase.h" />
     <ClInclude Include="DoorModel.h" />

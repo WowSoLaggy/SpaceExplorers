@@ -91,7 +91,8 @@
   {
     "TextureName": "Crate.png",
     "Layer": "Wall",
-    "Behavior": "Default",
+    "Behavior": "Container",
+    "ContainerSize": 8,
     "Passable": true
   }
 }
