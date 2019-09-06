@@ -34,7 +34,7 @@ void Gui::processEvent(const Sdk::IEvent& i_event)
   };
 
 
-  if (const auto* event = dynamic_cast<const AvatarStartBuildEvent*>(&i_event))
+  if (const auto* event = dynamic_cast<const StartBuildEvent*>(&i_event))
   {
     auto bar = createBuildProgressBar(AvatarBuildProgressBarName);
     bar->setProgress(event->getProgress());
@@ -42,7 +42,7 @@ void Gui::processEvent(const Sdk::IEvent& i_event)
   }
 
 
-  else if (const auto* event = dynamic_cast<const AvatarUpdateBuildEvent*>(&i_event))
+  else if (const auto* event = dynamic_cast<const UpdateBuildEvent*>(&i_event))
   {
     auto bar = std::dynamic_pointer_cast<BuildProgressBar>(getControl(AvatarBuildProgressBarName));
     CONTRACT_ASSERT(bar);
@@ -51,7 +51,7 @@ void Gui::processEvent(const Sdk::IEvent& i_event)
   }
 
 
-  else if (dynamic_cast<const AvatarStopBuildEvent*>(&i_event))
+  else if (dynamic_cast<const StopBuildEvent*>(&i_event))
   {
     deleteControl(AvatarBuildProgressBarName);
   }

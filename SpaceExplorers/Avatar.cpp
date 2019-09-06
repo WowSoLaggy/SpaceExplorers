@@ -224,7 +224,7 @@ void Avatar::startBuilding(StructurePtr i_structure, ObjectPtr i_tool,
   if (i_structure && d_buildContext->takesTime())
   {
     const double progress = i_structure->getBuildTime() / i_receipt.time;
-    notify(AvatarStartBuildEvent{ progress, i_where });
+    notify(StartBuildEvent{ progress, i_where });
   }
 }
 
@@ -235,7 +235,7 @@ void Avatar::stopBuilding()
   if (d_buildContext->object && d_buildContext->takesTime())
   {
     const double progress = d_buildContext->object->getBuildTime() / d_buildContext->receipt.time;
-    notify(AvatarStopBuildEvent{ progress, d_buildContext->coords });
+    notify(StopBuildEvent{ progress, d_buildContext->coords });
   }
 
   d_buildContext.reset();
@@ -254,7 +254,7 @@ void Avatar::updateBuild(double i_dt)
     object->addBuildTime(i_dt);
 
     if (d_buildContext->takesTime())
-      notify(AvatarUpdateBuildEvent{ object->getBuildTime() / receipt.time, coords });
+      notify(UpdateBuildEvent{ object->getBuildTime() / receipt.time, coords });
 
     if (object->getBuildTime() < receipt.time)
       return;

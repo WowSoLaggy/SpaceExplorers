@@ -4,14 +4,14 @@
 #include <LaggySdk/Vector.h>
 
 
-class AvatarBuildEvent : public Sdk::IEvent
+class BuildEvent : public Sdk::IEvent
 {
 public:
   double getProgress() const { return d_progress; }
   const Sdk::Vector2I& getPosition() const { return d_position; }
 
 protected:
-  AvatarBuildEvent(double i_progress, Sdk::Vector2I i_position)
+  BuildEvent(double i_progress, Sdk::Vector2I i_position)
     : d_progress(i_progress)
     , d_position(std::move(i_position))
   {
@@ -23,29 +23,29 @@ private:
 };
 
 
-class AvatarStartBuildEvent : public AvatarBuildEvent
+class StartBuildEvent : public BuildEvent
 {
 public:
-  AvatarStartBuildEvent(double i_progress, Sdk::Vector2I i_position)
-    : AvatarBuildEvent(i_progress, std::move(i_position))
+  StartBuildEvent(double i_progress, Sdk::Vector2I i_position)
+    : BuildEvent(i_progress, std::move(i_position))
   {
   }
 };
 
-class AvatarUpdateBuildEvent : public AvatarBuildEvent
+class UpdateBuildEvent : public BuildEvent
 {
 public:
-  AvatarUpdateBuildEvent(double i_progress, Sdk::Vector2I i_position)
-    : AvatarBuildEvent(i_progress, std::move(i_position))
+  UpdateBuildEvent(double i_progress, Sdk::Vector2I i_position)
+    : BuildEvent(i_progress, std::move(i_position))
   {
   }
 };
 
-class AvatarStopBuildEvent : public AvatarBuildEvent
+class StopBuildEvent : public BuildEvent
 {
 public:
-  AvatarStopBuildEvent(double i_progress, Sdk::Vector2I i_position)
-    : AvatarBuildEvent(i_progress, std::move(i_position))
+  StopBuildEvent(double i_progress, Sdk::Vector2I i_position)
+    : BuildEvent(i_progress, std::move(i_position))
   {
   }
 };
