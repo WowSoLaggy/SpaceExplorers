@@ -3,6 +3,8 @@
 #include "Actions.h"
 #include "Fwd.h"
 
+#include <LaggyDx/LaggyDxFwd.h>
+
 #include <iostream>
 
 
@@ -21,5 +23,5 @@ protected:
 
 public:
   virtual void writeTo(std::ostream& io_stream) const;
-  virtual void readFrom(std::istream& io_stream);
+  virtual void readFrom(std::istream& io_stream, Dx::IResourceController& i_resouceContoller, World& i_world);
 };

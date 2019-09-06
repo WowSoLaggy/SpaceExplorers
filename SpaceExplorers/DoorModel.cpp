@@ -103,7 +103,7 @@ void DoorModel::writeTo(std::ostream& io_stream) const
   Sdk::write(io_stream, d_state);
 }
 
-void DoorModel::readFrom(std::istream& io_stream)
+void DoorModel::readFrom(std::istream& io_stream, Dx::IResourceController& i_resouceContoller, World& i_world)
 {
   Sdk::read(io_stream, d_state);
 }

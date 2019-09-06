@@ -24,5 +24,5 @@ void Structure::readFrom(std::istream& io_stream)
   io_stream >> d_coordsTile;
 
   CONTRACT_EXPECT(d_behaviorModel);
-  d_behaviorModel->readFrom(io_stream);
+  d_behaviorModel->readFrom(io_stream, d_resourceController, d_world);
 }

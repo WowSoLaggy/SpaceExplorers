@@ -23,4 +23,4 @@ bool BehaviorModelBase::isPassable() const
 
 void BehaviorModelBase::writeTo(std::ostream& io_stream) const { }
 
-void BehaviorModelBase::readFrom(std::istream& io_stream) { }
+void BehaviorModelBase::readFrom(std::istream& io_stream, Dx::IResourceController& i_resouceContoller, World& i_world) { }
