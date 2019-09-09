@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Fwd.h"
+
 #include <LaggySdk/IEvent.h>
 #include <LaggySdk/Vector.h>
 
@@ -48,4 +50,24 @@ public:
     : BuildEvent(i_progress, std::move(i_position))
   {
   }
+};
+
+
+
+class ContainerOpenedEvent : public Sdk::IEvent
+{
+public:
+  ContainerOpenedEvent(Structure& i_structure)
+    : d_structure(i_structure)
+  { }
+
+  Structure& getStructure() const { return d_structure; }
+
+private:
+  Structure& d_structure;
+};
+
+
+class ContainerClosedEvent : public Sdk::IEvent
+{
 };

@@ -133,8 +133,15 @@ void Game::onUnselectInventory()
 
   inventory->unselectItem();
 
-  if (isControlAvatar() && d_avatar->isBuilding())
-    d_avatar->stopBuilding();
+  if (isControlAvatar())
+  {
+    CONTRACT_ASSERT(d_avatar);
+
+    if (d_avatar->isBuilding())
+      d_avatar->stopBuilding();
+    if (d_avatar->isInspectingContainer())
+      d_avatar->stopInspectingContainer();
+  }
 }
 
 

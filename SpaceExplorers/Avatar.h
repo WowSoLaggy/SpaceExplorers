@@ -31,6 +31,7 @@ public:
   bool isInteracting() const;
 
   bool isInspectingContainer() const { return d_inspectingContainer; }
+  void stopInspectingContainer();
 
   void startBuilding(StructurePtr i_structure, ObjectPtr i_tool, const Receipt& i_receipt, const Sdk::Vector2I& i_where);
   void stopBuilding();

@@ -107,6 +107,17 @@ bool Avatar::isInteracting() const
   return isBuilding() || isInspectingContainer();
 }
 
+
+void Avatar::stopInspectingContainer()
+{
+  if (!isInspectingContainer())
+    return;
+
+  notify(ContainerClosedEvent());
+  d_inspectingContainer = false;
+}
+
+
 void Avatar::interact(Action i_action, ThingPtr io_object,
                       ObjectPtr i_tool, const Sdk::Vector2I& i_where)
 {
@@ -132,8 +143,34 @@ void Avatar::interact(Action i_action, ThingPtr io_object,
       CONTRACT_ASSERT(structure);
 
       if ((structure->getCoords() - d_position).lengthSq() <= d_interactionDistSq)
+      {
         structure->interact(i_action);
+
+        if (structure->isContainer())
+        {
+          if (d_inspectingContainer)
+            interact(Action::Close, io_object, i_tool, i_where);
+          else
+            interact(Action::Open, io_object, i_tool, i_where);
+        }
+      }
     }
+  }
+  else if (i_action == Action::Open)
+  {
+    auto structure = std::dynamic_pointer_cast<Structure>(io_object);
+    CONTRACT_ASSERT(structure);
+
+    if ((structure->getCoords() - d_position).lengthSq() > d_interactionDistSq)
+      return;
+
+    notify(ContainerOpenedEvent(*structure));
+
+    d_inspectingContainer = true;
+  }
+  else if (i_action == Action::Close)
+  {
+    stopInspectingContainer();
   }
   else if (i_action == Action::Pickup)
   {

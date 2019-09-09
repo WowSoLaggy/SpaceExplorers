@@ -8,13 +8,14 @@
 
 #include <LaggyDx/LaggyDxFwd.h>
 #include <LaggyDx/AnimatedSprite.h>
+#include <LaggySdk/EventHandler.h>
 #include <LaggySdk/Vector.h>
 
 #include <iostream>
 #include <memory>
 
 
-class Structure : public Thing
+class Structure : public Thing, public Sdk::EventHandler
 {
 public:
   Structure(
