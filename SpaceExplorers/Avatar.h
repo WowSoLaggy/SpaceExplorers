@@ -28,6 +28,10 @@ public:
   void interact(Action i_action, ThingPtr io_object,
                 ObjectPtr i_tool, const Sdk::Vector2I& i_where);
 
+  bool isInteracting() const;
+
+  bool isInspectingContainer() const { return d_inspectingContainer; }
+
   void startBuilding(StructurePtr i_structure, ObjectPtr i_tool, const Receipt& i_receipt, const Sdk::Vector2I& i_where);
   void stopBuilding();
   bool isBuilding() const { return !!d_buildContext; }
@@ -43,6 +47,8 @@ private:
   int d_moveYSign = 0;
 
   Container d_inventory;
+
+  bool d_inspectingContainer = false;
 
   BuildContextPtr d_buildContext;
   void updateBuild(double i_dt);

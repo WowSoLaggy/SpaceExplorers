@@ -16,6 +16,9 @@ public:
 
   virtual void interact(Action i_action) override;
 
+  Container& getContainer() { return d_container; }
+  const Container& getContainer() const { return d_container; }
+
 private:
   Container d_container;
 

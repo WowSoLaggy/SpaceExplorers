@@ -52,7 +52,7 @@ void Avatar::moveDown()
 
 void Avatar::updateMovement(double i_dt)
 {
-  if (!isBuilding())
+  if (!isInteracting())
   {
     auto canMove = [&](Sdk::RectI i_curRect, const Sdk::Vector2I& i_diff) -> bool
     {
@@ -102,9 +102,17 @@ void Avatar::updateMoveAnimation()
 }
 
 
+bool Avatar::isInteracting() const
+{
+  return isBuilding() || isInspectingContainer();
+}
+
 void Avatar::interact(Action i_action, ThingPtr io_object,
                       ObjectPtr i_tool, const Sdk::Vector2I& i_where)
 {
+  if (isInteracting())
+    return;
+
   CONTRACT_EXPECT(!i_tool || !i_tool->isAvatar());
 
   if (i_action == Action::Default)
