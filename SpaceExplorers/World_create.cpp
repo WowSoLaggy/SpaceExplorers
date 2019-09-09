@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "World.h"
 
+#include "ContainerModel.h"
 #include "DoorModel.h"
 #include "PrototypesCollection.h"
 #include "Structure.h"
@@ -121,7 +122,21 @@ std::unique_ptr<World> World::createTestWorld(
   ///
 
 
-  create(-6, -1, "Crate");
+  {
+    auto crate = create(-6, -1, "Crate");
+    auto& container = crate->getContainerModel()->getContainer();
+
+    for (int i = 0; i < 4; ++i)
+    {
+      auto rods = createObject("Rods");
+      rods->setQuantity(40);
+      container.setItem(i, rods);
+
+      auto metal = createObject("Metal");
+      metal->setQuantity(40);
+      container.setItem(i + 4, metal);
+    }
+  }
 
 
   ///
