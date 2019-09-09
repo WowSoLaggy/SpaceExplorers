@@ -2,6 +2,7 @@
 
 #include "Actions.h"
 #include "BehaviorModelBase.h"
+#include "Fwd.h"
 #include "Prototypes.h"
 #include "Thing.h"
 
@@ -30,12 +31,18 @@ public:
   virtual void update(double i_dt);
   virtual void render(Dx::IRenderer2d& i_renderer) const;
 
-  virtual bool isStructure() const { return true; }
-
   virtual void interact(Action i_action = Action::Default);
   virtual bool isPassable() const;
 
   virtual bool checkAlpha(Sdk::Vector2I i_coords) const;
+
+  virtual bool isStructure() const { return true; }
+
+  bool isDoor() const;
+  bool isContainer() const;
+
+  std::shared_ptr<DoorModel> getDoorModel() const;
+  std::shared_ptr<ContainerModel> getContainerModel() const;
 
   bool isTransparent() const;
   const Sdk::Vector2I& getCoords() const;

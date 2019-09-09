@@ -2,6 +2,8 @@
 #include "Structure.h"
 
 #include "BehaviorModelFactory.h"
+#include "ContainerModel.h"
+#include "DoorModel.h"
 #include "SettingsProvider.h"
 
 #include <LaggyDx/ImageDescription.h>
@@ -88,4 +90,26 @@ void Structure::setColor(Sdk::Vector4F i_color)
 bool Structure::checkAlpha(Sdk::Vector2I i_coords) const
 {
   return d_sprite.getTexture()->checkAlpha(i_coords, d_sprite.getFrame());
+}
+
+
+bool Structure::isDoor() const
+{
+  return !!std::dynamic_pointer_cast<DoorModel>(d_behaviorModel);
+}
+
+bool Structure::isContainer() const
+{
+  return !!std::dynamic_pointer_cast<ContainerModel>(d_behaviorModel);
+}
+
+
+std::shared_ptr<DoorModel> Structure::getDoorModel() const
+{
+  return std::dynamic_pointer_cast<DoorModel>(d_behaviorModel);
+}
+
+std::shared_ptr<ContainerModel> Structure::getContainerModel() const
+{
+  return std::dynamic_pointer_cast<ContainerModel>(d_behaviorModel);
 }
