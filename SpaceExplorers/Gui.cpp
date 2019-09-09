@@ -4,7 +4,10 @@
 #include "Avatar_events.h"
 #include "BuildProgressBar.h"
 #include "Camera.h"
+#include "ContainerModel.h"
+#include "Inventory.h"
 #include "SettingsProvider.h"
+#include "Structure.h"
 #include "Utils.h"
 
 #include <LaggyDx/IRenderer2d.h>
@@ -24,6 +27,7 @@ Gui::Gui(Game& i_game, Dx::IResourceController& i_resourceController, const Came
 void Gui::processEvent(const Sdk::IEvent& i_event)
 {
   static const std::string AvatarBuildProgressBarName = "BuildProgressBar";
+  static const std::string ContainerControlName = "Container";
 
   auto getBuildProgressBarPosition = [&](const Sdk::Vector2I& i_tileCoords, const Sdk::Vector2I& i_barSize) {
     static const int tileSize = SettingsProvider::getDefaultInternalSettings().tileSize;
@@ -41,7 +45,6 @@ void Gui::processEvent(const Sdk::IEvent& i_event)
     bar->setObjectPosition(getBuildProgressBarPosition(event->getPosition(), bar->getSize()));
   }
 
-
   else if (const auto* event = dynamic_cast<const UpdateBuildEvent*>(&i_event))
   {
     auto bar = std::dynamic_pointer_cast<BuildProgressBar>(getControl(AvatarBuildProgressBarName));
@@ -50,10 +53,31 @@ void Gui::processEvent(const Sdk::IEvent& i_event)
     bar->setObjectPosition(getBuildProgressBarPosition(event->getPosition(), bar->getSize()));
   }
 
-
   else if (dynamic_cast<const StopBuildEvent*>(&i_event))
   {
     deleteControl(AvatarBuildProgressBarName);
+  }
+
+
+  else if (const auto* event = dynamic_cast<const ContainerOpenedEvent*>(&i_event))
+  {
+    // Always remove the previous container (if any)
+    deleteControl(ContainerControlName);
+
+    const auto containerModel = event->getStructure().getContainerModel();
+    CONTRACT_EXPECT(containerModel);
+    auto& container = containerModel->getContainer();
+
+    auto inventory = createInventory(container, container.getSize(), 1, ContainerControlName);
+
+    const auto inventorySize = inventory->getSize();
+    auto clientSize = d_camera.getViewport().size();
+    inventory->setPosition({ (clientSize.x - inventorySize.x) / 2, clientSize.y - (int)(inventorySize.y * 2.2) });
+  }
+
+  else if (const auto* event = dynamic_cast<const ContainerClosedEvent*>(&i_event))
+  {
+    deleteControl(ContainerControlName);
   }
 }
 
