@@ -5,6 +5,7 @@
 
 #include <LaggySdk/Contracts.h>
 #include <LaggySdk/HandleMessages.h>
+#include <LaggySdk/Locker.h>
 #include <LaggySdk/Random.h>
 
 
@@ -89,13 +90,17 @@ void App::mainloop()
 
   d_game->update(dt);
 
-  d_renderDevice->beginScene();
-  d_renderer2d->beginScene();
+  {
+    const Sdk::Locker scopeLocker(*d_renderDevice);
 
-  d_game->render(*d_renderer2d);
+    d_renderDevice->beginScene();
+    d_renderer2d->beginScene();
 
-  d_renderer2d->endScene();
-  d_renderDevice->endScene();
+    d_game->render(*d_renderer2d);
+
+    d_renderer2d->endScene();
+    d_renderDevice->endScene();
+  }
 
   std::this_thread::sleep_for(1ms);
 }
