@@ -3,6 +3,7 @@
 
 #include "Container.h"
 #include "Container_events.h"
+#include "Inventory_events.h"
 #include "Prototypes.h"
 #include "SettingsProvider.h"
 
@@ -223,16 +224,18 @@ bool Inventory::onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mouse
   if (i_button != Dx::MouseKey::Left)
     return false;
 
-  if (!d_selectionEnabled)
-    return true;
-
   const auto relativePos = i_mousePos - d_position;
 
   for (int idx = 0; idx < d_slotsCount; ++idx)
   {
     if (d_framesSprites.at(idx).getRect().containsPoint(relativePos))
     {
-      selectItem(idx);
+      if (auto objectPtr = d_container.getItem(idx))
+        notify(InventoryItemClickedEvent(objectPtr));
+
+      if (d_selectionEnabled)
+        selectItem(idx);
+
       return true;
     }
   }

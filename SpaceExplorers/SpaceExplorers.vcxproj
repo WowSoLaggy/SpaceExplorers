@@ -215,6 +215,7 @@
     <ClInclude Include="Container_events.h" />
     <ClInclude Include="BehaviorModelBase.h" />
     <ClInclude Include="DoorModel.h" />
+    <ClInclude Include="Inventory_events.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="ObjectsReader.h" />

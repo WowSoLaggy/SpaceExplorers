@@ -293,5 +293,8 @@
     <ClInclude Include="ContainerModel.h">
       <Filter>src\World\BehaviorModels</Filter>
     </ClInclude>
+    <ClInclude Include="Inventory_events.h">
+      <Filter>src\Gui\GuiControls</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
