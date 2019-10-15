@@ -57,17 +57,29 @@ public:
 class ContainerOpenedEvent : public Sdk::IEvent
 {
 public:
-  ContainerOpenedEvent(Structure& i_structure)
-    : d_structure(i_structure)
+  ContainerOpenedEvent(Avatar& i_sender, Structure& i_structure)
+    : d_sender(i_sender)
+    , d_structure(i_structure)
   { }
 
+  Avatar& getSender() const { return d_sender; }
   Structure& getStructure() const { return d_structure; }
 
 private:
+  Avatar& d_sender;
   Structure& d_structure;
 };
 
 
 class ContainerClosedEvent : public Sdk::IEvent
 {
+public:
+  ContainerClosedEvent(Avatar& i_sender)
+    : d_sender(i_sender)
+  { }
+
+  Avatar& getSender() const { return d_sender; }
+
+private:
+  Avatar& d_sender;
 };

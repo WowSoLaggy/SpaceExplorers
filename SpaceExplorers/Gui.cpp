@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Gui.h"
 
+#include "Avatar.h"
 #include "Avatar_events.h"
 #include "BuildProgressBar.h"
 #include "Camera.h"
@@ -75,10 +76,19 @@ void Gui::processEvent(const Sdk::IEvent& i_event)
     inventory->setPosition({ (clientSize.x - inventorySize.x) / 2, clientSize.y - (int)(inventorySize.y * 2.2) });
 
     inventory->setSelectionEnabled(false);
+
+    auto& sender = event->getSender();
+    sender.connectTo(*inventory);
   }
 
   else if (const auto* event = dynamic_cast<const ContainerClosedEvent*>(&i_event))
   {
+    auto inventory = std::dynamic_pointer_cast<Inventory>(getControl(ContainerControlName));
+    CONTRACT_ASSERT(inventory);
+
+    auto& sender = event->getSender();
+    sender.disconnectFrom(*inventory);
+
     deleteControl(ContainerControlName);
   }
 }

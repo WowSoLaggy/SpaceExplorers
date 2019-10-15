@@ -20,6 +20,8 @@ public:
   virtual bool isObject() const { return false; }
   virtual bool isAvatar() const { return true; }
 
+  virtual void processEvent(const Sdk::IEvent& i_event) override;
+
   void moveLeft();
   void moveRight();
   void moveUp();

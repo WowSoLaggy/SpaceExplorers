@@ -3,6 +3,7 @@
 
 #include "Avatar_events.h"
 #include "BuildContext.h"
+#include "Inventory_events.h"
 #include "Utils.h"
 #include "World.h"
 
@@ -119,7 +120,7 @@ void Avatar::stopInspectingContainer()
   if (!isInspectingContainer())
     return;
 
-  notify(ContainerClosedEvent());
+  notify(ContainerClosedEvent(*this));
   d_inspectedContainer.reset();
 }
 
@@ -357,4 +358,14 @@ void Avatar::finishBuild()
   }
 
   stopBuilding();
+}
+
+
+void Avatar::processEvent(const Sdk::IEvent& i_event)
+{
+  if (const auto* itemClickedEvent = dynamic_cast<const InventoryItemClickedEvent*>(&i_event))
+  {
+    auto item = itemClickedEvent->getItem();
+    item = item;
+  }
 }
