@@ -91,6 +91,8 @@ private:
   // IN-GAME
   //
 
+  void onRightClick();
+
   void onSelectInventory(int i_index);
   void onUnselectInventory();
 

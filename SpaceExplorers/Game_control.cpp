@@ -108,6 +108,14 @@ void Game::moveDown()
 }
 
 
+void Game::onRightClick()
+{
+  onUnselectInventory();
+  if (d_avatar->isInspectingContainer())
+    d_avatar->stopInspectingContainer();
+}
+
+
 void Game::onSelectInventory(int i_index)
 {
   auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
@@ -139,8 +147,6 @@ void Game::onUnselectInventory()
 
     if (d_avatar->isBuilding())
       d_avatar->stopBuilding();
-    if (d_avatar->isInspectingContainer())
-      d_avatar->stopInspectingContainer();
   }
 }
 
