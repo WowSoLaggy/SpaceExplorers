@@ -26,6 +26,9 @@ public:
   void setPosition(Sdk::Vector2I i_position) { d_position = std::move(i_position); }
   virtual Sdk::Vector2I getSize() const override;
 
+  void setSelectionEnabled(bool i_enabled) { d_selectionEnabled = i_enabled; }
+  bool getSelectionEnabled() const { return d_selectionEnabled; }
+
   void selectItem(int i_index);
   void unselectItem();
   std::optional<int> getSelectedIndex() const;
@@ -52,6 +55,8 @@ private:
   std::vector<Sdk::Vector2I> d_itemOffsets;
   std::optional<int> d_selectedIndex;
   Dx::Sprite d_selectionSprite;
+
+  bool d_selectionEnabled = true;
 
   void recreateSprites();
   void updateItemSprite(int i_index);

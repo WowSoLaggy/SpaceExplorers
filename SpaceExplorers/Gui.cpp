@@ -73,6 +73,8 @@ void Gui::processEvent(const Sdk::IEvent& i_event)
     const auto inventorySize = inventory->getSize();
     auto clientSize = d_camera.getViewport().size();
     inventory->setPosition({ (clientSize.x - inventorySize.x) / 2, clientSize.y - (int)(inventorySize.y * 2.2) });
+
+    inventory->setSelectionEnabled(false);
   }
 
   else if (const auto* event = dynamic_cast<const ContainerClosedEvent*>(&i_event))

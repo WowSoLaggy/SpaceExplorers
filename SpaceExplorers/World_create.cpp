@@ -126,7 +126,7 @@ std::unique_ptr<World> World::createTestWorld(
     auto crate = create(-6, -1, "Crate");
     auto& container = crate->getContainerModel()->getContainer();
 
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < 3; ++i)
     {
       auto rods = createObject("Rods");
       rods->setQuantity(40);

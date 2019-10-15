@@ -223,6 +223,9 @@ bool Inventory::onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mouse
   if (i_button != Dx::MouseKey::Left)
     return false;
 
+  if (!d_selectionEnabled)
+    return true;
+
   const auto relativePos = i_mousePos - d_position;
 
   for (int idx = 0; idx < d_slotsCount; ++idx)
