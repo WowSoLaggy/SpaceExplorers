@@ -30,7 +30,8 @@ public:
 
   bool isInteracting() const;
 
-  bool isInspectingContainer() const { return d_inspectingContainer; }
+  bool isInspectingContainer() const { return d_inspectedContainer != nullptr; }
+  void startInspectingContainer(StructurePtr i_structure);
   void stopInspectingContainer();
 
   void startBuilding(StructurePtr i_structure, ObjectPtr i_tool, const Receipt& i_receipt, const Sdk::Vector2I& i_where);
@@ -49,7 +50,7 @@ private:
 
   Container d_inventory;
 
-  bool d_inspectingContainer = false;
+  StructurePtr d_inspectedContainer;
 
   BuildContextPtr d_buildContext;
   void updateBuild(double i_dt);
