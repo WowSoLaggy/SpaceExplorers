@@ -3,6 +3,7 @@
 
 #include "Avatar_events.h"
 #include "BuildContext.h"
+#include "ContainerModel.h"
 #include "Inventory_events.h"
 #include "Utils.h"
 #include "World.h"
@@ -365,15 +366,27 @@ void Avatar::processEvent(const Sdk::IEvent& i_event)
 {
   if (const auto* itemClickedEvent = dynamic_cast<const InventoryItemClickedEvent*>(&i_event))
   {
-    auto& container = itemClickedEvent->getContainer();
+    if (!d_inspectedContainer)
+      return;
+
+    auto& srcContainer = itemClickedEvent->getContainer();
     auto item = itemClickedEvent->getItem();
     CONTRACT_EXPECT(item);
 
-    if (d_inventory.tryAddObject(item))
+    auto getInspectedContainer = [&]() -> Container&
     {
-      const auto idx = container.getObjectIndex(item);
+      auto containerModel = d_inspectedContainer->getContainerModel();
+      CONTRACT_ASSERT(containerModel);
+      return containerModel->getContainer();
+    };
+
+    auto& destContainer = (&d_inventory != &srcContainer) ? d_inventory : getInspectedContainer();
+    
+    if (destContainer.tryAddObject(item))
+    {
+      const auto idx = srcContainer.getObjectIndex(item);
       CONTRACT_ASSERT(idx);
-      container.resetItem(*idx);
+      srcContainer.resetItem(*idx);
     }
   }
 }
