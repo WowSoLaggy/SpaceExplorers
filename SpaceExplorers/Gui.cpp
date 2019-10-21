@@ -62,8 +62,9 @@ void Gui::processEvent(const Sdk::IEvent& i_event)
 
   else if (const auto* event = dynamic_cast<const ContainerOpenedEvent*>(&i_event))
   {
-    // Always remove the previous container (if any)
-    deleteControl(ContainerControlName);
+    // Previous container shall be closed! Call the 'ContainerClosedEvent' first!
+    const auto existingControl = getControl(ContainerControlName);
+    CONTRACT_EXPECT(!existingControl);
 
     const auto containerModel = event->getStructure().getContainerModel();
     CONTRACT_EXPECT(containerModel);
