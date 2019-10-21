@@ -74,6 +74,17 @@ std::optional<int> Container::getObjectIndex(ObjectPtr i_object) const
 {
   for (int i = 0; i < d_size; ++i)
   {
+    if (d_items[i] && d_items[i].get() == i_object.get())
+      return i;
+  }
+
+  return std::nullopt;
+}
+
+std::optional<int> Container::getIndexToAddTo(ObjectPtr i_object) const
+{
+  for (int i = 0; i < d_size; ++i)
+  {
     if (d_items[i] && d_items[i]->canBeStackedWith(i_object))
       return i;
   }
@@ -87,7 +98,7 @@ bool Container::tryAddObject(ObjectPtr i_object)
   std::optional<int> index;
   if (i_object->getPrototype().isStackable)
   {
-    if (index = getObjectIndex(i_object))
+    if (index = getIndexToAddTo(i_object))
     {
       getItem(*index)->addQuantity(i_object->getQuantity());
       return true;

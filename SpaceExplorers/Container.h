@@ -19,6 +19,7 @@ public:
 
   std::optional<int> getFreeSlot() const;
   std::optional<int> getObjectIndex(ObjectPtr i_object) const;
+  std::optional<int> getIndexToAddTo(ObjectPtr i_object) const;
 
   bool tryAddObject(ObjectPtr i_object);
 
