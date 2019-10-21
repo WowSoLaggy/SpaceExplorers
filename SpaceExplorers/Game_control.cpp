@@ -7,6 +7,12 @@
 #include <LaggySdk/Contracts.h>
 
 
+namespace
+{
+  const std::string InventoryControlName = "Inventory";
+} // anonymous NS
+
+
 void Game::switchControlMode()
 {
   CONTRACT_EXPECT(d_world);
@@ -50,7 +56,15 @@ void Game::lookAtAvatar()
 
 void Game::setFreeModeInventory()
 {
-  d_gui.deleteControl("Inventory");
+  if (const auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl(InventoryControlName)))
+  {
+    if (d_avatar)
+    {
+      d_avatar->disconnectFrom(*inventory);
+      inventory->disconnectFrom(*d_avatar);
+    }
+    d_gui.deleteControl(InventoryControlName);
+  }
 
   // TODO: ae Free build mode objects
   // e.g. infinite of all types
@@ -64,14 +78,17 @@ void Game::setAvatarInventory()
 {
   CONTRACT_EXPECT(d_avatar);
 
-  d_gui.deleteControl("Inventory");
+  d_gui.deleteControl(InventoryControlName);
 
   auto& container = d_avatar->getInventory();
-  auto inventory = d_gui.createInventory(container, container.getSize(), 1, "Inventory");
+  auto inventory = d_gui.createInventory(container, container.getSize(), 1, InventoryControlName);
 
   const auto inventorySize = inventory->getSize();
   auto clientSize = d_camera.getViewport().size();
   inventory->setPosition({ (clientSize.x - inventorySize.x) / 2, clientSize.y - inventorySize.y });
+
+  d_avatar->connectTo(*inventory);
+  inventory->connectTo(*d_avatar);
 }
 
 

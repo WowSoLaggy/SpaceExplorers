@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Inventory.h"
 
+#include "Avatar_events.h"
 #include "Container.h"
 #include "Container_events.h"
 #include "Inventory_events.h"
@@ -72,6 +73,11 @@ void Inventory::processEvent(const Sdk::IEvent& i_event)
 {
   if (const auto* event = dynamic_cast<const SlotChangedEvent*>(&i_event))
     updateItemSprite(event->getIndex());
+
+  else if (const auto* event = dynamic_cast<const ContainerOpenedEvent*>(&i_event))
+    setSelectionEnabled(false);
+  else if (const auto* event = dynamic_cast<const ContainerClosedEvent*>(&i_event))
+    setSelectionEnabled(true);
 }
 
 
