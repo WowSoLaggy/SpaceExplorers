@@ -231,7 +231,7 @@ bool Inventory::onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mouse
     if (d_framesSprites.at(idx).getRect().containsPoint(relativePos))
     {
       if (auto objectPtr = d_container.getItem(idx))
-        notify(InventoryItemClickedEvent(objectPtr));
+        notify(InventoryItemClickedEvent(d_container, objectPtr));
 
       if (d_selectionEnabled)
         selectItem(idx);

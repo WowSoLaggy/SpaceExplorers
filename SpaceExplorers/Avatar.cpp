@@ -365,7 +365,15 @@ void Avatar::processEvent(const Sdk::IEvent& i_event)
 {
   if (const auto* itemClickedEvent = dynamic_cast<const InventoryItemClickedEvent*>(&i_event))
   {
+    auto& container = itemClickedEvent->getContainer();
     auto item = itemClickedEvent->getItem();
-    item = item;
+    CONTRACT_EXPECT(item);
+
+    if (d_inventory.tryAddObject(item))
+    {
+      const auto idx = container.getObjectIndex(item);
+      CONTRACT_ASSERT(idx);
+      container.resetItem(*idx);
+    }
   }
 }
