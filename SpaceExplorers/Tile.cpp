@@ -4,6 +4,13 @@
 #include <LaggySdk/Contracts.h>
 
 
+Tile::Tile(Sdk::Vector2I i_coordsTile, Dx::IResourceController& i_resourceController)
+  : d_coordsTile(i_coordsTile)
+  , d_resourceController(i_resourceController)
+{
+}
+
+
 void Tile::update(double i_dt)
 {
   for (auto& [_, structure] : d_layersMap)

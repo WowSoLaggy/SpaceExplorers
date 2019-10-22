@@ -74,14 +74,18 @@ const Tile* World::getTile(const Sdk::Vector2I& i_coords) const
 
 Tile& World::getOrCreateTile(const Sdk::Vector2I& i_coords)
 {
-  return d_tilesMap[i_coords];
+  Tile tile(i_coords, d_resourceController);
+  auto pair = d_tilesMap.insert({ i_coords, std::move(tile) });
+  return pair.first->second;
 }
 
 
 StructurePtr World::createStructureAt(const StructurePrototype& i_prototype, const Sdk::Vector2I& i_coords)
 {
   StructurePtr structure = std::make_shared<Structure>(d_resourceController, *this, i_prototype, i_coords);
-  d_tilesMap[i_coords].setStructure(i_prototype.layer, structure);
+
+  auto& tile = getOrCreateTile(i_coords);
+  tile.setStructure(i_prototype.layer, structure);
 
   return structure;
 }

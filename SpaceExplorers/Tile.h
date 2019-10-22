@@ -14,6 +14,8 @@
 class Tile
 {
 public:
+  Tile(Sdk::Vector2I i_coordsTile, Dx::IResourceController& i_resourceController);
+
   void update(double i_dt);
   void render(Dx::IRenderer2d& i_renderer) const;
 
@@ -36,6 +38,9 @@ public:
   const Atmosphere& getAtmosphere() const { return d_atmosphere; }
 
 private:
+  Sdk::Vector2I d_coordsTile;
+  Dx::IResourceController& d_resourceController;
+
   std::map<Layer, StructurePtr> d_layersMap;
   Atmosphere d_atmosphere;
 
@@ -44,5 +49,5 @@ public:
   void readFrom(std::istream& io_stream,
                 Dx::IResourceController& i_resourceController,
                 World& i_world,
-                const Sdk::Vector2I& i_coords);
+                const Sdk::Vector2I& i_coordsTile);
 };
