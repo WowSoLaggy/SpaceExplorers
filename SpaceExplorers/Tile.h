@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Atmosphere.h"
 #include "Fwd.h"
 #include "Structure.h"
 
@@ -31,8 +32,12 @@ public:
   bool isPassable() const;
   bool isSupport() const;
 
+  Atmosphere& getAtmosphere() { return d_atmosphere; }
+  const Atmosphere& getAtmosphere() const { return d_atmosphere; }
+
 private:
   std::map<Layer, StructurePtr> d_layersMap;
+  Atmosphere d_atmosphere;
 
 public:
   void writeTo(std::ostream& io_stream) const;

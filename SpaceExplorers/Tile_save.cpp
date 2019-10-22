@@ -17,6 +17,8 @@ void Tile::writeTo(std::ostream& io_stream) const
     Sdk::write(io_stream, layer);
     structurePtr->writeTo(io_stream);
   }
+
+  d_atmosphere.writeTo(io_stream);
 }
 
 void Tile::readFrom(std::istream& io_stream,
@@ -34,4 +36,6 @@ void Tile::readFrom(std::istream& io_stream,
 
     d_layersMap[layer] = readStructureFrom(io_stream, i_resourceController, i_world, std::move(i_coords));
   }
+
+  d_atmosphere.readFrom(io_stream);
 }
