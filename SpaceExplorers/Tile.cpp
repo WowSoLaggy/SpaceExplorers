@@ -91,3 +91,19 @@ bool Tile::hasStructureOnLayer(Layer i_layer) const
 {
   return d_layersMap.find(i_layer) != d_layersMap.cend();
 }
+
+
+bool Tile::isPassable() const
+{
+  if (const auto topStructure = getTopStructure())
+    return topStructure->isPassable();
+  return true;
+}
+
+bool Tile::isSupport() const
+{
+  return std::any_of(d_layersMap.begin(), d_layersMap.end(), [](const auto& pair)
+  {
+    return pair.second->isSupport();
+  });
+}

@@ -17,6 +17,7 @@ public:
 
   virtual void interact(Action i_action);
   virtual bool isPassable() const;
+  virtual bool isSupport() const;
 
 protected:
   Structure& d_structure;

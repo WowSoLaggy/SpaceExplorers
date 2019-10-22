@@ -15,6 +15,7 @@ struct StructurePrototype
   Behavior behavior = Behavior::Default;
   Layer layer = Layer::None;
   bool isPassable = true;
+  bool isSupport = true;
   int containerSize = 0;
 };
 

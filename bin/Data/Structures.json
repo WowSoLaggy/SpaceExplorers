@@ -4,7 +4,8 @@
     "TextureName": "Lattice.png",
     "Layer": "Panneling",
     "Behavior": "Default",
-    "Passable": true
+    "Passable": true,
+    "Support": true
   },
   
   "Lattice_unwelded":
@@ -12,7 +13,8 @@
     "TextureName": "Lattice_unwelded.png",
     "Layer": "Panneling",
     "Behavior": "Default",
-    "Passable": true
+    "Passable": true,
+    "Support": false
   },
   
   "Plating":
@@ -20,7 +22,8 @@
     "TextureName": "Plating.png",
     "Layer": "Panneling",
     "Behavior": "Default",
-    "Passable": true
+    "Passable": true,
+    "Support": true
   },
   
   "Plating_unwelded":
@@ -28,7 +31,8 @@
     "TextureName": "Plating_unwelded.png",
     "Layer": "Panneling",
     "Behavior": "Default",
-    "Passable": true
+    "Passable": true,
+    "Support": true
   },
   
   "Floor":
@@ -36,7 +40,8 @@
     "TextureName": "Floor.png",
     "Layer": "Floor",
     "Behavior": "Default",
-    "Passable": true
+    "Passable": true,
+    "Support": true
   },
   
   "Wall":
@@ -44,7 +49,8 @@
     "TextureName": "Wall.png",
     "Layer": "Wall",
     "Behavior": "Default",
-    "Passable": false
+    "Passable": false,
+    "Support": true
   },
   
   "WallGirder_unwelded":
@@ -52,7 +58,8 @@
     "TextureName": "WallGirder_unwelded.png",
     "Layer": "Wall",
     "Behavior": "Default",
-    "Passable": true
+    "Passable": true,
+    "Support": true
   },
   
   "WallGirder_0":
@@ -60,7 +67,8 @@
     "TextureName": "WallGirder_0.png",
     "Layer": "Wall",
     "Behavior": "Default",
-    "Passable": true
+    "Passable": true,
+    "Support": true
   },
   
   "WallGirder_1":
@@ -68,7 +76,8 @@
     "TextureName": "WallGirder_1.png",
     "Layer": "Wall",
     "Behavior": "Default",
-    "Passable": false
+    "Passable": false,
+    "Support": true
   },
   
   "WallGirder":
@@ -76,7 +85,8 @@
     "TextureName": "WallGirder.png",
     "Layer": "Wall",
     "Behavior": "Default",
-    "Passable": false
+    "Passable": false,
+    "Support": true
   },
   
   "Door":
@@ -84,7 +94,8 @@
     "TextureName": "Door.png",
     "Layer": "Wall",
     "Behavior": "Door",
-    "Passable": false
+    "Passable": false,
+    "Support": true
   },
   
   "Crate":
@@ -93,6 +104,7 @@
     "Layer": "Wall",
     "Behavior": "Container",
     "ContainerSize": 8,
-    "Passable": true
+    "Passable": true,
+    "Support": false
   }
 }

@@ -59,6 +59,12 @@ bool Structure::isPassable() const
   return d_behaviorModel->isPassable();
 }
 
+bool Structure::isSupport() const
+{
+  CONTRACT_EXPECT(d_behaviorModel);
+  return d_behaviorModel->isSupport();
+}
+
 
 bool Structure::isTransparent() const
 {

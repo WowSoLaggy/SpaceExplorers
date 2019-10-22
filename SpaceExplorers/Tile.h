@@ -28,6 +28,9 @@ public:
   bool hasStructures() const;
   bool hasStructureOnLayer(Layer i_layer) const;
 
+  bool isPassable() const;
+  bool isSupport() const;
+
 private:
   std::map<Layer, StructurePtr> d_layersMap;
 

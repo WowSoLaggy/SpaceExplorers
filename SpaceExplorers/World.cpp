@@ -189,10 +189,7 @@ bool World::checkCollision(const Sdk::RectI& i_rect) const
   auto isPassable = [&](const Sdk::Vector2I& i_tileCoords) -> bool
   {
     if (const auto* pTile = getTile(i_tileCoords))
-    {
-      if (const auto topStructure = pTile->getTopStructure())
-        return topStructure->isPassable();
-    }
+      return pTile->isPassable();
     return true;
   };
 
@@ -212,7 +209,7 @@ bool World::checkSupport(const Sdk::RectI& i_rect) const
   auto hasSupport = [&](const Sdk::Vector2I& i_tileCoords) -> bool
   {
     if (const auto* pTile = getTile(i_tileCoords))
-      return pTile->hasStructures();
+      return pTile->isSupport();
     return false;
   };
 

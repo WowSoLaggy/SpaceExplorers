@@ -64,6 +64,7 @@ void PrototypesCollection::loadStructures(const fs::path& i_filename)
     proto.layer = LayerNames.at(node["Layer"].asString());
     proto.behavior = BehaviorNames.at(node["Behavior"].asString());
     proto.isPassable = node["Passable"].asBool();
+    proto.isSupport = node["Support"].asBool();
 
     const std::string ContainerSizeNodeName = "ContainerSize";
     if (node.find(ContainerSizeNodeName.data(), ContainerSizeNodeName.data() + ContainerSizeNodeName.length()))
