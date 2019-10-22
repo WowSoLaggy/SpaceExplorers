@@ -68,19 +68,31 @@ void Avatar::updateMovement(double i_dt)
     {
       Sdk::Vector2I diff;
       diff.x = (int)(d_maxSpeed * i_dt * d_moveXSign);
-
+      
       if (canMove(d_rect, diff))
-        setPosition(getPosition() + diff);
+        d_curSpeed.x = diff.x;
     }
 
     if (d_moveYSign != 0)
     {
       Sdk::Vector2I diff;
       diff.y = (int)(d_maxSpeed * i_dt * d_moveYSign);
-
+      
       if (canMove(d_rect, diff))
-        setPosition(getPosition() + diff);
+        d_curSpeed.y = diff.y;
     }
+  }
+
+  if (d_curSpeed.x != 0 || d_curSpeed.y != 0)
+  {
+    setPosition(getPosition() + d_curSpeed);
+
+    auto floatInSpace = []() -> bool
+    {
+      return false;
+    };
+    if (!floatInSpace())
+      d_curSpeed = { 0, 0 };
   }
 
   if (d_moveXSign != 0 || d_moveYSign != 0)

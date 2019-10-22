@@ -45,6 +45,7 @@ public:
 
 private:
   int d_maxSpeed = 256;
+  Sdk::Vector2I d_curSpeed;
   int d_interactionDistSq = 96 * 96;
 
   int d_moveXSign = 0;
