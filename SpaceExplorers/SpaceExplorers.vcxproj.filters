@@ -55,6 +55,9 @@
     <Filter Include="src\World\BehaviorModels">
       <UniqueIdentifier>{3445dfbf-74cc-4902-8832-dd4f8f0158ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="rsrc">
+      <UniqueIdentifier>{38363023-f7b3-4525-9664-05d11c10a713}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -296,5 +299,18 @@
     <ClInclude Include="Inventory_events.h">
       <Filter>src\Gui\GuiControls</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>rsrc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Icon.ico">
+      <Filter>rsrc</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SpaceExplorers.rc">
+      <Filter>rsrc</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
