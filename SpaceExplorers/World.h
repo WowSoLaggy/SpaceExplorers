@@ -56,6 +56,9 @@ public:
   // True - has collision
   bool checkCollision(const Sdk::RectI& i_rect) const;
 
+  // True - has support
+  bool checkSupport(const Sdk::RectI& i_rect) const;
+
 private:
   Dx::IResourceController& d_resourceController;
   Dx::Sprite d_background;

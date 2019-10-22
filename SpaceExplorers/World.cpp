@@ -206,3 +206,23 @@ bool World::checkCollision(const Sdk::RectI& i_rect) const
     return isPassable(i_tileCoords);
   });
 }
+
+bool World::checkSupport(const Sdk::RectI& i_rect) const
+{
+  auto hasSupport = [&](const Sdk::Vector2I& i_tileCoords) -> bool
+  {
+    if (const auto* pTile = getTile(i_tileCoords))
+      return pTile->hasStructures();
+    return false;
+  };
+
+  std::unordered_set<Sdk::Vector2I, Sdk::Vector2_hash> tilesToCheck;
+  tilesToCheck.insert(worldToTile(i_rect.topLeft()));
+  tilesToCheck.insert(worldToTile(i_rect.topRight()));
+  tilesToCheck.insert(worldToTile(i_rect.bottomLeft()));
+  tilesToCheck.insert(worldToTile(i_rect.bottomRight()));
+
+  return std::any_of(tilesToCheck.cbegin(), tilesToCheck.cend(), [&](const Sdk::Vector2I& i_tileCoords) {
+    return hasSupport(i_tileCoords);
+  });
+}

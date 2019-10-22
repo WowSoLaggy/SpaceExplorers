@@ -54,6 +54,10 @@ void Avatar::moveDown()
 
 void Avatar::updateMovement(double i_dt)
 {
+  bool floatInSpace = !d_world.checkSupport(d_rect);
+  if (!floatInSpace)
+    d_curSpeed = { 0, 0 };
+
   if (!isInteracting())
   {
     auto canMove = [&](Sdk::RectI i_curRect, const Sdk::Vector2I& i_diff) -> bool
@@ -69,7 +73,7 @@ void Avatar::updateMovement(double i_dt)
       Sdk::Vector2I diff;
       diff.x = (int)(d_maxSpeed * i_dt * d_moveXSign);
       
-      if (canMove(d_rect, diff))
+      if (!floatInSpace && canMove(d_rect, diff))
         d_curSpeed.x = diff.x;
     }
 
@@ -78,22 +82,13 @@ void Avatar::updateMovement(double i_dt)
       Sdk::Vector2I diff;
       diff.y = (int)(d_maxSpeed * i_dt * d_moveYSign);
       
-      if (canMove(d_rect, diff))
+      if (!floatInSpace && canMove(d_rect, diff))
         d_curSpeed.y = diff.y;
     }
   }
 
   if (d_curSpeed.x != 0 || d_curSpeed.y != 0)
-  {
     setPosition(getPosition() + d_curSpeed);
-
-    auto floatInSpace = []() -> bool
-    {
-      return false;
-    };
-    if (!floatInSpace())
-      d_curSpeed = { 0, 0 };
-  }
 
   if (d_moveXSign != 0 || d_moveYSign != 0)
   {
