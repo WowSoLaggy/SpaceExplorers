@@ -27,7 +27,7 @@ public:
 
   void showDebugLabel();
   void hideDebugLabel();
-  void updateDebugLabel(std::string i_text) const;
+  void updateDebugLabel(int i_renderedSprites) const;
 
 private:
   const std::string CursorTexture = "Cursor.png";

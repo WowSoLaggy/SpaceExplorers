@@ -5,6 +5,7 @@
 #include "Label.h"
 #include "PrototypesCollection.h"
 #include "SettingsProvider.h"
+#include "Utils.h"
 
 #include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>
@@ -55,10 +56,7 @@ void Game::render(Dx::IRenderer2d& i_renderer) const
   d_gui.render(i_renderer);
 
   if (d_debugOutput)
-  {
-    const std::string str = "Sprites: " + std::to_string(i_renderer.getRenderedSprites()) + "\n";
-    updateDebugLabel(str);
-  }
+    updateDebugLabel(i_renderer.getRenderedSprites());
 }
 
 
@@ -75,10 +73,24 @@ void Game::hideDebugLabel()
   d_debugLabel.reset();
 }
 
-void Game::updateDebugLabel(std::string i_text) const
+void Game::updateDebugLabel(int i_renderedSprites) const
 {
-  if (d_debugLabel)
-    d_debugLabel->setText(i_text);
+  if (!d_debugLabel)
+    return;
+
+  std::string str = "Sprites: " + std::to_string(i_renderedSprites) + "\n";
+
+  str += "Cursor coords: " + std::to_string(d_gui.getCursor().getPosition().x) + "x, " +
+    std::to_string(d_gui.getCursor().getPosition().y) + "y\n";
+
+  if (d_world)
+  {
+    const auto tileCoords = screenToTile(d_gui.getCursor().getPosition(), d_camera);
+    str += "Cursor tile coords: " + std::to_string(tileCoords.x) + "x, " +
+      std::to_string(tileCoords.y) + "y\n";
+  }
+
+  d_debugLabel->setText(str);
 }
 
 
