@@ -230,3 +230,24 @@ bool World::checkSupport(const Sdk::Vector2I& i_tileCoords) const
     return hasSupport(i_tileCoords);
   });
 }
+
+bool World::checkIntersectWithAnyObject(const Sdk::RectI& i_rect) const
+{
+  for (const auto& [_, avatar] : d_avatars)
+  {
+    auto rect = avatar->getRect();
+    rect.shrink(CollisionShrink + 1);
+    if (rect.intersectRect(i_rect))
+      return true;
+  }
+
+  for (const auto& obj : d_objects)
+  {
+    auto rect = obj->getRect();
+    rect.shrink(CollisionShrink);
+    if (rect.intersectRect(i_rect))
+      return true;
+  }
+
+  return false;
+}

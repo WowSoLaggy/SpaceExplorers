@@ -291,6 +291,10 @@ void Avatar::interact(Action i_action, ThingPtr io_object,
     if (!d_world.checkSupport(tileCoords))
       return;
 
+    // Impassable structures cannot be built with collision
+    if (outputProto && !outputProto->isPassable && d_world.checkIntersectWithAnyObject(getTileRect(tileCoords)))
+      return;
+
     startBuilding(object, i_tool, receipt, i_where);
   }
 }
