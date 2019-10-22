@@ -186,6 +186,9 @@ void Inventory::updateItemSprite(int i_index)
 
 void Inventory::selectItem(int i_index)
 {
+  if (!d_selectionEnabled)
+    return;
+
   checkIndex(i_index);
 
   d_selectedIndex = i_index;
@@ -245,8 +248,7 @@ bool Inventory::onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mouse
       if (auto objectPtr = d_container.getItem(idx))
         notify(InventoryItemClickedEvent(d_container, objectPtr));
 
-      if (d_selectionEnabled)
-        selectItem(idx);
+      selectItem(idx);
 
       return true;
     }
