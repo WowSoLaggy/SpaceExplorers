@@ -11,7 +11,7 @@
 class BehaviorModelBase
 {
 public:
-  BehaviorModelBase(Structure& io_structure);
+  BehaviorModelBase(Structure& io_structure, World& io_world);
 
   virtual void update(double i_dt);
 
@@ -21,6 +21,7 @@ public:
 
 protected:
   Structure& d_structure;
+  World& d_world;
 
 public:
   virtual void writeTo(std::ostream& io_stream) const;

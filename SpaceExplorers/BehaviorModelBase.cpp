@@ -4,8 +4,9 @@
 #include "Structure.h"
 
 
-BehaviorModelBase::BehaviorModelBase(Structure& io_structure)
+BehaviorModelBase::BehaviorModelBase(Structure& io_structure, World& io_world)
   : d_structure(io_structure)
+  , d_world(io_world)
 {
 }
 

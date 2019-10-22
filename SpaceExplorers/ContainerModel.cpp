@@ -4,8 +4,8 @@
 #include "Structure.h"
 
 
-ContainerModel::ContainerModel(Structure& io_structure)
-  : BehaviorModelBase(io_structure)
+ContainerModel::ContainerModel(Structure& io_structure, World& io_world)
+  : BehaviorModelBase(io_structure, io_world)
 {
   d_container.setSize(io_structure.getPrototype().containerSize);
 }

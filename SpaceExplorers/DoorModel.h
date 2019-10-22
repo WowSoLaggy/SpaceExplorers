@@ -15,7 +15,7 @@ public:
   };
 
 public:
-  DoorModel(Structure& io_structure);
+  DoorModel(Structure& io_structure, World& io_world);
 
   virtual void update(double i_dt) override;
 

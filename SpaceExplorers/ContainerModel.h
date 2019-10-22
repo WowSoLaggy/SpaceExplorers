@@ -10,7 +10,7 @@
 class ContainerModel : public BehaviorModelBase
 {
 public:
-  ContainerModel(Structure& io_structure);
+  ContainerModel(Structure& io_structure, World& io_world);
 
   virtual void update(double i_dt) override;
 

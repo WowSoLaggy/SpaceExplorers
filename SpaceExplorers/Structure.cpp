@@ -30,7 +30,7 @@ Structure::Structure(
   d_coords = d_coordsTile * tileSize;
   d_coords += { tileSize / 2, tileSize / 2 };
 
-  d_behaviorModel = BehaviorModelFactory::get(*this);
+  d_behaviorModel = BehaviorModelFactory::get(*this, d_world);
   CONTRACT_ENSURE(d_behaviorModel);
 }
 

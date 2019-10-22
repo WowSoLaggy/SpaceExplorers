@@ -8,5 +8,5 @@
 class BehaviorModelFactory
 {
 public:
-  static std::shared_ptr<BehaviorModelBase> get(Structure& io_structure);
+  static std::shared_ptr<BehaviorModelBase> get(Structure& io_structure, World& io_world);
 };

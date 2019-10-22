@@ -2,13 +2,14 @@
 #include "DoorModel.h"
 
 #include "Structure.h"
+#include "World.h"
 
 #include <LaggyDx/AnimatedSprite.h>
 #include <LaggySdk/Contracts.h>
 
 
-DoorModel::DoorModel(Structure& io_structure)
-  : BehaviorModelBase(io_structure)
+DoorModel::DoorModel(Structure& io_structure, World& io_world)
+  : BehaviorModelBase(io_structure, io_world)
 {
 }
 
@@ -21,7 +22,12 @@ void DoorModel::update(double i_dt)
   if (d_state == State::Opening && !sprite.isPlaying())
     d_state = State::Open;
   else if (d_state == State::Closing && !sprite.isPlaying())
+  {
     d_state = State::Closed;
+
+    if (d_world.checkIntersectWithAnyObject(d_structure.getSprite().getRect()))
+      interact(Action::Open);
+  }
 }
 
 
@@ -59,7 +65,7 @@ void DoorModel::interact(Action i_action)
 
 bool DoorModel::isPassable() const
 {
-  return d_state == State::Open || d_state == State::Closing;
+  return d_state != State::Closed;
 }
 
 
