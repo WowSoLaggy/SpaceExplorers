@@ -225,6 +225,12 @@ void Inventory::updateSelectionSprite()
 }
 
 
+int Inventory::getContainerSize() const
+{
+  return d_container.getSize();
+}
+
+
 bool Inventory::onMouseClick(Dx::MouseKey i_button, const Sdk::Vector2I& i_mousePos)
 {
   if (i_button != Dx::MouseKey::Left)

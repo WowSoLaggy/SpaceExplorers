@@ -167,6 +167,23 @@ void Game::onUnselectInventory()
   }
 }
 
+void Game::onScrollInventory(int i_change)
+{
+  auto inventory = std::dynamic_pointer_cast<Inventory>(d_gui.getControl("Inventory"));
+  if (!inventory)
+    return;
+
+  const auto curIdx = inventory->getSelectedIndex();
+
+  int newIdx = curIdx.has_value() ? *curIdx + i_change : i_change > 0 ? i_change - 1 : i_change;
+  if (newIdx < 0)
+    newIdx += inventory->getContainerSize();
+  if (newIdx >= inventory->getContainerSize())
+    newIdx -= inventory->getContainerSize();
+
+  onSelectInventory(newIdx);
+}
+
 
 void Game::tryInteract()
 {

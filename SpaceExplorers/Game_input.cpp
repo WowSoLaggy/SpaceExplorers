@@ -86,6 +86,9 @@ void Game::handleMouse(const Dx::MouseState& i_mouseState)
     }
   }
 
+  if (int wheelChange = i_mouseState.getWheelPositionChange(); wheelChange != 0)
+    onMouseWheelChange(wheelChange > 0 ? +1 : -1);
+
   if (i_mouseState.getLeftButtonState() == Dx::ButtonState::Pressed)
     onMouseClick(Dx::MouseKey::Left);
   else if (i_mouseState.getLeftButtonState() == Dx::ButtonState::Released)
@@ -126,4 +129,10 @@ void Game::onMouseRelease(Dx::MouseKey i_button)
 void Game::onMouseMove()
 {
   d_gui.onMouseMove(d_gui.getCursor().getPosition());
+}
+
+void Game::onMouseWheelChange(int i_wheelChange)
+{
+  if (d_world)
+    onScrollInventory(-i_wheelChange);
 }

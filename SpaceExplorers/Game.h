@@ -63,6 +63,7 @@ private:
   void onMouseClick(Dx::MouseKey i_button);
   void onMouseRelease(Dx::MouseKey i_button);
   void onMouseMove();
+  void onMouseWheelChange(int i_wheelChange);
 
   //
   // STATES
@@ -95,6 +96,7 @@ private:
 
   void onSelectInventory(int i_index);
   void onUnselectInventory();
+  void onScrollInventory(int i_change);
 
   void tryInteract();
   void tryDrop();

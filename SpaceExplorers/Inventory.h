@@ -35,6 +35,8 @@ public:
   ObjectPtr getSelectedItem() const;
   bool hasSelection() const;
 
+  int getContainerSize() const;
+
 private:
   const int d_slotsHor = 0;
   const int d_slotsVert = 0;
