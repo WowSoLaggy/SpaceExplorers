@@ -4,6 +4,7 @@
 #include "Container.h"
 #include "Fwd.h"
 #include "Object.h"
+#include "WalkModes.h"
 
 #include <LaggySdk/Vector.h>
 
@@ -43,10 +44,18 @@ public:
   Container& getInventory() { return d_inventory; }
   const Container& getInventory() const { return d_inventory; }
 
+  void setRun();
+  void setWalk();
+  bool isRun() const;
+  bool isWalk() const;
+
 private:
-  int d_maxSpeed = 256;
   Sdk::Vector2I d_curSpeed;
   int d_interactionDistSq = 96 * 96;
+
+  WalkMode d_walkMode = WalkMode::Run;
+  const int RunSpeed = 256;
+  const int WalkSpeed = 128;
 
   int d_moveXSign = 0;
   int d_moveYSign = 0;
@@ -61,6 +70,8 @@ private:
 
   void updateMovement(double i_dt);
   void updateMoveAnimation();
+
+  int getMaxSpeed();
 
 public:
   virtual void writeTo(std::ostream& io_stream) const override;

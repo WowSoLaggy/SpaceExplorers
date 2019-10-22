@@ -121,4 +121,7 @@ private:
   void moveRight();
   void moveUp();
   void moveDown();
+
+  void setWalk();
+  void setRun();
 };

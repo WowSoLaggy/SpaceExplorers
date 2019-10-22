@@ -302,6 +302,9 @@
     <ClInclude Include="resource.h">
       <Filter>rsrc</Filter>
     </ClInclude>
+    <ClInclude Include="WalkModes.h">
+      <Filter>src\World\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Icon.ico">

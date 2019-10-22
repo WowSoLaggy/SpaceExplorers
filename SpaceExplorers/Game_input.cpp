@@ -11,6 +11,7 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
 {
   const auto& pressedKeys = i_keyboardState.getPressedKeys();
   const auto& currentKeys = i_keyboardState.getCurrentKeys();
+  const auto& releasedKeys = i_keyboardState.getCurrentKeys();
 
   if (pressedKeys.Escape)
     d_app.stop();
@@ -64,6 +65,11 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
 
   if (pressedKeys.Q)
     tryDrop();
+
+  if (currentKeys.LeftShift)
+    setWalk();
+  else
+    setRun();
 }
 
 void Game::handleMouse(const Dx::MouseState& i_mouseState)

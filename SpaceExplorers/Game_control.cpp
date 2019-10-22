@@ -125,6 +125,19 @@ void Game::moveDown()
 }
 
 
+void Game::setWalk()
+{
+  if (d_controlAvatar && !d_avatar->isWalk())
+    d_avatar->setWalk();
+}
+
+void Game::setRun()
+{
+  if (d_controlAvatar && !d_avatar->isRun())
+    d_avatar->setRun();
+}
+
+
 void Game::onRightClick()
 {
   onUnselectInventory();

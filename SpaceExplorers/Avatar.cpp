@@ -68,22 +68,34 @@ void Avatar::updateMovement(double i_dt)
       return !d_world.checkCollision(i_curRect);
     };
 
+    auto willFloat = [&](Sdk::RectI i_curRect, const Sdk::Vector2I& i_diff) -> bool
+    {
+      i_curRect.move(i_diff);
+      return !d_world.checkSupport(i_curRect);
+    };
+
     if (d_moveXSign != 0)
     {
       Sdk::Vector2I diff;
-      diff.x = (int)(d_maxSpeed * i_dt * d_moveXSign);
+      diff.x = (int)(getMaxSpeed() * i_dt * d_moveXSign);
       
       if (!floatInSpace && canMove(d_rect, diff))
-        d_curSpeed.x = diff.x;
+      {
+        if (!isWalk() || !willFloat(d_rect, diff))
+          d_curSpeed.x = diff.x;
+      }
     }
 
     if (d_moveYSign != 0)
     {
       Sdk::Vector2I diff;
-      diff.y = (int)(d_maxSpeed * i_dt * d_moveYSign);
+      diff.y = (int)(getMaxSpeed() * i_dt * d_moveYSign);
       
       if (!floatInSpace && canMove(d_rect, diff))
-        d_curSpeed.y = diff.y;
+      {
+        if (!isWalk() || !willFloat(d_rect, diff))
+          d_curSpeed.y = diff.y;
+      }
     }
   }
 
@@ -373,6 +385,32 @@ void Avatar::finishBuild()
   }
 
   stopBuilding();
+}
+
+
+int Avatar::getMaxSpeed()
+{
+  return isRun() ? RunSpeed : WalkSpeed;
+}
+
+void Avatar::setRun()
+{
+  d_walkMode = WalkMode::Run;
+}
+
+void Avatar::setWalk()
+{
+  d_walkMode = WalkMode::Walk;
+}
+
+bool Avatar::isRun() const
+{
+  return d_walkMode == WalkMode::Run;
+}
+
+bool Avatar::isWalk() const
+{
+  return d_walkMode == WalkMode::Walk;
 }
 
 

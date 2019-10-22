@@ -240,6 +240,7 @@
     <ClInclude Include="Prototypes.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="WalkModes.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
