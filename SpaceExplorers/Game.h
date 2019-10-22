@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "Fwd.h"
 #include "Gui.h"
+#include "OverlayOptions.h"
 #include "Prototypes.h"
 #include "World.h"
 
@@ -51,6 +52,8 @@ private:
 
   bool d_debugOutput = false;
   std::shared_ptr<Label> d_debugLabel;
+
+  OverlayOption d_overlayOption = OverlayOption::None;
 
   Sdk::Vector2I cursorToTile() const;
   Sdk::Vector2I cursorToWorld() const;
@@ -124,4 +127,11 @@ private:
 
   void setWalk();
   void setRun();
+
+  //
+  // OVERLAYS
+  //
+
+  void resetOverlay();
+  void onOverlayAtmosphere();
 };

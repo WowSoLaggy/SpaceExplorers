@@ -29,7 +29,7 @@ void World::update(double i_dt)
     avatar->update(i_dt);
 }
 
-void World::render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) const
+void World::render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport, OverlayOption i_overlayOption) const
 {
   i_renderer.resetTranslation();
   i_renderer.renderSprite(d_background);
@@ -39,7 +39,7 @@ void World::render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) co
   {
     const auto tileRect = getTileRect(coords);
     if (i_viewport.intersectRect(tileRect))
-      tile.render(i_renderer);
+      tile.render(i_renderer, i_overlayOption);
   }
 
   for (auto& object : d_objects)

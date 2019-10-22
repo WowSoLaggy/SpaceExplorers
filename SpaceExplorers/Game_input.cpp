@@ -24,6 +24,7 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
       showDebugLabel();
   }
 
+
   if (!d_world)
     return;
 
@@ -60,8 +61,13 @@ void Game::handleKeyboard(const Dx::KeyboardState& i_keyboardState)
   if (currentKeys.S)
     moveDown();
 
+  if (pressedKeys.F1)
+    onOverlayAtmosphere();
+
+
   if (!isControlAvatar())
     return;
+
 
   if (pressedKeys.Q)
     tryDrop();

@@ -2,9 +2,11 @@
 
 #include "Atmosphere.h"
 #include "Fwd.h"
+#include "OverlayOptions.h"
 #include "Structure.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
+#include <LaggyDx/Sprite.h>
 #include <LaggySdk/Vector.h>
 
 #include <iostream>
@@ -17,7 +19,7 @@ public:
   Tile(Sdk::Vector2I i_coordsTile, Dx::IResourceController& i_resourceController);
 
   void update(double i_dt);
-  void render(Dx::IRenderer2d& i_renderer) const;
+  void render(Dx::IRenderer2d& i_renderer, OverlayOption i_overlayOption) const;
 
   void setStructure(Layer i_layer, StructurePtr i_structure);
   void removeStructure(Layer i_layer);
@@ -42,7 +44,9 @@ private:
   Dx::IResourceController& d_resourceController;
 
   std::map<Layer, StructurePtr> d_layersMap;
+
   Atmosphere d_atmosphere;
+  Dx::Sprite d_sprite;
 
 public:
   void writeTo(std::ostream& io_stream) const;

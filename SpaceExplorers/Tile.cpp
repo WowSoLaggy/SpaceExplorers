@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Tile.h"
 
+#include "SettingsProvider.h"
+
+#include <LaggyDx/IResourceController.h>
 #include <LaggySdk/Contracts.h>
 
 
@@ -8,6 +11,12 @@ Tile::Tile(Sdk::Vector2I i_coordsTile, Dx::IResourceController& i_resourceContro
   : d_coordsTile(i_coordsTile)
   , d_resourceController(i_resourceController)
 {
+  d_sprite.setTexture(&d_resourceController.getTextureResource("White.png"));
+
+  auto tileSize = SettingsProvider::getDefaultInternalSettings().tileSize;
+  d_sprite.setPosition(d_coordsTile * tileSize);
+
+  d_sprite.setSize({ tileSize, tileSize });
 }
 
 
@@ -20,7 +29,7 @@ void Tile::update(double i_dt)
   }
 }
 
-void Tile::render(Dx::IRenderer2d& i_renderer) const
+void Tile::render(Dx::IRenderer2d& i_renderer, OverlayOption i_overlayOption) const
 {
   if (d_layersMap.empty())
     return;

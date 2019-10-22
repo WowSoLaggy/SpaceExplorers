@@ -317,6 +317,9 @@
     <ClInclude Include="Gases.h">
       <Filter>src\Atmosphere</Filter>
     </ClInclude>
+    <ClInclude Include="OverlayOptions.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Icon.ico">

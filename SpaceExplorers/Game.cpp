@@ -51,7 +51,7 @@ void Game::update(double i_dt)
 void Game::render(Dx::IRenderer2d& i_renderer) const
 {
   if (d_world)
-    d_world->render(i_renderer, d_camera.getViewport());
+    d_world->render(i_renderer, d_camera.getViewport(), d_overlayOption);
 
   d_gui.render(i_renderer);
 
@@ -99,4 +99,18 @@ void Game::loadResources()
   PrototypesCollection::load();
   d_resourceController.loadResources();
   std::this_thread::sleep_for(100ms);
+}
+
+
+void Game::resetOverlay()
+{
+  d_overlayOption = OverlayOption::None;
+}
+
+void Game::onOverlayAtmosphere()
+{
+  if (d_overlayOption != OverlayOption::Atmosphere)
+    d_overlayOption = OverlayOption::Atmosphere;
+  else
+    resetOverlay();
 }

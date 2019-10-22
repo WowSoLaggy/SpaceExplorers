@@ -2,6 +2,7 @@
 
 #include "Avatar.h"
 #include "Object.h"
+#include "OverlayOptions.h"
 #include "Structure.h"
 #include "Tile.h"
 
@@ -29,7 +30,7 @@ public:
   World(Dx::IResourceController& i_resourceController);
 
   void update(double i_dt);
-  void render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport) const;
+  void render(Dx::IRenderer2d& i_renderer, const Sdk::RectI& i_viewport, OverlayOption i_overlayOption) const;
 
   StructurePtr createStructureAt(const StructurePrototype& i_prototype, const Sdk::Vector2I& i_coords);
   ObjectPtr createObjectAt(const ObjectPrototype& i_prototype, Sdk::Vector2I i_coords, std::string i_name = "");
