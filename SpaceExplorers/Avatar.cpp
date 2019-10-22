@@ -288,6 +288,9 @@ void Avatar::interact(Action i_action, ThingPtr io_object,
       }
     }
 
+    if (!d_world.checkSupport(tileCoords))
+      return;
+
     startBuilding(object, i_tool, receipt, i_where);
   }
 }

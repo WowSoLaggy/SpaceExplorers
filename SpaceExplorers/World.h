@@ -58,6 +58,7 @@ public:
 
   // True - has support
   bool checkSupport(const Sdk::RectI& i_rect) const;
+  bool checkSupport(const Sdk::Vector2I& i_tileCoords) const;
 
 private:
   Dx::IResourceController& d_resourceController;

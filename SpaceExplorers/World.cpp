@@ -223,3 +223,24 @@ bool World::checkSupport(const Sdk::RectI& i_rect) const
     return hasSupport(i_tileCoords);
   });
 }
+
+bool World::checkSupport(const Sdk::Vector2I& i_tileCoords) const
+{
+  auto hasSupport = [&](const Sdk::Vector2I& i_tileCoords) -> bool
+  {
+    if (const auto* pTile = getTile(i_tileCoords))
+      return pTile->isSupport();
+    return false;
+  };
+
+  std::unordered_set<Sdk::Vector2I, Sdk::Vector2_hash> tilesToCheck;
+  tilesToCheck.insert(i_tileCoords);
+  tilesToCheck.insert(i_tileCoords + Sdk::Vector2I{ 1, 0 });
+  tilesToCheck.insert(i_tileCoords + Sdk::Vector2I{ -1, 0 });
+  tilesToCheck.insert(i_tileCoords + Sdk::Vector2I{ 0, 1 });
+  tilesToCheck.insert(i_tileCoords + Sdk::Vector2I{ 0, -1 });
+
+  return std::any_of(tilesToCheck.cbegin(), tilesToCheck.cend(), [&](const Sdk::Vector2I& i_tileCoords) {
+    return hasSupport(i_tileCoords);
+  });
+}
