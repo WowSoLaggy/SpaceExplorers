@@ -18,6 +18,14 @@ void ContainerModel::update(double i_dt)
 
 void ContainerModel::interact(Action i_action)
 {
+  if (i_action == Action::Open)
+  {
+    d_structure.getSprite().playAnimation("Open");
+  }
+  else if (i_action == Action::Close)
+  {
+    d_structure.getSprite().playAnimation("Close");
+  }
 }
 
 

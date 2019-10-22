@@ -4,5 +4,18 @@
     "Width": 64,
     "Height": 64,
     "Alpha": true
-  }
+  },
+  "Animations":
+  [
+    {
+      "Name": "Open",
+      "Start": 1,
+      "End": 1
+    },
+    {
+      "Name": "Close",
+      "Start": 0,
+      "End": 0
+    }
+  ]
 }

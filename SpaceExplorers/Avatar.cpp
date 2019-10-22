@@ -112,6 +112,10 @@ bool Avatar::isInteracting() const
 
 void Avatar::startInspectingContainer(StructurePtr i_structure)
 {
+  CONTRACT_EXPECT(i_structure);
+
+  i_structure->interact(Action::Open);
+
   notify(ContainerOpenedEvent(*this, *i_structure));
   d_inspectedContainer = i_structure;
 }
@@ -120,6 +124,9 @@ void Avatar::stopInspectingContainer()
 {
   if (!isInspectingContainer())
     return;
+
+  if (d_inspectedContainer)
+    d_inspectedContainer->interact(Action::Close);
 
   notify(ContainerClosedEvent(*this));
   d_inspectedContainer.reset();
@@ -152,8 +159,6 @@ void Avatar::interact(Action i_action, ThingPtr io_object,
 
       if ((structure->getCoords() - d_position).lengthSq() <= d_interactionDistSq)
       {
-        structure->interact(i_action);
-
         if (structure->isContainer())
         {
           if (isInspectingContainer())
@@ -161,6 +166,8 @@ void Avatar::interact(Action i_action, ThingPtr io_object,
           else
             interact(Action::Open, io_object, i_tool, i_where);
         }
+        else
+          structure->interact(i_action);
       }
     }
   }
