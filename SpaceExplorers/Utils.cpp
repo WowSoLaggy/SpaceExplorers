@@ -38,3 +38,14 @@ Sdk::Vector2I tileToScreen(Sdk::Vector2I i_coords)
 {
   return i_coords * SettingsProvider::getDefaultInternalSettings().tileSize;
 }
+
+
+Sdk::RectI getTileRect(const Sdk::Vector2I& i_coords)
+{
+  const int tileSize = SettingsProvider::getDefaultInternalSettings().tileSize;
+
+  const Sdk::Vector2I topLeft = i_coords * tileSize;
+  const Sdk::Vector2I bottomRight = topLeft + Sdk::Vector2I{ tileSize, tileSize };
+
+  return Sdk::RectI{ topLeft, bottomRight};
+}

@@ -63,7 +63,7 @@ void Avatar::updateMovement(double i_dt)
     auto canMove = [&](Sdk::RectI i_curRect, const Sdk::Vector2I& i_diff) -> bool
     {
       i_curRect.move(i_diff);
-      i_curRect.shrink(2);
+      i_curRect.shrink(CollisionShrink);
 
       return !d_world.checkCollision(i_curRect);
     };

@@ -11,20 +11,6 @@
 #include <LaggyDx/IResourceController.h>
 
 
-namespace
-{
-  Sdk::RectI getTileRect(const Sdk::Vector2I& i_coords)
-  {
-    const int tileSize = SettingsProvider::getDefaultInternalSettings().tileSize;
-
-    const Sdk::Vector2I topLeft = i_coords * tileSize;
-    const Sdk::Vector2I bottomRight = topLeft + Sdk::Vector2I{ tileSize, tileSize };
-
-    return Sdk::RectI{ topLeft, bottomRight};
-  }
-} // anonymous NS
-
-
 World::World(Dx::IResourceController& i_resourceController)
   : d_resourceController(i_resourceController)
 {
