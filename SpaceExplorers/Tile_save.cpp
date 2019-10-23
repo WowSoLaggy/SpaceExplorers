@@ -19,7 +19,7 @@ void Tile::writeTo(std::ostream& io_stream) const
   }
 
   d_atmosphere.writeTo(io_stream);
-  d_sprite.writeTo(io_stream);
+  d_overlaySprite.writeTo(io_stream);
 }
 
 void Tile::readFrom(std::istream& io_stream,
@@ -39,5 +39,5 @@ void Tile::readFrom(std::istream& io_stream,
   }
 
   d_atmosphere.readFrom(io_stream);
-  d_sprite.readFrom(io_stream, i_resourceController);
+  d_overlaySprite.readFrom(io_stream, i_resourceController);
 }

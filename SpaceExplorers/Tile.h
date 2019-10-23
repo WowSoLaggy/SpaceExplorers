@@ -46,7 +46,8 @@ private:
   std::map<Layer, StructurePtr> d_layersMap;
 
   Atmosphere d_atmosphere;
-  Dx::Sprite d_sprite;
+  mutable Dx::Sprite d_overlaySprite;
+  void setOverlayColor() const;
 
 public:
   void writeTo(std::ostream& io_stream) const;

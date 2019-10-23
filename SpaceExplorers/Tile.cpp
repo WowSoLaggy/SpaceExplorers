@@ -3,6 +3,7 @@
 
 #include "SettingsProvider.h"
 
+#include <LaggyDx/IRenderer2d.h>
 #include <LaggyDx/IResourceController.h>
 #include <LaggySdk/Contracts.h>
 
@@ -11,12 +12,12 @@ Tile::Tile(Sdk::Vector2I i_coordsTile, Dx::IResourceController& i_resourceContro
   : d_coordsTile(i_coordsTile)
   , d_resourceController(i_resourceController)
 {
-  d_sprite.setTexture(&d_resourceController.getTextureResource("White.png"));
+  d_overlaySprite.setTexture(&d_resourceController.getTextureResource("White.png"));
 
   auto tileSize = SettingsProvider::getDefaultInternalSettings().tileSize;
-  d_sprite.setPosition(d_coordsTile * tileSize);
+  d_overlaySprite.setPosition(d_coordsTile * tileSize);
 
-  d_sprite.setSize({ tileSize, tileSize });
+  d_overlaySprite.setSize({ tileSize, tileSize });
 }
 
 
@@ -40,6 +41,12 @@ void Tile::render(Dx::IRenderer2d& i_renderer, OverlayOption i_overlayOption) co
 
   for (; it != d_layersMap.cend(); ++it)
     it->second->render(i_renderer);
+
+  if (i_overlayOption == OverlayOption::Atmosphere && d_atmosphere.hasGases())
+  {
+    setOverlayColor();
+    i_renderer.renderSprite(d_overlaySprite);
+  }
 }
 
 
@@ -122,4 +129,27 @@ bool Tile::isSupport() const
   {
     return pair.second->isSupport();
   });
+}
+
+
+void Tile::setOverlayColor() const
+{
+  if (!d_atmosphere.hasGases())
+    return;
+
+  const std::map<Gas, Sdk::Vector4F> ColorsMap = {
+    { Gas::Oxygen, { 0.0f, 0.75f, 1.0f, 1.0f} },
+  };
+
+  Sdk::Vector4F color{ Sdk::Vector4F::zero() };
+  for (const auto&[type, _] : d_atmosphere.getGases())
+    color += ColorsMap.at(type);
+
+  const double AveragePressure = 100000.0; // 1atm
+  const int pressure = d_atmosphere.getPressure();
+
+  const double intensity = pressure / AveragePressure * 0.5;
+  color.w = (float)intensity;
+
+  d_overlaySprite.setColor(color);
 }

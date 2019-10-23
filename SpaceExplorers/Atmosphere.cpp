@@ -4,6 +4,19 @@
 #include <LaggySdk/Streams.h>
 
 
+bool Atmosphere::hasGases() const
+{
+  return !d_gases.empty();
+}
+
+
+int Atmosphere::getPressure() const
+{
+  return std::accumulate(d_gases.begin(), d_gases.end(), 0, [](int i_value, const auto& i_pair)
+                         { return i_value + i_pair.second; });
+}
+
+
 void Atmosphere::writeTo(std::ostream& io_stream) const
 {
   const int countGases = (int)d_gases.size();

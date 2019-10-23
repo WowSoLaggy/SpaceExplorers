@@ -180,11 +180,15 @@ std::unique_ptr<World> World::createTestWorld(
 
 
   {
-    auto atmo = world->getTile({ -2, 1 })->getAtmosphere();
+    auto& atmo = world->getTile({ -3, -3 })->getAtmosphere();
+    atmo.d_gases.insert({ Gas::Oxygen, 200000 });
+  }
+  {
+    auto& atmo = world->getTile({ -2, 1 })->getAtmosphere();
     atmo.d_gases.insert({ Gas::Oxygen, 100000 });
   }
   {
-    auto atmo = world->getTile({ 2, -2 })->getAtmosphere();
+    auto& atmo = world->getTile({ 2, -2 })->getAtmosphere();
     atmo.d_gases.insert({ Gas::Oxygen, 50000 });
   }
 
