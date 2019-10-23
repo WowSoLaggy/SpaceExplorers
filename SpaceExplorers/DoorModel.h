@@ -21,6 +21,7 @@ public:
 
   virtual void interact(Action i_action) override;
   virtual bool isPassable() const override;
+  virtual bool hasAtmosphere() const override;
 
   void setState(State i_state);
 

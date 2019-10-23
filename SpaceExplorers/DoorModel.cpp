@@ -68,6 +68,11 @@ bool DoorModel::isPassable() const
   return d_state != State::Closed;
 }
 
+bool DoorModel::hasAtmosphere() const
+{
+  return d_state != State::Closed;
+}
+
 
 void DoorModel::setState(State i_state)
 {

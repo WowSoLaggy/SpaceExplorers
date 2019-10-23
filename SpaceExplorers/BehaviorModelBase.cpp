@@ -21,6 +21,11 @@ bool BehaviorModelBase::isPassable() const
   return d_structure.getPrototype().isPassable;
 }
 
+bool BehaviorModelBase::hasAtmosphere() const
+{
+  return d_structure.getPrototype().hasAtmosphere;
+}
+
 bool BehaviorModelBase::isSupport() const
 {
   return d_structure.getPrototype().isSupport;
