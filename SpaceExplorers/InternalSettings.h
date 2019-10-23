@@ -6,7 +6,8 @@
 struct InternalSettings
 {
   std::string applicationName;
-  std::string resourcesFolder;
+  std::string assetsFolder;
+  std::string configFolder;
   std::string savesFolder;
 
   int tileSize = 0;

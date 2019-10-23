@@ -16,7 +16,8 @@ namespace
   {
     InternalSettings settings;
     settings.applicationName = "Space Explorers";
-    settings.resourcesFolder = "Data";
+    settings.assetsFolder = "Data/Assets";
+    settings.configFolder = "Data/Configs";
     settings.savesFolder = "Saves";
     settings.tileSize = 64;
     settings.defaultFontName = "MyFont.spritefont";

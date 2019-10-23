@@ -39,8 +39,8 @@ void PrototypesCollection::load()
   auto& prototypes = getInstance();
   const auto& settings = SettingsProvider::getDefaultInternalSettings();
 
-  prototypes.loadStructures(".//" + settings.resourcesFolder + "//" + settings.structuresPrototypesFile);
-  prototypes.loadObjects(".//" + settings.resourcesFolder + "//" + settings.objectsPrototypesFile);
+  prototypes.loadStructures(".//" + settings.configFolder + "//" + settings.structuresPrototypesFile);
+  prototypes.loadObjects(".//" + settings.configFolder + "//" + settings.objectsPrototypesFile);
 }
 
 

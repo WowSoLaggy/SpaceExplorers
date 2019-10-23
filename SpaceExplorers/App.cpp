@@ -36,7 +36,7 @@ App::App()
     d_window->getHWnd(), externalSettings.clientWidth, externalSettings.clientHeight);
   CONTRACT_ENSURE(d_renderDevice);
 
-  d_resourceController = Dx::IResourceController::create(*d_renderDevice, internalSettings.resourcesFolder);
+  d_resourceController = Dx::IResourceController::create(*d_renderDevice, internalSettings.assetsFolder);
   CONTRACT_ENSURE(d_resourceController);
 
   d_renderer2d = Dx::IRenderer2d::create(*d_renderDevice);
