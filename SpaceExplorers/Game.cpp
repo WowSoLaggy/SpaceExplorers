@@ -88,6 +88,16 @@ void Game::updateDebugLabel(int i_renderedSprites) const
     const auto tileCoords = screenToTile(d_gui.getCursor().getPosition(), d_camera);
     str += "Cursor tile coords: " + std::to_string(tileCoords.x) + "x, " +
       std::to_string(tileCoords.y) + "y\n";
+
+    if (const auto* tile = d_world->getTile(tileCoords))
+    {
+      const auto& atmo = tile->getAtmosphere();
+
+      str += "========================\n";
+      str += "Pressure: " + std::to_string(atmo.getPressure()) + " Pa\n";
+      for (const auto&[type, amount] : atmo.getGases())
+        str += "--- " + GasNames.at(type) + ": " + std::to_string(amount) + "\n";
+    }
   }
 
   d_debugLabel->setText(str);
