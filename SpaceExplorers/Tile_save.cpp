@@ -22,10 +22,7 @@ void Tile::writeTo(std::ostream& io_stream) const
   d_overlaySprite.writeTo(io_stream);
 }
 
-void Tile::readFrom(std::istream& io_stream,
-                    Dx::IResourceController& i_resourceController,
-                    World& i_world,
-                    const Sdk::Vector2I& i_coordsTile)
+void Tile::readFrom(std::istream& io_stream)
 {
   int layersCount;
   Sdk::read(io_stream, layersCount);
@@ -35,9 +32,9 @@ void Tile::readFrom(std::istream& io_stream,
     Layer layer;
     Sdk::read(io_stream, layer);
 
-    d_layersMap[layer] = readStructureFrom(io_stream, i_resourceController, i_world, std::move(i_coordsTile));
+    d_layersMap[layer] = readStructureFrom(io_stream, d_resourceController, d_world, std::move(d_coordsTile));
   }
 
   d_atmosphere.readFrom(io_stream);
-  d_overlaySprite.readFrom(io_stream, i_resourceController);
+  d_overlaySprite.readFrom(io_stream, d_resourceController);
 }

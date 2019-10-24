@@ -42,7 +42,7 @@ std::unique_ptr<World> World::readFrom(std::istream& io_stream,
     Sdk::Vector2I coords;
     io_stream >> coords;
 
-    world->getOrCreateTile(coords).readFrom(io_stream, i_resourceController, *world, coords);
+    world->getOrCreateTile(coords).readFrom(io_stream);
   }
 
   int objectsCount;
