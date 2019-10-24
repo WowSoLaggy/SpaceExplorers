@@ -8,8 +8,9 @@
 #include <LaggySdk/Contracts.h>
 
 
-Tile::Tile(Sdk::Vector2I i_coordsTile, Dx::IResourceController& i_resourceController)
+Tile::Tile(Sdk::Vector2I i_coordsTile, World& i_world, Dx::IResourceController& i_resourceController)
   : d_coordsTile(i_coordsTile)
+  , d_world(i_world)
   , d_resourceController(i_resourceController)
 {
   d_overlaySprite.setTexture(&d_resourceController.getTextureResource("White.png"));

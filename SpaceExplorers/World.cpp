@@ -74,7 +74,7 @@ const Tile* World::getTile(const Sdk::Vector2I& i_coords) const
 
 Tile& World::getOrCreateTile(const Sdk::Vector2I& i_coords)
 {
-  Tile tile(i_coords, d_resourceController);
+  Tile tile(i_coords, *this, d_resourceController);
   auto pair = d_tilesMap.insert({ i_coords, std::move(tile) });
   return pair.first->second;
 }
