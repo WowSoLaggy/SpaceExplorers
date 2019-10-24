@@ -30,6 +30,8 @@ private:
 
   Action getDefaultAction() const;
 
+  void onClose();
+
 public:
   virtual void writeTo(std::ostream& io_stream) const override;
   virtual void readFrom(std::istream& io_stream, Dx::IResourceController& i_resouceContoller, World& i_world) override;

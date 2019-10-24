@@ -22,12 +22,7 @@ void DoorModel::update(double i_dt)
   if (d_state == State::Opening && !sprite.isPlaying())
     d_state = State::Open;
   else if (d_state == State::Closing && !sprite.isPlaying())
-  {
-    d_state = State::Closed;
-
-    if (d_world.checkIntersectWithAnyObject(d_structure.getSprite().getRect()))
-      interact(Action::Open);
-  }
+    onClose();
 }
 
 
@@ -106,6 +101,15 @@ Action DoorModel::getDefaultAction() const
     return Action::Close;
 
   return Action::None;
+}
+
+
+void DoorModel::onClose()
+{
+  d_state = State::Closed;
+
+  if (d_world.checkIntersectWithAnyObject(d_structure.getSprite().getRect()))
+    interact(Action::Open);
 }
 
 
