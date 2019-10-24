@@ -157,11 +157,26 @@ void Tile::updateAtmosphere(double i_dt)
   if (!hasAtmosphere())
     return;
 
+
   auto& atmo1 = getAtmosphere();
   const auto pressure1 = atmo1.getPressure();
   auto& gases1 = atmo1.getGases();
 
-  for (const auto& offset : { Sdk::Vector2I{ 1, 0 }, Sdk::Vector2I{ 0, 1 } })
+
+  static const std::vector<Sdk::Vector2I> AllTiles{ { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+  for (const auto& offset : AllTiles)
+  {
+    auto* tile = d_world.getTile(d_coordsTile + offset);
+    if (!tile || tile->isLeak())
+    {
+      gases1.clear();
+      break;
+    }
+  }
+  
+
+  static const std::vector<Sdk::Vector2I> TwoTiles{ { 1, 0 }, { 0, 1 } };
+  for (const auto& offset : TwoTiles)
   {
     auto* tile = d_world.getTile(d_coordsTile + offset);
     if (!tile || !tile->hasAtmosphere())
