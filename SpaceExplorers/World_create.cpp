@@ -191,6 +191,10 @@ std::unique_ptr<World> World::createTestWorld(
     auto& atmo = world->getTile({ 2, 1 })->getAtmosphere();
     atmo.d_gases.insert({ Gas::Oxygen, 750000 });
   }
+  {
+    auto& atmo = world->getTile({ -5, -1 })->getAtmosphere();
+    atmo.d_gases.insert({ Gas::Oxygen, 750000 });
+  }
 
 
   ///
