@@ -35,6 +35,7 @@ public:
 
   bool isPassable() const;
   bool hasAtmosphere() const;
+  bool isLeak() const;
   bool isSupport() const;
 
   Atmosphere& getAtmosphere() { return d_atmosphere; }

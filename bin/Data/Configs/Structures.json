@@ -6,6 +6,7 @@
     "Behavior": "Default",
     "Passable": true,
     "Atmosphere": true,
+    "Leak": true,
     "Support": true
   },
   
@@ -16,6 +17,7 @@
     "Behavior": "Default",
     "Passable": true,
     "Atmosphere": true,
+    "Leak": true,
     "Support": false
   },
   
@@ -26,6 +28,7 @@
     "Behavior": "Default",
     "Passable": true,
     "Atmosphere": true,
+    "Leak": false,
     "Support": true
   },
   
@@ -36,6 +39,7 @@
     "Behavior": "Default",
     "Passable": true,
     "Atmosphere": true,
+    "Leak": true,
     "Support": true
   },
   
@@ -46,6 +50,7 @@
     "Behavior": "Default",
     "Passable": true,
     "Atmosphere": true,
+    "Leak": false,
     "Support": true
   },
   
@@ -56,6 +61,7 @@
     "Behavior": "Default",
     "Passable": false,
     "Atmosphere": false,
+    "Leak": false,
     "Support": true
   },
   
@@ -66,6 +72,7 @@
     "Behavior": "Default",
     "Passable": true,
     "Atmosphere": true,
+    "Leak": false,
     "Support": true
   },
   
@@ -76,6 +83,7 @@
     "Behavior": "Default",
     "Passable": true,
     "Atmosphere": true,
+    "Leak": false,
     "Support": true
   },
   
@@ -86,6 +94,7 @@
     "Behavior": "Default",
     "Passable": false,
     "Atmosphere": true,
+    "Leak": false,
     "Support": true
   },
   
@@ -96,6 +105,7 @@
     "Behavior": "Default",
     "Passable": false,
     "Atmosphere": true,
+    "Leak": false,
     "Support": true
   },
   
@@ -106,6 +116,7 @@
     "Behavior": "Door",
     "Passable": false,
     "Atmosphere": false,
+    "Leak": false,
     "Support": true
   },
   
@@ -117,6 +128,7 @@
     "ContainerSize": 8,
     "Passable": true,
     "Atmosphere": true,
+    "Leak": false,
     "Support": false
   }
 }

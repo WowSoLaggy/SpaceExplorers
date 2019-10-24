@@ -16,6 +16,7 @@ struct StructurePrototype
   Layer layer = Layer::None;
   bool isPassable = true;
   bool hasAtmosphere = true;
+  bool isLeak = false;
   bool isSupport = true;
   int containerSize = 0;
 };

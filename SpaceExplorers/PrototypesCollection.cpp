@@ -65,6 +65,7 @@ void PrototypesCollection::loadStructures(const fs::path& i_filename)
     proto.behavior = BehaviorNames.at(node["Behavior"].asString());
     proto.isPassable = node["Passable"].asBool();
     proto.hasAtmosphere = node["Atmosphere"].asBool();
+    proto.isLeak = node["Leak"].asBool();
     proto.isSupport = node["Support"].asBool();
 
     const std::string ContainerSizeNodeName = "ContainerSize";

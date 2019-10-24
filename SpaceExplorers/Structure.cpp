@@ -65,6 +65,12 @@ bool Structure::hasAtmosphere() const
   return d_behaviorModel->hasAtmosphere();
 }
 
+bool Structure::isLeak() const
+{
+  CONTRACT_EXPECT(d_behaviorModel);
+  return d_behaviorModel->isLeak();
+}
+
 bool Structure::isSupport() const
 {
   CONTRACT_EXPECT(d_behaviorModel);

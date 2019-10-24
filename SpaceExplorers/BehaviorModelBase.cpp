@@ -26,6 +26,11 @@ bool BehaviorModelBase::hasAtmosphere() const
   return d_structure.getPrototype().hasAtmosphere;
 }
 
+bool BehaviorModelBase::isLeak() const
+{
+  return d_structure.getPrototype().isLeak;
+}
+
 bool BehaviorModelBase::isSupport() const
 {
   return d_structure.getPrototype().isSupport;
