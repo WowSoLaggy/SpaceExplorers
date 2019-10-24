@@ -137,9 +137,9 @@ bool Tile::hasAtmosphere() const
 
 bool Tile::isLeak() const
 {
-  return std::any_of(d_layersMap.begin(), d_layersMap.end(), [](const auto& pair)
+  return std::all_of(d_layersMap.begin(), d_layersMap.end(), [](const auto& pair)
   {
-    return !pair.second->isLeak();
+    return pair.second->isLeak();
   });
 }
 
