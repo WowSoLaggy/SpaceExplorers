@@ -48,6 +48,8 @@ private:
   std::map<Layer, StructurePtr> d_layersMap;
 
   Atmosphere d_atmosphere;
+  void updateAtmosphere(double i_dt);
+
   mutable Dx::Sprite d_overlaySprite;
   void setOverlayColor() const;
 
