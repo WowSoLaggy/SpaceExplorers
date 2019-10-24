@@ -141,8 +141,14 @@ void Game::setRun()
 void Game::onRightClick()
 {
   onUnselectInventory();
-  if (d_avatar->isInspectingContainer())
-    d_avatar->stopInspectingContainer();
+
+  if (d_controlAvatar)
+  {
+    CONTRACT_ASSERT(d_avatar);
+
+    if (d_avatar->isInspectingContainer())
+      d_avatar->stopInspectingContainer();
+  }
 }
 
 
