@@ -154,8 +154,10 @@ bool Tile::isSupport() const
 
 void Tile::updateAtmosphere(double i_dt)
 {
-  if (!hasAtmosphere())
-    return;
+  // TODO: ae Refactor this whole function, separate to different ones
+
+  static const std::vector<Sdk::Vector2I> AllTiles{ { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+  static const std::vector<Sdk::Vector2I> TwoTiles{ { 1, 0 }, { 0, 1 } };
 
 
   auto& atmo1 = getAtmosphere();
@@ -163,7 +165,10 @@ void Tile::updateAtmosphere(double i_dt)
   auto& gases1 = atmo1.getGases();
 
 
-  static const std::vector<Sdk::Vector2I> AllTiles{ { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+  if (!hasAtmosphere() && pressure1 == 0)
+    return;
+
+  
   for (const auto& offset : AllTiles)
   {
     auto* tile = d_world.getTile(d_coordsTile + offset);
@@ -173,9 +178,53 @@ void Tile::updateAtmosphere(double i_dt)
       break;
     }
   }
-  
 
-  static const std::vector<Sdk::Vector2I> TwoTiles{ { 1, 0 }, { 0, 1 } };
+
+  if (!hasAtmosphere())
+  {
+    if (pressure1 > 0)
+    {
+      // Try to push gases to neighbor tiles
+
+      // Collect neighbor tiles
+      // There shall be no leaks or empty tiles - otherwise I would give all gases there
+      // a few lines above
+      std::vector<Tile*> tiles;
+      for (const auto& offset : AllTiles)
+      {
+        auto* tile = d_world.getTile(d_coordsTile + offset);
+        if (tile && tile->hasAtmosphere())
+          tiles.push_back(tile);
+      }
+
+      const int tileCount = (int)tiles.size();
+      int tileCountLeft = tileCount;
+      for (auto* tile : tiles)
+      {
+        for (auto&[type, amount] : gases1)
+        {
+          const auto gasToGive = amount / tileCountLeft;
+          tile->getAtmosphere().d_gases[type] += gasToGive;
+          amount -= gasToGive;
+        }
+        --tileCountLeft;
+      }
+
+      // If some gases still left (due to rounding error) -
+      // just give it to the first tile
+      if (tileCount > 0)
+      {
+        for (auto&[type, amount] : gases1)
+          tiles.front()->getAtmosphere().d_gases[type] += amount;
+
+        gases1.clear();
+      }
+    }
+
+    return;
+  }
+
+  
   for (const auto& offset : TwoTiles)
   {
     auto* tile = d_world.getTile(d_coordsTile + offset);
