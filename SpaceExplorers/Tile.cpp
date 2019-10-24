@@ -155,24 +155,21 @@ void Tile::updateAtmosphere(double i_dt)
     if (!tile || !tile->hasAtmosphere())
       continue;
 
-    if (auto* tile = d_world.getTile(d_coordsTile + offset))
+    auto& atmo1 = getAtmosphere();
+    auto& atmo2 = tile->getAtmosphere();
+
+    auto& gases1 = atmo1.getGases();
+    auto& gases2 = atmo2.getGases();
+
+    const auto pressure1 = atmo1.getPressure();
+    const auto pressure2 = atmo2.getPressure();
+
+    if (pressure1 != 0 || pressure2 != 0)
     {
-      auto& atmo1 = getAtmosphere();
-      auto& atmo2 = tile->getAtmosphere();
+      const int gasToSpread = (int)(double(pressure2 - pressure1) / 2 * i_dt);
 
-      auto& gases1 = atmo1.getGases();
-      auto& gases2 = atmo2.getGases();
-
-      const auto pressure1 = atmo1.getPressure();
-      const auto pressure2 = atmo2.getPressure();
-
-      if (pressure1 != 0 || pressure2 != 0)
-      {
-        const int gasToSpread = (int)(double(pressure2 - pressure1) / 2 * i_dt);
-
-        gases1[Gas::Oxygen] += gasToSpread;
-        gases2[Gas::Oxygen] -= gasToSpread;
-      }
+      gases1[Gas::Oxygen] += gasToSpread;
+      gases2[Gas::Oxygen] -= gasToSpread;
     }
   }
 }
