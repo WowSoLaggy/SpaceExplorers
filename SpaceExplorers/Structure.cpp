@@ -59,6 +59,12 @@ bool Structure::isPassable() const
   return d_behaviorModel->isPassable();
 }
 
+bool Structure::hasAtmosphere() const
+{
+  CONTRACT_EXPECT(d_behaviorModel);
+  return d_behaviorModel->hasAtmosphere();
+}
+
 bool Structure::isSupport() const
 {
   CONTRACT_EXPECT(d_behaviorModel);

@@ -34,6 +34,7 @@ public:
   bool hasStructureOnLayer(Layer i_layer) const;
 
   bool isPassable() const;
+  bool hasAtmosphere() const;
   bool isSupport() const;
 
   Atmosphere& getAtmosphere() { return d_atmosphere; }

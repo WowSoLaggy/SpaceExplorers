@@ -124,6 +124,14 @@ bool Tile::isPassable() const
   return true;
 }
 
+bool Tile::hasAtmosphere() const
+{
+  return std::all_of(d_layersMap.begin(), d_layersMap.end(), [](const auto& pair)
+  {
+    return pair.second->hasAtmosphere();
+  });
+}
+
 bool Tile::isSupport() const
 {
   return std::any_of(d_layersMap.begin(), d_layersMap.end(), [](const auto& pair)
