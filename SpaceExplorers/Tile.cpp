@@ -238,8 +238,8 @@ void Tile::updateAtmosphere(double i_dt)
     if (pressure1 == 0 && pressure2 == 0)
       continue;
 
-    const int pressureDiff = pressure2 - pressure1;
-    if (std::abs(pressureDiff) <= 1)
+    const int pressureDiff = std::abs(pressure2 - pressure1);
+    if (pressureDiff <= 1)
       continue;
 
     const int totalGasToSpread = pressureDiff / 2;
@@ -247,13 +247,25 @@ void Tile::updateAtmosphere(double i_dt)
     const double SpreadMultiplier = 5.0;
 
     int gasToSpread = (int)(static_cast<double>(totalGasToSpread) * i_dt * SpreadMultiplier);
-    if (std::abs(gasToSpread) > std::abs(totalGasToSpread))
+    if (gasToSpread > totalGasToSpread)
       gasToSpread = totalGasToSpread;
     if (gasToSpread == 0)
-      gasToSpread = pressure2 > pressure1 ? 1 : -1;
+      gasToSpread = 1;
 
-    gases1[Gas::Oxygen] += gasToSpread;
-    gases2[Gas::Oxygen] -= gasToSpread;
+    auto& srcAtmo = pressure2 > pressure1 ? atmo2: atmo1;
+    auto& destAtmo = pressure2 > pressure1 ? atmo1: atmo2;
+
+    const auto& ratios = srcAtmo.getGasesRatios();
+    for (auto&[type, amount] : srcAtmo.getGases())
+    {
+      int thisGasToGive = (int)(ratios.at(type) * gasToSpread);
+
+      if (thisGasToGive > amount)
+        thisGasToGive = amount;
+
+      amount -= thisGasToGive;
+      destAtmo.getGases()[type] += thisGasToGive;
+    }
   }
 }
 
