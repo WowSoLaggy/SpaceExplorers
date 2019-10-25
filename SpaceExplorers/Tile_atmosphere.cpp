@@ -135,9 +135,10 @@ namespace
 
   Sdk::Vector4F getGasMixColor(const Atmosphere& i_atmo)
   {
-    const std::map<Gas, Sdk::Vector4F> ColorsMap = {
+    const std::map<Gas, Sdk::Vector4F> ColorsMap{
       { Gas::Oxygen, { 0.0f, 0.75f, 1.0f, 1.0f} },
       { Gas::CarbonDioxide, { 1.0f, 1.0f, 0.0f, 1.0f} },
+      { Gas::Nitrogen, { 1.0f, 1.0f, 1.0f, 1.0f} },
     };
 
     const auto ratios = i_atmo.getGasesRatios();

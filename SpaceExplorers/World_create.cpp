@@ -189,7 +189,7 @@ std::unique_ptr<World> World::createTestWorld(
   }
   {
     auto& atmo = world->getTile({ 2, 1 })->getAtmosphere();
-    atmo.giveGas(Gas::Oxygen, 750000);
+    atmo.giveGas(Gas::Nitrogen, 750000);
   }
   {
     auto& atmo = world->getTile({ -5, -1 })->getAtmosphere();
