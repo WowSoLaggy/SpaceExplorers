@@ -4,32 +4,74 @@
 #include "World.h"
 
 
+namespace
+{
+  const std::vector<Sdk::Vector2I> AllTiles{ { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+  const std::vector<Sdk::Vector2I> TwoTiles{ { 1, 0 }, { 0, 1 } };
+
+  bool hasLeak(World& i_world, const Sdk::Vector2I& i_coordsTile)
+  {
+    for (const auto& offset : AllTiles)
+    {
+      auto* tile = i_world.getTile(i_coordsTile + offset);
+      if (!tile || tile->isLeak())
+        return true;
+    }
+
+    return false;
+  }
+
+  void shareGases(Atmosphere& i_srcAtmo, Atmosphere& i_destAtmo, int i_amount)
+  {
+    const auto& ratios = i_srcAtmo.getGasesRatios();
+    for (const auto&[type, amount] : i_srcAtmo.getGases())
+    {
+      const int thisGasToGive = (int)(ratios.at(type) * i_amount);
+      i_destAtmo.giveGas(type, i_srcAtmo.tryTakeGas(type, thisGasToGive));
+    }
+  }
+
+  Sdk::Vector4F getGasMixColor(const Atmosphere& i_atmo)
+  {
+    const std::map<Gas, Sdk::Vector4F> ColorsMap = {
+      { Gas::Oxygen, { 0.0f, 0.75f, 1.0f, 1.0f} },
+      { Gas::CarbonDioxide, { 1.0f, 1.0f, 0.0f, 1.0f} },
+    };
+
+    const auto ratios = i_atmo.getGasesRatios();
+
+    Sdk::Vector4F color{ Sdk::Vector4F::zero() };
+    for (const auto&[type, _] : i_atmo.getGases())
+      color += ColorsMap.at(type) * (float)ratios.at(type);
+
+    return color;
+  }
+
+  float getGasMixIntensity(const Atmosphere& i_atmo)
+  {
+    const double AveragePressure = 100000.0; // 1atm
+    const int pressure = i_atmo.getPressure();
+
+    return (float)(pressure / AveragePressure * 0.5);
+  }
+
+} // anonymous NS
+
+
 void Tile::updateAtmosphere(double i_dt)
 {
   // TODO: ae Refactor this whole function, separate to different ones
 
-  static const std::vector<Sdk::Vector2I> AllTiles{ { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
-  static const std::vector<Sdk::Vector2I> TwoTiles{ { 1, 0 }, { 0, 1 } };
-
-
   auto& atmo1 = getAtmosphere();
   const auto pressure1 = atmo1.getPressure();
-  auto& gases1 = atmo1.getGases();
 
 
   if (!hasAtmosphere() && pressure1 == 0)
     return;
 
 
-  for (const auto& offset : AllTiles)
-  {
-    auto* tile = d_world.getTile(d_coordsTile + offset);
-    if (!tile || tile->isLeak())
-    {
-      atmo1.removeAllGases();
-      break;
-    }
-  }
+  if (hasLeak(d_world, d_coordsTile))
+    atmo1.removeAllGases();
 
 
   if (!hasAtmosphere())
@@ -53,7 +95,7 @@ void Tile::updateAtmosphere(double i_dt)
       int tileCountLeft = tileCount;
       for (auto* tile : tiles)
       {
-        for (const auto&[type, amount] : gases1)
+        for (const auto&[type, amount] : atmo1.getGases())
         {
           const auto gasToGive = amount / tileCountLeft;
           tile->getAtmosphere().giveGas(type, atmo1.tryTakeGas(type, gasToGive));
@@ -65,7 +107,7 @@ void Tile::updateAtmosphere(double i_dt)
       // just give it to the first tile
       if (tileCount > 0)
       {
-        for (const auto&[type, amount] : gases1)
+        for (const auto&[type, amount] : atmo1.getGases())
           tiles.front()->getAtmosphere().giveGas(type, amount);
 
         atmo1.removeAllGases();
@@ -105,12 +147,7 @@ void Tile::updateAtmosphere(double i_dt)
     auto& srcAtmo = pressure2 > pressure1 ? atmo2: atmo1;
     auto& destAtmo = pressure2 > pressure1 ? atmo1: atmo2;
 
-    const auto& ratios = srcAtmo.getGasesRatios();
-    for (const auto&[type, amount] : srcAtmo.getGases())
-    {
-      const int thisGasToGive = (int)(ratios.at(type) * gasToSpread);
-      destAtmo.giveGas(type, srcAtmo.tryTakeGas(type, thisGasToGive));
-    }
+    shareGases(srcAtmo, destAtmo, gasToSpread);
   }
 }
 
@@ -120,22 +157,8 @@ void Tile::setOverlayColor() const
   if (!d_atmosphere.hasGases())
     return;
 
-  const std::map<Gas, Sdk::Vector4F> ColorsMap = {
-    { Gas::Oxygen, { 0.0f, 0.75f, 1.0f, 1.0f} },
-  { Gas::CarbonDioxide, { 1.0f, 1.0f, 0.0f, 1.0f} },
-  };
-
-  const auto ratios = d_atmosphere.getGasesRatios();
-
-  Sdk::Vector4F color{ Sdk::Vector4F::zero() };
-  for (const auto&[type, _] : d_atmosphere.getGases())
-    color += ColorsMap.at(type) * (float)ratios.at(type);
-
-  const double AveragePressure = 100000.0; // 1atm
-  const int pressure = d_atmosphere.getPressure();
-
-  const double intensity = pressure / AveragePressure * 0.5;
-  color.w = (float)intensity;
+  Sdk::Vector4F color = getGasMixColor(d_atmosphere);
+  color.w = getGasMixIntensity(d_atmosphere);
 
   d_overlaySprite.setColor(color);
 }
