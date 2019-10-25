@@ -112,7 +112,7 @@ std::unique_ptr<World> World::createTestWorld(
   create(-6, -2, "Wall");
   create(-7, -2, "Wall");
   create(-7, -1, "Wall");
-  toDoor(create(-7, 0, "Door"))->setState(DoorModel::State::Open);
+  create(-7, 0, "Door");
   create(-7, 1, "Wall");
   create(-6, 1, "Wall");
   create(-5, 1, "Wall");
@@ -193,7 +193,7 @@ std::unique_ptr<World> World::createTestWorld(
   }
   {
     auto& atmo = world->getTile({ -5, -1 })->getAtmosphere();
-    atmo.d_gases.insert({ Gas::Oxygen, 750000 });
+    atmo.d_gases.insert({ Gas::CarbonDioxide, 750000 });
   }
 
 
