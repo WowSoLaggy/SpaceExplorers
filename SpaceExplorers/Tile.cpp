@@ -201,11 +201,10 @@ void Tile::updateAtmosphere(double i_dt)
       int tileCountLeft = tileCount;
       for (auto* tile : tiles)
       {
-        for (auto&[type, amount] : gases1)
+        for (const auto&[type, amount] : gases1)
         {
           const auto gasToGive = amount / tileCountLeft;
-          tile->getAtmosphere().d_gases[type] += gasToGive;
-          amount -= gasToGive;
+          tile->getAtmosphere().giveGas(type, atmo1.tryTakeGas(type, gasToGive));
         }
         --tileCountLeft;
       }
@@ -214,8 +213,8 @@ void Tile::updateAtmosphere(double i_dt)
       // just give it to the first tile
       if (tileCount > 0)
       {
-        for (auto&[type, amount] : gases1)
-          tiles.front()->getAtmosphere().d_gases[type] += amount;
+        for (const auto&[type, amount] : gases1)
+          tiles.front()->getAtmosphere().giveGas(type, amount);
 
         gases1.clear();
       }
@@ -232,7 +231,6 @@ void Tile::updateAtmosphere(double i_dt)
       continue;
 
     auto& atmo2 = tile->getAtmosphere();
-    auto& gases2 = atmo2.getGases();
     
     const auto pressure2 = atmo2.getPressure();
     if (pressure1 == 0 && pressure2 == 0)
@@ -256,15 +254,10 @@ void Tile::updateAtmosphere(double i_dt)
     auto& destAtmo = pressure2 > pressure1 ? atmo1: atmo2;
 
     const auto& ratios = srcAtmo.getGasesRatios();
-    for (auto&[type, amount] : srcAtmo.getGases())
+    for (const auto&[type, amount] : srcAtmo.getGases())
     {
-      int thisGasToGive = (int)(ratios.at(type) * gasToSpread);
-
-      if (thisGasToGive > amount)
-        thisGasToGive = amount;
-
-      amount -= thisGasToGive;
-      destAtmo.getGases()[type] += thisGasToGive;
+      const int thisGasToGive = (int)(ratios.at(type) * gasToSpread);
+      destAtmo.giveGas(type, srcAtmo.tryTakeGas(type, thisGasToGive));
     }
   }
 }

@@ -29,6 +29,24 @@ std::unordered_map<Gas, double> Atmosphere::getGasesRatios() const
 }
 
 
+int Atmosphere::tryTakeGas(Gas i_type, int i_amount)
+{
+  auto it = d_gases.find(i_type);
+  if (it == d_gases.end())
+    return 0;
+
+  const int takenAmount = std::min<int>(it->second, i_amount);
+  it->second -= takenAmount;
+
+  return takenAmount;
+}
+
+void Atmosphere::giveGas(Gas i_type, int i_amount)
+{
+  d_gases[i_type] += i_amount;
+}
+
+
 void Atmosphere::writeTo(std::ostream& io_stream) const
 {
   const int countGases = (int)d_gases.size();
