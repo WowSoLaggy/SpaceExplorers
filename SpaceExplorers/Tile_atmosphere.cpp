@@ -3,6 +3,8 @@
 
 #include "World.h"
 
+#include <LaggySdk/Contracts.h>
+
 
 namespace
 {
@@ -68,11 +70,58 @@ namespace
     }
   }
 
+  void diffuseGases(Atmosphere& i_atmo1, Atmosphere& i_atmo2, double i_dt)
+  {
+    if (i_atmo1.getGasCount() == 0 || i_atmo2.getGasCount() == 0)
+      return;
+
+    std::set<Gas> gasesList = i_atmo1.getGasesTypes();
+    const std::set<Gas> gasesList2 = i_atmo2.getGasesTypes();
+    gasesList.insert(gasesList2.cbegin(), gasesList2.cend());
+
+    if (gasesList.size() < 2)
+      return;
+
+    std::map<int, Gas> diffs;
+    for (const auto& type : gasesList)
+      diffs.insert({ i_atmo2.getGasAmount(type) - i_atmo1.getGasAmount(type), type});
+    
+    if (diffs.size() < 2)
+    {
+      // It can still have only 1 item if gases diffs have the same amount - will be merged to a single key
+      return;
+    }
+
+    const auto&[amount1, type1] = *diffs.cbegin();
+    const auto&[amount2, type2] = *diffs.crbegin();
+    CONTRACT_ASSERT(type1 != type2);
+
+    if (amount1 * amount2 >= 0)
+      return;
+
+    const int DiffusionSpeed = 1000; // particles / sec
+    const int amountToDiffuse =
+      std::min<int>(
+      std::min<int>(std::abs(amount1), std::abs(amount2)),
+      (int)(DiffusionSpeed * i_dt));
+
+    if (amount1 > 0)
+    {
+      i_atmo1.giveGas(type1, i_atmo2.tryTakeGas(type1, amountToDiffuse));
+      i_atmo2.giveGas(type2, i_atmo1.tryTakeGas(type2, amountToDiffuse));
+    }
+    else
+    {
+      i_atmo2.giveGas(type1, i_atmo1.tryTakeGas(type1, amountToDiffuse));
+      i_atmo1.giveGas(type2, i_atmo2.tryTakeGas(type2, amountToDiffuse));
+    }
+  }
+
   int getGasToSpread(int i_pressureDiff, double i_dt)
   {
     const int totalGasToSpread = i_pressureDiff / 2;
 
-    const double SpreadMultiplier = 5.0;
+    const double SpreadMultiplier = 10.0;
 
     int gasToSpread = (int)(static_cast<double>(totalGasToSpread) * i_dt * SpreadMultiplier);
     if (gasToSpread > totalGasToSpread)
@@ -145,6 +194,11 @@ void Tile::updateAtmosphere(double i_dt)
       continue;
 
     const int pressureDiff = std::abs(pressure2 - pressure1);
+
+    // TODO: ae Review this condition
+    if (pressureDiff < 1000)
+      diffuseGases(atmo1, atmo2, i_dt);
+
     if (pressureDiff <= 1)
       continue;
 
