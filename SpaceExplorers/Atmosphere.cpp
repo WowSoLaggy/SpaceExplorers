@@ -46,6 +46,11 @@ void Atmosphere::giveGas(Gas i_type, int i_amount)
   d_gases[i_type] += i_amount;
 }
 
+void Atmosphere::removeAllGases()
+{
+  d_gases.clear();
+}
+
 
 void Atmosphere::writeTo(std::ostream& io_stream) const
 {

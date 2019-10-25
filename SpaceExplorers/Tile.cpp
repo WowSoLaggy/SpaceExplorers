@@ -174,7 +174,7 @@ void Tile::updateAtmosphere(double i_dt)
     auto* tile = d_world.getTile(d_coordsTile + offset);
     if (!tile || tile->isLeak())
     {
-      gases1.clear();
+      atmo1.removeAllGases();
       break;
     }
   }
@@ -216,7 +216,7 @@ void Tile::updateAtmosphere(double i_dt)
         for (const auto&[type, amount] : gases1)
           tiles.front()->getAtmosphere().giveGas(type, amount);
 
-        gases1.clear();
+        atmo1.removeAllGases();
       }
     }
 

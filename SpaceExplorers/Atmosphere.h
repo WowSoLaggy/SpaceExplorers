@@ -21,6 +21,7 @@ public:
   // Returns actual amount that was taken
   int tryTakeGas(Gas i_type, int i_amount);
   void giveGas(Gas i_type, int i_amount);
+  void removeAllGases();
 
 private:
   // 100k of Oxygen stands for 100 kPa - standard atmospheric pressure
