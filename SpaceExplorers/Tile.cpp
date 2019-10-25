@@ -247,7 +247,7 @@ void Tile::updateAtmosphere(double i_dt)
     const double SpreadMultiplier = 5.0;
 
     int gasToSpread = (int)(static_cast<double>(totalGasToSpread) * i_dt * SpreadMultiplier);
-    if (gasToSpread > totalGasToSpread)
+    if (std::abs(gasToSpread) > std::abs(totalGasToSpread))
       gasToSpread = totalGasToSpread;
     if (gasToSpread == 0)
       gasToSpread = pressure2 - pressure1 > 0 ? 1 : -1;
