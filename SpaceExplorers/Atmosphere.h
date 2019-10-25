@@ -10,12 +10,14 @@ class Atmosphere
 {
 public:
   const std::unordered_map<Gas, int>& getGases() const { return d_gases; }
+  int getGasCount() const;
+  std::set<Gas> getGasesTypes() const;
+  std::unordered_map<Gas, double> getGasesRatios() const;
+  int getGasAmount(Gas i_type) const;
 
   bool hasGases() const;
 
   int getPressure() const;
-
-  std::unordered_map<Gas, double> getGasesRatios() const;
 
   // Returns actual amount that was taken
   int tryTakeGas(Gas i_type, int i_amount);

@@ -17,6 +17,32 @@ int Atmosphere::getPressure() const
 }
 
 
+int Atmosphere::getGasCount() const
+{
+  int count = 0;
+
+  for (const auto&[_, amount] : d_gases)
+  {
+    if (amount > 0)
+      ++count;
+  }
+
+  return count;
+}
+
+std::set<Gas> Atmosphere::getGasesTypes() const
+{
+  std::set<Gas> gases;
+
+  for (const auto&[type, amount] : d_gases)
+  {
+    if (amount > 0)
+      gases.insert(type);
+  }
+
+  return gases;
+}
+
 std::unordered_map<Gas, double> Atmosphere::getGasesRatios() const
 {
   std::unordered_map<Gas, double> ratios;
@@ -26,6 +52,15 @@ std::unordered_map<Gas, double> Atmosphere::getGasesRatios() const
     ratios[type] = (double)amount / pressure;
 
   return ratios;
+}
+
+int Atmosphere::getGasAmount(Gas i_type) const
+{
+  auto it = d_gases.find(i_type);
+  if (it == d_gases.end())
+    return 0;
+
+  return it->second;
 }
 
 
