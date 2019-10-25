@@ -201,6 +201,7 @@
     <ClCompile Include="ObjectsReader.cpp" />
     <ClCompile Include="Structure_save.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Tile_atmosphere.cpp" />
     <ClCompile Include="Tile_save.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="World.cpp" />
