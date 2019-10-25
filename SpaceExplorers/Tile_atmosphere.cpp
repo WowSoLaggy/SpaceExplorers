@@ -31,6 +31,59 @@ namespace
     }
   }
 
+  void tryPushGasesToNeighbors(Atmosphere& i_atmo, World& i_world, const Sdk::Vector2I& i_coordsTile)
+  {
+    // Try to push gases to neighbor tiles
+
+    // Collect neighbor tiles
+    // There shall be no leaks or empty tiles
+    std::vector<Tile*> tiles;
+    for (const auto& offset : AllTiles)
+    {
+      auto* tile = i_world.getTile(i_coordsTile + offset);
+      if (tile && tile->hasAtmosphere())
+        tiles.push_back(tile);
+    }
+
+    const int tileCount = (int)tiles.size();
+    int tileCountLeft = tileCount;
+    for (auto* tile : tiles)
+    {
+      for (const auto&[type, amount] : i_atmo.getGases())
+      {
+        const auto gasToGive = amount / tileCountLeft;
+        tile->getAtmosphere().giveGas(type, i_atmo.tryTakeGas(type, gasToGive));
+      }
+      --tileCountLeft;
+    }
+
+    // If some gases still left (due to rounding error) -
+    // just give it to the first tile
+    if (tileCount > 0)
+    {
+      for (const auto&[type, amount] : i_atmo.getGases())
+        tiles.front()->getAtmosphere().giveGas(type, amount);
+
+      i_atmo.removeAllGases();
+    }
+  }
+
+  int getGasToSpread(int i_pressureDiff, double i_dt)
+  {
+    const int totalGasToSpread = i_pressureDiff / 2;
+
+    const double SpreadMultiplier = 5.0;
+
+    int gasToSpread = (int)(static_cast<double>(totalGasToSpread) * i_dt * SpreadMultiplier);
+    if (gasToSpread > totalGasToSpread)
+      gasToSpread = totalGasToSpread;
+    if (gasToSpread == 0)
+      gasToSpread = 1;
+
+    return gasToSpread;
+  }
+
+
   Sdk::Vector4F getGasMixColor(const Atmosphere& i_atmo)
   {
     const std::map<Gas, Sdk::Vector4F> ColorsMap = {
@@ -60,64 +113,25 @@ namespace
 
 void Tile::updateAtmosphere(double i_dt)
 {
-  // TODO: ae Refactor this whole function, separate to different ones
-
-  auto& atmo1 = getAtmosphere();
-  const auto pressure1 = atmo1.getPressure();
-
-
+  const auto pressure1 = d_atmosphere.getPressure();
   if (!hasAtmosphere() && pressure1 == 0)
     return;
 
 
   if (hasLeak(d_world, d_coordsTile))
-    atmo1.removeAllGases();
+    d_atmosphere.removeAllGases();
 
 
   if (!hasAtmosphere())
   {
     if (pressure1 > 0)
-    {
-      // Try to push gases to neighbor tiles
-
-      // Collect neighbor tiles
-      // There shall be no leaks or empty tiles - otherwise I would give all gases there
-      // a few lines above
-      std::vector<Tile*> tiles;
-      for (const auto& offset : AllTiles)
-      {
-        auto* tile = d_world.getTile(d_coordsTile + offset);
-        if (tile && tile->hasAtmosphere())
-          tiles.push_back(tile);
-      }
-
-      const int tileCount = (int)tiles.size();
-      int tileCountLeft = tileCount;
-      for (auto* tile : tiles)
-      {
-        for (const auto&[type, amount] : atmo1.getGases())
-        {
-          const auto gasToGive = amount / tileCountLeft;
-          tile->getAtmosphere().giveGas(type, atmo1.tryTakeGas(type, gasToGive));
-        }
-        --tileCountLeft;
-      }
-
-      // If some gases still left (due to rounding error) -
-      // just give it to the first tile
-      if (tileCount > 0)
-      {
-        for (const auto&[type, amount] : atmo1.getGases())
-          tiles.front()->getAtmosphere().giveGas(type, amount);
-
-        atmo1.removeAllGases();
-      }
-    }
+      tryPushGasesToNeighbors(d_atmosphere, d_world, d_coordsTile);
 
     return;
   }
 
 
+  auto& atmo1 = d_atmosphere;
   for (const auto& offset : TwoTiles)
   {
     auto* tile = d_world.getTile(d_coordsTile + offset);
@@ -134,15 +148,7 @@ void Tile::updateAtmosphere(double i_dt)
     if (pressureDiff <= 1)
       continue;
 
-    const int totalGasToSpread = pressureDiff / 2;
-
-    const double SpreadMultiplier = 5.0;
-
-    int gasToSpread = (int)(static_cast<double>(totalGasToSpread) * i_dt * SpreadMultiplier);
-    if (gasToSpread > totalGasToSpread)
-      gasToSpread = totalGasToSpread;
-    if (gasToSpread == 0)
-      gasToSpread = 1;
+    const int gasToSpread = getGasToSpread(pressureDiff, i_dt);
 
     auto& srcAtmo = pressure2 > pressure1 ? atmo2: atmo1;
     auto& destAtmo = pressure2 > pressure1 ? atmo1: atmo2;
