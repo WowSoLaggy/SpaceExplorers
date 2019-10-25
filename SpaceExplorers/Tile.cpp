@@ -250,7 +250,7 @@ void Tile::updateAtmosphere(double i_dt)
     if (std::abs(gasToSpread) > std::abs(totalGasToSpread))
       gasToSpread = totalGasToSpread;
     if (gasToSpread == 0)
-      gasToSpread = pressure2 - pressure1 > 0 ? 1 : -1;
+      gasToSpread = pressure2 > pressure1 ? 1 : -1;
 
     gases1[Gas::Oxygen] += gasToSpread;
     gases2[Gas::Oxygen] -= gasToSpread;
