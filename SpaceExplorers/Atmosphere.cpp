@@ -43,9 +43,9 @@ std::set<Gas> Atmosphere::getGasesTypes() const
   return gases;
 }
 
-std::unordered_map<Gas, double> Atmosphere::getGasesRatios() const
+std::map<Gas, double> Atmosphere::getGasesRatios() const
 {
-  std::unordered_map<Gas, double> ratios;
+  std::map<Gas, double> ratios;
 
   const int pressure = getPressure();
   for (const auto&[type, amount] : d_gases)

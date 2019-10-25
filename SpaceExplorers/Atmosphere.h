@@ -9,10 +9,10 @@
 class Atmosphere
 {
 public:
-  const std::unordered_map<Gas, int>& getGases() const { return d_gases; }
+  const std::map<Gas, int>& getGases() const { return d_gases; }
   int getGasCount() const;
   std::set<Gas> getGasesTypes() const;
-  std::unordered_map<Gas, double> getGasesRatios() const;
+  std::map<Gas, double> getGasesRatios() const;
   int getGasAmount(Gas i_type) const;
 
   bool hasGases() const;
@@ -26,7 +26,7 @@ public:
 
 private:
   // 100k of Oxygen stands for 100 kPa - standard atmospheric pressure
-  std::unordered_map<Gas, int> d_gases;
+  std::map<Gas, int> d_gases;
 
 public:
   void writeTo(std::ostream& io_stream) const;
