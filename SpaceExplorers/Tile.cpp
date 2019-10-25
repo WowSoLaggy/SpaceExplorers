@@ -273,14 +273,11 @@ void Tile::setOverlayColor() const
     { Gas::CarbonDioxide, { 1.0f, 1.0f, 0.0f, 1.0f} },
   };
 
+  const auto ratios = d_atmosphere.getGasesRatios();
+
   Sdk::Vector4F color{ Sdk::Vector4F::zero() };
   for (const auto&[type, _] : d_atmosphere.getGases())
-    color += ColorsMap.at(type);
-
-  float gasCount = (float)d_atmosphere.getGases().size();
-  color.x = color.x / gasCount;
-  color.y = color.y / gasCount;
-  color.z = color.z / gasCount;
+    color += ColorsMap.at(type) * (float)ratios.at(type);
 
   const double AveragePressure = 100000.0; // 1atm
   const int pressure = d_atmosphere.getPressure();
