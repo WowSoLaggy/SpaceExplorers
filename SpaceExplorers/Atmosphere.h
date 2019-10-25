@@ -16,6 +16,8 @@ public:
 
   int getPressure() const;
 
+  std::unordered_map<Gas, double> getGasesRatios() const;
+
   // TODO: ae Change this to 'prviate'
 public:
   // 100k of Oxygen stands for 100 kPa - standard atmospheric pressure

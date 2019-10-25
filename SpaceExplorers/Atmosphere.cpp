@@ -17,6 +17,18 @@ int Atmosphere::getPressure() const
 }
 
 
+std::unordered_map<Gas, double> Atmosphere::getGasesRatios() const
+{
+  std::unordered_map<Gas, double> ratios;
+
+  const int pressure = getPressure();
+  for (const auto&[type, amount] : d_gases)
+    ratios[type] = (double)amount / pressure;
+
+  return ratios;
+}
+
+
 void Atmosphere::writeTo(std::ostream& io_stream) const
 {
   const int countGases = (int)d_gases.size();
