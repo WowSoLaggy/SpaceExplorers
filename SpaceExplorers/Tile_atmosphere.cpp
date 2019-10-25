@@ -168,7 +168,7 @@ void Tile::updateAtmosphere(double i_dt)
     return;
 
 
-  if (hasLeak(d_world, d_coordsTile))
+  if (isLeak() || hasLeak(d_world, d_coordsTile))
     d_atmosphere.removeAllGases();
 
 
