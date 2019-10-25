@@ -92,11 +92,16 @@ void Game::updateDebugLabel(int i_renderedSprites) const
     if (const auto* tile = d_world->getTile(tileCoords))
     {
       const auto& atmo = tile->getAtmosphere();
+      const auto ratios = atmo.getGasesRatios();
 
       str += "========================\n";
       str += "Pressure: " + std::to_string(atmo.getPressure()) + " Pa\n";
       for (const auto&[type, amount] : atmo.getGases())
-        str += "--- " + GasNames.at(type) + ": " + std::to_string(amount) + "\n";
+      {
+        const int ratio = (int)(ratios.at(type) * 100);
+        str += "--- " + GasNames.at(type) + ": " + std::to_string(amount) +
+          " (" + std::to_string(ratio) + " %)\n";
+      }
     }
   }
 
