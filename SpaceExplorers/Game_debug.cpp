@@ -3,6 +3,7 @@
 
 #include "Gui.h"
 #include "Label.h"
+#include "PowerSourceModel.h"
 #include "Utils.h"
 
 
@@ -48,6 +49,22 @@ void Game::updateDebugLabel(int i_renderedSprites) const
         const int ratio = (int)(ratios.at(type) * 100);
         str += "--- " + GasNames.at(type) + ": " + std::to_string(amount) +
           " (" + std::to_string(ratio) + " %)\n";
+      }
+
+      //
+
+      const auto relativeCoords =
+        screenToWorld(d_gui.getCursor().getPosition(), d_camera) -
+        getTileRect(tileCoords).topLeft();
+      if (const auto structure = tile->getStructure(relativeCoords))
+      {
+        if (const auto powerSourceModel = structure->getPowerSourceModel())
+        {
+          str += "========================\n";
+
+          str += "Power: " + std::to_string(powerSourceModel->getCurPower()) +
+            "W / " + std::to_string(powerSourceModel->getMaxPower()) + "W\n";
+        }
       }
     }
   }
