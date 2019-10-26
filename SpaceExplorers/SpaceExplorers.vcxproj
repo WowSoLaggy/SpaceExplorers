@@ -176,6 +176,7 @@
     <ClCompile Include="DoorModel.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_control.cpp" />
+    <ClCompile Include="Game_debug.cpp" />
     <ClCompile Include="Game_input.cpp" />
     <ClCompile Include="Game_save.cpp" />
     <ClCompile Include="Game_states.cpp" />

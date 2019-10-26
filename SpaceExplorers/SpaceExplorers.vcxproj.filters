@@ -189,6 +189,9 @@
     <ClCompile Include="Tile_atmosphere.cpp">
       <Filter>src\World\Tile</Filter>
     </ClCompile>
+    <ClCompile Include="Game_debug.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
