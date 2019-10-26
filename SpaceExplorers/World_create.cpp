@@ -144,7 +144,7 @@ std::unique_ptr<World> World::createTestWorld(
 
 
   {
-    auto tom = world->createAvatarAt(PrototypesCollection::getObject("Man"), { -352, 32 }, "Tom");
+    auto tom = world->createAvatarAt(PrototypesCollection::getObject("Man"), { -96, -32 }, "Tom");
     tom->getInventory().setSize(8);
     tom->getInventory().setItem(0, createObject("Crowbar"));
     tom->getInventory().setItem(1, createObject("Welder"));
@@ -171,6 +171,12 @@ std::unique_ptr<World> World::createTestWorld(
     auto& atmo = world->getTile({ -5, -1 })->getAtmosphere();
     atmo.giveGas(Gas::CarbonDioxide, 750000);
   }
+
+
+  ///
+
+
+  auto capacitor = create(1, -3, "Capacitor");
 
 
   ///

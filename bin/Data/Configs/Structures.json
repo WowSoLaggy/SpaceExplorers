@@ -130,5 +130,17 @@
     "Atmosphere": true,
     "Leak": false,
     "Support": false
+  },
+  
+  "Capacitor":
+  {
+    "TextureName": "Capacitor.png",
+    "Layer": "Wall",
+    "Behavior": "PowerSource",
+    "MaxPower": 1000,
+    "Passable": false,
+    "Atmosphere": true,
+    "Leak": false,
+    "Support": false
   }
 }
