@@ -47,6 +47,7 @@ public:
 
   std::shared_ptr<DoorModel> getDoorModel() const;
   std::shared_ptr<ContainerModel> getContainerModel() const;
+  std::shared_ptr<PowerSourceModel> getPowerSourceModel() const;
 
   bool isTransparent() const;
   const Sdk::Vector2I& getCoords() const;

@@ -3,10 +3,10 @@
 #include "BehaviorModelBase.h"
 
 
-class PowerSource : public BehaviorModelBase
+class PowerSourceModel : public BehaviorModelBase
 {
 public:
-  PowerSource(Structure& io_structure, World& io_world);
+  PowerSourceModel(Structure& io_structure, World& io_world);
 
   void setMaxPower(int i_maxPower);
   int getMaxPower() const { return d_maxPower; }

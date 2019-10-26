@@ -190,7 +190,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Object_save.cpp" />
     <ClCompile Include="Panel.cpp" />
-    <ClCompile Include="PowerSource.cpp" />
+    <ClCompile Include="PowerSourceModel.cpp" />
     <ClCompile Include="PrototypesCollection.cpp" />
     <ClCompile Include="SettingsProvider.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -232,7 +232,7 @@
     <ClInclude Include="OverlayOptions.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="ObjectsReader.h" />
-    <ClInclude Include="PowerSource.h" />
+    <ClInclude Include="PowerSourceModel.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Thing.h" />
     <ClInclude Include="Layers.h" />

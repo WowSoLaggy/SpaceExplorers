@@ -4,6 +4,7 @@
 #include "BehaviorModelFactory.h"
 #include "ContainerModel.h"
 #include "DoorModel.h"
+#include "PowerSourceModel.h"
 #include "SettingsProvider.h"
 
 #include <LaggyDx/ImageDescription.h>
@@ -130,4 +131,9 @@ std::shared_ptr<DoorModel> Structure::getDoorModel() const
 std::shared_ptr<ContainerModel> Structure::getContainerModel() const
 {
   return std::dynamic_pointer_cast<ContainerModel>(d_behaviorModel);
+}
+
+std::shared_ptr<PowerSourceModel> Structure::getPowerSourceModel() const
+{
+  return std::dynamic_pointer_cast<PowerSourceModel>(d_behaviorModel);
 }

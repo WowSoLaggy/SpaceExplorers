@@ -36,3 +36,4 @@ using BuildContextPtr = std::shared_ptr<BuildContext>;
 class BehaviorModelBase;
 class DoorModel;
 class ContainerModel;
+class PowerSourceModel;

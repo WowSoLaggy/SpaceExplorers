@@ -3,6 +3,7 @@
 
 #include "ContainerModel.h"
 #include "DoorModel.h"
+#include "PowerSourceModel.h"
 #include "PrototypesCollection.h"
 #include "Structure.h"
 
@@ -29,10 +30,6 @@ std::unique_ptr<World> World::createTestWorld(
 
   auto create = [&](int x, int y, const std::string& i_protoName) -> StructurePtr {
     return world->createStructureAt(PrototypesCollection::getStructure(i_protoName), { x, y });
-  };
-
-  auto toDoor = [](StructurePtr i_structure) -> std::shared_ptr<DoorModel> {
-    return std::dynamic_pointer_cast<DoorModel>(i_structure->getBehaviorModel());
   };
 
   auto createObject = [&](const std::string& i_protoName) -> ObjectPtr {
@@ -100,7 +97,7 @@ std::unique_ptr<World> World::createTestWorld(
 
 
   create(0, -3, "Wall");
-  toDoor(create(0, -2, "Door"))->setState(DoorModel::State::Open);
+  create(0, -2, "Door")->getDoorModel()->setState(DoorModel::State::Open);
   create(0, -1, "Wall");
   create(0, 0, "Wall");
   create(1, 0, "Wall");
@@ -177,6 +174,8 @@ std::unique_ptr<World> World::createTestWorld(
 
 
   auto capacitor = create(1, -3, "Capacitor");
+  capacitor->getPowerSourceModel()->setMaxPower(1000);
+  capacitor->getPowerSourceModel()->setCurPower(500);
 
 
   ///
