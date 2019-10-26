@@ -8,4 +8,5 @@ enum class Behavior : int32_t
   Default = 0,
   Door,
   Container,
+  PowerSource,
 };

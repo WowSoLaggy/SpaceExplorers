@@ -24,6 +24,7 @@ namespace
     { "Default", Behavior::Default },
     { "Door", Behavior::Door },
     { "Container", Behavior::Container },
+    { "PowerSource", Behavior::PowerSource },
   };
 } // anonymous NS
 
@@ -71,6 +72,10 @@ void PrototypesCollection::loadStructures(const fs::path& i_filename)
     const std::string ContainerSizeNodeName = "ContainerSize";
     if (node.find(ContainerSizeNodeName.data(), ContainerSizeNodeName.data() + ContainerSizeNodeName.length()))
       proto.containerSize = node[ContainerSizeNodeName].asInt();
+
+    const std::string MaxPowerNodeName = "MaxPower";
+    if (node.find(MaxPowerNodeName.data(), MaxPowerNodeName.data() + MaxPowerNodeName.length()))
+      proto.containerSize = node[MaxPowerNodeName].asInt();
 
     d_collectionStructures.insert({ protoName, std::move(proto) });
   }

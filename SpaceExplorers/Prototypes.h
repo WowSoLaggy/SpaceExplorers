@@ -19,6 +19,7 @@ struct StructurePrototype
   bool isLeak = false;
   bool isSupport = true;
   int containerSize = 0;
+  int maxPower = 0;
 };
 
 

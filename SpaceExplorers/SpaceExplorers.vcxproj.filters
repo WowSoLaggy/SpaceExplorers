@@ -189,6 +189,9 @@
     <ClCompile Include="Tile_atmosphere.cpp">
       <Filter>src\World\Tile</Filter>
     </ClCompile>
+    <ClCompile Include="PowerSource.cpp">
+      <Filter>src\World\BehaviorModels</Filter>
+    </ClCompile>
     <ClCompile Include="Game_debug.cpp">
       <Filter>src\Game</Filter>
     </ClCompile>
@@ -325,6 +328,9 @@
     </ClInclude>
     <ClInclude Include="OverlayOptions.h">
       <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerSource.h">
+      <Filter>src\World\BehaviorModels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
