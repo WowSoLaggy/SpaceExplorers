@@ -49,7 +49,7 @@ std::map<Gas, double> Atmosphere::getGasesRatios() const
 
   const int pressure = getPressure();
   for (const auto&[type, amount] : d_gases)
-    ratios[type] = (double)amount / pressure;
+    ratios[type] = pressure == 0 ? 0 : (double)amount / pressure;
 
   return ratios;
 }
