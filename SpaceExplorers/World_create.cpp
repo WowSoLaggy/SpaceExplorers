@@ -126,16 +126,17 @@ std::unique_ptr<World> World::createTestWorld(
     auto crate = create(-6, -1, "Crate");
     auto& container = crate->getContainerModel()->getContainer();
 
-    for (int i = 0; i < 3; ++i)
-    {
-      auto rods = createObject("Rods");
-      rods->setQuantity(40);
-      container.setItem(i, rods);
+    auto rods = createObject("Rods");
+    rods->setQuantity(200);
+    container.setItem(0, rods);
 
-      auto metal = createObject("Metal");
-      metal->setQuantity(40);
-      container.setItem(i + 4, metal);
-    }
+    auto metal = createObject("Metal");
+    metal->setQuantity(200);
+    container.setItem(1, metal);
+
+    auto floorTiles = createObject("FloorTile");
+    floorTiles->setQuantity(200);
+    container.setItem(2, floorTiles);
   }
 
 
@@ -148,34 +149,9 @@ std::unique_ptr<World> World::createTestWorld(
     tom->getInventory().setItem(0, createObject("Crowbar"));
     tom->getInventory().setItem(1, createObject("Welder"));
     tom->getInventory().setItem(2, createObject("CuttingTorch"));
-
-    auto rods = createObject("Rods");
-    rods->setQuantity(40);
-    tom->getInventory().setItem(3, rods);
-
-    auto floorTiles = createObject("FloorTile");
-    floorTiles->setQuantity(40);
-    tom->getInventory().setItem(4, floorTiles);
-
-    auto metal = createObject("Metal");
-    metal->setQuantity(40);
-    tom->getInventory().setItem(5, metal);
   }
 
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -64 }, "Rods")->setQuantity(40);
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -64 }, "Rods")->setQuantity(40);
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -64, -128 }, "Rods")->setQuantity(40);
-  world->createObjectAt(PrototypesCollection::getObject("Rods"), { -128, -128 }, "Rods")->setQuantity(40);
-
-  world->createObjectAt(PrototypesCollection::getObject("Metal"), { -64, -96 }, "Metal")->setQuantity(40);
-  world->createObjectAt(PrototypesCollection::getObject("Metal"), { -128, -96 }, "Metal")->setQuantity(40);
-
-  world->createObjectAt(PrototypesCollection::getObject("FloorTile"), { -64, -32 }, "FloorTile")->setQuantity(40);
-  world->createObjectAt(PrototypesCollection::getObject("FloorTile"), { -128, -32 }, "FloorTile")->setQuantity(40);
-
-  world->createObjectAt(PrototypesCollection::getObject("Welder"), { 128, 128 }, "Welder");
-
-
+  
   ///
 
 
