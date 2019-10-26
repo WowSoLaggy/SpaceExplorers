@@ -28,7 +28,7 @@ namespace
     const auto& ratios = i_srcAtmo.getGasesRatios();
     for (const auto&[type, amount] : i_srcAtmo.getGases())
     {
-      const int thisGasToGive = (int)(ratios.at(type) * i_amount);
+      const int thisGasToGive = std::max<int>(1, (int)(ratios.at(type) * i_amount));
       i_destAtmo.giveGas(type, i_srcAtmo.tryTakeGas(type, thisGasToGive));
     }
   }
