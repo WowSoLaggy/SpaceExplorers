@@ -22,7 +22,8 @@ namespace
 
 App::App()
 {
-  CoInitialize(nullptr);
+  const auto hres = CoInitialize(nullptr);
+  CONTRACT_ASSERT(hres == S_OK);
 
   Sdk::randomize();
 
