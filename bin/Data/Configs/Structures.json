@@ -142,5 +142,27 @@
     "Atmosphere": true,
     "Leak": false,
     "Support": false
+  },
+  
+  "Lamp_unscrewed":
+  {
+    "TextureName": "Lamp_unscrewed.png",
+    "Layer": "Attachment",
+    "Behavior": "Default",
+    "Passable": true,
+    "Atmosphere": true,
+    "Leak": false,
+    "Support": false
+  },
+  
+  "Lamp":
+  {
+    "TextureName": "Lamp.png",
+    "Layer": "Attachment",
+    "Behavior": "Default",
+    "Passable": true,
+    "Atmosphere": true,
+    "Leak": false,
+    "Support": false
   }
 }

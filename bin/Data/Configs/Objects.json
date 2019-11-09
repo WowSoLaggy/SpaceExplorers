@@ -161,5 +161,19 @@
         "Output": "WallGirder"
       }
     ]
+  },
+  
+  "Lamp_packed":
+  {
+    "TextureName": "Lamp_packed.png",
+    "Stackable": true,
+    "ConsumedOnBuild": true,
+    "Receipts":
+    [
+      {
+        "Input": "Wall",
+        "Output": "Lamp_unscrewed"
+      }
+    ]
   }
 }
