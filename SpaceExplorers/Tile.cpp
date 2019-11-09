@@ -121,9 +121,10 @@ bool Tile::hasStructureOnLayer(Layer i_layer) const
 
 bool Tile::isPassable() const
 {
-  if (const auto topStructure = getTopStructure())
-    return topStructure->isPassable();
-  return true;
+  return std::all_of(d_layersMap.begin(), d_layersMap.end(), [](const auto& pair)
+  {
+    return pair.second->isPassable();
+  });
 }
 
 bool Tile::hasAtmosphere() const
