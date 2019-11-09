@@ -17,6 +17,7 @@ namespace
     { "Panneling", Layer::Panneling },
     { "Floor", Layer::Floor },
     { "Wall", Layer::Wall },
+    { "Attachment", Layer::Attachment },
   };
 
   const std::unordered_map<std::string, Behavior> BehaviorNames
