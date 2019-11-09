@@ -24,7 +24,7 @@ public:
   bool tryAddObject(ObjectPtr i_object);
 
 private:
-  int d_size;
+  int d_size = 0;
   std::vector<ObjectPtr> d_items;
 
   void checkIndex(int i_index) const;

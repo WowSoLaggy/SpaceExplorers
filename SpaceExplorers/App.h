@@ -30,7 +30,7 @@ private:
   std::unique_ptr<Dx::IResourceController> d_resourceController;
   std::unique_ptr<Dx::IRenderer2d> d_renderer2d;
 
-  bool d_continueLoop;
+  bool d_continueLoop = false;
   bool getContinueLoop();
   void mainloop();
 };
