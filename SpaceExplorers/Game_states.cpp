@@ -26,6 +26,9 @@ void Game::checkIsGameLoaded()
   if (loadResourcesResult.wait_for(0ms) == std::future_status::timeout)
     return;
 
+  const bool success = loadResourcesResult.get();
+  CONTRACT_ENSURE(success);
+
   onGameLoaded();
 }
 

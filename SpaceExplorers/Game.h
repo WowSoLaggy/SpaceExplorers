@@ -60,8 +60,8 @@ private:
   ObjectPtr getSelectedTool() const;
 
   State d_state = State::NotLoaded;
-  std::future<void> loadResourcesResult;
-  void loadResources();
+  std::future<bool> loadResourcesResult;
+  bool loadResources();
 
   void onMouseClick(Dx::MouseKey i_button);
   void onMouseRelease(Dx::MouseKey i_button);

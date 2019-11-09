@@ -58,11 +58,20 @@ void Game::render(Dx::IRenderer2d& i_renderer) const
 }
 
 
-void Game::loadResources()
+bool Game::loadResources()
 {
-  PrototypesCollection::load();
-  d_resourceController.loadResources();
-  std::this_thread::sleep_for(100ms);
+  try
+  {
+    PrototypesCollection::load();
+    d_resourceController.loadResources();
+    std::this_thread::sleep_for(100ms);
+  }
+  catch (...)
+  {
+    return false;
+  }
+
+  return true;
 }
 
 
