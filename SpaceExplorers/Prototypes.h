@@ -20,6 +20,7 @@ struct StructurePrototype
   bool isSupport = true;
   int containerSize = 0;
   int maxPower = 0;
+  int requiredPower = 0;
 };
 
 

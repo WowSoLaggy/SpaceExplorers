@@ -160,6 +160,7 @@
     "TextureName": "Lamp.png",
     "Layer": "Attachment",
     "Behavior": "PowerLoad",
+    "Power": 50,
     "Passable": true,
     "Atmosphere": true,
     "Leak": false,

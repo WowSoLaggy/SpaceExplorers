@@ -3,6 +3,7 @@
 
 #include "Gui.h"
 #include "Label.h"
+#include "PowerLoadModel.h"
 #include "PowerSourceModel.h"
 #include "Utils.h"
 
@@ -64,6 +65,13 @@ void Game::updateDebugLabel(int i_renderedSprites) const
 
           str += "Power: " + std::to_string(powerSourceModel->getCurPower()) +
             "W / " + std::to_string(powerSourceModel->getMaxPower()) + "W\n";
+        }
+
+        if (const auto powerLoadModel = structure->getBehaviorModel<PowerLoadModel>())
+        {
+          str += "========================\n";
+
+          str += "Req. Power: " + std::to_string(powerLoadModel->getRequiredPower()) + "W\n";
         }
       }
     }
