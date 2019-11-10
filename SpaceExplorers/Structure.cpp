@@ -5,6 +5,7 @@
 #include "ContainerModel.h"
 #include "DoorModel.h"
 #include "PowerSourceModel.h"
+#include "PowerLoadModel.h"
 #include "SettingsProvider.h"
 
 #include <LaggyDx/ImageDescription.h>
@@ -114,10 +115,20 @@ bool Structure::checkAlpha(Sdk::Vector2I i_coords) const
 
 bool Structure::isDoor() const
 {
-  return !!std::dynamic_pointer_cast<DoorModel>(d_behaviorModel);
+  return !!getBehaviorModel<DoorModel>();
 }
 
 bool Structure::isContainer() const
 {
-  return !!std::dynamic_pointer_cast<ContainerModel>(d_behaviorModel);
+  return !!getBehaviorModel<ContainerModel>();
+}
+
+bool Structure::isPowerSource() const
+{
+  return !!getBehaviorModel<PowerSourceModel>();
+}
+
+bool Structure::isPowerLoad() const
+{
+  return !!getBehaviorModel<PowerLoadModel>();
 }

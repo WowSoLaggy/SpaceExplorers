@@ -44,6 +44,8 @@ public:
 
   bool isDoor() const;
   bool isContainer() const;
+  bool isPowerSource() const;
+  bool isPowerLoad() const;
 
   template <typename T>
   std::shared_ptr<T> getBehaviorModel() const

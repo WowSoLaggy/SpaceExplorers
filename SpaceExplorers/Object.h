@@ -22,6 +22,8 @@ public:
     World& i_world, const ObjectPrototype& i_prototype);
 
   const ObjectPrototype& getPrototype() const { return d_prototype; }
+
+  Dx::AnimatedSprite& getSprite() { return d_sprite; }
   const Dx::AnimatedSprite& getSprite() const { return d_sprite; }
 
   virtual void update(double i_dt);
