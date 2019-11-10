@@ -1,10 +1,13 @@
 #include "stdafx.h"
 #include "PowerSourceModel.h"
 
+#include "Structure.h"
+
 
 PowerSourceModel::PowerSourceModel(Structure& io_structure, World& io_world)
   : BehaviorModelBase(io_structure, io_world)
 {
+  setMaxPower(io_structure.getPrototype().maxPower);
 }
 
 

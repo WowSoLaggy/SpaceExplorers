@@ -188,7 +188,6 @@ std::unique_ptr<World> World::createTestWorld(
 
 
   auto capacitor = create(1, -3, "Capacitor");
-  capacitor->getPowerSourceModel()->setMaxPower(1000);
   capacitor->getPowerSourceModel()->setCurPower(500);
 
 

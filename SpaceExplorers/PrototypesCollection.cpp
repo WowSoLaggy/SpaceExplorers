@@ -76,7 +76,7 @@ void PrototypesCollection::loadStructures(const fs::path& i_filename)
 
     const std::string MaxPowerNodeName = "MaxPower";
     if (node.find(MaxPowerNodeName.data(), MaxPowerNodeName.data() + MaxPowerNodeName.length()))
-      proto.containerSize = node[MaxPowerNodeName].asInt();
+      proto.maxPower = node[MaxPowerNodeName].asInt();
 
     d_collectionStructures.insert({ protoName, std::move(proto) });
   }
