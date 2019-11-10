@@ -12,6 +12,22 @@
 #include <LaggyDx/IResourceController.h>
 #include <LaggyDx/ITextureResource.h>
 #include <LaggySdk/Contracts.h>
+#include <LaggySdk/Math.h>
+
+
+namespace
+{
+  std::string sideToString(Sdk::Side i_side)
+  {
+    static const std::unordered_map<Sdk::Side, std::string> sideNames{
+      { Sdk::Side::Up, "Up"},
+      { Sdk::Side::Left, "Left"},
+      { Sdk::Side::Down, "Down"},
+      { Sdk::Side::Right, "Right"},
+    };
+    return sideNames.at(i_side);
+  }
+}
 
 
 Avatar::Avatar(
@@ -372,7 +388,23 @@ void Avatar::finishBuild()
 
 
   if (receipt.output)
-    d_world.createStructureAt(*receipt.output, tileCoords);
+  {
+    auto structure = d_world.createStructureAt(*receipt.output, tileCoords);
+    CONTRACT_ASSERT(structure);
+
+    if (structure->getPrototype().layer == Layer::Attachment)
+    {
+      // Orient attachment toward the builder
+
+      CONTRACT_ASSERT(object);
+
+      auto posDiff = this->getPosition() - object->getCoords();
+      posDiff.y *= -1; // in-game Y-axis looks down
+      const auto side = Sdk::getSide(posDiff);
+
+      structure->getSprite().playAnimation(sideToString(side));
+    }
+  }
 
 
   if (receipt.result)
