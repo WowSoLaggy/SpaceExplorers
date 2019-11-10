@@ -180,5 +180,25 @@
         "Output": "Lamp_unscrewed"
       }
     ]
+  },
+  
+  "Screwdriver":
+  {
+    "TextureName": "Screwdriver.png",
+    "Stackable": false,
+    "ConsumedOnBuild": false,
+    "Receipts":
+    [
+      {
+        "Input": "Lamp_unscrewed",
+        "Output": "Lamp",
+        "Time": 1
+      },
+      {
+        "Input": "Lamp",
+        "Output": "Lamp_unscrewed",
+        "Time": 1
+      }
+    ]
   }
 }
