@@ -58,7 +58,7 @@ void Game::updateDebugLabel(int i_renderedSprites) const
         getTileRect(tileCoords).topLeft();
       if (const auto structure = tile->getStructure(relativeCoords))
       {
-        if (const auto powerSourceModel = structure->getPowerSourceModel())
+        if (const auto powerSourceModel = structure->getBehaviorModel<PowerSourceModel>())
         {
           str += "========================\n";
 

@@ -66,7 +66,7 @@ void Gui::processEvent(const Sdk::IEvent& i_event)
     const auto existingControl = getControl(ContainerControlName);
     CONTRACT_EXPECT(!existingControl);
 
-    const auto containerModel = event->getStructure().getContainerModel();
+    const auto containerModel = event->getStructure().getBehaviorModel<ContainerModel>();
     CONTRACT_EXPECT(containerModel);
     auto& container = containerModel->getContainer();
 

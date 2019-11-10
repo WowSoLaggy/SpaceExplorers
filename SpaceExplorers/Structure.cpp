@@ -121,19 +121,3 @@ bool Structure::isContainer() const
 {
   return !!std::dynamic_pointer_cast<ContainerModel>(d_behaviorModel);
 }
-
-
-std::shared_ptr<DoorModel> Structure::getDoorModel() const
-{
-  return std::dynamic_pointer_cast<DoorModel>(d_behaviorModel);
-}
-
-std::shared_ptr<ContainerModel> Structure::getContainerModel() const
-{
-  return std::dynamic_pointer_cast<ContainerModel>(d_behaviorModel);
-}
-
-std::shared_ptr<PowerSourceModel> Structure::getPowerSourceModel() const
-{
-  return std::dynamic_pointer_cast<PowerSourceModel>(d_behaviorModel);
-}

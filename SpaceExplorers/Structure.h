@@ -45,9 +45,11 @@ public:
   bool isDoor() const;
   bool isContainer() const;
 
-  std::shared_ptr<DoorModel> getDoorModel() const;
-  std::shared_ptr<ContainerModel> getContainerModel() const;
-  std::shared_ptr<PowerSourceModel> getPowerSourceModel() const;
+  template <typename T>
+  std::shared_ptr<T> getBehaviorModel() const
+  {
+    return std::dynamic_pointer_cast<T>(d_behaviorModel);
+  }
 
   bool isTransparent() const;
   const Sdk::Vector2I& getCoords() const;

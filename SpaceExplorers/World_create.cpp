@@ -98,7 +98,7 @@ std::unique_ptr<World> World::createTestWorld(
 
 
   create(0, -3, "Wall");
-  create(0, -2, "Door")->getDoorModel()->setState(DoorModel::State::Open);
+  create(0, -2, "Door")->getBehaviorModel<DoorModel>()->setState(DoorModel::State::Open);
   create(0, -1, "Wall");
   create(0, 0, "Wall");
   create(1, 0, "Wall");
@@ -132,7 +132,7 @@ std::unique_ptr<World> World::createTestWorld(
 
   {
     auto crate = create(-6, -1, "Crate");
-    auto& container = crate->getContainerModel()->getContainer();
+    auto& container = crate->getBehaviorModel<ContainerModel>()->getContainer();
 
     auto rods = createObject("Rods");
     rods->setQuantity(200);
@@ -188,7 +188,7 @@ std::unique_ptr<World> World::createTestWorld(
 
 
   auto capacitor = create(1, -3, "Capacitor");
-  capacitor->getPowerSourceModel()->setCurPower(500);
+  capacitor->getBehaviorModel<PowerSourceModel>()->setCurPower(500);
 
 
   ///

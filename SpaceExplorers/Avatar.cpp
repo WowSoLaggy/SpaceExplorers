@@ -466,7 +466,7 @@ void Avatar::processEvent(const Sdk::IEvent& i_event)
 
     auto getInspectedContainer = [&]() -> Container&
     {
-      auto containerModel = d_inspectedContainer->getContainerModel();
+      auto containerModel = d_inspectedContainer->getBehaviorModel<ContainerModel>();
       CONTRACT_ASSERT(containerModel);
       return containerModel->getContainer();
     };
