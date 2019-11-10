@@ -133,6 +133,11 @@
         "Input": "WallGirder_unwelded",
         "Output": "",
         "Result": "Metal"
+      },
+      {
+        "Input": "Lamp_unscrewed",
+        "Output": "",
+        "Result": "Lamp_packed"
       }
     ]
   },
