@@ -120,6 +120,16 @@ std::unique_ptr<World> World::createTestWorld(
   ///
 
 
+  create(3, -2, "Lamp")->getSprite().playAnimation("Left");
+  create(-2, -4, "Lamp")->getSprite().playAnimation("Down");
+  create(-2, 3, "Lamp")->getSprite().playAnimation("Up");
+  create(-5, 1, "Lamp")->getSprite().playAnimation("Up");
+  create(3, 1, "Lamp")->getSprite().playAnimation("Left");
+
+
+  ///
+
+
   {
     auto crate = create(-6, -1, "Crate");
     auto& container = crate->getContainerModel()->getContainer();
