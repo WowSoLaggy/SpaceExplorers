@@ -37,3 +37,4 @@ class BehaviorModelBase;
 class DoorModel;
 class ContainerModel;
 class PowerSourceModel;
+class PowerLoadModel;

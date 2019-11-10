@@ -9,4 +9,5 @@ enum class Behavior : int32_t
   Door,
   Container,
   PowerSource,
+  PowerLoad,
 };

@@ -26,6 +26,7 @@ namespace
     { "Door", Behavior::Door },
     { "Container", Behavior::Container },
     { "PowerSource", Behavior::PowerSource },
+    { "PowerLoad", Behavior::PowerLoad },
   };
 } // anonymous NS
 

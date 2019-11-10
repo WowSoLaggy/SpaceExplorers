@@ -195,6 +195,9 @@
     <ClCompile Include="PowerSourceModel.cpp">
       <Filter>src\World\BehaviorModels</Filter>
     </ClCompile>
+    <ClCompile Include="PowerLoadModel.cpp">
+      <Filter>src\World\BehaviorModels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -330,6 +333,9 @@
       <Filter>src\Game</Filter>
     </ClInclude>
     <ClInclude Include="PowerSourceModel.h">
+      <Filter>src\World\BehaviorModels</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerLoadModel.h">
       <Filter>src\World\BehaviorModels</Filter>
     </ClInclude>
   </ItemGroup>
