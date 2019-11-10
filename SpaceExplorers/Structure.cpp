@@ -109,6 +109,9 @@ void Structure::setColor(Sdk::Vector4F i_color)
 
 bool Structure::checkAlpha(Sdk::Vector2I i_coords) const
 {
+  if (d_sprite.getRotation() > 0.01)
+    i_coords.rotate(d_sprite.getRotation(), d_sprite.getSize() / 2);
+
   return d_sprite.getTexture()->checkAlpha(i_coords, d_sprite.getFrame());
 }
 
