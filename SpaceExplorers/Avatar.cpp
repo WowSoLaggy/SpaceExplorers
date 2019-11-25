@@ -389,10 +389,10 @@ void Avatar::finishBuild()
 
   if (receipt.output)
   {
-    auto structure = d_world.createStructureAt(*receipt.output, tileCoords);
-    CONTRACT_ASSERT(structure);
+    auto newStructure = d_world.createStructureAt(*receipt.output, tileCoords);
+    CONTRACT_ASSERT(newStructure);
 
-    if (structure->getPrototype().layer == Layer::Attachment)
+    if (newStructure->getPrototype().layer == Layer::Attachment)
     {
       // Orient attachment toward the builder
 
@@ -402,7 +402,7 @@ void Avatar::finishBuild()
       posDiff.y *= -1; // in-game Y-axis looks down
       const auto side = Sdk::getSide(posDiff);
 
-      structure->getSprite().playAnimation(sideToString(side));
+      newStructure->getSprite().playAnimation(sideToString(side));
     }
   }
 
