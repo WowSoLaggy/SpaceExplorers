@@ -120,11 +120,11 @@ std::unique_ptr<World> World::createTestWorld(
   ///
 
 
-  create(3, -2, "Lamp")->getSprite().playAnimation("Left");
-  create(-2, -4, "Lamp")->getSprite().playAnimation("Down");
-  create(-2, 3, "Lamp")->getSprite().playAnimation("Up");
-  create(-5, 1, "Lamp")->getSprite().playAnimation("Up");
-  create(3, 1, "Lamp")->getSprite().playAnimation("Left");
+  create(3, -2, "Lamp")->setOrientation(Sdk::Side::Left);
+  create(-2, -4, "Lamp")->setOrientation(Sdk::Side::Down);
+  create(-2, 3, "Lamp")->setOrientation(Sdk::Side::Up);
+  create(-5, 1, "Lamp")->setOrientation(Sdk::Side::Up);
+  create(3, 1, "Lamp")->setOrientation(Sdk::Side::Left);
 
 
   ///

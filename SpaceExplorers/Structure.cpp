@@ -135,3 +135,23 @@ bool Structure::isPowerLoad() const
 {
   return !!getBehaviorModel<PowerLoadModel>();
 }
+
+
+void Structure::setOrientation(Sdk::Side i_orientation)
+{
+  static const std::unordered_map<Sdk::Side, double> SideAngles{
+    { Sdk::Side::Up, Sdk::degToRad<double>(180) },
+    { Sdk::Side::Left, Sdk::degToRad<double>(90) },
+    { Sdk::Side::Down, Sdk::degToRad<double>(0) },
+    { Sdk::Side::Right, Sdk::degToRad<double>(270) },
+  };
+
+  d_orientation = i_orientation;
+
+  getSprite().setRotation(SideAngles.at(d_orientation));
+}
+
+Sdk::Side Structure::getOrientation() const
+{
+  return d_orientation;
+}

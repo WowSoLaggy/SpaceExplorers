@@ -15,21 +15,6 @@
 #include <LaggySdk/Math.h>
 
 
-namespace
-{
-  std::string sideToString(Sdk::Side i_side)
-  {
-    static const std::unordered_map<Sdk::Side, std::string> sideNames{
-      { Sdk::Side::Up, "Up"},
-      { Sdk::Side::Left, "Left"},
-      { Sdk::Side::Down, "Down"},
-      { Sdk::Side::Right, "Right"},
-    };
-    return sideNames.at(i_side);
-  }
-}
-
-
 Avatar::Avatar(
   Dx::IResourceController& i_resourceController,
   World& i_world, const ObjectPrototype& i_prototype)
@@ -402,7 +387,7 @@ void Avatar::finishBuild()
       posDiff.y *= -1; // in-game Y-axis looks down
       const auto side = Sdk::getSide(posDiff);
 
-      newStructure->getSprite().playAnimation(sideToString(side));
+      newStructure->setOrientation(side);
     }
   }
 

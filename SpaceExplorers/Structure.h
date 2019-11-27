@@ -9,6 +9,7 @@
 #include <LaggyDx/LaggyDxFwd.h>
 #include <LaggyDx/AnimatedSprite.h>
 #include <LaggySdk/EventHandler.h>
+#include <LaggySdk/Math.h>
 #include <LaggySdk/Vector.h>
 
 #include <iostream>
@@ -64,6 +65,9 @@ public:
   void addBuildTime(double i_addedBuildTime) { d_buildTime += i_addedBuildTime; }
   double getBuildTime() const { return d_buildTime; }
 
+  void setOrientation(Sdk::Side i_orientation);
+  Sdk::Side getOrientation() const;
+
 protected:
   Dx::IResourceController& d_resourceController;
   World& d_world;
@@ -75,6 +79,8 @@ protected:
   std::shared_ptr<BehaviorModelBase> d_behaviorModel;
 
   double d_buildTime = 0;
+
+  Sdk::Side d_orientation = Sdk::Side::Down;
 
 public:
   virtual void writeTo(std::ostream& io_stream) const;
