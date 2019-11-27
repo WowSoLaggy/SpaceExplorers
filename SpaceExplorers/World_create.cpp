@@ -159,7 +159,8 @@ std::unique_ptr<World> World::createTestWorld(
     tom->getInventory().setItem(2, createObject("CuttingTorch"));
     tom->getInventory().setItem(3, createObject("Screwdriver"));
 
-    tom->getInventory().setItem(4, createObject("Lamp_packed", 10));
+    tom->getInventory().setItem(5, createObject("Lamp_packed", 10));
+    tom->getInventory().setItem(6, createObject("Wires_packed", 40));
   }
 
   

@@ -200,5 +200,19 @@
         "Time": 1
       }
     ]
+  },
+  
+  "Wires_packed":
+  {
+    "TextureName": "Wires_packed.png",
+    "Stackable": true,
+    "ConsumedOnBuild": true,
+    "Receipts":
+    [
+      {
+        "Input": "Floor",
+        "Output": "Wires"
+      }
+    ]
   }
 }

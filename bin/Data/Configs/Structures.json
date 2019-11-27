@@ -165,5 +165,16 @@
     "Atmosphere": true,
     "Leak": false,
     "Support": false
+  },
+  
+  "Wires":
+  {
+    "TextureName": "Wires.png",
+    "Layer": "Wall",
+    "Behavior": "Default",
+    "Passable": true,
+    "Atmosphere": true,
+    "Leak": false,
+    "Support": false
   }
 }
