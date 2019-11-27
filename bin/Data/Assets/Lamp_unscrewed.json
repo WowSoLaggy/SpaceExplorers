@@ -4,28 +4,5 @@
     "Width": 64,
     "Height": 64,
     "Alpha": true
-  },
-  "Animations":
-  [
-    {
-      "Name": "Up",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "Name": "Left",
-      "Start": 1,
-      "End": 1
-    },
-    {
-      "Name": "Down",
-      "Start": 2,
-      "End": 2
-    },
-    {
-      "Name": "Right",
-      "Start": 3,
-      "End": 3
-    }
-  ]
+  }
 }
