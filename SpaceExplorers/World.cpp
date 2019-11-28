@@ -113,6 +113,16 @@ AvatarPtr World::createAvatarAt(const ObjectPrototype& i_prototype, Sdk::Vector2
   return avatarPtr;
 }
 
+bool World::removeStructureAtLayer(const Sdk::Vector2I& i_coords, Layer i_layer)
+{
+  if (auto* tile = getTile(i_coords))
+  {
+    tile->removeStructure(i_layer);
+    return true;
+  }
+  return false;
+}
+
 
 void World::setBackground(const std::string& i_backgroundTextureFilename,
                           Sdk::Vector2I i_backgroundSize)

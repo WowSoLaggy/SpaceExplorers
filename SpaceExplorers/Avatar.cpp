@@ -364,11 +364,7 @@ void Avatar::finishBuild()
   if (sameLayer || dismantling)
   {
     // If input and output are on the same layer - remove the existing structure on this layer
-
-    auto* tile = d_world.getTile(tileCoords);
-    CONTRACT_ASSERT(tile);
-
-    tile->removeStructure(receipt.input->layer);
+    CONTRACT_ASSERT(d_world.removeStructureAtLayer(tileCoords, receipt.input->layer));
   }
 
 
