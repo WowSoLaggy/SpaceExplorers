@@ -118,22 +118,22 @@ bool Structure::checkAlpha(Sdk::Vector2I i_coords) const
 
 bool Structure::isDoor() const
 {
-  return !!getBehaviorModel<DoorModel>();
+  return getBehaviorModel<DoorModel>().get() != nullptr;
 }
 
 bool Structure::isContainer() const
 {
-  return !!getBehaviorModel<ContainerModel>();
+  return getBehaviorModel<ContainerModel>() != nullptr;
 }
 
 bool Structure::isPowerSource() const
 {
-  return !!getBehaviorModel<PowerSourceModel>();
+  return getBehaviorModel<PowerSourceModel>() != nullptr;
 }
 
 bool Structure::isPowerLoad() const
 {
-  return !!getBehaviorModel<PowerLoadModel>();
+  return getBehaviorModel<PowerLoadModel>() != nullptr;
 }
 
 
