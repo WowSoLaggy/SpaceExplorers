@@ -155,3 +155,45 @@ Sdk::Side Structure::getOrientation() const
 {
   return d_orientation;
 }
+
+
+bool Structure::canHaveAttachment(AttachmentPosition i_position) const
+{
+  return d_attachments.find(i_position) != d_attachments.cend();
+}
+
+bool Structure::canHaveAttachment(AttachmentGeneralPosition i_position) const
+{
+  if (i_position == AttachmentGeneralPosition::None)
+    return false;
+  else if (i_position == AttachmentGeneralPosition::Center)
+    return canHaveAttachment(AttachmentPosition::Center);
+  else if (i_position == AttachmentGeneralPosition::Side)
+  {
+    return
+      canHaveAttachment(AttachmentPosition::Up) &&
+      canHaveAttachment(AttachmentPosition::Left) &&
+      canHaveAttachment(AttachmentPosition::Down) &&
+      canHaveAttachment(AttachmentPosition::Right);
+  }
+
+  CONTRACT_ASSERT(false);
+}
+
+StructurePtr Structure::getAttachment(AttachmentPosition i_position) const
+{
+  CONTRACT_EXPECT(canHaveAttachment(i_position));
+  return d_attachments.at(i_position);
+}
+
+bool Structure::hasAttachment(AttachmentPosition i_position) const
+{
+  CONTRACT_EXPECT(canHaveAttachment(i_position));
+  return d_attachments.at(i_position).get() != nullptr;
+}
+
+void Structure::setAttachment(AttachmentPosition i_position, StructurePtr i_attachment)
+{
+  CONTRACT_EXPECT(canHaveAttachment(i_position));
+  d_attachments.at(i_position) = i_attachment;
+}

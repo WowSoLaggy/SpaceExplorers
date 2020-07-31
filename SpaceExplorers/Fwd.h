@@ -19,6 +19,7 @@ struct Receipt;
 
 class Camera;
 class World;
+class Tile;
 class Avatar;
 class Object;
 using ObjectPtr = std::shared_ptr<Object>;

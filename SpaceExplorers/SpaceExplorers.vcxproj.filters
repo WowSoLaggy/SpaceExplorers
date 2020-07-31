@@ -61,6 +61,9 @@
     <Filter Include="src\Atmosphere">
       <UniqueIdentifier>{6d1b0e2c-07ce-43c9-8a80-4e9a77798309}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\BuildManager">
+      <UniqueIdentifier>{d85d6d7d-b025-41dc-afa7-152a25283966}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -198,6 +201,9 @@
     <ClCompile Include="PowerLoadModel.cpp">
       <Filter>src\World\BehaviorModels</Filter>
     </ClCompile>
+    <ClCompile Include="BuildManager.cpp">
+      <Filter>src\BuildManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -287,9 +293,6 @@
     <ClInclude Include="Thing.h">
       <Filter>src\World\Thing</Filter>
     </ClInclude>
-    <ClInclude Include="BuildContext.h">
-      <Filter>src\World\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Avatar_events.h">
       <Filter>src\World\Objects</Filter>
     </ClInclude>
@@ -337,6 +340,12 @@
     </ClInclude>
     <ClInclude Include="PowerLoadModel.h">
       <Filter>src\World\BehaviorModels</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildManager.h">
+      <Filter>src\BuildManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildContext.h">
+      <Filter>src\BuildManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

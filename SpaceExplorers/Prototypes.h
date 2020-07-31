@@ -7,6 +7,22 @@
 #include <string>
 
 
+enum class AttachmentPosition : std::int32_t
+{
+  Up = 0,
+  Left,
+  Down,
+  Right,
+  Center,
+};
+
+enum class AttachmentGeneralPosition : std::int32_t
+{
+  None = 0,
+  Center,
+  Side,
+};
+
 struct StructurePrototype
 {
   std::string name = "";
@@ -21,6 +37,9 @@ struct StructurePrototype
   int containerSize = 0;
   int maxPower = 0;
   int requiredPower = 0;
+  bool isAttachment = false;
+  AttachmentGeneralPosition attachedTo = AttachmentGeneralPosition::None;
+  std::set<AttachmentPosition> attachments;
 };
 
 

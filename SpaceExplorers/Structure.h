@@ -68,7 +68,14 @@ public:
   void setOrientation(Sdk::Side i_orientation);
   Sdk::Side getOrientation() const;
 
-protected:
+
+  bool canHaveAttachment(AttachmentPosition i_position) const;
+  bool canHaveAttachment(AttachmentGeneralPosition i_position) const;
+  StructurePtr getAttachment(AttachmentPosition i_position) const;
+  bool hasAttachment(AttachmentPosition i_position) const;
+  void setAttachment(AttachmentPosition i_position, StructurePtr i_attachment);
+
+private:
   Dx::IResourceController& d_resourceController;
   World& d_world;
   const StructurePrototype& d_prototype;
@@ -81,6 +88,8 @@ protected:
   double d_buildTime = 0;
 
   Sdk::Side d_orientation = Sdk::Side::Down;
+  
+  std::unordered_map<AttachmentPosition, StructurePtr> d_attachments;
 
 public:
   virtual void writeTo(std::ostream& io_stream) const;

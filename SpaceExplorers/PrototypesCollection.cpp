@@ -17,7 +17,6 @@ namespace
     { "Panneling", Layer::Panneling },
     { "Floor", Layer::Floor },
     { "Wall", Layer::Wall },
-    { "Attachment", Layer::Attachment },
   };
 
   const std::unordered_map<std::string, Behavior> BehaviorNames
@@ -70,6 +69,36 @@ void PrototypesCollection::loadStructures(const fs::path& i_filename)
     proto.hasAtmosphere = node["Atmosphere"].asBool();
     proto.isLeak = node["Leak"].asBool();
     proto.isSupport = node["Support"].asBool();
+
+    const std::string AttachedToNodeName = "AttachedTo";
+    if (node.find(AttachedToNodeName.data(), AttachedToNodeName.data() + AttachedToNodeName.length()))
+    {
+      proto.isAttachment = true;
+
+      const auto& attachedToNode = node[AttachedToNodeName];
+      if (node[AttachedToNodeName].asString() == "Center")
+        proto.attachedTo = AttachmentGeneralPosition::Center;
+      else if (node[AttachedToNodeName].asString() == "Side")
+        proto.attachedTo = AttachmentGeneralPosition::Side;
+    }
+
+    const std::string AttachmentsNodeName = "Attachments";
+    if (node.find(AttachmentsNodeName.data(), AttachmentsNodeName.data() + AttachmentsNodeName.length()))
+    {
+      const auto& attachmentsNode = node[AttachmentsNodeName];
+      for (const auto& attachmentSideNode : attachmentsNode)
+      {
+        if (attachmentSideNode.asString() == "Center")
+          proto.attachments.insert(AttachmentPosition::Center);
+        else if (attachmentSideNode.asString() == "Side")
+        {
+          proto.attachments.insert(AttachmentPosition::Up);
+          proto.attachments.insert(AttachmentPosition::Left);
+          proto.attachments.insert(AttachmentPosition::Down);
+          proto.attachments.insert(AttachmentPosition::Right);
+        }
+      }
+    }
 
     const std::string ContainerSizeNodeName = "ContainerSize";
     if (node.find(ContainerSizeNodeName.data(), ContainerSizeNodeName.data() + ContainerSizeNodeName.length()))

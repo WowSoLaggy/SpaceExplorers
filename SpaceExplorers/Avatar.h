@@ -37,7 +37,7 @@ public:
   void startInspectingContainer(StructurePtr i_structure);
   void stopInspectingContainer();
 
-  void startBuilding(StructurePtr i_structure, ObjectPtr i_tool, const Receipt& i_receipt, const Sdk::Vector2I& i_where);
+  void startBuilding(BuildContextPtr i_buildContext);
   void stopBuilding();
   bool isBuilding() const { return !!d_buildContext; }
 

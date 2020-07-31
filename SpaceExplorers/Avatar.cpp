@@ -2,7 +2,7 @@
 #include "Avatar.h"
 
 #include "Avatar_events.h"
-#include "BuildContext.h"
+#include "BuildManager.h"
 #include "ContainerModel.h"
 #include "Inventory_events.h"
 #include "Utils.h"
@@ -256,60 +256,32 @@ void Avatar::interact(Action i_action, ThingPtr io_object,
   }
   else if (i_action == Action::Build)
   {
-    if (!i_tool)
-      return;
-    if (io_object && !io_object->isStructure())
-      return;
     if ((i_where - d_position).lengthSq() > d_interactionDistSq)
       return;
 
-    StructurePtr object = std::dynamic_pointer_cast<Structure>(io_object);
+    auto buildContextPtr = BuildManager::tryBuild(
+      std::dynamic_pointer_cast<Structure>(io_object),
+      i_tool,
+      d_world,
+      i_where);
 
-    const StructurePrototype* inputProto = object ? &object->getPrototype() : nullptr;
-    const auto& receipts = i_tool->getPrototype().receipts;
-    auto it = std::find_if(receipts.cbegin(), receipts.cend(), [&](const auto& i_receipt) {
-      return i_receipt.input == inputProto;
-    });
-    if (it == receipts.cend())
+    if (!buildContextPtr)
       return;
-
-    const auto& receipt = *it;
-    const auto* outputProto = receipt.output;
-    const auto tileCoords = worldToTile(i_where);
-
-    auto* tile = d_world.getTile(tileCoords);
-    if (tile)
-    {
-      const bool sameLayer = inputProto && outputProto && inputProto->layer == outputProto->layer;
-      const bool outputLayerOccupied = outputProto && tile->hasStructureOnLayer(outputProto->layer);
-      if (!sameLayer && outputLayerOccupied)
-      {
-        // Output layer shall not be occupied
-        return;
-      }
-    }
-
-    if (!d_world.checkSupport(tileCoords))
-      return;
-
-    // Impassable structures cannot be built with collision
-    if (outputProto && !outputProto->isPassable && d_world.checkIntersectWithAnyObject(getTileRect(tileCoords)))
-      return;
-
-    startBuilding(object, i_tool, receipt, i_where);
+    startBuilding(std::move(buildContextPtr));
   }
 }
 
 
-void Avatar::startBuilding(StructurePtr i_structure, ObjectPtr i_tool,
-                           const Receipt& i_receipt, const Sdk::Vector2I& i_where)
+void Avatar::startBuilding(BuildContextPtr i_buildContext)
 {
-  d_buildContext = std::make_shared<BuildContext>(i_structure, i_tool, i_receipt, i_where);
+  CONTRACT_EXPECT(i_buildContext);
 
-  if (i_structure && d_buildContext->takesTime())
+  d_buildContext = std::move(i_buildContext);
+
+  if (d_buildContext->object && d_buildContext->takesTime())
   {
-    const double progress = i_structure->getBuildTime() / i_receipt.time;
-    notify(StartBuildEvent{ progress, i_where });
+    const double progress = d_buildContext->object->getBuildTime() / d_buildContext->receipt.time;
+    notify(StartBuildEvent{ progress, d_buildContext->coords });
   }
 }
 
@@ -370,12 +342,14 @@ void Avatar::finishBuild()
 
   if (receipt.output)
   {
-    auto newStructure = d_world.createStructureAt(*receipt.output, tileCoords);
-    CONTRACT_ASSERT(newStructure);
-
-    if (newStructure->getPrototype().layer == Layer::Attachment)
+    if (!receipt.output->isAttachment)
     {
-      // Orient attachment toward the builder
+      // Regular structure (not attachment)
+      CONTRACT_ASSERT(d_world.createStructureAt(*receipt.output, tileCoords));
+    }
+    else
+    {
+      // Attachment - shall be oriented toward the builder
 
       CONTRACT_ASSERT(object);
 
@@ -383,6 +357,7 @@ void Avatar::finishBuild()
       posDiff.y *= -1; // in-game Y-axis looks down
       const auto side = Sdk::getSide(posDiff);
 
+      // TODO: ae
       newStructure->setOrientation(side);
     }
   }

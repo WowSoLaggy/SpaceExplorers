@@ -166,6 +166,7 @@
     <ClCompile Include="Avatar_save.cpp" />
     <ClCompile Include="BehaviorModelBase.cpp" />
     <ClCompile Include="BehaviorModelFactory.cpp" />
+    <ClCompile Include="BuildManager.cpp" />
     <ClCompile Include="BuildProgressBar.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="BehaviorModelFactory.h" />
     <ClInclude Include="Behaviors.h" />
     <ClInclude Include="BuildContext.h" />
+    <ClInclude Include="BuildManager.h" />
     <ClInclude Include="BuildProgressBar.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Container.h" />

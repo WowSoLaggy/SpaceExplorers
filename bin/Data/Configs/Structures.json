@@ -7,7 +7,8 @@
     "Passable": true,
     "Atmosphere": true,
     "Leak": true,
-    "Support": true
+    "Support": true,
+    "AttachHolders": [ "Center" ]
   },
   
   "Lattice_unwelded":
@@ -29,7 +30,8 @@
     "Passable": true,
     "Atmosphere": true,
     "Leak": false,
-    "Support": true
+    "Support": true,
+    "AttachHolders": [ "Center" ]
   },
   
   "Plating_unwelded":
@@ -51,7 +53,8 @@
     "Passable": true,
     "Atmosphere": true,
     "Leak": false,
-    "Support": true
+    "Support": true,
+    "AttachHolders": [ "Center" ]
   },
   
   "Wall":
@@ -62,7 +65,8 @@
     "Passable": false,
     "Atmosphere": false,
     "Leak": false,
-    "Support": true
+    "Support": true,
+    "AttachHolders": [ "Side" ]
   },
   
   "WallGirder_unwelded":
@@ -147,24 +151,26 @@
   "Lamp_unscrewed":
   {
     "TextureName": "Lamp_unscrewed.png",
-    "Layer": "Attachment",
+    "Layer": "None",
     "Behavior": "Default",
     "Passable": true,
     "Atmosphere": true,
     "Leak": false,
-    "Support": false
+    "Support": false,
+    "AttachedTo": "Side"
   },
   
   "Lamp":
   {
     "TextureName": "Lamp.png",
-    "Layer": "Attachment",
+    "Layer": "None",
     "Behavior": "PowerLoad",
     "Power": 50,
     "Passable": true,
     "Atmosphere": true,
     "Leak": false,
-    "Support": false
+    "Support": false,
+    "AttachedTo": "Side"
   },
   
   "Wires":
@@ -175,6 +181,7 @@
     "Passable": true,
     "Atmosphere": true,
     "Leak": false,
-    "Support": false
+    "Support": false,
+    "AttachedTo": "Center"
   }
 }

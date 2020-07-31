@@ -11,11 +11,13 @@
 struct BuildContext
 {
   BuildContext(StructurePtr i_object, ObjectPtr i_tool,
-               Receipt i_receipt, Sdk::Vector2I i_coords)
+               Receipt i_receipt, Sdk::Vector2I i_coords,
+               AttachmentPosition i_attachPosition)
     : object(i_object)
     , tool(i_tool)
     , receipt(i_receipt)
     , coords(i_coords)
+    , attachPosition(i_attachPosition)
   {
   }
 
@@ -28,4 +30,5 @@ struct BuildContext
   ObjectPtr tool;
   Receipt receipt;
   Sdk::Vector2I coords;
+  AttachmentPosition attachPosition = AttachmentPosition::Center;
 };

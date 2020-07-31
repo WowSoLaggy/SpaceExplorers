@@ -9,7 +9,6 @@ enum class Layer : int32_t
   Panneling,
   Floor,
   Wall,
-  Attachment,
 };
 
 static Layer getPrevLayer(Layer i_layer)
