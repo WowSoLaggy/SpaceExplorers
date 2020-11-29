@@ -70,5 +70,5 @@ BuildContextPtr BuildManager::tryBuild(
     return {};
 
 
-  return std::make_shared<BuildContext>(i_structure, i_tool, receipt, i_where);
+  return std::make_shared<BuildContext>(i_structure, i_tool, receipt, i_where, AttachmentPosition::Center);
 }

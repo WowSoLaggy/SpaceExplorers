@@ -358,7 +358,7 @@ void Avatar::finishBuild()
       const auto side = Sdk::getSide(posDiff);
 
       // TODO: ae
-      newStructure->setOrientation(side);
+      //newStructure->setOrientation(side);
     }
   }
 
